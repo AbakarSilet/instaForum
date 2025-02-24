@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Nouvelles de Technologie, Sciences et Informatique{% endblock %}
+{% block content %}
+    <h2>Nouvelles de Technologie, Sciences et Informatique</h2>
+    <ul>
+        {% for item in news %}
+            <li>
+                <a href="{{ item.url }}">{{ item.title }}</a>
+                <p>{{ item.summary }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if news|length == 0 %}
+        <p>Aucune nouvelle trouvée.</p>
+    {% endif %}
+
+    <!-- Afficher la réponse brute pour le débogage -->
+    <pre>{{ response_data|safe }}</pre>
+{% endblock %}

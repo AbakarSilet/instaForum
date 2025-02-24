@@ -1,0 +1,112 @@
+.edit-container {
+    justify-content: center;
+    align-content: center;
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 10px;
+    align-items: center;
+    box-shadow: 0 0 10px var(--primary-color);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+    /* Centre horizontalement */
+}
+
+form {
+    justify-content: center;
+    align-content: center;
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    /* Centre horizontalement */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+form .form-control {
+    margin-bottom: 10px;
+    width: 90%;
+    height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: larger;
+}
+
+.btn,
+.btn-cancel {
+    align-self: center;
+    margin: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 15px;
+    width: 70%;
+    height: 30px;
+    cursor: pointer;
+    font-size: larger;
+}
+
+form label {
+    font-size: larger;
+}
+
+form button {
+    align-self: center;
+    margin: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 15px;
+    width: 70%;
+    height: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+form a {
+    text-decoration: none;
+}
+
+.profile-image-preview {
+    display: block;
+    margin: 10px 0;
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .edit-container {
+        padding-top: 40px;
+        padding: 20px;
+    }
+
+    form,
+    .form-group,
+    .form-control {
+        margin: 0;
+        padding: 0;
+    }
+}

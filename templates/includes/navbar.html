@@ -1,0 +1,110 @@
+{% load static %}
+{% load i18n %}
+{% load category_tags %}
+{% load contributor_tags %}
+{% load forum_stats_tags %}
+{% load popular_categories_tags %}
+{% load moderation_tags %}
+
+
+
+
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<div class="navbar">
+  <div class="logo"><a href="{% url 'home' %}" style="color: inherit; text-decoration: none;">InstaForum</a></div>
+  <div class="menu">
+    <div class="menu-item"><a href="{% url 'news:news' %}">{% trans "Actualités" %}</a></div>
+    <div class="menu-item">
+      <a href="{% url 'forum:home' %}">{% trans "Forum" %}</a>
+      <!-- <div class="dropdown">
+        {% show_categories %}
+      </div> -->
+    </div>
+    <div class="menu-item"><a href="{% url 'discussions' %}">{% trans "Discussions" %}</a></div>
+    <div class="menu-item"><a href="{% url 'resources:resource_list' %}">{% trans "Ressources" %}</a></div>
+    <div class="menu-item"><a href="{% url 'event_list' %}">{% trans "Evénements" %}</a></div>
+    <div class="menu-item">
+      
+      <a href="#"><i class="fas fa-language lang-icon"></i></a>
+      <div class="dropdown">
+        {% for language in languages %}
+        <a href="/{{language.code}}">{{ language.name_local }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="profile">
+    {% if user.is_authenticated %}
+    <a href="{% url 'account_profile' %}" title="{% trans 'Votre profil' %}">
+      {% if user.profile_image %}
+      <img src="{{ user.profile_image.url }}" alt="{% trans 'Profil' %}">
+      {% else %}
+      <img src="{% static 'images/login.png' %}" alt="{% trans 'Profil' %}" class="profile-image">
+      {% endif %}
+    </a>
+    <div class="notification-icon">
+      <a href="{% url 'forum:notifications' %}" title="{% trans ' Vos notifications' %}">
+        <i class="fas fa-bell notification-icon"></i>
+        <span class="notification-count">{{ notification_count }}</span>
+      </a>
+    </div>
+    {% else %}
+    <a href="{% url 'account_login' %}" title="{% trans 'Se connecter' %}">
+      <i class="ri-login-box-line"></i>
+    </a>
+    <a href="{% url 'account_signup' %}" title="{% trans 'S\'inscrire' %}">
+      <i class="ri-user-add-line"></i>
+    </a>
+    {% endif %}
+    <a href="#" onclick="toggleTheme()" title="{% trans 'Changer de thème' %}">
+      <i id="theme-icon" class="fas fa-sun"></i>
+    </a>
+    <div class="edit">
+      <a href="{% url 'forum:create' %}" title="{% trans 'Créer un thread' %}">
+        <i class="fas fa-edit"></i>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- Toggle pour le menu mobile -->
+  <div class="mobile-menu-toggle" id="mobileMenuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Menu mobile -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="menu-item"><a href="#"><i class="fas fa-newspaper"></i>{% trans "Actualités" %}</a></div>
+    <div class="menu-item"><a href="{% url 'forum:home' %}">{% trans "Forum" %}</a></div>
+    <div class="menu-item"><a href="{% url 'discussions' %}"><i class="fas fa-comments"></i>
+        {% trans "Discussions" %}</a></div>
+    <div class="menu-item"><a href="{% url 'forum:create' %}"><i class="fas fa-edit"></i>
+        {% trans "Créer un thread" %}</a></div>
+    <div class="menu-item"><a href="{% url 'event_list' %}"><i class="fas fa-calendar"></i>
+        {% trans "Evénements" %}</a>
+    </div>
+    <div class="menu-item"><a href="{% url 'create_event' %}"><i class="fas fa-edit"></i>
+        {% trans "Créer un Evénement"%}</a></div>
+    <div class="menu-item"><a href="{% url 'messaging:user_messages' %}"><i class="fas fa-envelope"></i>
+        {% trans "Messagerie privée" %}</a></div>
+
+    <div class="menu-item">
+      <i class="fas fa-language lang-icon"></i>
+      {% trans "Langues" %}
+      <div class="dropdown">
+        {% for language in languages %}
+        <a href="/{{language.code}}"><i class="fas fa-angle-right"></i>{{ language.name_local }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'includes/sidebar.html' %}
+
+<div class="sidebar-toggle" id="sidebarToggle">
+  <i class="fas fa-bars"></i>
+</div>
+
+<div class="overlay" id="overlay"></div>

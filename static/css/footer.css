@@ -1,0 +1,131 @@
+/* Footer styles */
+.footer {
+    margin-top: 30px;
+    background-color: rgb(33, 82, 230);
+    color: var(--text-color);
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Espacement entre les sections */
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px; /* Limite la largeur des sections */
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff; /* Couleur du titre */
+    text-transform: uppercase; /* Titres en majuscules */
+    letter-spacing: 1px; /* Espacement des lettres */
+    border-bottom: 2px solid #ff9900; /* Ligne sous le titre */
+    padding-bottom: 5px;
+    display: inline-block; /* Pour que la bordure s'adapte au texte */
+}
+
+.footer-links,
+.footer-contact,
+.footer-social {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links li,
+.footer-contact li,
+.footer-social li {
+    margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-contact a,
+.footer-social a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacement entre l'icône et le texte */
+}
+
+.footer-links a:hover,
+.footer-contact a:hover,
+.footer-social a:hover {
+    color: #ff9900; /* Couleur au survol */
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacement entre l'icône et le texte */
+}
+
+.footer-contact i {
+    font-size: 1.1rem;
+    color: #ff9900; /* Couleur des icônes */
+}
+
+.footer-social li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color: #ff9900; /* Couleur au survol */
+    transform: translateY(-3px); /* Effet de légère élévation */
+}
+
+.footer-copyright {
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Ligne de séparation */
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 10px;
+    }
+
+    .footer-section {
+        margin: 15px 0;
+        max-width: 100%; /* Pleine largeur sur mobile */
+    }
+
+    .footer-title {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a,
+    .footer-contact a,
+    .footer-social a {
+        justify-content: center; /* Centrer les liens sur mobile */
+    }
+
+    .footer-social a {
+        width: 35px;
+        height: 35px;
+    }
+}

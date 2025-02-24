@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block link %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock link %}
+
+{% block content %}
+
+<div class="container">
+    <!-- Section du Haut -->
+    <div class="section section-top">
+        <div class="section-top-content">
+            <h1>{% trans "Actualités" %}</h1>
+            <div class="carousel-container">
+            <i class="ri-arrow-left-s-line carousel-arrow left"></i>
+            <div class="news-carousel">
+                {% for article in articles %}
+                <div class="news-card">
+                    <a href="{{ article.url }}" target="_blank" class="news-link">
+                        {% if article.image_url %}
+                        <img src="{{ article.image_url }}" alt="{{ article.title }}" class="news-image">
+                        {% endif %}
+                        <div class="news-content">
+                            <div class="news-source">{{ article.source }}</div>
+                            <h2 class="news-title">{{ article.title }}</h2>
+                            <p class="news-description">{{ article.description }}</p>
+                            <div class="news-date">{{ article.published_at }}</div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <i class="ri-arrow-right-s-line carousel-arrow right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section du Milieu -->
+    <div class="section section-middle">
+        <div class="section-middle-content">
+            <h2>{% trans "Forums avec des threads" %}</h2>
+            {% if subforums_with_threads %}
+            <div class="forum-list">
+                {% for subforum, threads in subforums_with_threads %}
+                <div class="forum-item">
+                    <h3>
+                        {% if subforum.image %}
+                        <img src="{{ subforum.image.url }}" alt="{{ subforum.title }} image" class="subforum-image">
+                        {% endif %}
+                        <a href="{% url 'forum:subforum' slug=subforum.slug %}">{{ subforum.title }}</a>
+                    </h3>
+                    <h4>{% trans "Derniers threads" %}</h4>
+                    <ul>
+                        {% for thread in threads %}
+                        <li>
+                            <a href="{% url 'forum:thread' slug=thread.slug %}">{{ thread.title }}</a>
+                            {% if thread.image %}
+                            <img src="{{ thread.image.url }}" alt="{{ thread.title }} image" class="thread-image">
+                            {% endif %}
+                            <p>{% trans "Par" %} : {{ thread.author.username }} | {% trans "Le" %} : {{ thread.created_at }}</p>
+                            <h5>{% trans "Posts" %}</h5>
+                            <ul>
+                                {% for post in thread.top_posts %}
+                                <li>{{ post.content }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>{% trans "Aucun forum avec des threads disponibles." %}</p>
+            {% endif %}
+
+            {% if subforums_without_threads %}
+            <h2>{% trans "Les sujets qui peuvent vous intéresser" %}</h2>
+            <div class="forum-list">
+                {% for subforum in subforums_without_threads %}
+                <div class="forum-item">
+                    <h3>
+                        {% if subforum.image %}
+                        <img src="{{ subforum.image.url }}" alt="{{ subforum.title }} image" class="subforum-image">
+                        {% endif %}
+                        <a href="{% url 'forum:subforum' slug=subforum.slug %}">{{ subforum.title }}</a>
+                    </h3>
+                    <p>{{ subforum.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <!-- Section du Bas -->
+    <div class="section section-bottom">
+        <div class="section-bottom-content">
+            <h1>{% trans "Evénements" %}</h1>
+            <div class="carousel-container">
+                <i class="ri-arrow-left-s-line carousel-arrow left"></i>
+            <div class="event-carousel">
+                {% for event in events %}
+                <a href="{% url 'event_detail' event.id %}">
+                    <div class="event-card">
+
+                        <div class="profile_comment">
+                            {% if event.organizer.profile_image %}
+                            <img src="{{ event.organizer.profile_image.url }}"
+                                alt="{{ event.organizer.first_name }} {{ event.organizer.last_name }}">
+                            {% endif %}
+                            <div class="name">{{ event.organizer.first_name }} {{ event.organizer.last_name }}</div>
+                        </div>
+
+                        <h2 class="event-title">{{ event.title }}</h2>
+                        {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                        {% endif %}
+
+                    </div>
+                </a>
+                {% endfor %}
+            </div
+            <i class="ri-arrow-right-s-line carousel-arrow right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+{{ block.super }}
+<script src="{% static 'js/home.js' %}"></script>
+
+{% endblock javascript %}

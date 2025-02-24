@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "Messagerie privée" %}
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/messaging.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="container">
+    <div class="user-messages-container">
+        <h2>{% trans "Vos Conversations" %}</h2>
+        <ul class="messages-list">
+            {% for user, message in conversations %}
+            <li
+                class="{% if message.sender != request.user and not message.is_read %}unread-message{% elif message.sender != request.user %}received-message{% endif %}">
+                <a href="{% url 'messaging:thread_detail' username=user.username %}">
+                    <div class="message-preview">
+                        <div class="profile-row">
+                            <img src="{{ user.profile_image.url }}" alt="{% trans 'Profil' %}">
+                            <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                          
+                        </div>
+                        <p>
+                            {% if message.sender == request.user %}
+                            <strong>{% trans 'Vous' %} :</strong>
+                            {% endif %}
+                            {{ message.content|truncatechars:50 }}
+                        </p>
+                        <p><small>{{ message.created_at|date:"d M Y H:i" }}</small></p>
+                    </div>
+                </a>
+            </li>
+            {% empty %}
+                    <h3>{% trans 'Aucune conversation avec les autres utilisateurs' %}</h3>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="active-users-container" id="active-users-container" style="display: none;">
+        <h2>{% trans "Envoyer message à " %}</h2>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="{% trans 'Rechercher un utilisateur' %}">
+        </div>
+        <div id="search-results" style="display: none;">
+            <h2>{% trans 'Résultats de la recherche' %}</h2>
+            <ul id="search-results-list"></ul>
+        </div>
+
+        <ul class="active-users-list">
+            {% for elt in allUsers %}
+            <li><a href="{% url 'messaging:thread_detail' username=elt.username %}">
+                    <div class="profile-row">
+                        <img src="{{ elt.profile_image.url }}" alt="{% trans 'Profil' %}">
+                        <strong>{{ elt.first_name }} {{ elt.last_name }}</strong>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="#" id="show-users-btn" class="add-message-btn"><i class="fas fa-plus"
+            title="{% trans 'Demarrer une conversation' %}"></i>
+    </a>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+<script>
+    document.getElementById('show-users-btn').addEventListener('click', function () {
+        const activeUsersContainer = document.getElementById('active-users-container');
+        if (activeUsersContainer.style.display === 'none') {
+            activeUsersContainer.style.display = 'block';
+        } else {
+            activeUsersContainer.style.display = 'none';
+        }
+    });
+
+    document.getElementById('search-input').addEventListener('keyup', function () {
+        var input = this.value;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '{% url "messaging:search_users" %}?query=' + encodeURIComponent(input), true);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var results = JSON.parse(xhr.responseText);
+                var resultsList = document.getElementById('search-results-list');
+                resultsList.innerHTML = '';
+
+                results.forEach(function (user) {
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+
+                    // Construire dynamiquement l'URL
+                    a.href = window.location.origin + '/messaging/thread/' + encodeURIComponent(user.username) + '/';
+                    a.innerHTML = '<div class="profile-row">' +
+                        '<img src="' + user.profile_image_url + '" alt="Profil">' +
+                        '<strong>' + user.first_name + ' ' + user.last_name + '</strong>' +
+                        '</div>';
+
+                    li.appendChild(a);
+                    resultsList.appendChild(li);
+                });
+
+                document.getElementById('search-results').style.display = 'block';
+            } else {
+                document.getElementById('search-results').style.display = 'none';
+            }
+        };
+
+        xhr.send();
+    });
+</script>
+
+
+{% endblock %}

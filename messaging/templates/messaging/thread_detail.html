@@ -1,0 +1,178 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Messagerie privée" %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/messaging_thread_detail.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+</head>
+
+<body>
+    <div class="sidebar-message">
+        <h2>{% trans "Vos Conversations" %}</h2>
+        <!-- Liste des conversations -->
+        <div class="conversations-list">
+            {% for conversation in conversations %}
+            <div class="conversation {% if conversation.user == user %}active{% endif %}">
+                <a href="{% url 'messaging:thread_detail' conversation.user.username %}">
+                    <div class="conversation-header">
+                        <div class="profile-row">
+                            <img src="{{ conversation.user.profile_image.url }}" alt="{% trans 'Profil' %}">
+                            <strong>{{ conversation.user.first_name }} {{ conversation.user.last_name }}</strong>
+                        </div>
+                        {% if conversation.unread_count %}
+                        <span class="badge">{{ conversation.unread_count }}</span>
+                        {% endif %}
+                    </div>
+                    <p class="last-message">{{ conversation.last_message.content|truncatechars:50 }}</p>
+                    <small>{{ conversation.last_message_date|timesince }}</small>
+                </a>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="container">
+            <h1>
+                <img src="{{ user.profile_image.url }}" alt="{% trans 'Avatar' %}" class="avatar">
+                {{ user.first_name }} {{ user.last_name }}
+            </h1>
+            <div class="messages" id="messages-id">
+                {% for message in messages %}
+                <div class="{% if message.sender == request.user %}message sent{% else %}message received{% endif %}">
+                    {{ message.content }}
+                    <div class="date">{{ message.created_at }}</div>
+                </div>
+                {% empty %}
+                    <h3>{% trans 'Démarer une nouvelle conversation' %}</h3>
+                {% endfor %}
+            </div>
+            <div class="form">
+                <form method="post">
+                    {% csrf_token %}
+                    <textarea type="text" id="id_content" rows="2" name="content" placeholder="{% trans 'Écrivez votre message...' %}" required></textarea>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> {% trans 'Envoyer' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const messagesContainer = document.getElementById('messages-id');
+    const messageForm = document.querySelector('form');
+    const messageInput = document.getElementById('id_content');
+    const conversationsList = document.querySelector('.conversations-list');
+    
+    // Créer la connexion WebSocket
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + 
+        '/ws/chat/{{ user.username }}/'
+    );
+   
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        
+        if (data.type === 'new_message') {
+            // Gérer un nouveau message
+            const message = data.message;
+            const senderUsername = data.sender_username;
+            const timestamp = new Date(data.timestamp).toLocaleString();
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            
+            if (senderUsername === '{{ request.user.username }}') {
+                messageDiv.classList.add('sent');
+            } else {
+                messageDiv.classList.add('received');
+            }
+
+            messageDiv.innerHTML = `
+                ${message}
+                <div class="date">${timestamp}</div>
+            `;
+
+            messagesContainer.appendChild(messageDiv);
+            scrollBottom();
+        } 
+        else if (data.type === 'update_sidebar') {
+            // Mettre à jour la conversation dans la sidebar
+            updateConversation(data.conversation);
+        }
+    };
+
+    function updateConversation(conversation) {
+        // Chercher si la conversation existe déjà
+        const existingConv = document.querySelector(`.conversation a[href*="${conversation.username}"]`);
+        
+        const conversationHTML = `
+            <div class="conversation ${window.location.href.includes(conversation.username) ? 'active' : ''}">
+                <a href="/messages/${conversation.username}/">
+                    <div class="conversation-header">
+                        <div class="profile-row">
+                            <img src="${conversation.profile_image_url}" alt="Profile">
+                            <strong>${conversation.first_name} ${conversation.last_name}</strong>
+                        </div>
+                        ${conversation.unread_count ? `<span class="badge">${conversation.unread_count}</span>` : ''}
+                    </div>
+                    <p class="last-message">${conversation.last_message}</p>
+                    <small>${conversation.last_message_date}</small>
+                </a>
+            </div>
+        `;
+
+        if (existingConv) {
+            // Mettre à jour la conversation existante
+            existingConv.closest('.conversation').outerHTML = conversationHTML;
+        } else {
+            // Ajouter la nouvelle conversation au début de la liste
+            conversationsList.insertAdjacentHTML('afterbegin', conversationHTML);
+        }
+    }
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    messageForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const message = messageInput.value;
+        if (message) {
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInput.value = '';
+        }
+    });
+
+    // Dans le template, ajoute ce JavaScript
+    let typingTimer;
+    messageInput.addEventListener('input', function() {
+        clearTimeout(typingTimer);
+        chatSocket.send(JSON.stringify({
+            'type': 'typing_start'
+        }));
+        
+        typingTimer = setTimeout(() => {
+            chatSocket.send(JSON.stringify({
+                'type': 'typing_stop'
+            }));
+        }, 1000);
+    });
+
+    function scrollBottom() {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    scrollBottom();
+
+    
+</script>
+</html>

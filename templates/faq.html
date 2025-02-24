@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "FAQ et Règles du Forum" %}
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'forum/css/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>{% trans "Questions Fréquemment Posées" %}</h2>
+    <div class="faq-section">
+        <div class="faq">
+            <h4>{% trans "Comment puis-je me connecter à mon compte ?" %}</h4>
+            <p>{% trans "Pour se connecter, cliquez sur l'icone " %}<i class="ri-login-box-line"></i>{% trans " en haut de la page et suivez les instructions." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Comment puis-je créer un compte ?" %}</h4>
+            <p>{% trans "Pour créer un compte, cliquez sur l'icone " %}<i class="ri-user-add-line"></i>{% trans " en haut de la page. Il vous sera demandé votre adresse email, vos noms et un mot de passe (que vous devez confirmer). Les noms d'utilisateur et image de profil sont optionnels." %}</p>
+            <p>{% trans "Après inscription, un email vous sera envoyé pour confirmation. L'accès à certaines parties du site (messagerie, création de threads, recherche, etc.) exige que vous soyez confirmé." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Comment puis-je réinitialiser mon mot de passe ?" %}</h4>
+            <p>{% trans "Pour réinitialiser votre mot de passe, cliquez sur 'Mot de passe oublié' sur la page de connexion et entrez l'adresse email avec laquelle vous avez créé le compte. Vous recevrez un lien de réinitialisation." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Que faire si j'ai oublié mon mot de passe ?" %}</h4>
+            <p>{% trans "Si vous avez oublié votre mot de passe, cliquez sur le lien 'Mot de passe oublié' sur la page de connexion. Entrez votre adresse email, et nous vous enverrons un lien pour réinitialiser votre mot de passe." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Que faire si je n'ai pas reçu l'email de confirmation ?" %}</h4>
+            <p>{% trans " Si vous n'avez pas reçu l'email de confirmation, vérifiez votre dossier de spam. Si vous ne le trouvez toujours pas, contactez notre support à instaforum2025@gmail.com pour obtenir de l'aide." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Comment puis-je créer un nouveau thread ?" %}</h4>
+            <p>{% trans "Pour créer un nouveau thread, allez dans la section des forums et cliquez sur le bouton 'Nouveau Thread'. Entrez un titre pour votre thread, ajoutez votre message, et cliquez sur 'Publier'. Votre thread sera visible par les autres utilisateurs." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Puis-je éditer ou supprimer mon thread ?" %}</h4>
+            <p>{% trans "Oui, vous pouvez éditer ou supprimer votre thread en cliquant sur les options 'Modifier' ou 'Supprimer' à côté de votre message." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Comment puis-je signaler un utilisateur ?" %}</h4>
+            <p>{% trans "Si vous remarquez un comportement inapproprié, vous pouvez signaler un utilisateur en cliquant sur l'option 'Signaler' à côté de son nom d'utilisateur. Veuillez fournir une description détaillée du problème. Notre équipe examinera votre signalement et prendra les mesures appropriées." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Puis-je voir les actions prises suite à mon signalement ?" %}</h4>
+            <p>{% trans "Pour des raisons de confidentialité, nous ne pouvons pas divulguer les actions spécifiques prises suite à un signalement. Cependant, nous vous assurons que chaque signalement est examiné attentivement." %}</p>
+        </div>
+        <div class="faq">
+            <h4>{% trans "Comment puis-je signaler un thread ?" %}</h4>
+            <p>{% trans "Si vous trouvez un thread inapproprié ou offensant, vous pouvez le signaler en cliquant sur l'option 'Signaler' en bas du message. Veuillez fournir une description détaillée de la raison pour laquelle vous signalez le thread. Notre équipe examinera votre signalement et prendra les mesures nécessaires." %}</p>
+        </div>
+        <!-- Ajoutez d'autres questions et réponses ici -->
+    </div>
+</div>
+{% endblock %}

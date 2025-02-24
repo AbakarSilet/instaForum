@@ -1,0 +1,48 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+.footer {
+    display: none;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    padding: 20px;
+    box-shadow: 0 4px 8px var(--primary-color);
+    z-index: 1000;
+    border-radius: 15px;
+    /* Bords arrondis */
+    text-align: center;
+}
+
+.popup h2 {
+    margin-top: 0;
+}
+
+.popup .btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    /* Bords arrondis pour les boutons */
+    border: none;
+    background-color: var(--primary-color);
+    /* Couleur primaire */
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup .btn:hover {
+    background-color: rgba(43, 155, 207, 0.1);
+    /* Couleur secondaire pour le hover */
+}

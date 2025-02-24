@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load moderation_tags %}
+
+{% block title %}
+  {% blocktrans%} Liste des événements {% endblocktrans%}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/event_list.css' %}">
+
+{% endblock link %}
+{% block content %}
+<div class="event-all">
+    <h1>{% trans 'Liste des événements' %}</h1>
+
+    {% if events_this_week %}
+    <h2 class="period-title">{% blocktrans%}Cette semaine {% endblocktrans%}</h2>
+    <ul class="event-list">
+        {% for event in events_this_week %}
+        <li class="event-card">
+            {% if event.organizer.profile_image %}
+            <img src="{{ event.organizer.profile_image.url }}"
+                alt="{{ event.organizer.first_name }} {{ event.organizer.last_name }}">
+            {% endif %}
+            <h3><i><a href="{% url 'forum:profile' username=event.organizer.username %}">{{event.organizer.first_name }} {{ event.organizer.last_name }}</a></i></h3>
+            <a href="{% url 'event_detail' event.id %}">
+                <h2>{{ event.title }}</h2>
+                {% if event.image %}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if events_next_week %}
+    <h2 class="period-title"> {% blocktrans%} Dans deux semaines{% endblocktrans%}</h2>
+    <ul class="event-list">
+        {% for event in events_next_week %}
+        <li class="event-card">
+            {% if event.organizer.profile_image %}
+            <img src="{{ event.organizer.profile_image.url }}"
+                alt="{{ event.organizer.first_name }} {{ event.organizer.last_name }}">
+            {% endif %}
+            <h3><i><a href="{% url 'forum:profile' username=event.organizer.username %}">
+                {{ event.organizer.first_name }} {{ event.organizer.last_name }}</a></i></h3>
+            <a href="{% url 'event_detail' event.id %}">
+                <h2>{{ event.title }}</h2>
+                {% if event.image %}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if events_next_month %}
+    <h2 class="period-title">{% blocktrans %} Le mois prochain {% endblocktrans%}</h2>
+    <ul class="event-list">
+        {% for event in events_next_month %}
+        <li class="event-card">
+            {% if event.organizer.profile_image %}
+            <img src="{{ event.organizer.profile_image.url }}"
+                alt="{{ event.organizer.first_name }} {{ event.organizer.last_name }}">
+            {% endif %}
+            <h3><i><a href="{% url 'forum:profile' username=event.organizer.username %}"> 
+            {{ event.organizer.first_name }} {{ event.organizer.last_name }}</a></i></h3>
+            <a href="{% url 'event_detail' event.id %}">
+                <h2>{{ event.title }}</h2>
+                {% if event.image %}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if upcoming_events %}
+    <h2 class="period-title">{% blocktrans %} Prochainement {% endblocktrans%}</h2>
+    <ul class="event-list">
+        {% for event in upcoming_events %}
+        <li class="event-card">
+            {% if event.organizer.profile_image %}
+            <img src="{{ event.organizer.profile_image.url }}"
+                alt="{{ event.organizer.first_name }} {{ event.organizer.last_name }}">
+            {% endif %}
+            <h3><i><a href="{% url 'forum:profile' username=event.organizer.username %}">
+            {{ event.organizer.first_name}} {{ event.organizer.last_name }}</a></i></h3>
+            <a href="{% url 'event_detail' event.id %}">
+                <h2>{{ event.title }}</h2>
+                {% if event.image %}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% is_moderator request.user as is_moderator %}
+    {% if is_moderator %}
+    <a href="{% url 'create_event' %}" class="add-event-btn"><i class="fas fa-plus"
+            title="{% blocktrans %}Ajouter un événement {% endblocktrans%}"></i></a>
+    {% endif %}
+</div>
+{% endblock content %}
+
+
+{% block javascript %}
+{{ block.super }}
+{% endblock javascript %}

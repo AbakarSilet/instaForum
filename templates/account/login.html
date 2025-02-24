@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% load socialaccount %}
+{% load i18n %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-6.7.1-web/css/all.min.css' %}">
+{% endblock link %}
+
+
+{% block content %}
+<div class="login-container">
+    <h2>{% trans "Connexion" %}</h2>
+    {% if form.non_field_errors %}
+        <div class="error-message">
+            <ul>
+                {{ form.non_field_errors|join:"<li></li>"|safe }}
+            </ul>
+        </div>
+    {% endif %}
+    <form method="POST" action="{% url 'account_login' %}?next={{ request.GET.next }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">{% trans "Identifiant" %}</label>
+            <div class="input-container">
+                <i class="fas fa-user" style="padding-right: 10px;"></i>
+                <input type="text" id="username" name="login" required placeholder="{% trans "Entrez votre email ou pseudo" %}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">{% trans "Mot de passe" %}</label>
+            <div class="input-container">
+                <i class="fas fa-lock" style="padding-right: 10px;"></i>
+                <input type="password" id="password" name="password" required placeholder="{% trans "Entrez votre mot de passe" %}">
+            </div>
+        </div>
+        <div class="form-group options">
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">{% trans "Se souvenir de moi" %}</label>
+            </div>
+            <div class="forgot-password">
+                <a href="{% url 'account_reset_password' %}">{% trans "Mot de passe oublié ?" %}</a>
+            </div>
+        </div>
+        <button type="submit">{% trans "Se connecter" %}</button>
+    </form>
+    <p>{% trans "Pas encore de compte ?" %} <a href="{% url 'account_signup' %}">{% trans "Inscrivez-vous" %}</a></p>
+    <div class="social-login">
+        <a class="btn btn-danger" href="{% provider_login_url 'google' next='/' %}">{% trans "Se connecter avec Google" %}</a>
+    </div>
+</div>
+{% endblock content %}
+

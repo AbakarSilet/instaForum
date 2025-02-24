@@ -1,0 +1,28 @@
+{% load static %}
+{% load i18n %}
+
+
+<div class="top-contributors section">
+    <p>{% trans "Tops contributeurs" %}</p>
+    {% for contributor in top_thread_authors %}
+        <a href="{% url 'forum:profile' username=contributor.user.username %}">
+            {% if contributor.user.profile_image %}
+                <img src="{{ contributor.user.profile_image.url }}" alt="{{ contributor.user.username }}" class="profile-image">
+            {% else %}
+                <img src="{% static 'images/default_profile.png' %}" alt="{{ contributor.user.username }}" class="profile-image">
+            {% endif %}
+            {{ contributor.user.username }} - {{ contributor.count }} {% blocktrans %}threads{% endblocktrans %}
+        </a>
+    {% endfor %}
+    {% for contributor in top_post_authors %}
+        <a href="{% url 'forum:profile' username=contributor.user.username %}">
+            {% if contributor.user.profile_image %}
+                <img src="{{ contributor.user.profile_image.url }}" alt="{{ contributor.user.username }}" class="profile-image">
+            {% else %}
+                <img src="{% static 'images/default_profile.png' %}" alt="{{ contributor.user.username }}" class="profile-image">
+            {% endif %}
+            {{ contributor.user.username }} - {{ contributor.count }} {% blocktrans %}posts{% endblocktrans %}
+        </a>
+    {% endfor %}
+</div>
+

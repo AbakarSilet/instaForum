@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ subforum.title }}{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/subforum.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ subforum.title }}</h2>
+    <p>{{ subforum.description }}</p>
+    {% if request.user.is_authenticated %}
+    <div class="center">
+        {% if not user.is_active %}
+        <div class="alert alert-danger">
+            <p>{% trans "Votre compte est suspendu pour 7 jours par le modérateur. Vous ne pouvez pas créer de fil de discussion
+                ou répondre à des posts mais vous pouvez toujours les lire." %}
+            </p>
+        </div>
+        {% else %}
+        <a href="{% url 'forum:create_thread' subforum.slug %}" class="btn-custom">{% trans "Créer un fil de discussion" %}</a>
+        {% endif %}
+    </div>
+    {% endif %}
+    <ul class="list-group">
+        {% for thread in threads %}
+        <li class="list-group-item">
+            <a href="{% url 'forum:thread' thread.slug %}">
+                {{ thread.title }}
+            </a>
+            <!-- <div>
+                <span class="badge-custom"><i class="icon">👁️</i>{{ thread.view_count }}</span>
+            </div> -->
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

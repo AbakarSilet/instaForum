@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Partager l'actualité{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Partager l'actualité</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Adresse Email:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Partager</button>
+    </form>
+</div>
+{% endblock %}

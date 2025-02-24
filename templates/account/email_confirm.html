@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load account %}
+{% load allauth %}
+
+{% block title %}
+{% trans "Confirm Email Address" %}
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="allauth-content">
+    {% element h1 %}
+    {% trans "Confirm Email Address" %}
+    {% endelement %}
+    {% if confirmation %}
+    {% user_display confirmation.email_address.user as user_display %}
+    {% if can_confirm %}
+    {% element p %}
+    {% blocktrans with confirmation.email_address.email as email %}Merci de confirmer que <a href="mailto:{{ email }}"
+        class="allauth-a">
+        {{ email }}</a> est l'adresse email de l'utilisateur {{ user_display }}.{% endblocktrans %}
+    {% endelement %}
+    {% url 'account_confirm_email' confirmation.key as action_url %}
+    {% element form method="post" action=action_url %}
+    {% slot actions %}
+    {% csrf_token %}
+    {{ redirect_field }}
+    {% element button type="submit" %}
+    {% trans 'Confirm' %}
+    {% endelement %}
+    {% endslot %}
+    {% endelement %}
+    {% else %}
+    {% element p %}
+    {% blocktrans %}Impossible de confirmer {{ email }} parce que confirmer par un autre compte.{% endblocktrans %}
+    {% endelement %}
+    {% endif %}
+    {% else %}
+    {% url 'account_email' as email_url %}
+    {% element p %}
+    {% blocktrans %}Ce lien de confirmation d'email a expiré ou est invalide. S'il vous plait <a href="{{ email_url }}"
+        class="allauth-a">envoyer une nouvelle adresse
+        pour la requete de confirmation</a>.{% endblocktrans %}
+    {% endelement %}
+    {% endif %}
+</div>
+{% endblock content %}
+{% block javascript %}
+{{ block.super }}
+{% endblock javascript %}

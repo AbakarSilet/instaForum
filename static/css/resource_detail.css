@@ -1,0 +1,40 @@
+.resource-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.resource-detail h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.resource-detail p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.resource-detail img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.resource-detail .resource-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.resource-detail .resource-link a:hover {
+    text-decoration: underline;
+}
+
+.resource-detail video {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}

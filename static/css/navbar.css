@@ -1,0 +1,582 @@
+:root {
+  --primary-color: #1e90ff;
+  --secondary-color: #1e90ff;
+
+  --text-color: black;
+  --background-color: white;
+  --navbar-background: var(--primary-color);
+  --sidebar-background: var(--primary-color);
+  --dropdown-background: var(--background-color);
+  --dropdown-text-color: var(--text-color);
+  --dropdown-hover-background: var(--primary-color);
+}
+
+[data-theme="dark"] {
+  --primary-color: #1e90ff;
+  /* Bleu clair */
+  --secondary-color: #1e90ff;
+  /* Bleu clair */
+  --text-color: white;
+  --background-color: black;
+  --navbar-background: var(--primary-color);
+  --sidebar-background: var(--primary-color);
+  /* Même couleur que le navbar */
+  --dropdown-background: var(--background-color);
+  --dropdown-text-color: var(--text-color);
+  --dropdown-hover-background: var(--primary-color);
+  /* Blanc brillant */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: margin-left 0.3s ease;
+  /* Transition pour le mouvement du contenu */
+}
+
+a {
+  text-decoration: none;
+  /* Supprimer le soulignement des liens */
+  color: var(--text-color);
+  /* Utiliser la couleur de la variable text-color */
+}
+
+.error {
+  color: red;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  /* Espace équilibré entre les éléments */
+  align-items: center;
+  background-color: var(--navbar-background);
+  padding: 20px 20px;
+  /* Augmenter la hauteur du navbar */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Ajoute une ombre pour détacher le navbar */
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo a {
+  font-family: 'Lobster', cursive;
+  /* Utilise la police Lobster */
+  font-size: 2em;
+  /* Taille de police plus grande pour se démarquer */
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  /* Centre les éléments */
+}
+
+.navbar .menu .menu-item {
+  position: relative;
+  padding: 15px;
+  /* Augmenter la taille des éléments de menu */
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Contexte visuel pour chaque menu */
+  border-radius: 10px;
+  /* Arrondir davantage les coins */
+  transition: background-color 0.3s;
+  font-weight: bold;
+  /* Rendre le texte en gras */
+}
+
+.navbar .menu .menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar .menu .menu-item:hover .dropdown {
+  display: block;
+}
+
+.navbar .menu .menu-item .dropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  /* Ajuster la position du dropdown */
+  left: 0;
+  background-color: var(--dropdown-background);
+  color: var(--dropdown-text-color);
+  min-width: 160px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Ajoute une ombre pour les dropdown */
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.navbar .menu .menu-item .dropdown a {
+  display: block;
+  padding: 10px;
+  color: var(--text-color);
+  text-decoration: none;
+  text-align: left;
+  /* Ajuste l'alignement à l'intérieur du dropdown */
+}
+
+.navbar .menu .menu-item .dropdown a:hover {
+  background-color: var(--primary-color);
+  /* color: white; */
+}
+
+.navbar .profile {
+  display: flex;
+  align-items: justify;
+  gap: 10px;
+  margin-right: 30px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Ajout d'espace à droite pour éviter que l'icône soit coupée */
+}
+
+.navbar .profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar .profile {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  /* Supprimer le soulignement des liens */
+  color: var(--text-color);
+  /* Utiliser la couleur de la variable text-color */
+}
+
+.notification-icon {
+  font-size: 30px;
+  /* Augmenter la taille de l'icône */
+  color: var(--text-color);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.notification-count {
+  position: absolute;
+  right: -15px;
+  /* Ajuster la position pour qu'elle soit comme un exposant */
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 14px;
+  /* Augmenter légèrement la taille de la police pour la lisibilité */
+  transform: translateY(-50%);
+  /* Alignement vertical pour l'effet d'exposant */
+}
+
+.edit {
+  font-size: 30px;
+}
+
+#theme-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--sidebar-background);
+  padding-top: 60px;
+  /* Réduit le padding-top */
+  padding-bottom: 20px;
+  z-index: 999;
+  color: white;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+}
+
+/* Container pour le contenu scrollable */
+.sidebar-content {
+  padding: 0 10px;
+  margin-bottom: 40px;
+  /* Espace en bas pour éviter que le dernier élément soit caché */
+}
+
+/* Style de la barre de défilement */
+.sidebar::-webkit-scrollbar {
+  width: 10px;
+  /* Augmente la largeur */
+  background-color: var(--sidebar-background);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  border: 2px solid var(--sidebar-background);
+  min-height: 40px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: var(--sidebar-background);
+  margin-top: 60px;
+  /* Espace en haut pour éviter le chevauchement avec le header */
+  margin-bottom: 20px;
+  /* Espace en bas */
+}
+
+/* Style des boutons de défilement */
+.sidebar::-webkit-scrollbar-button:single-button {
+  display: block;
+  height: 20px;
+  background-color: var(--sidebar-background);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+/* Flèche du haut */
+.sidebar::-webkit-scrollbar-button:single-button:vertical:decrement {
+  height: 20px;
+  width: 16px;
+  background-position: center 4px;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='white'><polygon points='50,00 0,50 100,50'/></svg>");
+  background-size: 8px;
+}
+
+/* Flèche du bas */
+.sidebar::-webkit-scrollbar-button:single-button:vertical:increment {
+  height: 20px;
+  width: 16px;
+  background-position: center 4px;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='white'><polygon points='0,0 100,0 50,50'/></svg>");
+  background-size: 8px;
+}
+
+/* Hover effects pour les boutons */
+.sidebar::-webkit-scrollbar-button:single-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Style des sections */
+.sidebar .section {
+  padding: 10px;
+  border: 1px solid var(--primary-color);
+  margin-bottom: 10px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  /* width: calc(100% - 3px); */
+  width: 100%;
+  /* Ajuste la largeur en tenant compte du padding */
+  box-sizing: border-box;
+}
+
+.sidebar i {
+  color: var(--primary-color);
+}
+
+.top-contributors a img.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.navbar-categories {
+  list-style: none;
+  /* Enlever le style de liste */
+  padding: 0;
+  margin: 0;
+}
+
+
+.navbar-category-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+}
+
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centrer l'image horizontalement */
+  align-items: center;
+  /* Centrer l'image verticalement */
+  text-align: center;
+}
+
+.user-profile img {
+  margin-top: 30px;
+  width: 80px;
+  /* Ajuster la largeur de l'image */
+  height: 80px;
+  /* Ajuster la hauteur de l'image */
+  border-radius: 30%;
+  /* Faire en sorte que l'image soit ronde */
+  object-fit: cover;
+  /* Recadrer l'image pour qu'elle remplisse le conteneur */
+  margin-bottom: 5px;
+  /* Ajouter un espace en bas pour la séparation */
+}
+
+
+/* Styles spécifiques pour chaque section */
+.top-contributors,
+.active-topics,
+.social-links,
+.utils-links,
+.forum-news,
+.forum-stats,
+.categories .home {
+
+  border-radius: 8px;
+}
+
+.sidebar .section p {
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Suppression des styles des liens */
+.sidebar .section a {
+  display: block;
+  margin: 5px 0;
+  font-weight: bold;
+  color: var(--text-color);
+  text-decoration: none;
+  /* Pas de soulignement */
+}
+
+.sidebar .section a:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+  /* Changer la couleur de texte au survol */
+}
+
+
+.content {
+  padding: 20px 5px;
+  margin-top: 100px;
+  /* Ajuster l'espace pour le navbar */
+  transition: margin-left 0.3s ease;
+  /* Transition pour le mouvement du contenu */
+}
+
+.navbar .menu .lang-icon {
+  display: inline-block;
+  margin-right: 5px;
+  /* Espace entre l'icône et le texte */
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 50%;
+  /* Positionner au milieu de l'écran */
+  left: 20px;
+  transform: translateY(-50%);
+  /* Centrer verticalement */
+  z-index: 1001;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.9);
+  /* Ajout de transparence */
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  display: none;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile>* {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* Styles pour le mode mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    /* Assurez-vous que le conteneur occupe toute la largeur */
+  }
+
+  .navbar .profile {
+    margin-right: 0;
+
+  }
+
+  .navbar .menu {
+    display: none;
+    /* Masquer le menu par défaut */
+  }
+
+  .navbar .profile {
+    padding: 9px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile {
+    flex-direction: row;
+    /* Aligner les éléments horizontalement */
+    justify-content: space-between;
+    /* Espace équilibré entre les éléments */
+    width: 100%;
+    /* Assurez-vous que le conteneur occupe toute la largeur */
+    margin: 0;
+    /* Supprime toute marge */
+    padding-top: 10px;
+    /* Supprime tout padding */
+    box-sizing: border-box;
+    /* Assurez-vous que padding et border sont inclus dans la largeur totale */
+  }
+
+
+  .profile>* {
+    flex: 1;
+    /* Chaque enfant prend une part égale de l'espace disponible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    /* Supprime toute marge */
+    padding: 0;
+    /* Supprime tout padding */
+    box-sizing: border-box;
+    /* Assurez-vous que padding et border sont inclus dans la largeur totale */
+  }
+
+  .profile img {
+    margin: 0 auto;
+  }
+
+  .notification-count {
+    right: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobile-menu .menu-item {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px 0;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    gap: 10px;
+    /* Espacement entre l'icône et le texte */
+    color: var(--text-color);
+    /* Utiliser la couleur de la variable text-color */
+  }
+
+  .mobile-menu .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    /* Supprimer le soulignement des liens */
+    color: var(--text-color);
+    /* Utiliser la couleur de la variable text-color */
+  }
+
+  .sidebar-toggle {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+/* Styles généraux pour les sections */
+.sidebar .section {
+  padding: 15px 20px;
+  border: 1px solid var(--primary-color);
+  /* Bordure de couleur primaire */
+  margin-bottom: 10px;
+  background-color: var(--background-color);
+  /* Arrière-plan */
+  color: var(--text-color);
+  /* Couleur du texte */
+  border-radius: 8px;
+  /* Arrondir les coins */
+}

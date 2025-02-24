@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "À propos de nous" %}</h1>
+    <p>{% trans "Bienvenue sur le forum de l'Institut National Supérieur des Sciences et Techniques d'Abéché (INSTA)." %}</p>
+    <p>{% trans "Ce projet a été développé par Abakar Silet Darkou et Aka Gerald comme projet de fin d'études et un don pour la numérisation de notre institut . Notre vision et Notre dévouement ont permis la création de cette plateforme innovante." %}</p>
+    <h2>{% trans "Nos Objectifs" %}</h2>
+    <p>{% trans "Notre plateforme vise à :" %}</p>
+    <ul>
+        <li>{% trans "Faciliter la communication et l'échange entre les étudiants et les enseignants." %}</li>
+        <li>{% trans "Fournir un espace pour partager des ressources académiques et pédagogiques." %}</li>
+        <li>{% trans "Tenir les membres de l'institut informés des dernières actualités et événements au sein de l'institution." %}</li>
+        <li>{% trans "Encourager la participation et l'engagement dans les activités de l'institut." %}</li>
+    </ul>
+    <h2>{% trans "Fonctionnalités de la plateforme" %}</h2>
+    <p>{% trans "Notre forum inclut :" %}</p>
+    <ul>
+        <li>{% trans "Un forum de discussion pour poser des questions et partager des connaissances." %}</li>
+        <li>{% trans "Une section de partage de ressources où les utilisateurs peuvent télécharger et accéder à des documents." %}</li>
+        <li>{% trans "Une page d'actualités pour se tenir informé des dernières nouveautés de l'institut." %}</li>
+        <li>{% trans "Un calendrier d'événements pour ne rien manquer des activités organisées par l'institut." %}</li>
+    </ul>
+    <p>{% trans "Nous espérons que cette plateforme deviendra un outil indispensable pour tous les membres de notre communauté académique. Merci de votre soutien et de votre engagement." %}</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">{% trans "Retour à l'accueil" %}</a>
+</div>
+{% endblock %}

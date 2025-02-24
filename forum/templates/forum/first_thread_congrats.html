@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+   {% trans "Félicitations" %}| InstaForum
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/first_thread_congrats.css' %}">
+{% endblock link %}
+{% block content %}
+<div class="main-container">
+    <div class="popup" id="congrats-popup">
+        <h2>{% trans "Félicitations !" %}</h2>
+        <p>{% trans "Merci d'avoir créé votre premier thread. Bienvenue dans notre communauté!" %}</p>
+        <p>{% trans "Nous espérons que vous continuerez à contribuer et à partager vos idées." %}</p>
+        <button onclick="redirectToThread()" class="btn btn-primary">{% trans "Voir le Thread" %}</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+<script>
+    window.onload = function() {
+        document.getElementById("congrats-popup").style.display = "block";
+    };
+
+    function redirectToThread() {
+        window.location.href = "{% url 'forum:thread' slug=thread.slug %}";
+    }
+</script>
+{% endblock %}

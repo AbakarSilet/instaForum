@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Tableau de Bord de Modération" %}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/moderation.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Ajoute Font Awesome pour les icônes -->
+{% endblock link %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Tableau de Bord de Modération" %}</h1>
+
+    {% comment %} <div class="reported-posts">
+        <h2>{% trans "Messages Signalés" %}</h2>
+        <ul>
+            {% for message in reported_messages %}
+            <li>
+                <p>
+                    <a href="{% url 'messaging:thread_detail' message.sender.id %}#message-{{ message.id }}"
+                        class="post-link">{% trans "Voir le Message dans la conversation" %}</a>
+                    <span class="report-count">({{ message.report_count }} {% blocktrans %}
+                        signalements{% endblocktrans %})</span>
+                </p>
+                <p>{{ message.content|truncatewords:30 }}</p>
+                <p>{% trans "Envoyé par" %} : <strong>{{ message.sender.username }}</strong></p>
+                <p>{% trans "A" %} : <strong>{{ message.receiver.username }}</strong></p>
+                {% for report in reports %}
+                {% if report.message.id == message.id %}
+                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                    {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
+                {% endif %}
+                {% endfor %}
+                <div class="icons">
+                    <a href="{% url 'messaging:delete_message' message.id %} " class="
+                        icon-btn">
+                        <i class="fa fa-trash"></i> <!-- Icône de corbeille pour supprimer -->
+                    </a>
+                    <a href="{% url 'messaging:thread_detail' message.sender.id %}" class="icon-btn">
+                        <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div> {% endcomment %}
+
+
+    <div class="reported-threads">
+        <h2>{% trans "Threads Signalés" %}</h2>
+        <ul>
+            {% for thread in reported_threads %}
+            <li>
+                <p>
+                    <a href="{% url 'forum:thread' slug=thread.slug %}" class="thread-link">{{ thread.title }}</a>
+                    <span class="report-count">({{ thread.report_count }} {% blocktrans %}signalements {% endblocktrans %})</span>
+                </p>
+                <p>{{ thread.content|truncatewords:30 }}</p>
+                <p>{% trans "Auteur" %} : <strong>{{ thread.author.username }}</strong></p>
+                {% for report in reports %}
+                {% if report.thread.id == thread.id %}
+                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                    {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
+                {% endif %}
+                {% endfor %}
+                <div class="icons">
+                    <a href="{% url 'forum:delete_thread' thread.id %}" class="icon-btn" title="{% trans 'Supprimer' %}">
+                        <i class="fa fa-trash"></i> <!-- Icône de corbeille pour supprimer -->
+                    </a>
+                    <a href="{% url 'forum:thread' slug=thread.slug %}" class="icon-btn" title="{% trans 'Voir' %}">
+                        <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="reported-posts">
+        <h2>{% trans "Posts Signalés" %}</h2>
+        <ul>
+            {% for post in reported_posts %}
+            <li>
+                <p>
+                    <a href="{% url 'forum:thread' slug=post.thread.slug %}#post-{{ post.id }}" class="post-link">{%
+                        trans "Voir le post" %}</a>
+                    <span class="report-count">({{ post.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span>
+                </p>
+                <p>{{ post.content|truncatewords:30 }}</p>
+                <p>{% trans "Auteur" %} : <strong>{{ post.author.username }}</strong></p>
+                {% for report in reports %}
+                {% if report.post.id == post.id %}
+                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                    {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
+                {% endif %}
+                {% endfor %}
+                <div class="icons">
+                    <a href="{% url 'forum:delete_post' post.id %}" class="icon-btn"title="{% trans 'Supprimer' %}">
+                        <i class="fa fa-trash"></i> <!-- Icône de corbeille pour supprimer -->
+                    </a>
+                    <a href="{% url 'forum:thread' slug=post.thread.slug %}" class="icon-btn" title="{% trans 'Voir' %}">
+                        <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
+                    </a>
+                </div>
+            </li>
+            {% empty %}
+            <h4>{% trans "Aucun signalé" %} </h4>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="user-management">
+        <h2>{% trans "Gestion des Utilisateurs" %}</h2>
+        {% comment %} <ul>
+         {% for report in reports %}
+        
+                {% for user in reported_users %}
+                    {% if report.reported_user.id == user.id %}
+                        {% if user.is_active %}
+                        
+                        <li>
+                            <p>{% trans "Utilisateur" %} : <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                                <span class="report-count">({{ user.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span></p>
+                            <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                                {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
+                            <div class="icons">
+                                <a href="{% url 'forum:suspend_user' user.id %}" class="icon-btn" title= "{% trans 'Suspendre' %}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                                <a href="{% url 'forum:profile' username=user.username %}" class="icon-btn" title="{% trans 'Voir' %}">
+                                    <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
+                                </a>
+                            </div>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+        {% endfor %} 
+        </ul> {% endcomment %}
+        <ul>
+            {% for user in reported_users %}
+            <li>
+                <p>
+                    <a href="{% url 'forum:profile' username=user.username %}" >
+                    {% trans "Utilisateur" %} : <strong class="post-link">{{ user.first_name }} {{ user.last_name }}</strong></a>
+                    <span class="report-count">({{ user.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span>
+                </p>
+                {% for report in reports %}
+                {% if report.reported_user.id == user.id %}
+                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                    {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
+                {% endif %}
+                {% endfor %}
+                <div class="icons">
+                                <a href="{% url 'forum:suspend_user' user.id %}" class="icon-btn" title= "{% trans 'Suspendre' %}">
+                        <i class="fa fa-user-lock"></i> <!-- Icône de corbeille pour supprimer -->
+                    </a>
+                    <a href="{% url 'forum:profile' username=user.username %}" class="icon-btn" title="{% trans 'Voir' %}">
+                        <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
+                    </a>
+                </div>
+            </li>
+            {% empty %}
+            <h4>{% trans "Aucun signalé" %} </h4>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- <a href="{% url 'news:create_news' %}" class="icon-btn" title= "{% trans 'Ajouter une information' %}">
+        <i class="fa fa-plus"></i></a> -->
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+{% endblock javascript %}

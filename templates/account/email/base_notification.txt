@@ -1,0 +1,14 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktrans %}Vous recevez cet e-mail parce que les modifications suivantes ont été apportées à votre compte:{% endblocktrans %}
+
+{% block notification_message %}
+{% endblock notification_message %}
+
+{% blocktrans %}Si vous ne reconnaissez pas cette modification, veuillez prendre immédiatement les précautions de sécurité appropriées. Le changement à votre compte provient de :
+
+- Adresse IP : {{ ip }}
+- Navigateur : {{ user_agent }}
+- Date : {{ timestamp }}{% endblocktrans %}{% endautoescape %}{% endblock %}

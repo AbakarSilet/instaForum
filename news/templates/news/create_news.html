@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Créer une actualité{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Créer une actualité</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Publier</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Détails de l'actualité{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Détails de l'actualité</h2>
+    <h3>{{ news.author.username }}</h3>
+    <p>{{ news.text|linebreaks }}</p>
+    {% if news.image %}
+        <img src="{{ news.image.url }}" alt="Image d'actualité">
+    {% endif %}
+    {% if news.video %}
+        <video controls>
+            <source src="{{ news.video.url }}" type="video/mp4">
+            Votre navigateur ne prend pas en charge la vidéo.
+        </video>
+    {% endif %}
+    <p><small>Posté le {{ news.created_at }}</small></p>
+    <a href="{% url 'news:share_news' news.id %}" class="btn btn-link">Partager par email</a>
+</div>
+{% endblock %}

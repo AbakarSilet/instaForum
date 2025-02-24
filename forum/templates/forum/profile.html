@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+InstaForum | @{{ profile_user.username }}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link rel="stylesheet" href="{% static 'css/public_profile.css' %}">
+
+{% endblock link %}
+
+{% block content %}
+<div class="pub-profile">
+    <h2>{% trans "Profil de" %} {{ profile_user.first_name }}</h2>
+    <img src="{{ profile_user.profile_image.url }}" alt="{{ profile_user.username }}">
+    <div class="icons">
+        <a href="{% url 'messaging:thread_detail' username=profile_user.username  %}"><i class="fa fa-envelope"
+                title="{% trans 'Envoyer un message' %} "></i></a>
+        <a href="{% url 'forum:report' report_type='reported_user' item_id=profile_user.id %}"
+            title=" {% trans 'Signaler utilisateur' %}"><i class="ri-error-warning-line"></i></a>
+        <!-- ri-error-warning-line -->
+    </div>
+
+    <h3>{% trans "Nom au complet" %} : {{ profile_user.first_name }} {{ profile_user.last_name }}</h3>
+
+    <h4>{% trans "Badges Obtenus" %}</h4>
+    <div class="badges">
+        {% for userbadge in profile_user.userbadge_set.all %}
+        <div class="badge">
+            <img src="{{ userbadge.badge.icon.url }}" alt="{{ userbadge.badge.name }}">
+            <p>{{ userbadge.badge.name }}</p>
+        </div>
+        {% empty %}
+        <p>{% trans "Aucun badge obtenu." %}</p>
+        {% endfor %}
+    </div>
+    <hr>
+    <h4>{% trans "Publications" %}</h4>
+    <div class="threads">
+        {% for thread in threads %}
+        <div class="thread">
+            <h4><a href="{% url 'forum:thread' slug=thread.slug %}">{{ thread.title }}</a></h4>
+            <p>{{ thread.content|truncatewords:20 }}</p>
+        </div>
+        {% empty %}
+        <p>{% trans "Aucune publication." %}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+{% endblock javascript %}

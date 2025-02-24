@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "événement" %}| InstaForum
+{% endblock title %}
+{% block link %}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/event_detail.css' %}">
+   
+{% endblock link %}
+
+{% block content %}
+    <div class="event-details">
+        <div class="event-header">
+            <h1><i class="ri-calendar-line icon"></i>{{ event.title }}</h1>
+            
+            {% if not user_is_attending %}
+                <button id="participate-btn" class="participate-button" onclick="window.location.href='{% url 'event_participate' event.id %}'">{% trans "J'y serai" %}</button>
+            {% endif %}
+        </div>
+        <p><i class="ri-user-line icon"></i>{{ event.organizer.first_name }} {{ event.organizer.last_name }}</p>
+        <p><i class="ri-map-pin-line icon"></i>{{ event.location }}</p>
+        <p><i class="ri-time-line icon"></i>{{ event.date }}</p>
+        <div class="event-description">{{ event.description }}</div>
+        {% if event.image %}
+            <div class="event-image-container">
+                <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            </div>
+        {% endif %}
+
+        <h2>{% trans "Participants" %}</h2>
+        <ul class="participants">
+            {% for attendee in attendees|slice:":24" %}
+                <li class="participant">
+                    <a href="{% url 'forum:profile' username=attendee.user.username %}">
+                        {% if attendee.user.profile_image %}
+                            <img src="{{ attendee.user.profile_image.url }}" alt="{{ attendee.user.username }}">
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if attendees|length > 24 %}
+            <p>{% blocktrans %}Et autres...{% endblocktrans %}</p>
+        {% endif %}
+    </div>
+{% endblock content %}
+
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

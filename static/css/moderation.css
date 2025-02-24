@@ -1,0 +1,102 @@
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--primary-color);
+    text-align: center;
+}
+
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: var(--background-color);
+    transition: box-shadow 0.3s ease;
+    text-align: left;
+    /* Alignement du texte à gauche */
+}
+
+li:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.thread-link,
+.post-link {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.report-count {
+    color: var(--primary-color);
+    font-size: 0.9em;
+}
+
+.report-info {
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.icon-btn {
+    padding: 6px;
+    color: white;
+    background-color: red;
+    /* Peut-être modifié selon votre palette de couleurs */
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.icon-btn:hover {
+    background-color: darkred;
+    /* Peut-être modifié selon votre palette de couleurs */
+}
+
+.icon-btn i {
+    font-size: 18px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger {
+    background-color: red;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+}
+
+.btn-warning {
+    background-color: orange;
+}
+
+.btn-warning:hover {
+    background-color: darkorange;
+}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_resources %}
+
+{% block title %}
+    {% blocktrans %}Résultats de Recherche{% endblocktrans %}
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/resources_search_results.css' %}">
+{% endblock link %}
+{% block content %}
+<div class="search-results-container">
+    <h1 class="search-results-title">{% blocktrans %}Résultats de la recherche{% endblocktrans %}</h1>
+
+    <div class="search-form">
+        <form action="{% url 'resources:search_resources' %}" method="get">
+            <input type="text" name="q" class="search-input" placeholder="{% blocktrans %}Recherche encore{% endblocktrans %}" value="{{ query }}">
+            <button type="submit" class="search-btn">{% blocktrans %}Rechercher{% endblocktrans %}</button>
+        </form>
+    </div>
+
+    {% if query %}
+    <p class="search-query">{% blocktrans %}Résultats pour :{% endblocktrans %} "{{ query }}"</p>
+    {% if results %}
+    <ul class="resource-list">
+        {% for resource in results %}
+        <li class="resource-item">
+            <h2 class="resource-title">{{ resource.title }}</h2>
+            <p class="resource-description">{{ resource.description }}</p>
+
+            {% if resource.resource_type == 'image' %}
+            <img src="{{ resource.image.url }}" alt="{{ resource.title }}" class="resource-media">
+            {% elif resource.resource_type == 'video' %}
+            <video class="resource-media" width="320" height="240" controls>
+                <source src="{{ resource.video.url }}" type="video/mp4">
+                Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+            {% elif resource.resource_type == 'link' %}
+                {% if 'youtube' in resource.link %}
+                <iframe class="resource-media" src="https://www.youtube.com/embed/{{ resource.link|youtube_id_resource }}" allowfullscreen></iframe>
+                {% elif 'drive.google.com' in resource.link %}
+                <iframe class="resource-media" src="{{ resource.link|google_drive_preview_resource }}" allowfullscreen></iframe>
+                {% else %}
+                <a href="{{ resource.link }}" class="resource-link">{{ resource.link }}</a>
+                {% endif %}
+            {% elif resource.resource_type == 'document' %}
+            <iframe class="resource-media" src="https://docs.google.com/viewer?url={{ resource.file.url }}&embedded=true"></iframe>
+            <a href="{{ resource.file.url }}" target="_blank" class="resource-link">{{ resource.file.name }}</a>
+            {% endif %}
+
+            <p class="resource-date"><strong>{% blocktrans %}Ajouté le :{% endblocktrans %}</strong> {{ resource.date_added }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-results">{% blocktrans %}Aucune ressource trouvée.{% endblocktrans %}</p>
+    {% endif %}
+    {% else %}
+    <p class="no-query">{% blocktrans %}Veuillez entrer un terme de recherche.{% endblocktrans %}</p>
+    {% endif %}
+</div>
+{% endblock content %}

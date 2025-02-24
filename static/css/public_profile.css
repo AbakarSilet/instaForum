@@ -1,0 +1,93 @@
+.pub-profile {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: var(--background-color);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px var(--primary-color);
+    text-align: center;
+    color: var(--text-color);
+}
+
+.pub-profile h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.pub-profile img {
+    border-radius: 15px;
+    /* Rectangular with rounded corners */
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--primary-color);
+}
+
+.pub-profile p {
+    font-size: 1em;
+    margin: 8px 0;
+}
+
+hr {
+    color: var(--primary-color);
+    padding: 1px;
+}
+
+.pub-profile .icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.pub-profile .icons a {
+    color: var(--text-color);
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.pub-profile .icons a:hover {
+    color: var(--primary-color);
+}
+
+.pub-profile .badges {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.badge img {
+    width: 50px;
+    height: 50px;
+}
+
+.threads {
+    margin-top: 20px;
+}
+
+.thread {
+    text-align: left;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--primary-color);
+}
+
+.thread h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+}
+
+.thread p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}

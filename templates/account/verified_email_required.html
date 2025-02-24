@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load allauth %}
+
+{% block title %}
+    {% trans "Verify Your Email Address" %}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="allauth-content">
+    {% element h1 %}
+        {% trans "Verify Your Email Address" %}
+    {% endelement %}
+    {% url 'account_email' as email_url %}
+    {% element p %}
+        {% blocktrans %}Pour accéder à cette partie du site, il faut d'abord que nous ayons vérifié qui vous indiquez être. Pour cela, vous devez prouver que vous êtes bien le propriétaire de l'adresse e-mail que vous nous avez indiquée. {% endblocktrans %}
+    {% endelement %}
+    {% element p %}
+        {% blocktrans %}
+Nous vous avons envoyé un e-mail de vérification. Merci de cliquer sur le lien inclus dans ce courriel. Si vous ne voyez pas l'e-mail de vérification dans votre boîte de réception, vérifiez votre dossier spam. Contactez-nous si vous ne l'avez pas reçu d'ici quelques minutes.{% endblocktrans %}
+    {% endelement %}
+    {% element p %}
+        {% blocktrans %}<strong>Remarque:</strong> vous pouvez toujours <a href="{{ email_url }}"       class="allauth-a">changer votre  adresse e-mail</a>.{% endblocktrans %}
+    {% endelement %}
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+{% endblock javascript %}

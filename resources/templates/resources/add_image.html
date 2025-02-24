@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% blocktrans %}Ajouter une image{% endblocktrans %}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/add_resource.css' %}">
+
+<style>
+    .btn-ajouter {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    .btn-ajouter:hover {
+        background-color: var(--primary-color);
+    }
+    form {
+        text-align: center;
+    }
+    .image-preview img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+{% endblock link %}
+
+
+{% block content %}
+<h1>{% blocktrans %}Ajouter une Image{% endblocktrans %}</h1>
+{% if errors %}
+<div class="error">
+    <ul>
+        {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<form method="post" enctype="multipart/form-data" id="imageForm" style="text-align: center;">
+    {% csrf_token %}
+    <label for="id_title"><i class="fas fa-heading"></i> {% blocktrans %}Titre{% endblocktrans %}</label>
+    <input type="text" name="title" required><br>
+    <label for="id_description"><i class="fas fa-align-left"></i> {% blocktrans %}Description{% endblocktrans %}</label>
+    <textarea name="description"></textarea><br>
+    <label for="id_image"><i class="fas fa-image"></i> {% blocktrans %}Image{% endblocktrans %}</label>
+    <input type="file" name="image" required id="imageInput"><br>
+    <div class="image-preview" id="imagePreview" style="display:none;">
+        <img id="imagePreviewImg" alt="Aperçu de l'image">
+    </div>
+    <button type="submit" class="btn-ajouter">{% blocktrans %}Ajouter{% endblocktrans %}</button>
+</form>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+    document.getElementById("imageInput").addEventListener("change", function(event) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var preview = document.getElementById("imagePreview");
+            var previewImg = document.getElementById("imagePreviewImg");
+            preview.style.display = "block";
+            previewImg.src = e.target.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    });
+</script>
+{% endblock javascript %}
+

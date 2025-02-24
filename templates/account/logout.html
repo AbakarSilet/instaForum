@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% comment %} {% extends "account/base_manage.html" %} {% endcomment %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% translate "Se déconnecter" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% translate "Se déconnecter" %}
+    {% endelement %}
+    {% element p %}
+        {% translate 'Es-tu sûr de vouloir te déconnecter?' %}
+    {% endelement %}
+    {% url 'account_logout' as action_url %}
+    {% element form method="post" action=action_url no_visible_fields=True %}
+        {% slot body %}
+            {% csrf_token %}
+            {{ redirect_field }}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" %}
+                {% translate 'Se déconnecter' %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+{% endblock content %}

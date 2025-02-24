@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktranslate %}Impossible de confirmer {{email}} car elle est déjà confirmée par un autre compte.{% endblocktranslate %}

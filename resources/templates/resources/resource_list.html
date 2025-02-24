@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_resources %}
+{% load user_tags %}
+
+{% block title %}{% trans "Ressources" %}|Instaforum{% endblock title %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/resources_list.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="resource-container">
+    <h1 class="resource-title">{% blocktrans %}Liste des Ressources{% endblocktrans %}</h1>
+    <div class="search-form">
+        <form action="{% url 'resources:search_resources' %}" method="get">
+            <input type="text" name="q" class="search-input" placeholder="{% trans 'Rechercher des ressources...' %}">
+            <button type="submit" class="search-btn">{% trans 'Rechercher' %}</button>
+        </form>
+    </div>
+    <div class="filter-menu">
+        <a href="?type=" class="filter-item">{% blocktrans %}Toutes les ressources{% endblocktrans %}</a>
+        <a href="?type=image" class="filter-item">{% blocktrans %}Images{% endblocktrans %}</a>
+        <a href="?type=video" class="filter-item">{% blocktrans %}Videos{% endblocktrans %}</a>
+        <a href="?type=link" class="filter-item">{% blocktrans %}Liens{% endblocktrans %}</a>
+        <a href="?type=document" class="filter-item">{% blocktrans %}Documents{% endblocktrans %}</a>
+    </div>
+    <ul class="resource-list">
+        {% if resources %}
+        {% for resource in resources %}
+        <li class="resource-item">
+            <h3 class="resource-item-title">{{ resource.title }}</h3>
+            {% if resource.description %}
+            <p class="resource-item-description">{{ resource.description }}</p>
+
+            {% endif %}
+            {% if resource.resource_type == 'image' %}
+            <img src="{{ resource.image.url }}" alt="{{ resource.title }}" class="resource-image">
+            {% elif resource.resource_type == 'video' %}
+            <video controls poster="{{ resource.title }}" class="resource-video">
+                <source src="{{ resource.video.url }}" type="video/mp4">
+                {% blocktrans %}Votre navigateur ne supporte pas la balise vidéo.{% endblocktrans %}
+            </video>
+
+            {% elif resource.resource_type == 'link' %}
+            {% if 'youtube' in resource.link %}
+            <iframe src="https://www.youtube.com/embed/{{ resource.link|youtube_id_resource }}" allowfullscreen
+                class="resource-iframe"></iframe>
+            {% elif 'drive.google.com' in resource.link %}
+            <iframe src="{{ resource.link|google_drive_preview_resource }}" allowfullscreen
+                class="resource-iframe"></iframe>
+            {% else %}
+            <a href="{{ resource.link }}" class="resource-link">{{ resource.link }}</a>
+            {% endif %}
+            {% elif resource.resource_type == 'document' %}
+            <div class="document-preview">
+                {% if resource.file.name|lower|endswith:'.pdf' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 16 16">
+                    <path fill="none" stroke="#ed8796" stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.8 14.34c1.81-1.25 3.02-3.16 3.91-5.5c.9-2.33 1.86-4.33 1.44-6.63c-.06-.36-.57-.73-.83-.7c-1.02.06-.95 1.21-.85 1.9c.24 1.71 1.56 3.7 2.84 5.56c1.27 1.87 2.32 2.16 3.78 2.26c.5.03 1.25-.14 1.37-.58c.77-2.8-9.02-.54-12.28 2.08c-.4.33-.86 1-.6 1.46c.2.36.87.4 1.23.15h0Z" />
+                </svg>
+                {% elif resource.file.name|lower|endswith:'.docx' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 512 512">
+                    <path fill="#888888"
+                        d="M488.877 52.447H302.306V5.92h-34.779L0 52.563v406.99l265.957 46.527h36.349v-46.353h174.59c9.887-.465 20.879.291 29.37-5.757c6.804-10.41 5.06-23.438 5.641-35.186V75.012c1.221-13.26-9.77-23.903-23.03-22.565m-294.862 282.59c-9.712 5.06-24.252-.233-35.767.581c-7.735-38.5-16.75-76.768-23.67-115.443c-6.805 37.57-15.645 74.79-23.438 112.128c-11.166-.581-22.39-1.28-33.615-2.035c-9.655-51.18-20.995-102.01-30.01-153.305c9.945-.465 19.948-.872 29.893-1.221c5.99 37.047 12.795 73.919 18.03 111.024c8.2-38.036 16.574-76.071 24.717-114.106c11.05-.64 22.1-1.105 33.15-1.687c7.735 39.257 15.644 78.455 24.019 117.537c6.572-40.361 13.841-80.607 20.879-120.91c11.631-.407 23.263-1.047 34.836-1.745c-13.143 56.355-24.659 113.176-39.024 169.182m290.212 97.069H302.306v-36.527h151.21v-23.263h-151.21v-29.079h151.21v-23.263h-151.21v-29.08h151.21v-23.262h-151.21v-29.08h151.21V215.29h-151.21v-29.08h151.21v-23.263h-151.21v-29.079h151.21v-23.263h-151.21v-30.71h181.921z" />
+                </svg>
+                {% elif resource.file.name|lower|endswith:'.xlsx' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 512 512">
+                    <path fill="#888888"
+                        d="M453.547 273.449H372.12v-40.714h81.427zm0 23.264H372.12v40.714h81.427zm0-191.934H372.12v40.713h81.427zm0 63.978H372.12v40.713h81.427zm0 191.934H372.12v40.714h81.427zm56.242 80.264c-2.326 12.098-16.867 12.388-26.58 12.796H302.326v52.345h-36.119L0 459.566V52.492L267.778 5.904h34.548v46.355h174.66c9.83.407 20.648-.291 29.197 5.583c5.991 8.608 5.41 19.543 5.817 29.43l-.233 302.791c-.29 16.925 1.57 34.2-1.978 50.892m-296.51-91.256c-16.052-32.57-32.395-64.909-48.39-97.48c15.82-31.698 31.408-63.512 46.937-95.327c-13.203.64-26.406 1.454-39.55 2.385c-9.83 23.904-21.288 47.169-28.965 71.888c-7.154-23.323-16.634-45.774-25.3-68.515c-12.796.698-25.592 1.454-38.387 2.21c13.493 29.78 27.86 59.15 40.946 89.104c-15.413 29.081-29.837 58.57-44.785 87.825c12.737.523 25.475 1.047 38.212 1.221c9.074-23.148 20.357-45.424 28.267-69.038c7.096 25.359 19.135 48.798 29.023 73.051c14.017.99 27.976 1.862 41.993 2.676M484.26 79.882H302.326v24.897h46.53v40.713h-46.53v23.265h46.53v40.713h-46.53v23.265h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v26.897H484.26z" />
+                </svg>
+                {% elif resource.file.name|lower|endswith:'.pptx' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 512 512">
+                    <path fill="#888888"
+                        d="M488.698 58.311H302.231V5.981h-32.968L0 52.614v406.89l266.066 46.515h36.165v-58.144h174.49c9.942-.465 20.99.524 29.478-5.64c6.745-10.407 5.11-23.432 5.692-35.177V81.104c1.337-13.373-9.82-24.072-23.193-22.793M170.535 275.304c-13.198 6.744-28.316 5.814-42.677 5.349l-.058 68.202l-34.596-2.907l.058-186.35c31.573 1.511 69.831-12.501 95.996 11.163c25.06 30.41 18.431 86.344-18.723 104.543m313.572 145.13H302.231v-36.518h139.545V360.66H302.231v-29.072h139.545V308.33H302.289s-.058-22.792-.116-34.188c23.025 7.151 49.248 6.977 69.83-6.861c22.27-13.199 33.898-38.375 35.817-63.493h-76.517v-75.936l-29.072 5.873V85.752h181.876zm-141.18-304.735c40.41 1.86 74.429 36.021 76.58 76.315h-76.58zM127.8 191.053c11.454-.523 25.641-2.616 33.374 8.14c6.629 11.397 6.28 26.398.756 38.143c-6.628 11.977-21.63 10.815-33.2 12.21c-1.22-19.478-1.105-38.956-.93-58.493" />
+                </svg>
+                {% elif resource.file.name|lower|endswith:'.csv' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 16 16">
+                    <path fill="#888888" fill-rule="evenodd"
+                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.517 14.841a1.13 1.13 0 0 0 .401.823q.195.162.478.252q.284.091.665.091q.507 0 .859-.158q.354-.158.539-.44q.187-.284.187-.656q0-.336-.134-.56a1 1 0 0 0-.375-.357a2 2 0 0 0-.566-.21l-.621-.144a1 1 0 0 1-.404-.176a.37.37 0 0 1-.144-.299q0-.234.185-.384q.188-.152.512-.152q.214 0 .37.068a.6.6 0 0 1 .246.181a.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.2-.566a1.2 1.2 0 0 0-.5-.41a1.8 1.8 0 0 0-.78-.152q-.439 0-.776.15q-.337.149-.527.421q-.19.273-.19.639q0 .302.122.524q.124.223.352.367q.228.143.539.213l.618.144q.31.073.463.193a.39.39 0 0 1 .152.326a.5.5 0 0 1-.085.29a.56.56 0 0 1-.255.193q-.167.07-.413.07q-.175 0-.32-.04a.8.8 0 0 1-.248-.115a.58.58 0 0 1-.255-.384zM.806 13.693q0-.373.102-.633a.87.87 0 0 1 .302-.399a.8.8 0 0 1 .475-.137q.225 0 .398.097a.7.7 0 0 1 .272.26a.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964a1.4 1.4 0 0 0-.489-.272a1.8 1.8 0 0 0-.606-.097q-.534 0-.911.223q-.375.222-.572.632q-.195.41-.196.979v.498q0 .568.193.976q.197.407.572.626q.375.217.914.217q.439 0 .785-.164t.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.8.8 0 0 1-.118.363a.7.7 0 0 1-.272.25a.9.9 0 0 1-.401.087a.85.85 0 0 1-.478-.132a.83.83 0 0 1-.299-.392a1.7 1.7 0 0 1-.102-.627zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879z" />
+                </svg>
+                {% elif resource.file.name|lower|endswith:'.txt' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 16 16">
+                    <path fill="#888888" fill-rule="evenodd"
+                        d="M2 1.5a.5.5 0 0 1 .5-.5H9a.5.5 0 0 1 .354.146l2.5 2.5A.5.5 0 0 1 12 4v2h-1V5H8.5a.5.5 0 0 1-.5-.5V2H3v12h8v-.5h1v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5zm7 .707V4h1.793zM8.875 9.5c-.298.4-.593.803-.827 1.167a5.5 5.5 0 0 0-.374.664c-.091.2-.174.436-.174.669h1a.8.8 0 0 1 .084-.253q.102-.225.305-.54c.173-.267.383-.561.611-.87c.228.309.438.603.61.87q.203.315.306.54a1.3 1.3 0 0 1 .082.233l.002.015v.004l1 .001c0-.233-.083-.469-.174-.669a5.5 5.5 0 0 0-.374-.664a21 21 0 0 0-.827-1.167c.298-.4.593-.803.827-1.167c.147-.228.278-.454.374-.664c.091-.2.174-.435.174-.669h-1v.005l-.002.015l-.013.053a1.3 1.3 0 0 1-.069.18q-.102.225-.305.54a17 17 0 0 1-.611.87a17 17 0 0 1-.61-.87a4.5 4.5 0 0 1-.306-.54A.8.8 0 0 1 8.5 7h-1c0 .234.083.469.174.669c.096.21.227.436.374.664c.234.364.529.767.827 1.167M4 7h3v1H6v4H5V8H4zm8 0h3v1h-1v4h-1V8h-1z"
+                        clip-rule="evenodd" />
+                </svg>
+                {% else %}
+                <img src="default-icon.png" alt="Document Icon" class="document-icon">
+                {% endif %}
+                <a href="{{ resource.file.url }}" target="_blank" class="resource-link">{{ resource.file.name }}</a>
+            </div>
+
+            <div class="icon-container">
+                <a href="{{ resource.file.url }}" target="_blank" class="icon-btn" title="
+                {% trans 'Télécharger' %}">
+                    <i class="fas fa-download"></i>
+                </a>
+                <a href="#" class="icon-btn" title="{% trans 'Partager' %}">
+                    <i class="fas fa-share-alt"></i>
+                </a>
+                <a href="#" class="icon-btn" title="{% trans 'Signaler' %}">
+                    <i class="fas fa-flag"></i>
+                </a>
+            </div>
+
+            {% endif %}
+            <p class="resource-date">{% blocktrans %}Ajouté le :{% endblocktrans %} {{ resource.date_added }}</p>
+        </li>
+        {% endfor %}
+        {% else %}
+        <p class="no-resources">{% blocktrans %} Aucune ressource trouvée{% endblocktrans %}</p>
+        {% endif %}
+    </ul>
+    {% load user_tags %}
+    {% is_teacher request.user as is_teacher %}
+      {% if is_teacher %}
+        <div class="resource-type-menu" id="resourceTypeMenu">
+            <a href="{% url 'resources:add_image' %}" class="resource-type-btn" title="{% trans 'Ajouter une Image' %}">
+                <i class="fas fa-image"></i>
+                <span>{% trans 'Image' %}</span>
+            </a>
+            <a href="{% url 'resources:add_link' %}" class="resource-type-btn" title="{% trans 'Ajouter un Lien' %}">
+                <i class="fas fa-link"></i>
+                <span>{% trans 'Lien' %}</span>
+            </a>
+            <a href="{% url 'resources:add_document' %}" class="resource-type-btn" title="{% trans 'Ajouter un Document' %}">
+                <i class="fas fa-file-alt"></i>
+                <span>{% trans 'Document' %}</span>
+            </a>
+            <a href="{% url 'resources:add_video' %}" class="resource-type-btn" title="{% trans 'Ajouter une video' %}">
+                <i class="fas fa-video"></i>
+                <span>{% trans 'Video' %}</span>
+            </a>
+        </div>
+        <a href="#" class="add-resource-btn" id="addResourceBtn">
+            <i class="fas fa-plus" title="{% blocktrans %}Ajouter une ressource{% endblocktrans %}"></i>
+        </a>
+    {% endif %}
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script>
+    document.getElementById('addResourceBtn').addEventListener('click', function (event) {
+        event.preventDefault();
+        const menu = document.getElementById('resourceTypeMenu');
+        menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+    });
+</script>
+{% endblock javascript %}

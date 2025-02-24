@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="pagination">
+    {% if posts.has_previous %}
+    <button onclick="location.href='?page={{ posts.previous_page_number }}'" class="prev">{% trans 'Précédent' %}</button>
+    {% else %}
+    <button class="prev disabled">{% trans 'Précédent' %}</button>
+    {% endif %}
+
+    <span>{% trans 'Page' %} {{ posts.number }} {% trans 'sur' %} {{ posts.paginator.num_pages }}</span>
+
+    {% if posts.has_next %}
+    <button onclick="location.href='?page={{ posts.next_page_number }}'" class="next">{% trans 'Suivant' %}</button>
+    {% else %}
+    <button class="next disabled">{% trans 'Suivant' %} </button>
+    {% endif %}
+</div>

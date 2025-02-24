@@ -1,0 +1,9 @@
+<ul class="navbar-categories">
+    {% for category in categories %}
+    <li class="navbar-category-item">
+        <a href="#">
+            <i class="fas fa-hand-point-right"></i> {{ category.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>

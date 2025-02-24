@@ -1,0 +1,40 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+    {% translate "Se connecter" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% translate "Entrez le code de connexion" %}
+    {% endelement %}
+    {% setvar email_link %}
+        <a href="mailto:{{ email }}">{{ email }}</a>
+    {% endsetvar %}
+    {% element p %}
+        {% blocktranslate %}Nous avons envoyé un code à {{ email_link }}. Le code expire rapidement, donc veuillez le saisir rapidement.{% endblocktranslate %}
+    {% endelement %}
+    {% url 'account_confirm_login_code' as login_url %}
+    {% element form form=form method="post" action=login_url tags="entrance,login" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {{ redirect_field }}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" tags="prominent,login" %}
+                {% translate "Se connecter" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+    {% element button type="submit" form="logout-from-stage" tags="link" %}
+        {% translate "Annuler" %}
+    {% endelement %}
+    <form id="logout-from-stage"
+          method="post"
+          action="{% url 'account_logout' %}">
+        <input type="hidden" name="next" value="{% url 'account_login' %}">
+        {% csrf_token %}
+    </form>
+{% endblock content %}

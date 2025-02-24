@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<div class="forum-stats section">
+    <p>{% trans "Statistiques du forum" %}</p>
+    <a href="#"><i class="fas fa-comments"></i> {% trans "Forums" %} : {{ forum_count }}</a>
+    <a href="#"><i class="fas fa-users"></i> {% trans "Membres" %} : {{ member_count }}</a>
+    <a href="#"><i class="fas fa-envelope"></i> {% trans "Threads" %} : {{ total_messages_count }}</a>
+    <!-- <a href="#"><i class="fas fa-user-clock"></i> {% trans "Membres en ligne" %} : {{ online_members_count }}</a> -->
+</div>

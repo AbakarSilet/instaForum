@@ -1,0 +1,14 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% translate "Inscription fermée" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% translate "Inscription fermée" %}
+    {% endelement %}
+    {% element p %}
+        {% blocktranslate %}Nous sommes désolés, mais l'inscription est actuellement fermée.{% endblocktranslate %}
+    {% endelement %}
+{% endblock content %}

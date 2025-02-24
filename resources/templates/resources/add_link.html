@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_resources %}
+
+{% block title %}
+{% blocktrans %}Ajouter un lien{% endblocktrans %}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/add_resource.css' %}">
+{% endblock link %}
+
+{% block content %}
+<h1>{% blocktrans %}Ajouter un Lien{% endblocktrans %}</h1>
+<form method="post" style="text-align: center;" id="linkForm">
+    {% csrf_token %}
+    <label for="id_title"><i class="fas fa-heading"></i> {% blocktrans %}Titre{% endblocktrans %}</label>
+    <input type="text" name="title" required><br>
+    <label for="id_description"><i class="fas fa-align-left"></i> {% blocktrans %}Description{% endblocktrans %}</label>
+    <textarea name="description"></textarea><br>
+    <label for="id_link"><i class="fas fa-link"></i> {% blocktrans %}Lien{% endblocktrans %}</label>
+    <input type="url" name="link" required id="linkInput"><br>
+    {% if form.link.value %}
+    <div class="link-preview">
+        {% with form.link.value|youtube_id_resource as youtube_id %}
+        {% if youtube_id %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ youtube_id }}" frameborder="0"
+            allowfullscreen></iframe>
+        {% elif form.link.value|google_drive_preview_resource %}
+        <iframe src="{{ form.link.value|google_drive_preview_resource }}" allowfullscreen></iframe>
+        {% else %}
+        <p>{% blocktrans %} Aucune prévisualisation disponible {% endblocktrans %}</p>
+        {% endif %}
+        {% endwith %}
+    </div>
+    {% endif %}
+    <button type="submit" class="btn-ajouter">{% blocktrans %}Ajouter{% endblocktrans %}</button>
+</form>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+    document.getElementById("linkInput").addEventListener("change", function (event) {
+        var preview = document.querySelector(".link-preview");
+        if (preview) {
+            preview.style.display = "block";
+        }
+    });
+</script>
+{% endblock javascript %}

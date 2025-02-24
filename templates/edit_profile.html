@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "Modifier le profil" %} {{user.username}}
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock link %}
+
+
+
+{% block content %}
+<div class="edit-container">
+    <h2>{% trans "Modifier le profil" %}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <img id="profile_preview" src="{{ user.profile_image.url }}" alt="{% trans 'Profil' %}"
+                class="profile-image-preview">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-submit">{% trans "Sauvegarder" %}</button>
+            <button type="button"> <a href="{% url 'account_profile' %}" class="btn btn-cancel">
+                    {% trans "Annuler"%}</a></button>
+            <button type="button">
+                <a href="{% url 'account_set_password' %}" class="btn btn-submit">{% trans "Changer le mot de passe"%}
+                </a>
+            </button>
+            <button type="button">
+                <a href="{% url 'account_email' %}" class="btn btn-submit">{% trans "Gestion des vos e-mails"%}
+                </a>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+{% block javascript %}
+{{ block.super }}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileImageInput = document.getElementById('id_profile_image');
+        const profileImagePreview = document.getElementById('profile_preview');
+
+        if (profileImageInput) {
+            profileImageInput.addEventListener('change', function (event) {
+                const [file] = event.target.files;
+                if (file) {
+                    profileImagePreview.src = URL.createObjectURL(file);
+                    profileImagePreview.style.display = 'block';
+                }
+            });
+        }
+    });
+</script>
+{% endblock javascript %}

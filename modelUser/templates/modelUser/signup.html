@@ -1,0 +1,215 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Inscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .input-group i {
+            margin-right: 10px;
+        }
+        .input-group .required::after {
+            content: '*';
+            color: red;
+            position: absolute;
+            right: 10px;
+        }
+        .input-group .valid::after {
+            content: '\f00c'; /* Icone de validation (check) de FontAwesome */
+            font-family: 'FontAwesome';
+            color: green;
+            position: absolute;
+            right: 10px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label[for="profile_pic"] {
+            display: block;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .google-btn {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #4285F4;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .google-btn:hover {
+            background-color: #357AE8;
+        }
+        p {
+            text-align: center;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100px; /* Réduit la taille de l'image */
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+        .popup button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Inscription</h2>
+        <form id="registerForm" method="post" action="url 'account_signup'">
+            {% csrf_token %}
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Email" class="required" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" class="required" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="first_name" name="first_name" placeholder="Prénom" class="required" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="last_name" name="last_name" placeholder="Nom de famille" class="required" required>
+            </div>
+            <label for="profile_pic">Télécharger une photo de profil</label>
+            <input type="file" id="profile_pic" name="profile_pic" accept="image/*">
+            <img id="profile_preview" src="#" alt="Photo de profil" style="display: none;">
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" class="required" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer le mot de passe" class="required" required>
+            </div>
+            <button type="submit">Inscription</button>
+        </form>
+        <a href="{% provider_login_url 'google' next='/success/url/' %}" class="google-btn">Se connecter avec Google</a>
+        <p>Déjà un compte ? <a href="{% url 'account_signup'%}">Se connecter</a></p>
+    </div>
+    <div class="popup" id="popup"> <p>Félicitations pour votre inscription réussie !</p> 
+        <button onclick="location.href='{% url 'account_email_verification_sent' %}'">Aller à l'accueil</button> 
+    </div>
+    <script>
+        document.getElementById('profile_pic').addEventListener('change', function(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var img = document.getElementById('profile_preview');
+                img.src = reader.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
+
+        function validateField(field) {
+            if (field.value.trim() !== '') {
+                field.classList.remove('required');
+                field.classList.add('valid');
+            } else {
+                field.classList.remove('valid');
+                field.classList.add('required');
+            }
+        }
+
+        document.querySelectorAll('.required').forEach(function(input) {
+            input.addEventListener('input', function() {
+                validateField(input);
+            });
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Afficher la fenêtre pop-up
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

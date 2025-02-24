@@ -1,0 +1,78 @@
+{% load i18n %}
+{% load static %}
+{% load category_tags %}
+{% load contributor_tags %}
+{% load forum_stats_tags %}
+{% load popular_categories_tags %}
+{% load moderation_tags %}
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+      <!-- Profil de l'utilisateur -->
+      {% if user.is_authenticated %}
+      <a href="{% url 'account_profile' %}">
+        <div class="user-profile section">
+          <img src="{{ user.profile_image.url }}" alt="Profile">
+          <p>{{user.first_name}} {{user.last_name}}</p>
+        </div>
+      </a>
+      {% else %}
+      <div class="user-profile section">
+        <img src="{% static 'images/login.png' %}" alt="Profile">
+      </div>
+      {% endif %}
+      <!-- Navigation rapide -->
+      <div class="home section">
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i>{% trans "Accueil" %}</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'messaging:user_messages' %}""><i class=" fas fa-envelope"></i>
+          {% trans "Messagerie privée" %}</a>
+          {% endif %}
+          
+        {% comment %} <a href="#"><i class="fas fa-star"></i> Sujets populaires</a> {% endcomment %}
+        
+        {% is_moderator request.user as is_moderator %}
+        {% if is_moderator %}
+        <a href="{% url 'forum:moderation_dashboard' %}"><i class="fas fa-user-shield"></i>
+          {% trans "Modération" %}</a>
+        <a href="{% url 'create_event' %}"><i class="fas fa-edit"></i> {% trans "Creer Evénement" %}</a>
+        {% endif %}
+      </div>
+      
+      <!-- Catégories de sujets -->
+      <div class="categories section">
+        <p>{% trans "Catégories populaires" %}</p>
+         {% show_popular_categories %}
+      </div>
+  
+      <!-- Statistiques du forum -->
+      {% show_forum_stats %}
+  
+      <!-- Actualités du forum -->
+      {% comment %} <div class="forum-news section">
+        <p>Actualités du forum</p>
+        <a href="#">Mise à jour du forum - Janvier 2024</a>
+        <a href="#">Concours de publication - Février 2024</a>
+      </div> {% endcomment %}
+  
+      <!-- Liens utiles -->
+      <div class="utils-links section">
+        <a href="{% url 'faq' %}"><i class="fas fa-question-circle"></i> {% trans "FAQ" %}</a>
+        <a href="{% url 'rules' %}"><i class="fas fa-gavel"></i> {% trans "Règles du forum" %}</a>
+        <a href="{% url 'privacy' %}"><i class="fas fa-shield-alt"></i> {% trans "Politique de confidentialité" %}</a>
+        <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> {% trans "Contact/Support" %}</a>
+      </div>
+  
+      <!-- Liens vers les réseaux sociaux -->
+      <!-- <div class="social-links section">
+        <p>{% trans "Suivez-nous" %}</p>
+        <a href="https://www.facebook.com/people/%F0%9D%91%A8%F0%9D%91%A9%F0%9D%91%B2%F0%9D%91%A8%F0%9D%91%B9%F0%9D%91%B0%F0%9D%91%BF4/61560225823078/"><i class="fab fa-facebook"></i> {% trans "Facebook" %}</a>
+        <a href="#"><i class="fab fa-twitter"></i> {% trans "Twitter" %}</a>
+        <a href="#"><i class="fab fa-instagram"></i> {% trans "Instagram" %}</a>
+        <a href="#"><i class="fas fa-envelope"></i> {% trans "Email" %}</a>
+      </div> -->
+  
+      <!-- Tops contributeurs -->
+       {% show_top_contributors %}
+    </div>
+  </div>

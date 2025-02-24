@@ -1,0 +1,111 @@
+.event-details h1,
+h2 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.event-details {
+    max-width: 700px;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding: 10px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--primary-color);
+}
+
+.event-details p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-image-container {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    max-width: 90%;
+    max-height: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-image-container img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    max-height: 450px; /* Limiter la hauteur maximale */ 
+    object-fit: contain;
+    border-radius: 8px;
+    
+}
+
+img {
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+.participants {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.participant {
+    margin: 10px;
+    text-align: center;
+}
+
+.participant a {
+    display: inline-block;
+}
+
+.participant img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.participant span {
+    display: block;
+    color: var(--dropdown-text-color);
+}
+
+.icon {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
+.participate-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.participate-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.event-description {
+    word-wrap: break-word;
+    /* Couper les mots trop longs */
+    white-space: pre-wrap;
+    /* Préserver les sauts de ligne */
+}

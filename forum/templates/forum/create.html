@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Créer un Fil de Discussion' %}
+{% endblock title %}
+    
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock link %}
+{% block content %}
+<div class="form-container">
+    <h2>{% trans 'Créer un Fil de Discussion' %}</h2>
+    {% if form.errors %}
+    <div class="alert alert-danger form-errors">
+        {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if not user.is_active %}
+    <div class="alert alert-danger">
+        <p>{% trans 'Votre compte est suspendu pour 7 jours par le modérateur. Vous ne pouvez pas créer de fil de discussion ou répondre à des posts mais vous pouvez toujours les lire.' %}</p>
+    </div>
+    {% else %}
+    <form method="POST" enctype="multipart/form-data" class="form-thread-create">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_subforum"><i class="fas fa-list icon"></i>{% trans 'Forum' %}</label>
+            {{ form.subforum }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_title"><i class="fas fa-heading icon"></i> {% trans 'Titre' %}</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_content"><i class="fas fa-align-left icon"></i>{% trans 'Contenu' %}</label>
+            {{ form.content }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_tags"><i class="fas fa-tags icon"></i>{% trans 'Tags' %}</label>
+            {{ form.tags }}
+        </div>
+
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle icon"></i> {% trans 'Créer' %}</button>
+    </form>
+    {% endif %}
+</div>
+
+{% if form.errors %}
+<div class="alert alert-danger form-errors">
+    {% for field, errors in form.errors.items %}
+    {% for error in errors %}
+    <p>{{ error }}</p>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endif %}
+
+{% comment %} {% if messages %}
+<div class="alert alert-danger">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %} {% endcomment %}
+
+{% endblock content %}

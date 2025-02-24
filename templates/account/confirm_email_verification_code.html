@@ -1,0 +1,47 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+{% translate "Vérification de l'e-mail" %}
+{% endblock head_title %}
+{% block content %}
+{% element h1 %}
+{% translate "Entrez le code de vérification de l'e-mail" %}
+{% endelement %}
+{% setvar email_link %}
+<a href="mailto:{{ email }}">{{ email }}</a>
+{% endsetvar %}
+{% element p %}
+{% blocktranslate %}Nous avons envoyé un code à {{ email_link }}. Le code expire rapidement, donc veuillez le saisir
+rapidement.{% endblocktranslate %}
+{% endelement %}
+{% url 'account_email_verification_sent' as action_url %}
+{% element form form=form method="post" action=action_url tags="entrance,email,verification" %}
+{% slot body %}
+{% csrf_token %}
+{% element fields form=form unlabeled=True %}
+{% endelement %}
+{{ redirect_field }}
+{% endslot %}
+{% slot actions %}
+{% element button type="submit" tags="prominent,confirm" %}
+{% translate "Confirmer" %}
+{% endelement %}
+{% if cancel_url %}
+{% element button href=cancel_url tags="link,cancel" %}
+{% translate "Annuler" %}
+{% endelement %}
+{% else %}
+{% element button type="submit" form="logout-from-stage" tags="link,cancel" %}
+{% translate "Annuler" %}
+{% endelement %}
+{% endif %}
+{% endslot %}
+{% endelement %}
+{% if not cancel_url %}
+<form id="logout-from-stage" method="post" action="{% url 'account_logout' %}">
+    <input type="hidden" name="next" value="{% url 'account_login' %}">
+    {% csrf_token %}
+</form>
+{% endif %}
+{% endblock content %}

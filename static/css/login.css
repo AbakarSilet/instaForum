@@ -1,0 +1,127 @@
+/* Pour la zone de connexion */
+.login-container {
+    justify-content: center;
+    align-content: center;
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 10px;
+    align-items: center;
+    box-shadow: 0 0 10px var(--primary-color);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    /* Centre horizontalement */
+}
+
+/* Pour le contenu qui suit */
+.content-below {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+    /* Espace entre la zone de connexion et le contenu suivant */
+}
+
+.login-container a {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.input-container input {
+    width: 100%;
+    border: none;
+    outline: none;
+
+}
+
+button {
+    width: 100%;
+    /* Largeur du bouton */
+    height: 50px;
+    /* Hauteur pour le bouton de Google */
+    margin: 20px 0;
+    /* Espacement autour des boutons */
+    border-radius: 30px;
+    /* Coins arrondis */
+    cursor: pointer;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    transition: background-color 0.3s;
+
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.form-group.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.form-group.options .remember-me {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.form-group.options .forgot-password {
+    margin-left: 10px;
+    white-space: nowrap;
+    /* Pour empêcher le retour à la ligne */
+    min-width: fit-content;
+    /* Pour qu'il ne se réduise pas trop */
+}
+
+.g-signin2 {
+    border: 2px solid rgb(255, 255, 255);
+    /* Ajoute une bordure bleue */
+    color: #fff;
+    /* Change la couleur du texte */
+    border-radius: 10px;
+    /* Arrondir les coins */
+    font-size: 23px;
+    /* Augmenter la taille de la police */
+    padding-left: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 10px;
+        margin-top: 50px;
+    }
+
+
+}

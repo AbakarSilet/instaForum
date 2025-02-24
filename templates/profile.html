@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    @{{ user.username }}|InstaForum
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock link %}
+    
+
+{% block content %}
+
+    <div class="container">
+        <h2>{% trans "Votre profil utilisateur" %}</h2>
+        <div class="profile-details">
+            {% if user.profile_image %}
+            <img src="{{ user.profile_image.url }}" alt="{% trans " Photo de profil" %}" class="profile-image">
+            {% else %}
+            <img src="{% static 'images/login.png' %}" alt="{% trans " Profil" %}" class="profile-image">
+            {% endif %}
+            <!-- <div class="icons">
+                <a href="#" title="Messages"><i class="fa fa-envelope"></i></a>
+                <a href="#" title="Photos"><i class="fa fa-camera"></i></a>
+                <a href="#" title="Écrire"><i class="fa fa-pencil"></i></a>
+            </div> -->
+            <ul class="user-info">
+                <li>{% trans "Nom d'utilisateur" %}: {{ user.username }}</li>
+                <li>{% trans "Adresse e-mail" %}: {{ user.email }}</li>
+                <li>{% trans "Prénom" %}: {{ user.first_name }}</li>
+                <li>{% trans "Nom" %}: {{ user.last_name }}</li>
+            </ul>
+            <div class="buttons">
+                <a href="{% url 'account_edit' %}" class="btn btn-primary">{% trans "Modifier le profil" %}</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+{% block javascript %}
+{{ block.super }}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock javascript %}
+    

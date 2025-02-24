@@ -1,0 +1,225 @@
+/* Style pour le body */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Wrapper principal */
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Conteneur principal */
+.signup-container {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Largeur maximale du formulaire */
+    text-align: center;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+    gap: 30px; /* Espace entre les colonnes */
+}
+
+/* Titre */
+.signup-container h2 {
+    grid-column: span 2; /* Le titre s'étend sur les deux colonnes */
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Liens */
+.signup-container a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
+
+/* Message d'erreur */
+.error-message {
+    grid-column: span 2; /* Le message d'erreur s'étend sur les deux colonnes */
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Groupe d'entrées */
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+    text-align: left;
+}
+
+/* Étiquettes des champs */
+.field-label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background-color: var(--background-color);
+    padding: 0 4px;
+    color: var(--text-color);
+    font-size: 12px;
+    display: none;
+}
+
+/* Champs de saisie */
+.input-group.active .field-label {
+    display: block;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"],
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.input-group input::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Section de l'image de profil */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid var(--primary-color); /* Séparateur visuel */
+    padding-left: 30px; /* Espacement à gauche */
+}
+
+/* Icône de caméra pour l'image de profil */
+.profile-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-icon i {
+    font-size: 40px;
+    color: var(--text-color);
+}
+
+.profile-icon:hover {
+    background-color: rgba(var(--primary-color), 0.8);
+}
+
+/* Aperçu de l'image de profil */
+#profile_preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+}
+
+/* Section des données utilisateur */
+.user-data-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bouton d'inscription */
+.signup-button {
+    grid-column: span 2; /* Le bouton s'étend sur les deux colonnes */
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+    background-color: rgba(var(--primary-color), 0.8);
+}
+
+/* Bouton de connexion sociale */
+.social-login {
+    grid-column: span 2; /* Le bouton social s'étend sur les deux colonnes */
+    margin-top: 20px;
+}
+
+.social-login .btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.social-login .btn-danger {
+    background-color: #db4437;
+    color: white;
+}
+
+.social-login .btn-danger:hover {
+    background-color: #c23321;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signup-container {
+        grid-template-columns: 1fr; /* Une seule colonne en mode mobile */
+        max-width: 400px;
+    }
+
+    .profile-section {
+        border-left: none; /* Supprimer le séparateur en mode mobile */
+        padding-left: 0; /* Supprimer l'espacement en mode mobile */
+        order: -1; /* L'image de profil apparaît en premier en mode mobile */
+        margin-bottom: 20px;
+    }
+
+    .signup-container h2,
+    .error-message,
+    .signup-button,
+    .social-login {
+        grid-column: span 1; /* Les éléments s'étendent sur une seule colonne */
+    }
+}

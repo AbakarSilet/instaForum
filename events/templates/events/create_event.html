@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+   {% trans 'Créer un Événement' %}
+{% endblock title %}
+  
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/event_create.css' %}">
+{% endblock link %}
+
+{% block content %}
+  <div class="form-container">
+    <h2>{% trans 'Créer un Événement' %}</h2>
+    {% if form.errors %}
+      <div class="form-errors">
+        {{ form.non_field_errors }}
+        {% for field in form %}
+          {% for error in field.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" id="event-form">
+      {% csrf_token %}
+      <p>
+        <i class="icon fa fa-font"></i>
+        {{ form.title }}
+      </p>
+      <p>
+        <i class="icon fa fa-align-left"></i>
+        {{ form.description }}
+      </p>
+      <p>
+        <i class="icon fa fa-map-marker"></i>
+        {{ form.location }}
+      </p>
+      <p>
+        <i class="icon fa fa-calendar"></i>
+        {{ form.date }}
+      </p>
+      <p>
+        <i class="icon fa fa-image"></i>
+        {{ form.image }}
+      </p>
+      <button type="submit">{% trans 'Créer' %}</button>
+    </form>
+    <div class="image-preview" id="image-preview">
+      <p>{% trans 'Aucune image sélectionnée' %}</p>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        document.getElementById('id_image').onchange = function(event) {
+            var preview = document.getElementById('image-preview');
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                var img = document.createElement('img');
+                img.src = reader.result;
+                preview.innerHTML = '';
+                preview.appendChild(img);
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '<p>Aucune image sélectionnée</p>';
+            }
+        };
+    </script>
+{% endblock javascript %}

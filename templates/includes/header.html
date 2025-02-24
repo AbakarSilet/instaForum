@@ -1,0 +1,63 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "InstaForum" %}</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Première Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/40.png' %}" alt="{% trans "Logo" %}">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">{% trans "Actualités" %}</a></li>
+            <li><a href="#">{% trans "Événements" %}</a></li>
+            <li><a href="#">{% trans "Discussions" %}</a></li>
+            <li><a href="#">{% trans "Communautés" %}</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">{% trans "Langue" %} <i class="fas fa-globe"></i></a>
+                <div class="dropdown-content">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="language" value="fr">{% trans "Français" %}</button>
+                        <button type="submit" name="language" value="en">{% trans "Anglais" %}</button>
+                        <button type="submit" name="language" value="ar">{% trans "Arabe" %}</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Deuxième Navbar (toujours visible) -->
+    <nav class="secondary-navbar">
+        <form class="search-bar" method="get">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" name="query" placeholder="{% trans "Rechercher..." %}">
+        </form>
+        <div class="user-actions">
+            {% if user.is_authenticated %}
+                <a href="{% url 'account_profile' %}">
+                    <img src="{{ user.profile_image.url }}" alt="{% trans "Profil" %}">
+                </a>
+                <a href="#">{% trans "Messages" %}</a>
+            {% else %}
+                <a href="{% url 'account_login' %}">{% trans "Connexion" %}</a>
+                <a href="{% url 'account_signup' %}">{% trans "Inscription" %}</a>
+            {% endif %}
+        </div>
+        
+    </nav>
+
+    <script src="{% static 'js/navbar.js' %}"></script>
+</body>
+</html>

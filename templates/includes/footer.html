@@ -1,0 +1,64 @@
+{% load static %}
+{% load i18n %}
+{% load moderation_tags %}
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3 class="footer-title">{% trans "Liens Utiles" %}</h3>
+    <ul class="footer-links">
+      <li><a href="{% url 'home' %}">{% trans "Accueil" %}</a></li>
+      <li><a href="{% url 'about' %}">{% trans "À propos" %}</a></li>
+      <li><a href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
+      <li><a href="{% url 'rules' %}">{% trans "Règles du forum" %}</a></li>
+      <li><a href="{% url 'privacy' %}">{% trans "Politique de confidentialité" %}</a></li>
+      <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+      {% load moderation_tags %}
+      {% is_moderator request.user as is_moderator %}
+      {% if is_moderator %}
+      <li><a href="{% url 'forum:moderation_dashboard' %}">
+        {% trans "Modération" %}</a>
+      </li>
+      {% endif %}
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'account_logout' %}">{% trans "Déconnexion" %}</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="footer-section">
+    <h3 class="footer-title">{% trans "Soutenir le projet" %}</h3>
+    <ul class="footer-links">
+      <li><a href="#">{% trans "Faire un don" %}</a></li>
+      <li><a href="#">{% trans "Devenir sponsor" %}</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3 class="footer-title">{% trans "Nous contacter" %}</h3>
+    <ul class="footer-contact">
+      <li><i class="fas fa-envelope"></i> <a href="mailto:instaforum2025@gmail.com">instaforum2025@gmail.com</a></li>
+      <li><i class="fas fa-phone"></i> +235 66 34 34 89</li>
+      <li><i class="fas fa-map-marker-alt"></i> 123 Rue de l'Exemple, 75001 Abéché, Tchad</li>
+    </ul>
+  </div>
+
+  <div class="footer-section">
+    <h3 class="footer-title">{% trans "Réseaux Sociaux" %}</h3>
+    <ul class="footer-social">
+      <li><a href="https://www.facebook.com/people/%F0%9D%91%A8%F0%9D%91%A9%F0%9D%91%B2%F0%9D%91%A8%F0%9D%91%B9%F0%9D%91%B0%F0%9D%91%BF4/61560225823078/" target="_blank" rel="noopener noreferrer"
+          title="{% trans 'Facebook' %}"><i class="fab fa-facebook-f"></i></a></li>
+      <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" title="{% trans 'Twitter' %}"><i
+            class="fab fa-twitter"></i></a></li>
+      <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+          title="{% trans 'Instagram' %}"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"
+          title="{% trans 'LinkedIn' %}"><i class="fab fa-linkedin-in"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="footer-section footer-copyright">
+    <p>&copy; 2025 Instaforum. {% trans "Tous droits réservés." %}</p>
+  </div>
+</footer>
+
+<!-- Ajout des icônes de Font Awesome pour les réseaux sociaux -->
+<script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="search-results">
+    <h3>Résultats de recherche pour "{{ query }}"</h3>
+    {% if search_results %}
+        {% for result in search_results %}
+            <div class="search-result-item">
+                <h4><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h4>
+                <p>{{ result.object.content }}</p>
+                <p><strong>Auteur :</strong>{{ result.object.author.username }}</p>
+            </div>
+        {% endfor %}
+
+        <!-- Liens de Pagination -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if search_results.has_previous %}
+                    <a href="?query={{ query }}&page=1">&laquo; Première</a>
+                    <a href="?query={{ query }}&page={{ search_results.previous_page_number }}">Précédente</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ search_results.number }} de {{ search_results.paginator.num_pages }}.
+                </span>
+
+                {% if search_results.has_next %}
+                    <a href="?query={{ query }}&page={{ search_results.next_page_number }}">Suivante</a>
+                    <a href="?query={{ query }}&page={{ search_results.paginator.num_pages }}">Dernière &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% else %}
+        <p>Aucun résultat trouvé pour "{{ query }}".</p>
+    {% endif %}
+</div>
+{% endblock content %}

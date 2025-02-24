@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/create_thead.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="form-container">
+    <h3>{% trans 'Créer un Fil de Discussion dans' %} {{ subforum.title }}</h3>
+
+    {% if form.errors %}
+    <div class="form-errors">
+        {{ form.non_field_errors }}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if not user.is_active %} <div class="alert alert-danger">
+        <p>{% trans 'Votre compte est suspendu pour 7 jours par le modérateur. Vous ne pouvez pas créer de fil de discussion ou répondre à des posts mais vous pouvez toujours les lire.' %} 
+        </p>
+    </div>
+    {% else %}
+    <form method="POST" enctype="multipart/form-data" id="thread-form">
+        {% csrf_token %}
+        <p>
+            <i class="icon fas fa-heading"></i>
+            {{ form.title }}
+        </p>
+        <p>
+            <i class="icon fas fa-align-left"></i>
+            {{ form.content }}
+        </p>
+        <p>
+            <i class="icon fas fa-tags"></i>
+            {{ form.tags }}
+        </p>
+        <button type="submit">{% trans 'Créer' %}</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+    {% translate "Se connecter" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% translate "M'envoyer un code de connexion" %}
+    {% endelement %}
+    {% element p %}
+        {% blocktranslate %}Vous recevrez un e-mail contenant un code spécial pour une connexion sans mot de passe.{% endblocktranslate %}
+    {% endelement %}
+    {% url 'account_request_login_code' as login_url %}
+    {% element form form=form method="post" action=login_url tags="entrance,login" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {{ redirect_field }}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" tags="prominent,login" %}
+                {% translate "Demander le code" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+    {% url 'account_login' as login_url %}
+    {% element button href=login_url tags="link" %}
+        {% translate "Autres options de connexion" %}
+    {% endelement %}
+{% endblock content %}

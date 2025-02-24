@@ -1,0 +1,17 @@
+<h1>Recherche et découvertes scientifiques</h1>
+{% if posts %}
+  <ul>
+    {% for post in posts %}
+      <li>
+        <h3><a href="{{ post.node.url }}">{{ post.node.title }}</a></h3>
+        <p>{{ post.node.summary }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucun article trouvé.</p>
+{% endif %}
+
+{% if error %}
+    <p>Erreur&nbsp;: {{ error }}</p>
+{% endif %}

@@ -1,0 +1,4 @@
+{% extends "account/email/base_notification.txt" %}
+{% load i18n %}
+
+{% block notification_message %}{% blocktrans %}L'adresse e-mail {{ deleted_email }} a été supprimée de votre compte.{% endblocktrans %}{% endblock notification_message %}

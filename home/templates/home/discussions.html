@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Discussions" %}|InstaForum
+{% endblock title %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/discussions.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="container">
+    <div class="scroll-container">
+        <button class="arrow left-arrow ri-arrow-left-s-line"></button>
+        <div class="grids-container">
+            <div class="grid-row" id="gridRow1">
+                {% for subforum in subforums %}
+                {% if forloop.counter0|divisibleby:2 %}
+                <div class="grid-item">
+                    <a href="{% url 'forum:subforum' slug=subforum.slug %}">
+                        {{ subforum.title }}
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="grid-row" id="gridRow2">
+                {% for subforum in subforums %}
+                {% if not forloop.counter0|divisibleby:2 %}
+                <div class="grid-item">
+                    <a href="{% url 'forum:subforum' slug=subforum.slug %}">
+                        {{ subforum.title }}
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <button class="arrow right-arrow ri-arrow-right-s-line"></button>
+    </div>
+
+    <div class="discussions-container">
+        <h1>{% trans 'Discussions' %}</h1>
+        {% for thread in threads %}
+        <a href="{% url 'forum:thread' slug=thread.slug %}" class="thread-link">
+            <div class="thread-item">
+                <p>
+                    <img src="{% if thread.author.profile_image %}{{ thread.author.profile_image.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}"
+                        alt="Profile image" class="profile-image">
+                    <span class="author-link">
+                        {{ thread.author.first_name }} {{ thread.author.last_name }}
+                    </span> | {% trans 'Le :' %} {{ thread.created_at }}
+                </p>
+                <h3>{{ thread.title }}</h3>
+                <div class="posts">
+                    {% with thread.posts.count as total_posts %}
+                    <h4> {{ total_posts }} {% trans 'réponse' %}{{ total_posts|pluralize }} {% trans 'associée' %}{{ total_posts|pluralize }} :</h4>
+                    {% endwith %}
+                    <ul>
+                        {% for post in thread.top_posts %}
+                        <li>{{ post.content|truncatewords:30 }}</li>
+                        {% empty %}
+                        <p class="no-posts-message">{% trans 'Soyez le premier à poster sur ce thread !' %} </p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <button id="scrollToTopBtn" class="scroll-to-top">&#8679;</button>
+</div>
+
+{% endblock content %}
+
+
+
+{% block javascript %}
+{{ block.super }}
+<script src="{% static 'js/discussions.js' %}"></script>
+{% endblock javascript %}

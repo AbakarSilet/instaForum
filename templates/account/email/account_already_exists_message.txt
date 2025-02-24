@@ -1,0 +1,10 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktrans %}Vous recevez cet e-mail parce que vous ou quelqu'un d'autre a tenté de vous inscrire avec l'adresse e-mail suivante :
+
+{{ email }}
+
+Cependant, un compte existe déjà avec cette adresse e-mail. Si vous avez oublié cela, veuillez utiliser la procédure de réinitialisation de mot de passe pour récupérer votre compte :
+
+{{ password_reset_url }}{% endblocktrans %}{% endautoescape %}{% endblock content %}

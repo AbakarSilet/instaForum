@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/add_resource.css' %}">
+{% endblock link %}
+{% block title %}
+{% blocktrans %}Ajouter un Document{% endblocktrans %}
+{% endblock title %}
+
+{% block content %}
+<h1>{% blocktrans %}Ajouter un Document{% endblocktrans %}</h1>
+{% if errors %}
+<div class="error">
+    <ul>
+        {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_title">{% blocktrans %}Titre{% endblocktrans %}</label>
+    <input type="text" name="title" required><br>
+    <label for="id_description">{% blocktrans %}Description{% endblocktrans %}</label>
+    <textarea name="description"></textarea><br>
+    <label for="id_file">{% blocktrans %}Document{% endblocktrans %}</label>
+    <input type="file" name="file" required><br>
+    {% if form.file.value %}
+    <div class="document-preview">
+        <embed src="{{ form.file.value.url }}" width="600" height="500" alt="Aperçu du document">
+    </div>
+    {% endif %}
+    <button type="submit">{% blocktrans %}Ajouter{% endblocktrans %}</button>
+</form>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+{% endblock javascript %}
+

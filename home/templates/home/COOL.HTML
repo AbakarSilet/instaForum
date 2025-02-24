@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grilles avec Défilement Dynamique</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .scroll-container {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            padding: 20px 0;
+            position: relative;
+        }
+        .grids-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .grid-row {
+            display: flex;
+            justify-content: flex-start;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .grid-item {
+            background-color: #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            flex-shrink: 0;
+            cursor: pointer;
+            user-select: none;
+        }
+        .grid-item:last-child {
+            margin-right: 0;
+        }
+        .grid-item:hover {
+            transform: scale(1.05);
+            background-color: #bbbbbb;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 15px;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .left-arrow {
+            left: -50px;
+        }
+        .right-arrow {
+            right: -50px;
+        }
+        @media (max-width: 768px) {
+            .scroll-container {
+                width: 95%;
+            }
+            .left-arrow {
+                left: -25px;
+            }
+            .right-arrow {
+                right: -25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scroll-container">
+    <button class="arrow left-arrow" style="display: none;">&#10094;</button>
+    <div class="grids-container">
+        <div class="grid-row" id="gridRow1">
+            <div class="grid-item item1">Histoire</div>
+            <div class="grid-item item2">Arts</div>
+            <div class="grid-item item3">Environnement</div>
+            <div class="grid-item item4">Enfants</div>
+        </div>
+        <div class="grid-row" id="gridRow2">
+            <div class="grid-item item5">Musique</div>
+            <div class="grid-item item6">Monde</div>
+            <div class="grid-item item7">Sports</div>
+            <div class="grid-item item8">Fictions</div>
+        </div>
+    </div>
+    <button class="arrow right-arrow" style="display: none;">&#10095;</button>
+</div>
+
+<script>
+    const gridRow1 = document.getElementById('gridRow1');
+    const gridRow2 = document.getElementById('gridRow2');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+
+    let scrollPosition = 0;
+    let isAnimating = false;
+    const scrollAmount = 200;
+    const animationDuration = 500; // durée de l'animation en ms
+
+    function checkOverflow(element) {
+        return element.scrollWidth > element.clientWidth;
+    }
+
+    function updateArrowVisibility() {
+        const maxScroll = gridRow1.scrollWidth - gridRow1.clientWidth;
+        const shouldShowArrows = checkOverflow(gridRow1) || checkOverflow(gridRow2);
+        
+        leftArrow.style.display = shouldShowArrows && scrollPosition < 0 ? 'flex' : 'none';
+        rightArrow.style.display = shouldShowArrows && scrollPosition > maxScroll * -1 ? 'flex' : 'none';
+    }
+
+    function smoothScroll(targetPosition) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const startPosition = scrollPosition;
+        const distance = targetPosition - startPosition;
+        const startTime = performance.now();
+
+        function animate(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / animationDuration, 1);
+
+            // Fonction d'easing pour une animation plus fluide
+            const easeProgress = progress < .5 ? 
+                4 * progress * progress * progress : 
+                (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+
+            scrollPosition = startPosition + (distance * easeProgress);
+            gridRow1.style.transform = `translateX(${scrollPosition}px)`;
+            gridRow2.style.transform = `translateX(${scrollPosition}px)`;
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                isAnimating = false;
+                updateArrowVisibility();
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    leftArrow.addEventListener('click', () => {
+        const targetPosition = Math.min(scrollPosition + scrollAmount, 0);
+        smoothScroll(targetPosition);
+    });
+
+    rightArrow.addEventListener('click', () => {
+        const maxScroll = -(gridRow1.scrollWidth - gridRow1.clientWidth);
+        const targetPosition = Math.max(scrollPosition - scrollAmount, maxScroll);
+        smoothScroll(targetPosition);
+    });
+
+    // Ajout du défilement par glissement tactile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.querySelector('.grids-container').addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, false);
+
+    document.querySelector('.grids-container').addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        touchEndX = e.touches[0].clientX;
+    }, { passive: false });
+
+    document.querySelector('.grids-container').addEventListener('touchend', () => {
+        const swipeDistance = touchStartX - touchEndX;
+        if (Math.abs(swipeDistance) > 50) { // Seuil minimal pour déclencher le défilement
+            const targetPosition = scrollPosition + (swipeDistance < 0 ? scrollAmount : -scrollAmount);
+            const maxScroll = -(gridRow1.scrollWidth - gridRow1.clientWidth);
+            smoothScroll(Math.max(Math.min(targetPosition, 0), maxScroll));
+        }
+    }, false);
+
+    window.addEventListener('load', updateArrowVisibility);
+    window.addEventListener('resize', updateArrowVisibility);
+
+    // const items = document.querySelectorAll('.grid-item');
+    // items.forEach(item => {
+    //     item.addEventListener('click', () => {
+    //         alert('Vous avez cliqué sur ' + item.textContent);
+    //     });
+    // });
+</script>
+
+</body>
+</html>
+
+
+<div >
+    <h1>Discussions</h1>
+    {% for thread in threads %}
+    <div class="thread-item">
+        <h3><a href="{% url 'forum:thread' slug=thread.slug %}">{{ thread.title }}</a></h3>
+        <p>
+            <img src="{% if thread.author.profile_image %}{{ thread.author.profile_image.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}" 
+            alt="Profile image" class="profile-image">
+            <a href="{% url 'forum:profile' username=thread.author.username %}">{{ thread.author.first_name }} {{ thread.author.last_name }}</a>| Le : {{ thread.created_at }}
+        </p>
+        <div class="posts">
+            <h4>Posts associés :</h4>
+            <ul>
+                {% for post in thread.top_posts %}
+                <li>{{ post.content|truncatewords:30 }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+    
+    

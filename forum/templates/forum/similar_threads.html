@@ -1,0 +1,19 @@
+{% load i18n %}
+
+    <div class="section right-section">
+        <h3>{% trans "Threads Similaires" %}</h3>
+        {% if similar_threads %}
+            <ul>
+                {% for similar_thread in similar_threads %}
+                <li>
+                    <a href="{% url 'forum:thread' slug=similar_thread.slug %}">{{ similar_thread.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {% trans 'Pas de threads similaires' %}
+        {% endif %}
+    </div> 
+
+    
+    

@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n%}
+{% load custom_filters %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/home_forum.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+{% endblock link %}
+
+{% block content %}
+<form class="search-bar" action="{% url 'forum:search' %}" method="GET">
+    <input type="text" id="searchInput" name="query" placeholder=" {% trans 'Rechercher dans le forum...' %} ">
+    <button type="submit"><i class="fas fa-arrow-right"></i></button>
+</form>
+
+{% if query %}
+<div class="close-search" onclick="closeSearchResults()">
+    <a href="{% url 'forum:home' %}"><i class="fas fa-times"></i></a>
+</div>
+<div class="search-results">
+    <h3>{% with search_results.count as total_search_results %}
+        {{total_search_results}} {% trans 'Résultat' %} {{total_search_results|pluralize }}
+        {% endwith %} {% trans 'de recherche pour' %}  "{{ query }}"</h3>
+    {% if search_results %}
+    {% for result in search_results %}
+    <div class="search-result-item">
+        {% if result.type == 'thread' %}
+        <h4><a href="{% url 'forum:thread' slug=result.object.slug %}">{{ result.object.title }}</a></h4>
+        <p>{{ result.object.content |safe|truncatewords:20 }}</p>
+        <p><strong>{% trans 'Auteur :' %} </strong> <a href="{% url 'forum:profile' username=result.object.author.username %}">
+                {{ result.object.author.username }}</a></p>
+        <p>Tags:
+            {% for tag in result.object.tags.all %}
+            <a href="{% url 'forum:tagged' slug=tag.slug %}" class="tag-link">{{ tag.name }}</a>
+            {% empty %}
+                <span>{% trans 'Aucun tag' %}</span>
+            {% endfor %}
+        </p>
+        {% elif result.type == 'post' %}
+        <h4><a href="{% url 'forum:thread' slug=result.object.thread.slug %}#post-{{ result.object.id }}">
+                {{ result.object.content|truncatewords:10 }}</a></h4>
+        <p><strong>Auteur :</strong> <a href="{% url 'forum:profile' username=result.object.author.username %}">
+                {{ result.object.author.username }} </a> </p>
+        <p>Tags:
+            {% for tag in result.object.tags.all %}
+            <a href="{% url 'forum:tagged' slug=tag.slug %}" class="tag-link">{{ tag.name }}</a>
+            {% empty %}
+                <span>{% trans 'Aucun tag' %}</span>
+            {% endfor %}
+        </p>
+        {% elif result.type == 'subforum' %}
+        <h4><a href="{% url 'forum:subforum' slug=result.object.slug %}">{{ result.object.title }}</a></h4>
+        <p>{{ result.object.description }}</p>
+        {% elif result.type == 'user' %}
+        <h4><a href="{% url 'forum:profile' username=result.object.username %}">{{ result.object.username }}</a></h4>
+        <p>{% trans 'Profil utilisateur' %}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <!-- Liens de Pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if search_results.has_previous %}
+            <a href="?query={{ query }}&page={{ search_results.previous_page_number }}">{% trans 'Précédent' %}</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ search_results.number }} sur {{ search_results.paginator.num_pages }}
+            </span>
+
+            {% if search_results.has_next %}
+            <a href="?query={{ query }}&page={{ search_results.next_page_number }}">{% trans 'Suivant' %}</a>
+            {% endif %}
+        </span>
+    </div>
+    {% else %}
+    <p>
+    {% blocktrans %} Aucun résultat trouvé pour "{{ query }}".{% endblocktrans %}</p>
+    {% endif %}
+</div>
+{% else %}
+<style>
+    .close-search {
+        display: none;
+    }
+</style>
+{% endif %}
+
+
+{% for category in categories %}
+<div class="category">
+    <h2>{{ category.name }}</h2>
+    <div class="image-grid">
+        {% with authors=category_authors|get_item:category.id %}
+        {% for author in authors|slice:":15" %}
+        <div class="image-item">
+            {% if author.profile_image %}
+            <img src="{{ author.profile_image.url }}" alt="{{ author.username }}">
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% if authors|length > 15 %}
+        <p>{% blocktrans %}Et autres...{% endblocktrans %}</p>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div class="forum-grid" id="forumGrid-{{ category.id }}">
+        {% for subforum_data in subforums_data %}
+        {% if subforum_data.subforum.category_id == category.id %}
+        <div class="forum-item">
+            {% if subforum_data.subforum.image %}
+            <div class="forum-item-header">
+                <img src="{{ subforum_data.subforum.image.url }}" alt="image">
+                <h3><a href="{% url 'forum:subforum' slug=subforum_data.subforum.slug %}">
+                        {{subforum_data.subforum.title}}</a></h3>
+            </div>
+            {% else %}
+            <div class="forum-item-header">
+                <i class="ri-folder-line"></i> <!-- Icône de Remix Icon par défaut si pas d'image -->
+                <h3><a href="{% url 'forum:subforum' slug=subforum_data.subforum.slug %}">
+                        {{subforum_data.subforum.title}}</a></h3>
+            </div>
+            {% endif %}
+            <p>{{ subforum_data.subforum.description }}</p>
+            <div class="stats">
+                <div>
+                    <i class="ri-discuss-line"></i><br> <!-- Icône de commentaires -->
+                    {{ subforum_data.threads_count }}
+                </div>
+                <div>
+                    <i class="ri-eye-line"></i><br> <!-- Icône de vues -->
+                    {{ subforum_data.view_count }}
+                </div>
+                <div>
+                    <i class="ri-edit-line"></i><br> <!-- Icône de posts -->
+                    {{ subforum_data.posts_count }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+
+
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script>
+    function closeSearchResults() {
+        const searchResults = document.querySelector('.search-results');
+        if (searchResults) {
+            searchResults.style.display = 'none';
+        }
+    }
+</script>
+{% endblock javascript %}

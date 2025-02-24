@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Signaler aux moderateurs' %}
+{% endblock title %}
+    
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    {% if report_type == 'reported_user' %}
+        <h2>{% trans "Signaler" %} {{ reported_username }}</h2>
+    {% else %}
+        <h2>{% trans 'Signaler' %} {{ report_type }}</h2>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans "Envoyer le signalement" %}</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Politique de confidentialité" %}
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'forum/css/privacy.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>{% trans "Politique de confidentialité" %}</h2>
+    <p>{% trans "Bienvenue sur notre forum ! Nous nous engageons à protéger votre vie privée. Cette politique de confidentialité décrit comment nous collectons, utilisons et protégeons vos informations personnelles." %}</p>
+
+    <h3>{% trans "1. Collecte des informations" %}</h3>
+    <p>{% trans "Nous collectons les informations que vous nous fournissez directement, comme votre nom, adresse email, et toute autre donnée que vous partagez en utilisant notre forum." %}</p>
+
+    <h3>{% trans "2. Utilisation des informations" %}</h3>
+    <p>{% trans "Nous utilisons vos informations pour gérer votre compte, répondre à vos demandes, améliorer nos services, et vous fournir une expérience personnalisée." %}</p>
+
+    <h3>{% trans "3. Partage des informations" %}</h3>
+    <p>{% trans "Nous ne partageons pas vos informations personnelles avec des tiers, sauf si cela est nécessaire pour fournir nos services ou si la loi l'exige." %}</p>
+
+    <h3>{% trans "4. Sécurité" %}</h3>
+    <p>{% trans "Nous mettons en œuvre des mesures de sécurité pour protéger vos informations contre l'accès non autorisé, la modification ou la divulgation." %}</p>
+
+    <h3>{% trans "5. Vos droits" %}</h3>
+    <p>{% trans "Vous avez le droit d'accéder à vos informations personnelles, de les corriger ou de les supprimer. Contactez-nous pour toute demande relative à vos données personnelles." %}</p>
+
+    <h3>{% trans "6. Modifications de cette politique" %}</h3>
+    <p>{% trans "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Nous vous informerons de tout changement important." %}</p>
+
+    <p>{% trans "Si vous avez des questions ou des préoccupations concernant notre politique de confidentialité, veuillez nous contacter à abakarix4dev@gmail.com ou akagerald@gmail.com." %}</p>
+</div>
+{% endblock %}

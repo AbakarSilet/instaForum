@@ -1,0 +1,288 @@
+:root {
+    --primary-color: #1e90ff;
+    --secondary-color: #1e90ff;
+
+    --text-color: black;
+    --background-color: white;
+    --navbar-background: var(--primary-color);
+    --sidebar-background: var(--primary-color);
+    --dropdown-background: var(--background-color);
+    --dropdown-text-color: var(--text-color);
+    --dropdown-hover-background: var(--primary-color);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    ;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar-message {
+    width: 250px;
+    background: var(--background-color);
+    border-right: 1px solid var(--primary-color);
+    padding: 10px;
+
+}
+
+/* styles.css */
+/* Ajoute ces styles à ton fichier CSS existant */
+
+.message {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.typing-indicator {
+    display: none;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    margin: 5px 0;
+}
+
+.typing-indicator.visible {
+    display: block;
+}
+
+.typing-indicator::after {
+    content: '...';
+    animation: typing 1s infinite;
+}
+
+@keyframes typing {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}
+/* Ajoute ces styles à ton fichier CSS */
+
+.conversation {
+    transition: all 0.3s ease;
+}
+
+.conversation:hover {
+    transform: translateX(5px);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.conversation.active {
+    border-left: 4px solid #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.sidebar-message h2 {
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+}
+
+.conversations-list {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.conversation {
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.conversation a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.conversation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.conversation-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.conversation-header .badge {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.conversation .last-message {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.conversation small {
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+.conversation-item {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.conversation-item:hover {
+    background-color: #f0f0f0;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--primary-color);
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 0;
+    position: relative;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.messages {
+    padding: 50px 20px 20px 20px;
+    /* Padding pour laisser de l'espace pour l'avatar */
+    overflow-y: auto;
+    flex: 1;
+    /* Permet aux messages de prendre tout l'espace disponible */
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 75%;
+    /* Limite la largeur maximale */
+    width: fit-content;
+    clear: both;
+    position: relative;
+    word-wrap: break-word;
+    /* Permet de gérer le texte long */
+}
+
+.sent {
+    background-color: #d1e7dd;
+    margin-left: auto;
+    text-align: right;
+}
+
+.received {
+    background-color: #f8d7da;
+    margin-right: auto;
+    text-align: left;
+}
+
+.date {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.form {
+    display: flex;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+textarea {
+    width: 500px;
+    /* Largeur fixe */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    height: auto;
+    /* Permet à la hauteur de s'adapter */
+    resize: none;
+    /* Empêche le redimensionnement manuel */
+    overflow: auto;
+    /* Cache la barre de défilement */
+}
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.profile-row img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6200ea;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+/* Styles pour mobile */
+@media (max-width: 768px) {
+    .sidebar-message {
+        display: none;
+        /* Cache la barre latérale sur les écrans étroits */
+    }
+}

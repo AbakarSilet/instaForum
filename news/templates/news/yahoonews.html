@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+
+{% endblock title %}
+    {% trans "Actualités" %} InstaForum
+{% block link %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/news_list.css' %}">
+{% endblock link %}
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1> {% trans "Actualités" %}</h1>
+        {% if last_updated %}
+            <div class="last-updated">
+                {% trans "Dernière mise à jour :" %}{{ last_updated }}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Section de filtrage par source arrangée horizontalement avec défilement -->
+    <div class="source-container">
+        <button class="scroll-left" onclick="scrollLeft()">&#8678;</button>
+        <div class="source-menu">
+            {% for source in sources %}
+                <a href="?source={{ source.name }}" class="source-link">{{ source.name }}</a>
+            {% endfor %}
+        </div>
+        <button class="scroll-right" onclick="scrollRight()">&#8680;</button>
+    </div>
+
+    {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if articles %}
+        <div class="news-grid">
+            {% for article in articles %}
+                <a href="{{ article.url }}" target="_blank" class="news-link">
+                    <article class="news-card">
+                        {% if article.image_url %}
+                            <img src="{{ article.image_url }}" alt="{{ article.title }}" class="news-image">
+                        {% endif %}
+                        <div class="news-content">
+                            <div class="news-source">{{ article.source }}</div>
+                            <h2 class="news-title">{{ article.title }}</h2>
+                            <p class="news-description">{{ article.description }}</p>
+                            <div class="news-date">{{ article.published_at }}</div>
+                        </div>
+                    </article>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-articles">
+            {% trans "Aucun article disponible pour le moment." %}
+        </div>
+    {% endif %}
+
+</div>
+<button id="scrollToTopBtn" class="scroll-to-top">&#8679;</button>
+{% endblock content %}
+{% block javascript %}
+{{ block.super }}
+<script>
+    function scrollLeft() {
+        document.querySelector('.source-menu').scrollBy({ left: -200, behavior: 'smooth' });
+    }
+    function scrollRight() {
+        document.querySelector('.source-menu').scrollBy({ left: 200, behavior: 'smooth' });
+    }
+</script>
+{% endblock javascript %}

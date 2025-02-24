@@ -1,0 +1,11 @@
+{% for category in categories %}
+<div class="navbar-category-item">
+  <i class="fas fa-hand-point-right"></i>
+  {% if category.name|length > 25 %}
+  {{ category.name|truncatechars:25 }}
+  {% else %}
+  {{ category.name }}
+  {% endif %}
+  </a>
+</div>
+{% endfor %}

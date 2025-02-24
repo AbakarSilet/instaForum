@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Règles du Forum" %}
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'forum/css/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>{% trans "Règles du Forum" %}</h2>
+    <div class="rules-section">
+        <div class="rule">
+            <h4>{% trans "1. Respect des autres utilisateurs" %}</h4>
+            <p>{% trans "Veuillez respecter les autres membres du forum. Les insultes, harcèlements et comportements offensants ne seront pas tolérés." %}</p>
+        </div>
+        <div class="rule">
+            <h4>{% trans "2. Contenu approprié" %}</h4>
+            <p>{% trans "Publiez uniquement du contenu approprié et pertinent. Les messages inappropriés seront supprimés." %}</p>
+            <p>{% trans "Vous pouvez signaler les contenus inappropriés aux moderateurs qui prendront des mesures qui s'imposent." %} </p>
+        </div>
+        <div class="rule">
+            <h4>{% trans "3. Pas de spam" %}</h4>
+            <p>{% trans "Évitez de publier du spam ou de la publicité non sollicitée. Cela inclut les messages répétitifs et les liens promotionnels." %}</p>
+        </div>
+        <!-- Ajoutez d'autres règles ici -->
+    </div>
+</div>
+{% endblock %}

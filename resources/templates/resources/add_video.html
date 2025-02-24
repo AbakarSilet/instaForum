@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% blocktrans %}Ajouter une vidéo{% endblocktrans %}
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'resources/css/add_resource.css' %}">
+{% endblock link %}
+
+{% block content %}
+<h1>{% blocktrans %}Ajouter une vidéo{% endblocktrans %}</h1>
+{% if errors %}
+<div class="error">
+    <ul>
+        {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<form method="post" enctype="multipart/form-data" style="text-align: center;" id="videoForm">
+    {% csrf_token %}
+    <label for="id_title"><i class="fas fa-heading"></i> {% blocktrans %}Titre{% endblocktrans %}</label>
+    <input type="text" name="title" required><br>
+    <label for="id_description"><i class="fas fa-align-left"></i>{% blocktrans %}Description {% endblocktrans %}</label>
+    <textarea name="description"></textarea><br>
+    <label for="id_video"><i class="fas fa-video"></i> {% blocktrans %}Vidéo{% endblocktrans %}</label>
+    <input type="file" name="video" required id="videoInput"><br>
+    <div class="video-preview" id="videoPreview" style="display:none;">
+        <video width="320" height="240" controls id="videoPreviewPlayer">
+            <source src="" type="video/mp4">
+            {% blocktrans %}Votre navigateur ne supporte pas l'élément vidéo.{% endblocktrans %}
+        </video>
+    </div>
+    <button type="submit" class="btn-ajouter">{% blocktrans %}Ajouter{% endblocktrans %}</button>
+</form>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+    document.getElementById("videoInput").addEventListener("change", function(event) {
+        var file = event.target.files[0];
+        var preview = document.getElementById("videoPreview");
+        var player = document.getElementById("videoPreviewPlayer");
+        var source = player.getElementsByTagName('source')[0];
+        var url = URL.createObjectURL(file);
+        preview.style.display = "block";
+        source.src = url;
+        player.load();
+    });
+</script>
+{% endblock javascript %}
+
+
