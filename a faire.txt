@@ -19,3 +19,5 @@ OKay/
 newsletter/
 .env
 faire.txt
+
+

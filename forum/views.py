@@ -6,6 +6,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, StreamingHttpResponse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, Group
+from django.http import HttpResponseForbidden
 from django.urls import reverse
 from taggit.models import Tag
 from django.contrib import messages
@@ -403,23 +406,6 @@ def dislike_thread(request, thread_id):
     return redirect('forum:thread', slug=thread.slug)
 
 
-# Commmentaire en temps reel
-def stream_view(request, thread_id):
-    def event_stream():
-        initial_data = ''
-        while True:
-            posts= Post.objects.filter(thread__id=thread_id) \
-                .values('content', 'created_at', 'author__username', 'thread__id')
-            data = json.dumps(list(posts), cls=DjangoJSONEncoder)
-            # print(data)
-            if not initial_data == data:
-                yield '\n'
-                yield f'data: {data}'
-                yield '\n\n'
-                initial_data = data
-            time.sleep(1)
-
-    return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
 
 
 
@@ -437,12 +423,46 @@ def delete_thread(request, thread_id):
     thread.delete()
     return redirect('forum:moderation_dashboard')
 
+
+
 @login_required
-@permission_required('auth.suspend_user', raise_exception=True)
 def suspend_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    user.suspend()
-    return redirect('forum:moderation_dashboard')
+    # Vérifier si l'utilisateur est connecté
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Vous devez être connecté.")
+    
+    # Récupérer l'utilisateur à suspendre
+    user_to_suspend = get_object_or_404(User, id=user_id)
+    
+    # Récupérer le groupe Moderator
+    try:
+        moderator_group = Group.objects.get(name='Moderator')
+    except Group.DoesNotExist:
+        return HttpResponseForbidden("Le groupe Modérateur n'existe pas.")
+    
+    # Vérifications des permissions
+    if (
+        # Vérifier si l'utilisateur est un superutilisateur
+        request.user.is_superuser or 
+        # Vérifier si l'utilisateur appartient au groupe Moderator
+        moderator_group in request.user.groups.all()
+    ):
+        # Vérifier qu'un modérateur ne peut pas se suspendre lui-même
+        if request.user.id == user_to_suspend.id:
+            return HttpResponseForbidden("Vous ne pouvez pas vous suspendre vous-même.")
+        
+        # Suspension de l'utilisateur
+        user_to_suspend.is_active = False
+        user_to_suspend.save()
+        
+        # Journalisation (optionnel)
+        print(f"Utilisateur {user_to_suspend.username} suspendu par {request.user.username}")
+        
+        # Redirection après suspension
+        return redirect('forum:moderation_dashboard')
+    else:
+        # Accès non autorisé
+        return HttpResponseForbidden("Vous n'avez pas la permission de suspendre des utilisateurs.")
 
 
 @verified_email_required

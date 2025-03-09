@@ -25,7 +25,6 @@ urlpatterns = [
 
     path('thread/<int:thread_id>/like/', like_thread, name='like_thread'),
     path('thread/<int:thread_id>/dislike/', dislike_thread, name='dislike_thread'),
-    path('<int:thread_id>/stream/', views.stream_view, name='stream'),
 
     path('delete_post/<int:post_id>/', views.delete_post, name='delete_post'),
     path('suspend_user/<int:user_id>/', views.suspend_user, name='suspend_user'),

@@ -61,10 +61,10 @@
                     <span class="report-count">({{ thread.report_count }} {% blocktrans %}signalements {% endblocktrans %})</span>
                 </p>
                 <p>{{ thread.content|truncatewords:30 }}</p>
-                <p>{% trans "Auteur" %} : <strong>{{ thread.author.username }}</strong></p>
+                <p>{% trans "Auteur" %} : <strong>{{ thread.author.first_name }} {{ thread.author.last_name }}</strong></p>
                 {% for report in reports %}
                 {% if report.thread.id == thread.id %}
-                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.first_name }} {{ report.reported_by.last_name }}</strong> |
                     {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
                 {% endif %}
                 {% endfor %}
@@ -92,10 +92,10 @@
                     <span class="report-count">({{ post.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span>
                 </p>
                 <p>{{ post.content|truncatewords:30 }}</p>
-                <p>{% trans "Auteur" %} : <strong>{{ post.author.username }}</strong></p>
+                <p>{% trans "Auteur" %} : <strong>{{ post.author.first_name }} {{ post.author.last_name }}</strong></p>
                 {% for report in reports %}
                 {% if report.post.id == post.id %}
-                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.first_name }} {{ report.reported_by.last_name }}</strong> |
                     {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
                 {% endif %}
                 {% endfor %}
@@ -126,7 +126,7 @@
                         <li>
                             <p>{% trans "Utilisateur" %} : <strong>{{ user.first_name }} {{ user.last_name }}</strong>
                                 <span class="report-count">({{ user.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span></p>
-                            <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                            <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.first_name }} {{ report.reported_by.last_name }}</strong> |
                                 {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
                             <div class="icons">
                                 <a href="{% url 'forum:suspend_user' user.id %}" class="icon-btn" title= "{% trans 'Suspendre' %}">
