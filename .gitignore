@@ -1,6 +1,4 @@
 # Ignorer les dossiers
-api/
-locale/
 media/
 venv_wsl/
 OKay/
