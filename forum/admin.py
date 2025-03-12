@@ -11,41 +11,93 @@ class SubforumAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     search_fields = ('title', 'category__name')
 
+@admin.register(Thread)
 class ThreadAdmin(admin.ModelAdmin):
-    list_display = ('id','title', 'subforum', 'author', 'created_at', 'updated_at', 'view_count')
-    list_filter = ('id','subforum', 'author')
-    search_fields = ('title', 'author__username', 'subforum__title')
+    list_display = ('title', 'subforum', 'author', 'created_at', 'updated_at')
+    list_filter = ('subforum', 'author', 'created_at')
+    search_fields = ('title', 'author__username', 'subforum__title', 'content')
     prepopulated_fields = {'slug': ('title',)}
+    fieldsets = (
+        ('Informations de base', {
+            'fields': ('title', 'subforum', 'author', 'slug', 'content')
+        }),
+        ('Statistiques', {
+            'fields': ('view_count', 'created_at', 'updated_at'),
+            'description': 'Informations sur les vues et les dates.'
+        }),
+    )
+    readonly_fields = ('created_at', 'updated_at', 'view_count', 'author')
 
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('author', 'thread', 'updated_at')
-    list_filter = ('author', 'thread')
+    list_display = ('author', 'thread', 'content', 'created_at')
+    list_filter = ('author', 'thread', 'created_at')
     search_fields = ('author__username', 'thread__title', 'content')
+    fieldsets = (
+        ('Informations de base', {
+            'fields': ('author', 'thread', 'content')
+        }),
+        ('Dates', {
+            'fields': ('created_at', 'updated_at'),
+            'description': 'Dates de création et de mise à jour.'
+        }),
+    )
+    readonly_fields = ('created_at', 'updated_at', 'author')
 
-class LikeAdmin(admin.ModelAdmin):
-    list_display = ('user', 'thread')
-
-class DislikeAdmin(admin.ModelAdmin):
-    list_display = ('user', 'thread')
-
+@admin.register(UserBadge)
 class UserBadgeAdmin(admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ('user', 'badge', 'awarded_at')
+    list_filter = ('user', 'badge', 'awarded_at')
+    search_fields = ('user__username', 'badge__name')
+    fieldsets = (
+        ('Informations de base', {
+            'fields': ('user', 'badge')
+        }),
+        ('Date', {
+            'fields': ('awarded_at',),
+            'description': 'Date d\'attribution du badge.'
+        }),
+    )
+    readonly_fields = ('awarded_at', 'user') 
 
 class BadgeAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name','icon',)
 
+@admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('user','message')
+    list_display = ('user', 'message', 'created_at', 'is_read')
+    list_filter = ('user', 'is_read', 'created_at')
+    search_fields = ('user__username', 'message')
+    fieldsets = (
+        ('Informations de base', {
+            'fields': ('user', 'message', 'is_read')
+        }),
+        ('Date', {
+            'fields': ('created_at',),
+            'description': 'Date de création de la notification.'
+        }),
+    )
+    readonly_fields = ('created_at', 'user')
+    
 
+
+@admin.register(Report)
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ('reported_by', 'report_type', 'reported_user', 'thread', 'post', 'created_at')
+    list_filter = ('report_type', 'created_at')
+    search_fields = ('reported_by__username', 'report_reason', 'reported_user__username')
+    fieldsets = (
+        ('Informations de base', {
+            'fields': ('reported_by', 'report_type', 'report_reason', 'created_at')
+        }),
+        ('Contenu signalé', {
+            'fields': ('thread', 'post', 'reported_user'),
+            'description': 'Contenu ou utilisateur signalé.'
+        }),
+    )
+    readonly_fields = ('created_at', 'reported_by')  # 'reported_by' en lecture seule
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subforum, SubforumAdmin)
-admin.site.register(Thread, ThreadAdmin)
-admin.site.register(Post, PostAdmin)
-admin.site.register(Like, LikeAdmin)
-admin.site.register(Dislike, DislikeAdmin)
-admin.site.register(UserBadge, UserBadgeAdmin)
-admin.site.register(Badge, BadgeAdmin)
-admin.site.register(Notification, NotificationAdmin)
 
 
 
