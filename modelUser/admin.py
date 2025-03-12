@@ -1,11 +1,6 @@
 from django.contrib import admin
 from .models import User
 from django.contrib.auth.admin import UserAdmin
-from admin_interface.models import Theme
-
-admin.site.site_header = 'InstaForum Admin'
-admin.site.site_title = 'InstaForum Admin Portal'
-admin.site.index_title = 'Bienvenue sur le portail d\'administration InstaForum'
 
 
 @admin.register(User)

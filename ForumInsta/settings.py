@@ -56,6 +56,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -375,4 +376,182 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
+}
+
+
+JAZZMIN_SETTINGS = {
+    # Titres et identité
+    "site_title": "Insta pour nous",
+    "site_header": "Administration",
+    "site_brand": "InstaForum",
+    "welcome_sign": "Bienvenue sur le portail d'administration InstaForum",
+    "copyright": "abakarix4dev © 2025",
+    
+    # Personnalisation de l'apparence
+    "theme": "flatly",
+    "dark_mode_theme": "darkly",
+    "custom_css": "css/custom.css",
+    "user_avatar": "avatars/admin_avatar.png",
+    
+    # Page d'accueil personnalisée
+    "show_ui_builder": True,
+    "changeform_format": "horizontal_tabs",
+    "topmenu_links": [
+        {"name": "Accueil", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Voir le site", "url": "/", "new_window": True},
+        {"app": "auth", "name": "Utilisateurs"},
+        {"model": "auth.User"},
+    ],
+    
+    # Organisation des modèles dans des menus
+    "order_with_respect_to": ["auth", "blog", "media", "comments"],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "blog.Post": "fas fa-newspaper",
+        "media.Media": "fas fa-photo-video",
+        "comments.Comment": "fas fa-comments",
+    },
+    
+    # Menus personnalisés
+    "menu": [
+        {
+            "name": "Utilisateurs",
+            "icon": "fas fa-users",
+            "models": [
+                "auth.User",
+                "auth.Group",
+                "accounts.Profile",
+            ]
+        },
+        {
+            "name": "Contenu",
+            "icon": "fas fa-newspaper",
+            "models": [
+                "blog.Post", 
+                "blog.Category"
+            ]
+        },
+        {
+            "name": "Médias",
+            "icon": "fas fa-photo-video",
+            "models": [
+                "media.Image",
+                "media.Video"
+            ]
+        },
+        {
+            "name": "Interactions",
+            "icon": "fas fa-comments",
+            "models": [
+                "comments.Comment",
+                "likes.Like"
+            ]
+        },
+        {
+            "name": "Statistiques",
+            "url": "admin:stats_dashboard",
+            "icon": "fas fa-chart-line",
+        },
+    ],
+    
+    # Actions personnalisées
+    "custom_links": {
+        "blog.Post": [
+            {
+                "name": "Publier sur les réseaux", 
+                "url": "publish_to_socials/", 
+                "icon": "fas fa-share-alt"
+            }
+        ],
+        "accounts.Profile": [
+            {
+                "name": "Envoyer email groupé", 
+                "url": "send_bulk_email/", 
+                "icon": "fas fa-envelope"
+            }
+        ],
+    },
+    
+    # Personnalisation du tableau de bord
+    "dashboard_widgets": [
+        {
+            "type": "recent_actions",
+            "limit": 10,
+            "title": "Actions récentes"
+        },
+        {
+            "type": "model_list",
+            "title": "Création rapide",
+            "models": ["blog.Post", "media.Image", "comments.Comment"]
+        },
+        {
+            "type": "chart",
+            "title": "Activité du site",
+            "url": "admin:site_activity_chart"
+        },
+        {
+            "type": "html",
+            "title": "Infos & Documentation",
+            "content": """
+            <p>Bienvenue sur le panneau d'administration InstaForum.</p>
+            <ul>
+                <li><a href="/docs/admin/" target="_blank">Documentation</a></li>
+                <li><a href="https://github.com/abakarix4dev/instaforum" target="_blank">Code source</a></li>
+            </ul>
+            """
+        },
+    ],
+    
+    # Navigation latérale et supérieure
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": ["auth.Group"],
+    "related_modal_active": True,
+    
+    # Boutons d'actions supplémentaires
+    "actions_sticky_top": True,
+    "custom_buttons": [
+        {
+            "name": "Exporter en CSV",
+            "action": "export_as_csv",
+            "classes": "btn btn-success",
+            "icon": "fas fa-file-csv",
+        }
+    ],
+}
+
+# Configuration supplémentaire pour la personnalisation UI
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-primary",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": True,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "flatly",
+    "dark_mode_theme": "darkly",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
 }
