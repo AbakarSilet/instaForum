@@ -9,7 +9,9 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from taggit.models import Tag
 from django.contrib import messages
 from django.db.models import Q
@@ -18,7 +20,6 @@ from forum.utils import remove_accents
 from modelUser.models import User
 from .models import Category, Notification, Report, Subforum, Thread, Post, Like, Dislike, UserBadge
 from .forms import ThreadFormCreate, ThreadForm,ReportForm,PostForm, SearchForm,ThreadFormUpdate,PostFormUpdate
-from .utils import translate_text
 from django.utils.translation import gettext as _
 
 
@@ -194,7 +195,6 @@ def forum_home_view(request):
         'category_authors': category_authors,  # Passer les auteurs uniques par catégorie
     })
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def search_view(request):
@@ -286,42 +286,6 @@ def tagged(request, slug):
         'posts': posts,
     })
 
-@login_required
-def report_view(request, report_type, item_id):
-    if report_type == 'thread':
-        item = get_object_or_404(Thread, id=item_id)
-        reported_username = None
-    elif report_type == 'post':
-        item = get_object_or_404(Post, id=item_id)
-        reported_username = None
-    elif report_type == 'reported_user':
-        item = get_object_or_404(User, id=item_id)
-        reported_username = f"{item.first_name} {item.last_name}"
-    else:
-        return redirect('forum:home')  # Redirige vers l'index si le type est invalide
-    
-    if request.method == 'POST':
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            report = form.save(commit=False)
-            report.reported_by = request.user
-            if report_type == 'thread':
-                report.thread = item
-            elif report_type == 'reported_user':
-                report.reported_user = item
-            else:
-                report.post = item
-            report.save()
-
-            if report_type == 'reported_user':
-                return redirect('forum:profile',username=report.reported_user.username)
-            else:
-                return redirect('forum:thread', slug=item.thread.slug if report_type == 'post' else item.slug)
-    else:
-        form = ReportForm()
-    
-    return render(request, 'forum/report.html', {'form': form, 'item': item, 'report_type': report_type, 'reported_username':reported_username})
-
 from django.db.models import Count
 
 @login_required
@@ -331,8 +295,8 @@ def thread_view(request, slug):
     thread.save()
     posts_list = thread.posts.all().order_by('-created_at')
 
-    # Activer la pagination
-    paginator = Paginator(posts_list, 15)  # 15 posts par page
+    # Pagination reste identique
+    paginator = Paginator(posts_list, 4)
     page = request.GET.get('page', 1)
 
     try:
@@ -354,14 +318,21 @@ def thread_view(request, slug):
             post.author = request.user
             post.save()
             form.save_m2m()  # Sauvegarder les tags
-            return redirect('forum:thread', slug=thread.slug)
+            
+            # Ajouter un message de confirmation
+            messages.success(request, _('Votre message a été publié avec succès !'))
+            
+            # Rediriger vers la dernière page pour voir le nouveau post
+            last_page = paginator.num_pages + 1  # +1 car on vient d'ajouter un post
+            return redirect(f'{reverse("forum:thread", kwargs={"slug": thread.slug})}?page={last_page}#post-{post.id}')
     else:
         form = PostForm()
 
+    # Reste du code inchangé
     threads_tag_ids = thread.tags.values_list('id', flat=True)
     similar_threads = Thread.objects.filter(
         tags__in=threads_tag_ids,
-        subforum=thread.subforum  # Ajout du filtre sur le subforum
+        subforum=thread.subforum
     ).exclude(id=thread.id)
     similar_threads = similar_threads.annotate(
         same_tags=Count('tags')
@@ -378,7 +349,6 @@ def thread_view(request, slug):
         'liked': liked,
         'disliked': disliked,
     })
-
 
 @login_required
 def like_thread(request, thread_id):
@@ -406,9 +376,6 @@ def dislike_thread(request, thread_id):
     return redirect('forum:thread', slug=thread.slug)
 
 
-
-
-
 @login_required
 @permission_required('forum.delete_post', raise_exception=True)
 def delete_post(request, post_id):
@@ -423,6 +390,63 @@ def delete_thread(request, thread_id):
     thread.delete()
     return redirect('forum:moderation_dashboard')
 
+@login_required
+def report_view(request, report_type, item_id):
+    if report_type == 'thread':
+        item = get_object_or_404(Thread, id=item_id)
+        reported_username = None
+    elif report_type == 'post':
+        item = get_object_or_404(Post, id=item_id)
+        reported_username = None
+    elif report_type == 'reported_user':
+        item = get_object_or_404(User, id=item_id)
+        reported_username = f"{item.first_name} {item.last_name}"
+    else:
+        return redirect('forum:home')
+    
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            report = form.save(commit=False)
+            report.reported_by = request.user
+            if report_type == 'thread':
+                report.thread = item
+            elif report_type == 'reported_user':
+                report.reported_user = item
+            else:
+                report.post = item
+            report.save()
+            
+            # Création de notifications pour les modérateurs
+            moderator_group = Group.objects.get(name='Moderator')
+            moderators = User.objects.filter(groups=moderator_group)
+            
+            if report_type == 'thread':
+                message = f"Nouveau signalement d'un sujet: {item.title}"
+                link = reverse('forum:thread', args=[item.slug])
+            elif report_type == 'post':
+                message = f"Nouveau signalement d'un message dans le sujet: {item.thread.title}"
+                link = reverse('forum:thread', args=[item.thread.slug])
+            elif report_type == 'reported_user':
+                message = f"Nouveau signalement d'un utilisateur: {item.username}"
+                link = reverse('forum:moderation_dashboard')
+            
+            # Créer une notification pour chaque modérateur
+            for moderator in moderators:
+                Notification.objects.create(
+                    user=moderator,
+                    message=message,
+                    link=link
+                )
+
+            if report_type == 'reported_user':
+                return redirect('forum:profile', username=report.reported_user.username)
+            else:
+                return redirect('forum:thread', slug=item.thread.slug if report_type == 'post' else item.slug)
+    else:
+        form = ReportForm()
+    
+    return render(request, 'forum/report.html', {'form': form, 'item': item, 'report_type': report_type, 'reported_username':reported_username})
 
 
 @login_required
@@ -455,18 +479,19 @@ def suspend_user(request, user_id):
         user_to_suspend.is_active = False
         user_to_suspend.save()
         
-        # Journalisation (optionnel)
-        print(f"Utilisateur {user_to_suspend.username} suspendu par {request.user.username}")
+        # Créer une notification pour l'utilisateur suspendu
+        Notification.objects.create(
+            user=user_to_suspend,
+            message="Votre compte a été suspendu par un modérateur. Veuillez contacter l'administration pour plus d'informations.",
+            link=reverse('forum:home')
+        )
         
-        # Redirection après suspension
         return redirect('forum:moderation_dashboard')
     else:
         # Accès non autorisé
         return HttpResponseForbidden("Vous n'avez pas la permission de suspendre des utilisateurs.")
-
-
+    
 @verified_email_required
-@login_required
 @login_required
 def moderation_dashboard(request):
     if not request.user.is_moderator():
@@ -474,16 +499,17 @@ def moderation_dashboard(request):
     reported_threads = Thread.objects.filter(report__isnull=False).annotate(report_count=Count('report'))
     reported_posts = Post.objects.filter(report__isnull=False).annotate(report_count=Count('report'))
     reported_users = User.objects.filter(report__isnull=False).annotate(report_count=Count('report'))
+    
+    inactive_users_count = reported_users.filter(is_active=False).count()
     reports = Report.objects.all()  # Récupérer tous les signalements
 
     return render(request, 'forum/moderation_dashboard.html', {
         'reported_threads': reported_threads,
         'reported_posts': reported_posts,
         'reported_users': reported_users,
+        'inactive_users_count': inactive_users_count,
         'reports': reports,
     })
-
-
 
 @login_required
 def notifications(request):
@@ -503,8 +529,6 @@ def get_notification_count(request):
     notification_count = Notification.objects.filter(user=request.user, is_read=False).count()
     return {'notification_count': notification_count}
 
-
-
 @login_required
 def update_thread(request, slug):
     thread = get_object_or_404(Thread, slug=slug)
@@ -522,8 +546,6 @@ def update_thread(request, slug):
         form = ThreadFormUpdate(instance=thread)
 
     return render(request, 'forum/update_thread.html', {'form': form, 'thread': thread})
-
-
 
 @login_required
 def update_post(request, post_id):
