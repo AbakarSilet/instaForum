@@ -8,11 +8,13 @@
 {% block link %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/thread.css' %}">
+
 {% endblock %}
 
 {% block content %}
-<div data-thread-slug="{{ thread.slug }}" hidden></div>
-<div data-user-id="{{ user_id }}" hidden></div>
+
+
+
 <div class="main-container">
     <div class="container">
         <!-- Grande section gauche -->
@@ -81,22 +83,52 @@
             </div>
 
             {% if not user.is_active %}
-            <div class="alert alert-danger">
-                <p>{% trans 'Votre compte est suspendu pour 7 jours par le modérateur' %}</p>
-            </div>
+                <div class="alert alert-danger">
+                    <p>{% trans 'Votre compte est suspendu pour 7 jours par le modérateur' %}</p>
+                </div>
             {% else %}
-            <!-- Icône pour afficher le formulaire -->
-            <div class="add-comment-icon" id="show-form-icon">
-                <i class="ri-add-line" title="{% trans 'Ajouter un commentaire' %}"></i>
-            </div>
+                <!-- Bouton texte pour afficher le formulaire -->
+                <div class="add-comment-container" id="show-form-trigger">
+                    <button class="btn btn-link text-primary" id="show-form-btn">
+                        <i class="ri-add-line mr-2"></i>{% trans 'Ajouter un commentaire' %}
+                    </button>
+                </div>
+
+                <!-- Formulaire pour ajouter un commentaire -->
+                <form id="add-comment-form" method="POST" action="{% url 'forum:add_post' thread.id %}" class="mt-3">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.content }}
+                        {% if form.content.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.content.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.tags }}
+                        {% if form.tags.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.tags.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <input type="hidden" id="quoted-text" name="quoted_text" value="">
+                    
+                    <div class="d-flex justify-content-end">
+                        <button 
+                            type="submit" 
+                            id="submit-comment-btn" 
+                            class="btn btn-primary"
+                            data-text-default="{% trans 'Publier' %}"
+                            data-text-loading="{% trans 'Publication en cours...' %}"
+                        >
+                            {% trans 'Publier' %}
+                        </button>
+                    </div>
+                </form>
             {% endif %}
-            <!-- Formulaire pour ajouter un commentaire -->
-            <form id="add-comment-form" method="POST" action="{% url 'forum:add_post' thread.id %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="hidden" id="quoted-text" name="quoted_text" value="">
-                <button type="submit" id="submit-comment-btn">{% trans 'Publier' %}</button>
-            </form>
 
 
             <!-- Section des commentaires -->
@@ -115,8 +147,6 @@
                                 <i class="fas fa-plus"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item"
-                                    onclick="quotePost('{{ post.id }}', '{{ post.content|truncatewords:50|escapejs }}', '{{ post.author.first_name }} {{ post.author.last_name }}', '{{ post.page_number }}')">{% trans 'Citer' %}</a>
                                 <a href="{% url 'forum:report' report_type='post' item_id=post.id %}"
                                     class="dropdown-item">{% trans 'Signaler' %}</a>
                                     {% if user.is_authenticated and post.author == user %}
