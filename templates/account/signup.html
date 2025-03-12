@@ -67,16 +67,20 @@
                 {{ form.profile_image }}
                 <img id="profile_preview" src="#" alt="{% trans " Photo de profil" %}">
             </div>
-            <button type="submit" class="signup-button">{% trans "Inscription" %}</button>
+            <button 
+                type="submit" 
+                class="signup-button" 
+                id="submit-btn" 
+                data-text-default="{% trans 'Inscription' %}" 
+                data-text-loading="{% trans 'Inscription en cours...' %}"
+            >
+                {% trans "Inscription" %}
+            </button>
             <div> {% trans "Déjà un compte ?" %} <a href="{% url 'account_login' %}">{% trans "Se connecter" %}</a></div>
-        <div class="social-login">
-            <a class="btn btn-danger" href="{% provider_login_url 'google' next='/' %}">{% trans "S'inscrire avec Google" %}</a>
-        </div>
+            <div class="social-login">
+                <a class="btn btn-danger" href="{% provider_login_url 'google' next='/' %}">{% trans "S'inscrire avec Google" %}</a>
+            </div>
         </form>
-        
-            
-
-        
     </div>
 </div>
 {% endblock content %}
@@ -106,5 +110,12 @@
             document.querySelector('.profile-icon').style.display = 'none'; // Masquer l'icône de caméra
         }
     };
+
+    // Gestion de la soumission du formulaire
+    document.getElementById('registerForm').addEventListener('submit', function () {
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true; // Désactiver le bouton
+        submitBtn.innerText = submitBtn.dataset.textLoading; // Changer le texte
+    });
 </script>
 {% endblock javascript %}

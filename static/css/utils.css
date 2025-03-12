@@ -9,7 +9,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1,
+h2 {
     color: var(--text-color);
     margin-bottom: 20px;
 }

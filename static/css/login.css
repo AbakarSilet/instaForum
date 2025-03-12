@@ -115,13 +115,20 @@ button:hover {
     .login-container {
         padding: 20px;
     }
+
+    .footer {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
     .login-container {
         padding: 10px;
-        margin-top: 50px;
+        margin-top: 90px;
     }
 
+    .footer {
+        display: none;
+    }
 
 }

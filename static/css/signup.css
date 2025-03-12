@@ -27,17 +27,21 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px; /* Largeur maximale du formulaire */
+    max-width: 800px;
+    /* Largeur maximale du formulaire */
     text-align: center;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
-    gap: 30px; /* Espace entre les colonnes */
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: 30px;
+    /* Espace entre les colonnes */
 }
 
 /* Titre */
 .signup-container h2 {
-    grid-column: span 2; /* Le titre s'étend sur les deux colonnes */
+    grid-column: span 2;
+    /* Le titre s'étend sur les deux colonnes */
     margin-bottom: 20px;
     font-size: 28px;
     color: var(--primary-color);
@@ -57,7 +61,8 @@ body {
 
 /* Message d'erreur */
 .error-message {
-    grid-column: span 2; /* Le message d'erreur s'étend sur les deux colonnes */
+    grid-column: span 2;
+    /* Le message d'erreur s'étend sur les deux colonnes */
     color: #ff4d4d;
     font-weight: bold;
     margin-bottom: 16px;
@@ -118,8 +123,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-left: 2px solid var(--primary-color); /* Séparateur visuel */
-    padding-left: 30px; /* Espacement à gauche */
+    border-left: 2px solid var(--primary-color);
+    /* Séparateur visuel */
+    padding-left: 30px;
+    /* Espacement à gauche */
 }
 
 /* Icône de caméra pour l'image de profil */
@@ -161,7 +168,8 @@ body {
 
 /* Bouton d'inscription */
 .signup-button {
-    grid-column: span 2; /* Le bouton s'étend sur les deux colonnes */
+    grid-column: span 2;
+    /* Le bouton s'étend sur les deux colonnes */
     width: 100%;
     padding: 12px;
     background-color: var(--primary-color);
@@ -175,12 +183,13 @@ body {
 }
 
 .signup-button:hover {
-    background-color: rgba(var(--primary-color), 0.8);
+    background-color: var(--primary-color);
 }
 
 /* Bouton de connexion sociale */
 .social-login {
-    grid-column: span 2; /* Le bouton social s'étend sur les deux colonnes */
+    grid-column: span 2;
+    /* Le bouton social s'étend sur les deux colonnes */
     margin-top: 20px;
 }
 
@@ -205,14 +214,18 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .signup-container {
-        grid-template-columns: 1fr; /* Une seule colonne en mode mobile */
+        grid-template-columns: 1fr;
+        /* Une seule colonne en mode mobile */
         max-width: 400px;
     }
 
     .profile-section {
-        border-left: none; /* Supprimer le séparateur en mode mobile */
-        padding-left: 0; /* Supprimer l'espacement en mode mobile */
-        order: -1; /* L'image de profil apparaît en premier en mode mobile */
+        border-left: none;
+        /* Supprimer le séparateur en mode mobile */
+        padding-left: 0;
+        /* Supprimer l'espacement en mode mobile */
+        order: -1;
+        /* L'image de profil apparaît en premier en mode mobile */
         margin-bottom: 20px;
     }
 
@@ -220,6 +233,7 @@ body {
     .error-message,
     .signup-button,
     .social-login {
-        grid-column: span 1; /* Les éléments s'étendent sur une seule colonne */
+        grid-column: span 1;
+        /* Les éléments s'étendent sur une seule colonne */
     }
 }

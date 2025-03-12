@@ -1,0 +1,8 @@
+# Exclure les fichiers minifiés de l'analyse
+*.min.js linguist-vendored
+
+# Exclure les fichiers de dépendances (node_modules)
+node_modules/** linguist-vendored
+
+# Forcer la classification d'un fichier spécifique
+mon_fichier.xyz linguist-language=Python
