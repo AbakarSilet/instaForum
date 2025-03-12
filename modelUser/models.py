@@ -40,6 +40,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_suspended = models.BooleanField(default=False)
     suspension_date = models.DateTimeField(null=True, blank=True)
+    date_joined = models.DateTimeField(_('date d\'inscription'), default=timezone.now) 
+
 
     objects = UserManager()
 
