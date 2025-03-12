@@ -115,58 +115,36 @@
     </div>
 
     <div class="user-management">
-        <h2>{% trans "Gestion des Utilisateurs" %}</h2>
-        {% comment %} <ul>
-         {% for report in reports %}
-        
-                {% for user in reported_users %}
-                    {% if report.reported_user.id == user.id %}
-                        {% if user.is_active %}
-                        
-                        <li>
-                            <p>{% trans "Utilisateur" %} : <strong>{{ user.first_name }} {{ user.last_name }}</strong>
-                                <span class="report-count">({{ user.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span></p>
-                            <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.first_name }} {{ report.reported_by.last_name }}</strong> |
-                                {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
-                            <div class="icons">
-                                <a href="{% url 'forum:suspend_user' user.id %}" class="icon-btn" title= "{% trans 'Suspendre' %}">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                                <a href="{% url 'forum:profile' username=user.username %}" class="icon-btn" title="{% trans 'Voir' %}">
-                                    <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
-                                </a>
-                            </div>
-                        </li>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-        {% endfor %} 
-        </ul> {% endcomment %}
+        <h2>{% trans "Gestion des Utilisateurs" %}
+            <span class="inactive-users-count">({% trans "Utilisateurs suspendus" %}: {{ inactive_users_count }})</span>
+        </h2>
         <ul>
             {% for user in reported_users %}
-            <li>
-                <p>
-                    <a href="{% url 'forum:profile' username=user.username %}" >
-                    {% trans "Utilisateur" %} : <strong class="post-link">{{ user.first_name }} {{ user.last_name }}</strong></a>
-                    <span class="report-count">({{ user.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span>
-                </p>
-                {% for report in reports %}
-                {% if report.reported_user.id == user.id %}
-                <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
-                    {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
-                {% endif %}
-                {% endfor %}
-                <div class="icons">
-                                <a href="{% url 'forum:suspend_user' user.id %}" class="icon-btn" title= "{% trans 'Suspendre' %}">
-                        <i class="fa fa-user-lock"></i> <!-- Icône de corbeille pour supprimer -->
-                    </a>
-                    <a href="{% url 'forum:profile' username=user.username %}" class="icon-btn" title="{% trans 'Voir' %}">
-                        <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
-                    </a>
-                </div>
-            </li>
+                {% if user.is_active %}  <!-- Ajouter cette condition -->
+                <li>
+                    <p>
+                        <a href="{% url 'forum:profile' username=user.username %}" >
+                        {% trans "Utilisateur" %} : <strong class="post-link">{{ user.first_name }} {{ user.last_name }}</strong></a>
+                        <span class="report-count">({{ user.report_count }} {% blocktrans %} signalements {% endblocktrans %})</span>
+                    </p>
+                    {% for report in reports %}
+                    {% if report.reported_user.id == user.id %}
+                    <p class="report-info">{% trans "Signalé par" %} : <strong>{{ report.reported_by.username }}</strong> |
+                        {% trans "Raison" %} : {{ report.report_reason }} | {% trans "Date" %} : {{ report.created_at }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="icons">
+                        <a href="{% url 'forum:suspend_user' user.id %}" class="icon-btn" title= "{% trans 'Suspendre' %}">
+                            <i class="fa fa-user-lock"></i>
+                        </a>
+                        <a href="{% url 'forum:profile' username=user.username %}" class="icon-btn" title="{% trans 'Voir' %}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}  <!-- Fermer la condition -->
             {% empty %}
-            <h4>{% trans "Aucun signalé" %} </h4>
+                <h4>{% trans "Aucun signalé" %} </h4>
             {% endfor %}
         </ul>
     </div>
