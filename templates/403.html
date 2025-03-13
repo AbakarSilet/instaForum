@@ -38,8 +38,8 @@
 <body>
     <div class="container">
         <h1>403</h1>
-        <p>Désolé, vous n'avez pas la permission d'accéder à cette page.</p>
-        <p><a href="{% url 'home' %}">Retour à la page d'accueil</a></p>
+        <p>{% trans "Désolé, vous n'avez pas la permission d'accéder à cette page." %}</p>
+        <p><a href="{% url 'home' %}"> {% trans "Retour à la page d'accueil" %}</a></p>
     </div>
 </body>
 </html>

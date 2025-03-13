@@ -1,9 +1,6 @@
 from django.shortcuts import render
-from django.utils import timezone
-from datetime import timedelta
-from forum.models import Subforum, Thread,Category
+from forum.models import Subforum, Thread
 from events.models import Event
-from modelUser.models import User
 from news.models import NewsArticle
 
 from django.db.models import Count

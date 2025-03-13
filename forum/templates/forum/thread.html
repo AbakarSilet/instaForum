@@ -13,8 +13,6 @@
 
 {% block content %}
 
-
-
 <div class="main-container">
     <div class="container">
         <!-- Grande section gauche -->
@@ -47,17 +45,21 @@
 
                 <!-- Boutons de like, dislike, partage et signaler avec compte -->
                 <div class="like-dislike-share-buttons">
-                    <a href="{% url 'forum:like_thread' thread.id %}" class="btn btn-light"
-                        style="text-decoration: none;">
-                        <i class="fas fa-heart" style="color: {% if liked %}green{% else %}inherit{% endif %}"></i>
-                        <span>{{ thread.like_set.count }}</span>
-                    </a>
+                    {% csrf_token %}
+                    <button id="like-button-{{ thread.id }}" class="btn btn-light like-button" 
+                            data-thread-id="{{ thread.id }}" data-url="{% url 'forum:like_thread' thread.id %}" 
+                            style="text-decoration: none;">
+                            <i class="fas fa-heart" id="like-icon-{{ thread.id }}" 
+                            style="color: {% if user_liked %}green{% else %}inherit{% endif %}"></i>
+                        <span id="like-count-{{ thread.id }}">{{ thread.like_set.count }}</span>
+                    </button>
+                    
                     {% if user.is_authenticated and thread.author == user %}
                     <a href="{% url 'forum:update_thread' thread.slug %}" class="btn btn-light" style="text-decoration: none;">
                         <i class="fas fa-edit"></i> 
                     </a>
                     {% endif %}
-                
+
                     <div class="share-dropdown">
                         <button class="btn" style="text-decoration: none;" onclick="toggleShareDropdown(this)">
                             <i class="ri-share-line share-btn-blue"></i>
@@ -186,6 +188,49 @@
 
 {% block javascript %}
 {{ block.super }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gérer les clics sur les boutons like
+        const likeButtons = document.querySelectorAll('.like-button');
+        
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const threadId = this.dataset.threadId;
+                const url = this.dataset.url;
+                
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCsrfToken(),
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Mettre à jour l'icône et le compteur de likes
+                    const likeIcon = document.getElementById(`like-icon-${threadId}`);
+                    const likeCount = document.getElementById(`like-count-${threadId}`);
+                    
+                    if (data.liked) {
+                        likeIcon.style.color = 'green';
+                    } else {
+                        likeIcon.style.color = 'inherit';
+                    }
+                    
+                    likeCount.textContent = data.total_likes;
+                })
+                .catch(error => console.error('Erreur:', error));
+            });
+        });
+        
+        // Fonction pour obtenir le token CSRF
+        function getCsrfToken() {
+            return document.querySelector('[name=csrfmiddlewaretoken]').value;
+        }
+    });
+</script>
 <script src="{% static 'js/thread.js' %}"></script>
 
 {% endblock %}

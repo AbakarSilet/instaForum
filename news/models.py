@@ -46,14 +46,3 @@ class NewsArticle(models.Model):
     
     def __str__(self):
         return self.title
-
-# Modèle optionnel pour les utilisateurs qui veulent sauvegarder des articles
-class SavedArticle(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    article = models.ForeignKey(NewsArticle, on_delete=models.CASCADE)
-    saved_at = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        verbose_name = "Article sauvegardé"
-        verbose_name_plural = "Articles sauvegardés"
-        unique_together = ['user', 'article']

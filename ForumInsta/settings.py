@@ -35,7 +35,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Indiquer les templates personnalisés pour les erreurs 404 et 403 
 handler404 = 'home.views.custom_404' 
 handler403 = 'home.views.custom_403'
 
@@ -71,7 +70,6 @@ INSTALLED_APPS = [
     'forum',
     'news',
     'events',
-    'newsletter',
     'messaging',
     'resources',
 
@@ -90,8 +88,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
     'django_filters',
-    'admin_interface',
-    'colorfield',
     
     'allauth',
     'allauth.account',
@@ -107,7 +103,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Paris'
 
-X_FRAME_OPTIONS = 'SAMEORIGIN' # nécessaire pour le chargement de l'interface
 
 from celery.schedules import crontab
 
@@ -379,19 +374,16 @@ SIMPLE_JWT = {
 }
 
 
+
 JAZZMIN_SETTINGS = {
     # Titres et identité
     "site_title": "Insta pour nous",
     "site_header": "Administration",
     "site_brand": "InstaForum",
+    "site_logo": "images/favicon.png",
     "welcome_sign": "Bienvenue sur le portail d'administration InstaForum",
-    "copyright": "abakarix4dev © 2025",
-    
-    # Personnalisation de l'apparence
-    "theme": "flatly",
-    "dark_mode_theme": "darkly",
-    "custom_css": "css/custom.css",
-    "user_avatar": "avatars/admin_avatar.png",
+    "copyright": "abakarix4dev",
+    "theme": "slate",
     
     # Page d'accueil personnalisée
     "show_ui_builder": True,
@@ -406,12 +398,38 @@ JAZZMIN_SETTINGS = {
     # Organisation des modèles dans des menus
     "order_with_respect_to": ["auth", "blog", "media", "comments"],
     "icons": {
+         # Icônes pour les applications tierces
+        "allauth.Account": "fas fa-user-circle",
+        "allauth.EmailAddress": "fas fa-envelope",
+        "allauth.SocialAccount": "fas fa-share-alt",
+
+        "django_celery_beat.PeriodicTask": "fas fa-tasks",
+        "django_celery_beat.IntervalSchedule": "fas fa-clock",
+        "django_celery_beat.CrontabSchedule": "fas fa-calendar-alt",
+
+        "taggit.Tag": "fas fa-tag",
+        "taggit.TaggedItem": "fas fa-tags",
+
+        "sites.Site": "fas fa-globe",
+        "redirects.Redirect": "fas fa-forward",
+        "flatpages.FlatPage": "fas fa-file",
+        
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
-        "blog.Post": "fas fa-newspaper",
-        "media.Media": "fas fa-photo-video",
-        "comments.Comment": "fas fa-comments",
+
+        "forum.Category": "fas fa-folder",
+        "forum.Subforum": "fas fa-comments", 
+        "forum.Thread": "fas fa-comment-dots",
+        "forum.Post": "fas fa-comment", 
+        "forum.Report": "fas fa-flag", 
+        "forum.Notification": "fas fa-bell", 
+        "forum.UserBadge": "fas fa-award",  
+        "modelUser.User": "fas fa-user-tie",  
+        "resources.Resource": "fas fa-file-alt", 
+        "messaging.Message": "fas fa-envelope",
+        "events.Event": "fas fa-calendar-alt",
+        "events.Attendee": "fas fa-user-check", 
     },
     
     # Menus personnalisés
@@ -458,22 +476,14 @@ JAZZMIN_SETTINGS = {
     
     # Actions personnalisées
     "custom_links": {
-        "blog.Post": [
-            {
-                "name": "Publier sur les réseaux", 
-                "url": "publish_to_socials/", 
-                "icon": "fas fa-share-alt"
-            }
-        ],
-        "accounts.Profile": [
-            {
-                "name": "Envoyer email groupé", 
-                "url": "send_bulk_email/", 
-                "icon": "fas fa-envelope"
-            }
-        ],
+        "books": [{
+            "name": "Voir le site public",
+            "url": "https://monsite.com",
+            "icon": "fas fa-globe",
+            "permissions": ["auth.view_user"]
+        }]
     },
-    
+    "custom_css": "admin/css/custom_admin.css",
     # Personnalisation du tableau de bord
     "dashboard_widgets": [
         {
@@ -523,35 +533,4 @@ JAZZMIN_SETTINGS = {
     ],
 }
 
-# Configuration supplémentaire pour la personnalisation UI
-JAZZMIN_UI_TWEAKS = {
-    "navbar_small_text": False,
-    "footer_small_text": False,
-    "body_small_text": False,
-    "brand_small_text": False,
-    "brand_colour": "navbar-primary",
-    "accent": "accent-primary",
-    "navbar": "navbar-dark",
-    "no_navbar_border": True,
-    "navbar_fixed": True,
-    "layout_boxed": False,
-    "footer_fixed": False,
-    "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-primary",
-    "sidebar_nav_small_text": False,
-    "sidebar_disable_expand": False,
-    "sidebar_nav_child_indent": True,
-    "sidebar_nav_compact_style": True,
-    "sidebar_nav_legacy_style": False,
-    "sidebar_nav_flat_style": False,
-    "theme": "flatly",
-    "dark_mode_theme": "darkly",
-    "button_classes": {
-        "primary": "btn-primary",
-        "secondary": "btn-secondary",
-        "info": "btn-info",
-        "warning": "btn-warning",
-        "danger": "btn-danger",
-        "success": "btn-success"
-    }
-}
+

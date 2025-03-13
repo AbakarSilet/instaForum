@@ -1,13 +1,11 @@
-import json
-import time
 
-from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse, StreamingHttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseForbidden
 from django.contrib import messages
 from django.urls import reverse
@@ -294,6 +292,10 @@ def thread_view(request, slug):
     thread.view_count += 1
     thread.save()
     posts_list = thread.posts.all().order_by('-created_at')
+    user_liked = False
+    
+    if request.user.is_authenticated:
+        user_liked = Like.objects.filter(user=request.user, thread=thread).exists()
 
     # Pagination reste identique
     paginator = Paginator(posts_list, 4)
@@ -338,42 +340,68 @@ def thread_view(request, slug):
         same_tags=Count('tags')
     ).order_by('-same_tags')[:5]
 
-    liked = thread.like_set.filter(user=request.user).exists()
-    disliked = thread.dislike_set.filter(user=request.user).exists()
 
     return render(request, 'forum/thread.html', {
         'thread': thread,
         'posts': posts,
+        'user_liked': user_liked,
         'form': form,
         'similar_threads': similar_threads,
-        'liked': liked,
-        'disliked': disliked,
     })
 
+
+
 @login_required
+@csrf_exempt
 def like_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
-    like, created = Like.objects.get_or_create(user=request.user, thread=thread)
-    if created:
+    liked = False
+    
+    # Vérifier si le like existe déjà
+    like = Like.objects.filter(user=request.user, thread=thread).first()
+    
+    if like:
+        # Si le like existe, le supprimer
+        like.delete()
+    else:
+        # Sinon, créer un nouveau like
+        Like.objects.create(user=request.user, thread=thread)
+        liked = True
+        
         # Créer une notification pour le like
         if thread.author != request.user:
             Notification.objects.create(
                 user=thread.author,
                 message=f'{request.user.username} a aimé votre thread "{thread.title}".',
-                link = reverse('forum:thread', kwargs={'slug':thread.slug} )
+                link=reverse('forum:thread', kwargs={'slug': thread.slug})
             )
-    else:
-        like.delete()
-    return redirect('forum:thread', slug=thread.slug)
-
+    
+    return JsonResponse({
+        'liked': liked,
+        'total_likes': thread.like_set.count()
+    })
 
 @login_required
+@csrf_exempt
 def dislike_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
-    dislike, created = Dislike.objects.get_or_create(user=request.user, thread=thread)
-    if not created:
+    disliked = False
+    
+    # Vérifier si le dislike existe déjà
+    dislike = Dislike.objects.filter(user=request.user, thread=thread).first()
+    
+    if dislike:
+        # Si le dislike existe, le supprimer
         dislike.delete()
-    return redirect('forum:thread', slug=thread.slug)
+    else:
+        # Sinon, créer un nouveau dislike
+        Dislike.objects.create(user=request.user, thread=thread)
+        disliked = True
+    
+    return JsonResponse({
+        'disliked': disliked,
+        'total_dislikes': thread.dislike_set.count()
+    })
 
 
 @login_required

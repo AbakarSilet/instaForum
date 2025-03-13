@@ -19,7 +19,6 @@ urlpatterns += i18n_patterns(
     path('messaging/', include('messaging.urls')),
     path('accounts/', include('modelUser.urls')),
     path('',include('home.urls')),
-    path('newsletter/',include('newsletter.urls')),
     path('accounts/', include('allauth.urls')),
     # path('__debug__/', include('debug_toolbar.urls')),
 )

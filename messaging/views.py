@@ -1,11 +1,9 @@
 # messaging/views.py
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.forms import ValidationError
-from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponseForbidden
+from django.http import JsonResponse
 from django.shortcuts import render
 from modelUser.models import User
 from django.shortcuts import render, get_object_or_404, redirect

@@ -26,7 +26,7 @@ class ThreadAdmin(admin.ModelAdmin):
             'description': 'Informations sur les vues et les dates.'
         }),
     )
-    readonly_fields = ('created_at', 'updated_at', 'view_count', 'author')
+    readonly_fields = ('created_at', 'updated_at', 'view_count')
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -42,7 +42,7 @@ class PostAdmin(admin.ModelAdmin):
             'description': 'Dates de création et de mise à jour.'
         }),
     )
-    readonly_fields = ('created_at', 'updated_at', 'author')
+    readonly_fields = ('created_at', 'updated_at')
 
 @admin.register(UserBadge)
 class UserBadgeAdmin(admin.ModelAdmin):
@@ -58,14 +58,14 @@ class UserBadgeAdmin(admin.ModelAdmin):
             'description': 'Date d\'attribution du badge.'
         }),
     )
-    readonly_fields = ('awarded_at', 'user') 
+    readonly_fields = ('awarded_at',) 
 
 class BadgeAdmin(admin.ModelAdmin):
     list_display = ('name','icon',)
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('user', 'message', 'created_at', 'is_read')
+    list_display = ('user', 'message', 'link', 'created_at', 'is_read')
     list_filter = ('user', 'is_read', 'created_at')
     search_fields = ('user__username', 'message')
     fieldsets = (
@@ -77,7 +77,7 @@ class NotificationAdmin(admin.ModelAdmin):
             'description': 'Date de création de la notification.'
         }),
     )
-    readonly_fields = ('created_at', 'user')
+    readonly_fields = ('created_at',)
     
 
 
@@ -95,7 +95,8 @@ class ReportAdmin(admin.ModelAdmin):
             'description': 'Contenu ou utilisateur signalé.'
         }),
     )
-    readonly_fields = ('created_at', 'reported_by')  # 'reported_by' en lecture seule
+    readonly_fields = ('created_at',) 
+    
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subforum, SubforumAdmin)
 

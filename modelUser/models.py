@@ -48,8 +48,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
+    class Meta:
+        verbose_name = 'Utilisateur'
+        verbose_name_plural = 'Utilisateurs'
+
+    @property
+    def name(self):
+        return f"{self.first_name} {self.last_name}"
+    
     def __str__(self):
-        return self.email
+        return self.name
 
     def save(self, *args, **kwargs):
         if not self.username:

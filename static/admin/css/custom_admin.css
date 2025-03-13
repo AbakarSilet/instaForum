@@ -1,0 +1,9 @@
+/* Exemple de style pour la barre latérale */
+.sidebar-dark-primary {
+    background-color: #4e73df !important;
+}
+
+/* Exemple de style pour le texte */
+.nav-sidebar .nav-link p {
+    color: #ffffff !important;
+}
