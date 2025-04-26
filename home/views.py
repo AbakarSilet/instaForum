@@ -5,37 +5,60 @@ from news.models import NewsArticle
 
 from django.db.models import Count
 
+from django.db.models import Count, Prefetch
+from django.utils import timezone
+
+from django.views.decorators.cache import cache_page
+
+@cache_page(60 * 15) 
 def home(request):
-    # Récupérer les subforums et threads
-    subforums = Subforum.objects.prefetch_related('threads__posts').all()
-    subforums_with_threads = []
-    subforums_without_threads = []
+    # 1. Événement phare (le prochain événement à venir)
+    featured_event = Event.objects.filter(
+        date__gte=timezone.now()
+    ).order_by('date').first()
 
-    for subforum in subforums:
-        # Annoter les threads avec le nombre de posts
-        threads = subforum.threads.annotate(post_count=Count('posts')).order_by('-post_count')[:2]
-        valid_threads = [thread for thread in threads if thread.slug]  # Filtrer les threads avec un slug valide
+    # 2. Événements à venir (les 3 prochains)
+    upcoming_events = Event.objects.filter(
+        date__gte=timezone.now()
+    ).order_by('date')[:3]
+
+    # 3. Threads populaires (les plus actifs)
+    hot_threads = Thread.objects.filter(is_closed=False).annotate(
+        post_count=Count('posts'),
         
-        if valid_threads:
-            for thread in valid_threads:
-                thread.top_posts = thread.posts.all()[:2]
-            subforums_with_threads.append((subforum, valid_threads))
-        else:
-            subforums_without_threads.append(subforum)
+    ).select_related(
+        'author',
+        'subforum'
+    ).prefetch_related(
+        'posts'
+    ).order_by(
+        '-post_count'
+    )[:6]  # 6 threads pour la grille 2x3
 
-    events = Event.objects.all().order_by('date')
+    # 4. Subforums populaires (avec le plus de threads)
+    popular_subforums = Subforum.objects.annotate(
+        thread_count=Count('threads'),
+        post_count=Count('threads__posts')
+    ).order_by(
+        '-thread_count'
+    )[:4]  # 4 subforums pour la grille
 
-    articles = NewsArticle.objects.all()[:20]
-    
+    # 5. Actualités importantes (les plus récentes ou marquées)
+    important_news = NewsArticle.objects.filter(
+        is_active=True 
+    ).order_by(
+        '-published_at'
+    )[:4]  # 4 articles max
+
     context = {
-        'subforums_with_threads': subforums_with_threads,
-        'subforums_without_threads': subforums_without_threads,
-        'events': events,
-        'articles': articles
+        'featured_event': featured_event,
+        'upcoming_events': upcoming_events,
+        'hot_threads': hot_threads,
+        'popular_subforums': popular_subforums,
+        'important_news': important_news,
     }
 
     return render(request, 'home/home.html', context)
-
 
 def discussions_view(request):
     threads = Thread.objects.prefetch_related('posts').all()
@@ -83,7 +106,7 @@ def send_email(request):
         
         # Envoi de l'email
         send_mail(
-            'Contact InstaForum',
+            'Contact depuis InstaForum',
             message,
             user_email,  
             ['instaforum2025@gmail.com'],

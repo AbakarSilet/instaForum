@@ -25,7 +25,7 @@ class UserBadgeSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'image','description']
+        fields = ['id', 'name', 'image', 'description', 'slug']
         read_only_fields = fields
 
 class SubforumSerializer(serializers.ModelSerializer):
@@ -40,28 +40,31 @@ class SubforumSerializer(serializers.ModelSerializer):
 
 class ThreadListSerializer(TaggitSerializer, serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
-    tags = TagListSerializerField(required=False)  # Make tags optional
-    image = serializers.ImageField(required=False)  # Make image optional
+    tags = TagListSerializerField(required=False) 
+    image = serializers.ImageField(required=False) 
     post_count = serializers.SerializerMethodField()
     like_count = serializers.SerializerMethodField()
-    dislike_count = serializers.SerializerMethodField()
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
-        fields = ['id', 'subforum', 'author', 'title','image', 'content', 'slug',
-                 'created_at', 'updated_at', 'view_count', 'tags',
-                 'post_count', 'like_count', 'dislike_count']
+        fields = ['id', 'subforum', 'author', 'title', 'image', 'content', 'slug',
+                 'created_at', 'updated_at', 'view_count', 'tags', 'is_closed',
+                 'post_count', 'like_count', 'is_liked', 'likes']
         read_only_fields = ['id', 'slug', 'view_count', 'created_at', 
-                           'updated_at']
+                          'updated_at', 'likes']
 
     def get_post_count(self, obj):
         return obj.posts.count()
 
     def get_like_count(self, obj):
-        return obj.like_set.count()
+        return obj.likes.count()
 
-    def get_dislike_count(self, obj):
-        return obj.dislike_set.count()
+    def get_is_liked(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return obj.likes.filter(id=request.user.id).exists()
+        return False
 
 class ThreadCreateSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField(required=False, allow_empty=True)
@@ -70,8 +73,9 @@ class ThreadCreateSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = Thread
-        fields = ['id', 'subforum', 'title', 'content', 'image', 'tags', 'slug', 'author', 'created_at', 'updated_at']
-        read_only_fields = ['id', 'slug', 'author', 'created_at', 'updated_at']
+        fields = ['id', 'subforum', 'title', 'content', 'image', 'tags', 
+                 'slug', 'author', 'created_at', 'updated_at', 'is_closed']
+        read_only_fields = ['id', 'slug', 'author', 'created_at', 'updated_at', 'likes']
 
     def create(self, validated_data):
         tags_data = validated_data.pop('tags', []) 
@@ -79,9 +83,8 @@ class ThreadCreateSerializer(TaggitSerializer, serializers.ModelSerializer):
         thread = Thread.objects.create(**validated_data)
         thread.tags.add(*normalized_tags)
         return thread
-    
-           
-class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
+
+class PostSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
     author_id = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(), 
@@ -89,47 +92,24 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
         write_only=True,
         required=False
     )
-    tags = TagListSerializerField(required=False) 
+    like_count = serializers.SerializerMethodField()
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = ['id', 'thread', 'author', 'author_id', 'content', 'created_at', 
-                 'updated_at', 'tags']
-        read_only_fields = ['id', 'created_at', 'updated_at', 'author']
+                 'updated_at', 'likes', 'like_count', 'is_liked']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'author', 'likes']
     
-    def create(self, validated_data):
-        # Extraction et normalisation des tags
-        tags_data = validated_data.pop('tags', [])
-        
-        # Normaliser les tags
-        normalized_tags = normalize_tags(tags_data)
-        
-        # Créer le post
-        post = Post.objects.create(**validated_data)
-        
-        # Ajouter les tags normalisés
-        post.tags.add(*normalized_tags)
-        
-        return post
+    def get_like_count(self, obj):
+        return obj.likes.count()
 
-    def update(self, instance, validated_data):
-        # Extraction et normalisation des tags
-        tags_data = validated_data.pop('tags', None)
-        
-        # Mise à jour des autres champs
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        
-        # Normalisation et mise à jour des tags
-        if tags_data is not None:
-            normalized_tags = normalize_tags(tags_data)
-            instance.tags.clear()
-            instance.tags.add(*normalized_tags)
-        
-        instance.save()
-        return instance
-
-
+    def get_is_liked(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return obj.likes.filter(id=request.user.id).exists()
+        return False
+    
 class UserPublicProfileSerializer(serializers.ModelSerializer):
     badges = serializers.SerializerMethodField()
     threads = serializers.SerializerMethodField()

@@ -1,0 +1,6 @@
+{
+    "python.analysis.autoImportCompletions": false,
+    "files.autoSave": "onWindowChange",
+    "editor.defaultFormatter": "vscode.css-language-features",
+    "python.analysis.typeCheckingMode": "off"
+}

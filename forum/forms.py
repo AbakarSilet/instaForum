@@ -32,7 +32,7 @@ class ThreadFormCreate(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': _('Titre de votre fil de discussion')}),
             'content': forms.Textarea(attrs={'placeholder': _('Contenu de votre fil de discussion')}),
-            'tags': TagWidget(attrs={'placeholder': _('Ajoutez des tags')}),
+            'tags': TagWidget(attrs={'placeholder': _('Ajoutez des tags separés par des virgules')}),
         }
 
 
@@ -50,10 +50,9 @@ class ThreadFormCreate(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['content', 'tags']
+        fields = ['content']
         labels = {
-            'content': _('Message'),
-            'tags': _('Tags (séparés par des virgules)')
+            'content': _('Message')
         }
         widgets = {
             'content': forms.Textarea(attrs={
@@ -61,11 +60,6 @@ class PostForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': _('Écrivez votre message ici...'),
                 'rows': 3
-            }),
-            'tags': TagWidget(attrs={
-                'id': 'tags',
-                'class': 'form-control',
-                'placeholder': 'tag1,tag2',
             }),
         }
 
@@ -102,4 +96,4 @@ class ThreadFormUpdate(forms.ModelForm):
 class PostFormUpdate(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['content', 'tags']
+        fields = ['content']

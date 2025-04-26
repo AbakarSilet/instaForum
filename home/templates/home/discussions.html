@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load l10n %}
 
 {% block title %}
-    {% trans "Discussions" %}|InstaForum
+{% trans "Discussions" %}|InstaForum
 {% endblock title %}
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/discussions.css' %}">
@@ -49,13 +50,20 @@
                     <img src="{% if thread.author.profile_image %}{{ thread.author.profile_image.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}"
                         alt="Profile image" class="profile-image">
                     <span class="author-link">
-                        {{ thread.author.first_name }} {{ thread.author.last_name }}
-                    </span> | {% trans 'Le :' %} {{ thread.created_at }}
+                        {{ thread.author.name }}
+                    </span> | {% blocktrans with date=thread.created_at|localize %}Le : {{ date }}{% endblocktrans %}
                 </p>
                 <h3>{{ thread.title }}</h3>
+                <h5>{{ thread.content|truncatewords:60 }}</h5>
                 <div class="posts">
                     {% with thread.posts.count as total_posts %}
-                    <h4> {{ total_posts }} {% trans 'réponse' %}{{ total_posts|pluralize }} {% trans 'associée' %}{{ total_posts|pluralize }} :</h4>
+                    <h4>
+                        {% blocktrans count counter=total_posts %}
+                        {{ counter }} réponse associée :
+                        {% plural %}
+                        {{ counter }} réponses associées :
+                        {% endblocktrans %}
+                    </h4>
                     {% endwith %}
                     <ul>
                         {% for post in thread.top_posts %}

@@ -1,35 +1,30 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
-{% load l10n %}
+
+{% block title %}
+{% blocktrans with tag_name=tag.name %}Tags: {{ tag_name }}{% endblocktrans %}
+{% endblock title %}
+
+{% block link %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/tagged.css' %}">
+
+{% endblock %}
 {% block content %}
-<div class="tagged">
-    <h2>
-    {% blocktrans %}Tag: {{ tag.name }} {% endblocktrans %}</h2>
-    <h3>{% trans 'Threads taggés:' %}</h3>
+<div class="tagged-container">
+    <h2 class="tagged-title">{% blocktrans %}Tag: {{ tag.name }} {% endblocktrans %}</h2>
+    <h3 class="tagged-section-title">{% trans 'Threads taggés:' %}</h3>
     {% for thread in threads %}
     <div>
-        <ul>
-            <li type="circle">
-                <h4><a href="{% url 'forum:thread' slug=thread.slug %}">{{ thread.title }}</a></h4>
+        <ul class="tagged-list">
+            <li class="tagged-list-item">
+                <h4><a class="tagged-link" href="{% url 'forum:thread' slug=thread.slug %}">{{ thread.title }}</a></h4>
             </li>
         </ul>
-
     </div>
     {% empty %}
     <p>{% trans "Aucun thread" %}</p>
-    {% endfor %}
-    <h3>{% trans 'Posts taggés:' %}</h3>
-    {% for post in posts %}
-    <div>
-        <ul>
-            <li type="circle">
-                <p> <a href="{% url 'forum:thread' slug=post.thread.slug %}#post-{{ post.id }}">
-                        {{ post.content|truncatewords:20 }} </a></p>
-            </li>
-        </ul>
-    </div>
-    {% empty %}
-    <p> {% trans "Aucun post" %} </p>
     {% endfor %}
 </div>
 {% endblock %}

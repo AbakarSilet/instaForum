@@ -1,100 +1,98 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# InstaForum English Translations
+# Copyright (C) 2025 ABAKAR SILET DARKOU
+# This file is distributed under the same license as the InstaForum package.
+# ABAKAR SILET DARKOU <abakarix4dev@gmail.com>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-11 15:31+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: InstaForum 1.0\n"
+"Report-Msgid-Bugs-To: abakarix4dev@gmail.com\n"
+"POT-Creation-Date: 2025-04-04 17:44+0100\n"
+"PO-Revision-Date: 2025-04-05 12:00+0100\n"
+"Last-Translator: ABAKAR SILET DARKOU <abakarix4dev@gmail.com>\n"
+"Language-Team: English <abakarix4dev@gmail.com>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\ForumInsta\settings.py:242
+#: .\ForumInsta\settings.py:237
 msgid "English"
 msgstr "English"
 
-#: .\ForumInsta\settings.py:243 .\templates\includes\header.html:29
+#: .\ForumInsta\settings.py:238 .\templates\includes\header.html:29
 msgid "Français"
 msgstr "French"
 
-#: .\ForumInsta\settings.py:244
+#: .\ForumInsta\settings.py:239
 msgid "العربية"
 msgstr "Arabic"
 
-#: .\OKay\base0.html:59 .\templates\contact.html:11
+#: .\OKay\base0.html:59 .\templates\contact.html:13
 msgid "Contactez-nous"
-msgstr "Contact Us"
+msgstr "Contact us"
 
-#: .\OKay\base0.html:60 .\templates\contact.html:12
+#: .\OKay\base0.html:60 .\templates\contact.html:14
 msgid ""
 "Si vous avez des questions ou avez besoin d'aide, n'hésitez pas à nous "
 "contacter."
-msgstr "If you have any questions or need help, feel free to contact us."
+msgstr "If you have any questions or need help, please don't hesitate to contact us."
 
-#: .\OKay\base0.html:62 .\templates\contact.html:14
+#: .\OKay\base0.html:62 .\templates\contact.html:16
 msgid "Envoyez-nous un message"
-msgstr "Send Us a Message"
+msgstr "Send us a message"
 
-#: .\OKay\base0.html:66 .\templates\contact.html:18
+#: .\OKay\base0.html:66 .\templates\contact.html:20
 msgid "Votre Email"
 msgstr "Your Email"
 
-#: .\OKay\base0.html:67 .\templates\contact.html:19
+#: .\OKay\base0.html:67 .\templates\contact.html:21
 msgid "Votre adresse email"
 msgstr "Your email address"
 
 #: .\OKay\base0.html:70 .\forum\forms.py:55 .\messaging\forms.py:15
-#: .\templates\contact.html:22
+#: .\templates\contact.html:24
 msgid "Message"
 msgstr "Message"
 
-#: .\OKay\base0.html:71 .\templates\contact.html:23
+#: .\OKay\base0.html:71 .\templates\contact.html:25
 msgid "Votre message ici..."
 msgstr "Your message here..."
 
 #: .\OKay\base0.html:73 .\messaging\templates\messaging\thread_detail.html:62
-#: .\templates\contact.html:25
+#: .\templates\contact.html:28
 msgid "Envoyer"
 msgstr "Send"
 
 #: .\OKay\navbarB.html:11 .\OKay\navbarB.html:84
-#: .\home\templates\home\home.html:17 .\news\templates\news\yahoonews.html:8
+#: .\news\templates\news\yahoonews.html:8
 #: .\news\templates\news\yahoonews.html:15 .\templates\includes\header.html:20
-#: .\templates\includes\navbar.html:17 .\templates\includes\navbar.html:78
+#: .\templates\includes\navbar.html:79
 msgid "Actualités"
 msgstr "News"
 
-#: .\OKay\navbarB.html:13 .\forum\forms.py:25 .\forum\models.py:38
-#: .\forum\templates\forum\create.html:34 .\templates\includes\navbar.html:19
-#: .\templates\includes\navbar.html:79
+#: .\OKay\navbarB.html:13 .\forum\forms.py:25 .\forum\models.py:54
+#: .\forum\templates\forum\create.html:34 .\templates\includes\navbar.html:21
+#: .\templates\includes\navbar.html:80
 msgid "Forum"
 msgstr "Forum"
 
 #: .\OKay\navbarB.html:21 .\OKay\navbarB.html:85
-#: .\home\templates\home\discussions.html:6
-#: .\home\templates\home\discussions.html:44
-#: .\templates\includes\header.html:22 .\templates\includes\navbar.html:24
-#: .\templates\includes\navbar.html:81
+#: .\home\templates\home\discussions.html:7
+#: .\home\templates\home\discussions.html:45
+#: .\templates\includes\header.html:22 .\templates\includes\navbar.html:22
+#: .\templates\includes\navbar.html:82
 msgid "Discussions"
 msgstr "Discussions"
 
 #: .\OKay\navbarB.html:22 .\OKay\navbarB.html:86 .\OKay\navbars.html:27
-#: .\home\templates\home\home.html:104 .\templates\includes\navbar.html:26
-#: .\templates\includes\navbar.html:85
+#: .\templates\includes\navbar.html:27 .\templates\includes\navbar.html:86
 msgid "Evénements"
 msgstr "Events"
 
 #: .\OKay\navbarB.html:24 .\OKay\navbarB.html:88 .\OKay\navbars.html:30
-#: .\templates\includes\navbar.html:94
+#: .\templates\includes\navbar.html:95
 msgid "Langues"
 msgstr "Languages"
 
@@ -103,7 +101,8 @@ msgstr "Languages"
 #: .\messaging\templates\messaging\user_messages.html:22
 #: .\messaging\templates\messaging\user_messages.html:55
 #: .\templates\edit_profile.html:19 .\templates\includes\header.html:50
-#: .\templates\includes\navbar.html:41 .\templates\includes\navbar.html:43
+#: .\templates\includes\navbar.html:42 .\templates\includes\navbar.html:44
+#: .\templates\profile.html:25
 msgid "Profil"
 msgstr "Profile"
 
@@ -113,47 +112,47 @@ msgstr "Profile"
 msgid "Créer"
 msgstr "Create"
 
-#: .\OKay\navbarB.html:62 .\templates\account\login.html:13
-#: .\templates\includes\header.html:54
+#: .\OKay\navbarB.html:62 .\templates\account\login.html:14
+#: .\templates\includes\footer.html:25 .\templates\includes\header.html:54
 msgid "Connexion"
 msgstr "Login"
 
 #: .\OKay\navbarB.html:63 .\templates\account\signup.html:7
-#: .\templates\account\signup.html:18 .\templates\account\signup.html:74
-#: .\templates\account\signup.html:77
+#: .\templates\account\signup.html:18 .\templates\account\signup.html:70
+#: .\templates\account\signup.html:72
 #: .\templates\account\signup_by_passkey.html:4
 #: .\templates\includes\header.html:55
 msgid "Inscription"
 msgstr "Sign Up"
 
-#: .\OKay\navbarB.html:76 .\forum\models.py:39
+#: .\OKay\navbarB.html:76 .\forum\models.py:55
 #: .\templates\includes\navbar_forum_stats.html:5
 msgid "Forums"
 msgstr "Forums"
 
 #: .\events\forms.py:11
 msgid "Titre de l'événement"
-msgstr "Event Title"
+msgstr "Event title"
 
 #: .\events\forms.py:12
 msgid "Description de l'événement"
-msgstr "Event Description"
+msgstr "Event description"
 
 #: .\events\forms.py:13
 msgid "Lieu de l'événement"
-msgstr "Event Location"
+msgstr "Event location"
 
 #: .\events\forms.py:14
 msgid "Date de l'événement"
-msgstr "Event Date"
+msgstr "Event date"
 
 #: .\events\forms.py:15
 msgid "Image de l'événement"
-msgstr "Event Image"
+msgstr "Event image"
 
 #: .\events\forms.py:21
 msgid "La date de l'événement ne peut pas être dans le passé."
-msgstr "The event date cannot be in the past."
+msgstr "Event date cannot be in the past."
 
 #: .\events\templates\events\create_event.html:7
 #: .\events\templates\events\create_event.html:16
@@ -174,20 +173,20 @@ msgstr "I'll be there"
 
 #: .\events\templates\events\event_detail.html:33
 msgid "Participants"
-msgstr "Participants"
+msgstr "Attendees"
 
 #: .\events\templates\events\event_detail.html:46
-#: .\forum\templates\forum\home.html:106
+#: .\forum\templates\forum\home.html:108
 msgid "Et autres..."
 msgstr "And others..."
 
 #: .\events\templates\events\event_list.html:7
 msgid " Liste des événements "
-msgstr " Event List "
+msgstr " Events list "
 
 #: .\events\templates\events\event_list.html:16
 msgid "Liste des événements"
-msgstr "Event List"
+msgstr "Events list"
 
 #: .\events\templates\events\event_list.html:19
 msgid "Cette semaine "
@@ -211,11 +210,11 @@ msgstr "Add an event "
 
 #: .\forum\forms.py:15 .\forum\forms.py:33
 msgid "Titre de votre fil de discussion"
-msgstr "Title of your discussion thread"
+msgstr "Your thread title"
 
 #: .\forum\forms.py:16 .\forum\forms.py:34
 msgid "Contenu de votre fil de discussion"
-msgstr "Content of your discussion thread"
+msgstr "Your thread content"
 
 #: .\forum\forms.py:17
 msgid "Sélectionnez ou ajoutez des tags"
@@ -226,80 +225,138 @@ msgid "Sélectionnez un forum"
 msgstr "Select a forum"
 
 #: .\forum\forms.py:35
-msgid "Ajoutez des tags"
-msgstr "Add tags"
+msgid "Ajoutez des tags separés par des virgules"
+msgstr "Add tags separated by commas"
 
-#: .\forum\forms.py:56
-msgid "Tags (séparés par des virgules)"
-msgstr "Tags (separated by commas)"
-
-#: .\forum\forms.py:62
+#: .\forum\forms.py:61
 msgid "Écrivez votre message ici..."
 msgstr "Write your message here..."
 
-#: .\forum\forms.py:77 .\forum\templates\forum\home.html:14
+#: .\forum\forms.py:71 .\forum\templates\forum\home.html:14
 msgid "Rechercher dans le forum..."
 msgstr "Search in the forum..."
 
-#: .\forum\forms.py:85
+#: .\forum\forms.py:79
 msgid "Type de signalement"
-msgstr "Type of report"
+msgstr "Report type"
 
-#: .\forum\forms.py:86
+#: .\forum\forms.py:80
 msgid "Raison du signalement"
-msgstr "Reason for reporting"
+msgstr "Report reason"
 
-#: .\forum\forms.py:91
+#: .\forum\forms.py:85
 msgid "Expliquez la raison du signalement"
 msgstr "Explain the reason for reporting"
 
-#: .\forum\models.py:22
+#: .\forum\models.py:38
 msgid "Catégorie"
 msgstr "Category"
 
-#: .\forum\models.py:23
+#: .\forum\models.py:39
 msgid "Catégories"
 msgstr "Categories"
 
-#: .\forum\models.py:34
+#: .\forum\models.py:50
 msgid "image du forum"
 msgstr "forum image"
 
-#: .\forum\models.py:68
+#: .\forum\models.py:86
 msgid "Thread"
 msgstr "Thread"
 
-#: .\forum\models.py:69 .\templates\includes\navbar_forum_stats.html:7
+#: .\forum\models.py:87 .\templates\includes\navbar_forum_stats.html:7
 msgid "Threads"
 msgstr "Threads"
 
-#: .\forum\models.py:111
+#: .\forum\models.py:137
 msgid "Post"
 msgstr "Post"
 
-#: .\forum\models.py:112 .\home\templates\home\home.html:65
+#: .\forum\models.py:138
 msgid "Posts"
 msgstr "Posts"
 
-#: .\forum\models.py:142
+#: .\forum\models.py:172
 msgid "Spam"
 msgstr "Spam"
 
-#: .\forum\models.py:143
+#: .\forum\models.py:173
 msgid "Offensant"
 msgstr "Offensive"
 
-#: .\forum\models.py:144
+#: .\forum\models.py:174
 msgid "Publicité"
-msgstr "Advertisement"
+msgstr "Advertising"
 
-#: .\forum\models.py:145
+#: .\forum\models.py:175
 msgid "Autre"
 msgstr "Other"
 
+#: .\forum\signals.py:16
+msgid "Auteur Actif"
+msgstr "Active Author"
+
+#: .\forum\signals.py:21
+#, python-format
+msgid ""
+"Félicitations %(username)s, vous gagnez le badge d'auteur actif. Merci pour "
+"votre contribution à la communauté"
+msgstr ""
+"Congratulations %(username)s, you earned the Active Author badge. Thank you "
+"for your contribution to the community"
+
+#: .\forum\signals.py:30
+msgid "Populaire"
+msgstr "Popular"
+
+#: .\forum\signals.py:39
+msgid "Commentateur Actif"
+msgstr "Active Commenter"
+
+#: .\forum\templates\forum\category.html:23
+#, python-format
+msgid "Image de %(title)s"
+msgstr "Image of %(title)s"
+
+#: .\forum\templates\forum\category.html:33
+#, python-format
+msgid ""
+"\n"
+"                                %(counter)s thread\n"
+"                            "
+msgid_plural ""
+"\n"
+"                                %(counter)s threads\n"
+"                            "
+msgstr[0] ""
+"\n"
+"                                %(counter)s thread\n"
+"                            "
+msgstr[1] ""
+"\n"
+"                                %(counter)s threads\n"
+"                            "
+
+#: .\forum\templates\forum\category.html:44
+msgid "Threads récents"
+msgstr "Recent threads"
+
+#: .\forum\templates\forum\category.html:52
+#, python-format
+msgid "par @%(author)s"
+msgstr "by @%(author)s"
+
+#: .\forum\templates\forum\category.html:58
+msgid "Voir tous les threads"
+msgstr "View all threads"
+
+#: .\forum\templates\forum\category.html:62
+msgid "Aucun thread dans ce forum"
+msgstr "No threads in this forum"
+
 #: .\forum\templates\forum\create.html:6 .\forum\templates\forum\create.html:14
 msgid "Créer un Fil de Discussion"
-msgstr "Create a Discussion Thread"
+msgstr "Create a Thread"
 
 #: .\forum\templates\forum\create.html:27
 #: .\forum\templates\forum\create_thread.html:24
@@ -308,8 +365,8 @@ msgid ""
 "créer de fil de discussion ou répondre à des posts mais vous pouvez toujours "
 "les lire."
 msgstr ""
-"Your account is suspended for 7 days by the moderator. You cannot create a "
-"discussion thread or reply to posts, but you can still read them."
+"Your account has been suspended for 7 days by the moderator. You cannot "
+"create threads or reply to posts, but you can still read them."
 
 #: .\forum\templates\forum\create.html:39
 #: .\resources\templates\resources\add_document.html:25
@@ -329,7 +386,7 @@ msgstr "Tags"
 
 #: .\forum\templates\forum\create_thread.html:11
 msgid "Créer un Fil de Discussion dans"
-msgstr "Create a Discussion Thread in"
+msgstr "Create a Thread in"
 
 #: .\forum\templates\forum\first_thread_congrats.html:6
 msgid "Félicitations"
@@ -342,12 +399,14 @@ msgstr "Congratulations!"
 #: .\forum\templates\forum\first_thread_congrats.html:15
 msgid ""
 "Merci d'avoir créé votre premier thread. Bienvenue dans notre communauté!"
-msgstr "Thank you for creating your first thread. Welcome to our community!"
+msgstr ""
+"Thank you for creating your first thread. Welcome to our community!"
 
 #: .\forum\templates\forum\first_thread_congrats.html:16
 msgid ""
 "Nous espérons que vous continuerez à contribuer et à partager vos idées."
-msgstr "We hope you will continue to contribute and share your ideas."
+msgstr ""
+"We hope you'll continue to contribute and share your ideas."
 
 #: .\forum\templates\forum\first_thread_congrats.html:17
 msgid "Voir le Thread"
@@ -359,33 +418,33 @@ msgstr "Result"
 
 #: .\forum\templates\forum\home.html:25
 msgid "de recherche pour"
-msgstr "of search for"
+msgstr "search for"
 
 #: .\forum\templates\forum\home.html:32
 msgid "Auteur :"
 msgstr "Author:"
 
-#: .\forum\templates\forum\home.html:38 .\forum\templates\forum\home.html:50
+#: .\forum\templates\forum\home.html:39 .\forum\templates\forum\home.html:51
 msgid "Aucun tag"
 msgstr "No tags"
 
-#: .\forum\templates\forum\home.html:58
+#: .\forum\templates\forum\home.html:59
 msgid "Profil utilisateur"
 msgstr "User profile"
 
-#: .\forum\templates\forum\home.html:67
+#: .\forum\templates\forum\home.html:68
 #: .\forum\templates\layouts\pagination.html:4
 #: .\forum\templates\layouts\pagination.html:6
 msgid "Précédent"
 msgstr "Previous"
 
-#: .\forum\templates\forum\home.html:75
+#: .\forum\templates\forum\home.html:76
 #: .\forum\templates\layouts\pagination.html:12
 #: .\forum\templates\layouts\pagination.html:14
 msgid "Suivant"
 msgstr "Next"
 
-#: .\forum\templates\forum\home.html:81
+#: .\forum\templates\forum\home.html:82
 #, python-format
 msgid " Aucun résultat trouvé pour \"%(query)s\"."
 msgstr " No results found for \"%(query)s\"."
@@ -410,19 +469,19 @@ msgstr "Author"
 
 #: .\forum\templates\forum\moderation_dashboard.html:68
 #: .\forum\templates\forum\moderation_dashboard.html:99
-#: .\forum\templates\forum\moderation_dashboard.html:157
+#: .\forum\templates\forum\moderation_dashboard.html:133
 msgid "Signalé par"
 msgstr "Reported by"
 
 #: .\forum\templates\forum\moderation_dashboard.html:69
 #: .\forum\templates\forum\moderation_dashboard.html:100
-#: .\forum\templates\forum\moderation_dashboard.html:158
+#: .\forum\templates\forum\moderation_dashboard.html:134
 msgid "Raison"
 msgstr "Reason"
 
 #: .\forum\templates\forum\moderation_dashboard.html:69
 #: .\forum\templates\forum\moderation_dashboard.html:100
-#: .\forum\templates\forum\moderation_dashboard.html:158
+#: .\forum\templates\forum\moderation_dashboard.html:134
 msgid "Date"
 msgstr "Date"
 
@@ -433,7 +492,7 @@ msgstr "Delete"
 
 #: .\forum\templates\forum\moderation_dashboard.html:76
 #: .\forum\templates\forum\moderation_dashboard.html:107
-#: .\forum\templates\forum\moderation_dashboard.html:165
+#: .\forum\templates\forum\moderation_dashboard.html:140
 msgid "Voir"
 msgstr "View"
 
@@ -442,28 +501,31 @@ msgid "Posts Signalés"
 msgstr "Reported Posts"
 
 #: .\forum\templates\forum\moderation_dashboard.html:93
-#: .\forum\templates\forum\moderation_dashboard.html:153
+#: .\forum\templates\forum\moderation_dashboard.html:129
 msgid " signalements "
 msgstr " reports "
 
 #: .\forum\templates\forum\moderation_dashboard.html:113
-#: .\forum\templates\forum\moderation_dashboard.html:171
 msgid "Aucun signalé"
-msgstr "No reports"
+msgstr "None reported"
 
 #: .\forum\templates\forum\moderation_dashboard.html:119
 msgid "Gestion des Utilisateurs"
 msgstr "User Management"
 
-#: .\forum\templates\forum\moderation_dashboard.html:152
+#: .\forum\templates\forum\moderation_dashboard.html:120
+msgid "Utilisateurs inactifs"
+msgstr "Inactive users"
+
+#: .\forum\templates\forum\moderation_dashboard.html:128
 msgid "Utilisateur"
 msgstr "User"
 
-#: .\forum\templates\forum\moderation_dashboard.html:162
+#: .\forum\templates\forum\moderation_dashboard.html:137
 msgid "Suspendre"
 msgstr "Suspend"
 
-#: .\forum\templates\forum\moderation_dashboard.html:175
+#: .\forum\templates\forum\moderation_dashboard.html:149
 msgid "Ajouter une information"
 msgstr "Add information"
 
@@ -484,12 +546,13 @@ msgid "Vous n'avez pas de notification"
 msgstr "You have no notifications"
 
 #: .\forum\templates\forum\profile.html:17
-msgid "Profil de"
-msgstr "Profile of"
+#, python-format
+msgid "Profil de : %(name)s"
+msgstr "Profile of: %(name)s"
 
 #: .\forum\templates\forum\profile.html:21
 msgid "Envoyer un message"
-msgstr "Send a message"
+msgstr "Send message"
 
 #: .\forum\templates\forum\profile.html:23
 msgid "Signaler utilisateur"
@@ -497,7 +560,7 @@ msgstr "Report user"
 
 #: .\forum\templates\forum\profile.html:27
 msgid "Nom au complet"
-msgstr "Full Name"
+msgstr "Full name"
 
 #: .\forum\templates\forum\profile.html:29
 msgid "Badges Obtenus"
@@ -513,99 +576,114 @@ msgstr "Posts"
 
 #: .\forum\templates\forum\profile.html:49
 msgid "Aucune publication."
-msgstr "No posts"
+msgstr "No posts."
 
 #: .\forum\templates\forum\report.html:6
 msgid "Signaler aux moderateurs"
-msgstr "Report to Moderators"
+msgstr "Report to moderators"
 
 #: .\forum\templates\forum\report.html:16
 #: .\forum\templates\forum\report.html:18
-#: .\forum\templates\forum\thread.html:78
-#: .\forum\templates\forum\thread.html:151
-#: .\resources\templates\resources\resource_list.html:102
+#: .\forum\templates\forum\thread.html:49
+#: .\forum\templates\forum\thread.html:224
 msgid "Signaler"
 msgstr "Report"
 
 #: .\forum\templates\forum\report.html:23
 msgid "Envoyer le signalement"
-msgstr "Submit Report"
-
-#: .\forum\templates\forum\similar_threads.html:4
-msgid "Threads Similaires"
-msgstr "Similar Threads"
-
-#: .\forum\templates\forum\similar_threads.html:14
-msgid "Pas de threads similaires"
-msgstr "No similar threads"
+msgstr "Submit report"
 
 #: .\forum\templates\forum\subforum.html:24
 msgid "Créer un fil de discussion"
-msgstr "Create a Discussion Thread"
+msgstr "Create a thread"
 
-#: .\forum\templates\forum\tagged.html:7
+#: .\forum\templates\forum\tagged.html:6
+#, python-format
+msgid "Tags: %(tag_name)s"
+msgstr "Tags: %(tag_name)s"
+
+#: .\forum\templates\forum\tagged.html:16
 #, python-format
 msgid "Tag: %(tag.name)s "
-msgstr "Tag: %(tag.name)s"
+msgstr "Tag: %(tag.name)s "
 
-#: .\forum\templates\forum\tagged.html:8
+#: .\forum\templates\forum\tagged.html:17
 msgid "Threads taggés:"
-msgstr "Tagged Threads:"
+msgstr "Tagged threads:"
 
-#: .\forum\templates\forum\tagged.html:19
+#: .\forum\templates\forum\tagged.html:27
 msgid "Aucun thread"
-msgstr "No thread"
+msgstr "No threads"
 
-#: .\forum\templates\forum\tagged.html:21
-msgid "Posts taggés:"
-msgstr "Tagged Posts:"
+#: .\forum\templates\forum\thread.html:26
+#: .\forum\templates\forum\thread.html:207
+#: .\forum\templates\forum\thread.html:308
+#: .\messaging\templates\messaging\thread_detail.html:45
+msgid "Avatar"
+msgstr "Avatar"
 
-#: .\forum\templates\forum\tagged.html:32
-msgid "Aucun post"
-msgstr "No posts"
+#: .\forum\templates\forum\thread.html:36
+#, python-format
+msgid "Publié le %(date)s"
+msgstr "Posted on %(date)s"
 
-#: .\forum\templates\forum\thread.html:32
-#, fuzzy
-#| msgid "Publicité"
-msgid "Publié le "
-msgstr "Advertisement"
+#: .\forum\templates\forum\thread.html:53
+#: .\forum\templates\forum\thread.html:227
+msgid "Modifier"
+msgstr "Edit"
 
-#: .\forum\templates\forum\thread.html:67
-msgid "Partager sur Twitter"
-msgstr "Share on Twitter"
+#: .\forum\templates\forum\thread.html:61
+msgid "Rouvrir le thread"
+msgstr "Reopen thread"
 
-#: .\forum\templates\forum\thread.html:71
-msgid "Partager par Email"
-msgstr "Share by Email"
+#: .\forum\templates\forum\thread.html:68
+msgid "Fermer le thread"
+msgstr "Close thread"
 
 #: .\forum\templates\forum\thread.html:87
-msgid "Votre compte est suspendu pour 7 jours par le modérateur"
-msgstr "Your account is suspended for 7 days by the moderator"
+#: .\forum\templates\forum\thread.html:90
+msgid "Image du thread"
+msgstr "Thread image"
 
-#: .\forum\templates\forum\thread.html:93
-#, fuzzy
-#| msgid "Ajouter un Document"
+#: .\forum\templates\forum\thread.html:165
+#: .\forum\templates\forum\thread.html:191
 msgid "Ajouter un commentaire"
-msgstr "Add a Document"
+msgstr "Add a comment"
 
-#: .\forum\templates\forum\thread.html:124
-#: .\forum\templates\forum\thread.html:127
+#: .\forum\templates\forum\thread.html:173
+msgid "Ce thread est fermé"
+msgstr "This thread is closed"
+
+#: .\forum\templates\forum\thread.html:176
+msgid ""
+"Vous ne pouvez plus ajouter de nouveaux commentaires à cette discussion."
+msgstr "You can no longer add new comments to this discussion."
+
+#: .\forum\templates\forum\thread.html:193
+msgid "Écrivez votre commentaire ici..."
+msgstr "Write your comment here..."
+
+#: .\forum\templates\forum\thread.html:195
+#: .\forum\templates\forum\update_post.html:17
+#: .\forum\templates\forum\update_thread.html:17
+#: .\templates\account\confirm_email_verification_code.html:32
+#: .\templates\account\confirm_email_verification_code.html:36
+#: .\templates\account\confirm_login_code.html:32
+#: .\templates\edit_profile.html:24
+msgid "Annuler"
+msgstr "Cancel"
+
+#: .\forum\templates\forum\thread.html:196
 msgid "Publier"
 msgstr "Post"
 
-#: .\forum\templates\forum\thread.html:125
-#, fuzzy
-#| msgid "Publications"
-msgid "Publication en cours..."
-msgstr "Posts"
+#: .\forum\templates\forum\thread.html:248
+msgid "Aucun commentaire pour ce thread"
+msgstr "No comments for this thread"
 
-#: .\forum\templates\forum\thread.html:154
-msgid "mettre a jour"
-msgstr "update"
-
-#: .\forum\templates\forum\thread.html:170
-msgid "Aucun commentaire pour ce thread."
-msgstr "No comments for this thread."
+#: .\forum\templates\forum\thread.html:303
+msgid "Threads similaires"
+msgstr "Similar threads"
 
 #: .\forum\templates\forum\update_post.html:6
 #: .\forum\templates\forum\update_post.html:11
@@ -616,15 +694,6 @@ msgstr "Update Post"
 #: .\forum\templates\forum\update_thread.html:15
 msgid "Mettre à Jour"
 msgstr "Update"
-
-#: .\forum\templates\forum\update_post.html:17
-#: .\forum\templates\forum\update_thread.html:17
-#: .\templates\account\confirm_email_verification_code.html:32
-#: .\templates\account\confirm_email_verification_code.html:36
-#: .\templates\account\confirm_login_code.html:32
-#: .\templates\edit_profile.html:24
-msgid "Annuler"
-msgstr "Cancel"
 
 #: .\forum\templates\forum\update_thread.html:6
 #: .\forum\templates\forum\update_thread.html:11
@@ -639,55 +708,201 @@ msgstr "Page"
 msgid "sur"
 msgstr "of"
 
-#: .\forum\views.py:52
+#: .\forum\views.py:37
+msgid "Vous n'avez pas l'autorisation de fermer ce fil de discussion."
+msgstr "You don't have permission to close this thread."
+
+#: .\forum\views.py:49
+msgid "Vous n'avez pas l'autorisation de rouvrir ce fil de discussion."
+msgstr "You don't have permission to reopen this thread."
+
+#: .\forum\views.py:82
 msgid "Réponse à @"
 msgstr "Reply to @"
 
+#: .\forum\views.py:94
+#, python-format
+msgid "%(username)s a commenté votre thread \"%(title)s\""
+msgstr "%(username)s commented on your thread \"%(title)s\""
+
+#: .\forum\views.py:113 .\forum\views.py:434
+msgid "Le thread a été supprimé avec succès."
+msgstr "The thread was successfully deleted."
+
+#: .\forum\views.py:137 .\forum\views.py:173
+msgid "Félicitations pour votre premier thread !"
+msgstr "Congratulations on your first thread!"
+
+#: .\forum\views.py:140
+msgid "Thread créé avec succès !"
+msgstr "Thread created successfully!"
+
+#: .\forum\views.py:143
+msgid "Veuillez corriger les erreurs ci-dessous."
+msgstr "Please correct the errors below."
+
+#: .\forum\views.py:162
+msgid "Votre compte n'est plus actif."
+msgstr "Your account is no longer active."
+
+#: .\forum\views.py:176
+msgid "Votre thread a été créé avec succès !"
+msgstr "Your thread was created successfully!"
+
 #: .\forum\views.py:359
-#, fuzzy
-#| msgid "Votre mot de passe a été changé avec succès."
 msgid "Votre message a été publié avec succès !"
-msgstr "Your password has been successfully changed."
+msgstr "Your message was posted successfully!"
 
-#: .\home\templates\home\discussions.html:53
-msgid "Le :"
-msgstr "On:"
+#: .\forum\views.py:426
+msgid "Le message a été supprimé avec succès."
+msgstr "The message was successfully deleted."
 
-#: .\home\templates\home\discussions.html:58
-msgid "réponse"
-msgstr "reply"
+#: .\forum\views.py:468
+#, python-format
+msgid "Nouveau signalement d'un sujet: %(title)s"
+msgstr "New thread report: %(title)s"
 
-#: .\home\templates\home\discussions.html:58
-msgid "associée"
-msgstr "associated"
+#: .\forum\views.py:471
+#, python-format
+msgid "Nouveau signalement d'un message dans le sujet: %(title)s"
+msgstr "New post report in thread: %(title)s"
 
-#: .\home\templates\home\discussions.html:64
+#: .\forum\views.py:474
+#, python-format
+msgid "Nouveau signalement d'un utilisateur: %(name)s"
+msgstr "New user report: %(name)s"
+
+#: .\forum\views.py:502
+msgid "Vous devez être connecté pour effectuer cette action."
+msgstr "You must be logged in to perform this action."
+
+#: .\forum\views.py:509
+msgid "Le groupe Modérateur n'existe pas."
+msgstr "The Moderator group does not exist."
+
+#: .\forum\views.py:513
+msgid "Vous ne pouvez pas vous suspendre vous-même."
+msgstr "You cannot suspend yourself."
+
+#: .\forum\views.py:522
+msgid ""
+"Votre compte a été suspendu. Contactez l'administration pour plus "
+"d'informations."
+msgstr "Your account has been suspended. Contact the administration for more information."
+
+#: .\forum\views.py:528
+msgid "Vous n'avez pas les permissions nécessaires."
+msgstr "You don't have the required permissions."
+
+#: .\home\templates\home\discussions.html:54
+#, python-format
+msgid "Le : %(date)s"
+msgstr "On: %(date)s"
+
+#: .\home\templates\home\discussions.html:61
+#, python-format
+msgid ""
+"\n"
+"                        %(counter)s réponse associée :\n"
+"                        "
+msgid_plural ""
+"\n"
+"                        %(counter)s réponses associées :\n"
+"                        "
+msgstr[0] ""
+"\n"
+"                        %(counter)s associated reply:\n"
+"                        "
+msgstr[1] ""
+"\n"
+"                        %(counter)s associated replies:\n"
+"                        "
+
+#: .\home\templates\home\discussions.html:72
 msgid "Soyez le premier à poster sur ce thread !"
 msgstr "Be the first to post on this thread!"
 
-#: .\home\templates\home\home.html:45
-msgid "Forums avec des threads"
-msgstr "Forums with Threads"
+#: .\home\templates\home\home.html:18
+msgid "ÉVÉNEMENT PHARE"
+msgstr "FEATURED EVENT"
 
-#: .\home\templates\home\home.html:56
-msgid "Derniers threads"
-msgstr "Latest Threads"
+#: .\home\templates\home\home.html:21
+#, python-format
+msgid "%(date)s"
+msgstr "%(date)s"
 
-#: .\home\templates\home\home.html:64
-msgid "Par"
-msgstr "By"
+#: .\home\templates\home\home.html:22
+#, python-format
+msgid "%(time)s"
+msgstr "%(time)s"
 
-#: .\home\templates\home\home.html:64
-msgid "Le"
-msgstr "On"
+#: .\home\templates\home\home.html:25
+msgid "Découvrir"
+msgstr "Discover"
 
-#: .\home\templates\home\home.html:78
-msgid "Aucun forum avec des threads disponibles."
-msgstr "No forums with available threads."
+#: .\home\templates\home\home.html:39
+msgid "Discussions Actives"
+msgstr "Active Discussions"
 
-#: .\home\templates\home\home.html:82
-msgid "Les sujets qui peuvent vous intéresser"
-msgstr "Topics That Might Interest You"
+#: .\home\templates\home\home.html:48
+#, python-format
+msgid "Par %(author)s | le %(date)s"
+msgstr "By %(author)s | on %(date)s"
+
+#: .\home\templates\home\home.html:57 .\home\templates\home\home.html:164
+#, python-format
+msgid "%(counter)s réponse"
+msgid_plural "%(counter)s réponses"
+msgstr[0] "%(counter)s reply"
+msgstr[1] "%(counter)s replies"
+
+#: .\home\templates\home\home.html:62
+msgid "Voir toutes les discussions"
+msgstr "View all discussions"
+
+#: .\home\templates\home\home.html:67
+msgid "Prochains Événements"
+msgstr "Upcoming Events"
+
+#: .\home\templates\home\home.html:95
+msgid "À ne pas manquer"
+msgstr "Don't miss"
+
+#: .\home\templates\home\home.html:113
+msgid "Voir Plus"
+msgstr "See More"
+
+#: .\home\templates\home\home.html:119
+msgid "Ressources Pratiques"
+msgstr "Practical Resources"
+
+#: .\home\templates\home\home.html:125
+msgid "Bibliothèque"
+msgstr "Library"
+
+#: .\home\templates\home\home.html:131
+msgid "Tutoriels"
+msgstr "Tutorials"
+
+#: .\home\templates\home\home.html:137
+msgid "Outils"
+msgstr "Tools"
+
+#: .\home\templates\home\home.html:143 .\templates\includes\footer.html:11
+#: .\templates\includes\sidebar.html:62
+msgid "FAQ"
+msgstr "FAQ"
+
+#: .\home\templates\home\home.html:150
+msgid "Rejoignez la discussion"
+msgstr "Join the discussion"
+
+#: .\home\templates\home\home.html:163
+#, python-format
+msgid "%(counter)s threads"
+msgid_plural "%(counter)s threads"
+msgstr[0] "%(counter)s thread"
+msgstr[1] "%(counter)s threads"
 
 #: .\messaging\forms.py:8
 msgid "Écrire votre message ici"
@@ -695,22 +910,18 @@ msgstr "Write your message here"
 
 #: .\messaging\templates\messaging\thread_detail.html:10
 #: .\messaging\templates\messaging\user_messages.html:5
-#: .\templates\includes\navbar.html:90 .\templates\includes\sidebar.html:29
+#: .\templates\includes\navbar.html:91 .\templates\includes\sidebar.html:29
 msgid "Messagerie privée"
-msgstr "Private Messaging"
+msgstr "Private Messages"
 
 #: .\messaging\templates\messaging\thread_detail.html:18
 #: .\messaging\templates\messaging\user_messages.html:14
 msgid "Vos Conversations"
 msgstr "Your Conversations"
 
-#: .\messaging\templates\messaging\thread_detail.html:45
-msgid "Avatar"
-msgstr "Avatar"
-
 #: .\messaging\templates\messaging\thread_detail.html:55
 msgid "Démarer une nouvelle conversation"
-msgstr "Start a New Conversation"
+msgstr "Start a new conversation"
 
 #: .\messaging\templates\messaging\thread_detail.html:61
 msgid "Écrivez votre message..."
@@ -735,52 +946,49 @@ msgstr "Search for a user"
 #: .\messaging\templates\messaging\user_messages.html:47
 #: .\resources\templates\resources\search_results.html:14
 msgid "Résultats de la recherche"
-msgstr "Search Results"
+msgstr "Search results"
 
 #: .\messaging\templates\messaging\user_messages.html:64
 msgid "Demarrer une conversation"
-msgstr "Start a Conversation"
+msgstr "Start a conversation"
 
-#: .\modelUser\forms.py:8 .\templates\account\login.html:40
+#: .\modelUser\forms.py:8 .\templates\account\login.html:41
 msgid "Se souvenir de moi"
 msgstr "Remember me"
 
 #: .\modelUser\forms.py:23 .\modelUser\forms.py:24 .\modelUser\forms.py:116
 #: .\modelUser\forms.py:137 .\templates\account\signup.html:42
-#: .\templates\profile.html:29
 msgid "Nom d'utilisateur"
 msgstr "Username"
 
 #: .\modelUser\forms.py:28 .\modelUser\forms.py:29 .\modelUser\forms.py:57
-#: .\modelUser\forms.py:117 .\templates\profile.html:30
+#: .\modelUser\forms.py:117 .\templates\profile.html:45
 msgid "Adresse e-mail"
-msgstr "Email Address"
+msgstr "Email address"
 
 #: .\modelUser\forms.py:33 .\modelUser\forms.py:34 .\modelUser\forms.py:118
 #: .\modelUser\forms.py:138 .\templates\account\signup.html:46
-#: .\templates\profile.html:31
 msgid "Prénom"
-msgstr "First Name"
+msgstr "First name"
 
 #: .\modelUser\forms.py:38 .\modelUser\forms.py:39 .\modelUser\forms.py:119
 #: .\modelUser\forms.py:139 .\templates\account\signup.html:50
-#: .\templates\profile.html:32
 msgid "Nom"
-msgstr "Last Name"
+msgstr "Last name"
 
 #: .\modelUser\forms.py:42 .\modelUser\forms.py:120 .\modelUser\forms.py:140
 msgid "Image de profil"
-msgstr "Profile Picture"
+msgstr "Profile picture"
 
 #: .\modelUser\forms.py:47 .\modelUser\forms.py:48
-#: .\templates\account\login.html:31 .\templates\account\signup.html:54
+#: .\templates\account\login.html:32 .\templates\account\signup.html:54
 msgid "Mot de passe"
 msgstr "Password"
 
 #: .\modelUser\forms.py:51 .\modelUser\forms.py:52
 #: .\templates\account\signup.html:58
 msgid "Confirmer le mot de passe"
-msgstr "Confirm Password"
+msgstr "Confirm password"
 
 #: .\modelUser\forms.py:77
 msgid "Entrez votre adresse e-mail"
@@ -806,38 +1014,42 @@ msgstr "profile picture"
 msgid "nom d'utilisateur"
 msgstr "username"
 
+#: .\modelUser\models.py:43
+msgid "date d'inscription"
+msgstr "registration date"
+
 #: .\news\templates\news\yahoonews.html:18
 msgid "Dernière mise à jour :"
-msgstr "Last updated:"
+msgstr "Last update:"
 
 #: .\news\templates\news\yahoonews.html:60
 msgid "Aucun article disponible pour le moment."
-msgstr "No articles available at the moment."
+msgstr "No articles available at this time."
 
 #: .\resources\models.py:29
 msgid ""
 "La taille de l'image ne doit pas dépasser 20 Mo. Vous pouvez partager le "
 "lien vers la ressource"
 msgstr ""
-"Image size should not exceed 20 MB. You can share the link to the resource"
+"Image size must not exceed 20 MB. You can share the link to the resource"
 
 #: .\resources\models.py:31
 msgid ""
 "La taille du fichier ne doit pas dépasser 20 Mo. Vous pouvez partager le "
 "lien vers la ressource"
 msgstr ""
-"File size should not exceed 20 MB. You can share the link to the resource"
+"File size must not exceed 20 MB. You can share the link to the resource"
 
 #: .\resources\models.py:33
 msgid ""
 "La taille de la vidéo ne doit pas dépasser 20 Mo. Vous pouvez partager le "
 "lien vers la ressource"
 msgstr ""
-"Video size should not exceed 20 MB. You can share the link to the resource"
+"Video size must not exceed 20 MB. You can share the link to the resource"
 
 #: .\resources\templates\resources\add_document.html:9
 #: .\resources\templates\resources\add_document.html:13
-#: .\resources\templates\resources\resource_list.html:127
+#: .\resources\templates\resources\resource_list.html:135
 #: .\resources\templates\resources\resource_type_selection.html:60
 msgid "Ajouter un Document"
 msgstr "Add a Document"
@@ -849,7 +1061,7 @@ msgid "Description"
 msgstr "Description"
 
 #: .\resources\templates\resources\add_document.html:29
-#: .\resources\templates\resources\resource_list.html:129
+#: .\resources\templates\resources\resource_list.html:137
 #: .\resources\templates\resources\resource_type_selection.html:62
 msgid "Document"
 msgstr "Document"
@@ -863,32 +1075,32 @@ msgstr "Add"
 
 #: .\resources\templates\resources\add_image.html:6
 msgid "Ajouter une image"
-msgstr "Add an Image"
+msgstr "Add an image"
 
 #: .\resources\templates\resources\add_image.html:38
-#: .\resources\templates\resources\resource_list.html:119
+#: .\resources\templates\resources\resource_list.html:127
 #: .\resources\templates\resources\resource_type_selection.html:51
 msgid "Ajouter une Image"
 msgstr "Add an Image"
 
 #: .\resources\templates\resources\add_image.html:54
-#: .\resources\templates\resources\resource_list.html:121
+#: .\resources\templates\resources\resource_list.html:129
 #: .\resources\templates\resources\resource_type_selection.html:53
 msgid "Image"
 msgstr "Image"
 
 #: .\resources\templates\resources\add_link.html:7
 msgid "Ajouter un lien"
-msgstr "Add a Link"
+msgstr "Add a link"
 
 #: .\resources\templates\resources\add_link.html:15
-#: .\resources\templates\resources\resource_list.html:123
+#: .\resources\templates\resources\resource_list.html:131
 #: .\resources\templates\resources\resource_type_selection.html:55
 msgid "Ajouter un Lien"
 msgstr "Add a Link"
 
 #: .\resources\templates\resources\add_link.html:22
-#: .\resources\templates\resources\resource_list.html:125
+#: .\resources\templates\resources\resource_list.html:133
 #: .\resources\templates\resources\resource_type_selection.html:57
 msgid "Lien"
 msgstr "Link"
@@ -900,7 +1112,7 @@ msgstr " No preview available "
 #: .\resources\templates\resources\add_video.html:6
 #: .\resources\templates\resources\add_video.html:14
 msgid "Ajouter une vidéo"
-msgstr "Add a Video"
+msgstr "Add a video"
 
 #: .\resources\templates\resources\add_video.html:28
 msgid "Description "
@@ -914,31 +1126,50 @@ msgstr "Video"
 msgid "Votre navigateur ne supporte pas l'élément vidéo."
 msgstr "Your browser does not support the video element."
 
-#: .\resources\templates\resources\resource_detail.html:34
-#: .\resources\templates\resources\resource_list.html:42
+#: .\resources\templates\resources\resource_detail.html:7
+#, python-format
+msgid " Ressource : %(title)s "
+msgstr " Resource: %(title)s "
+
+#: .\resources\templates\resources\resource_detail.html:24
+#: .\resources\templates\resources\resource_detail.html:71
+#: .\resources\templates\resources\resource_detail.html:83
+#: .\resources\templates\resources\resource_list.html:36
+#: .\resources\templates\resources\resource_list.html:49
+#: .\resources\templates\resources\resource_list.html:106
+msgid "Télécharger"
+msgstr "Download"
+
+#: .\resources\templates\resources\resource_detail.html:66
+msgid "Icône de document"
+msgstr "Document icon"
+
+#: .\resources\templates\resources\resource_detail.html:79
+#: .\resources\templates\resources\resource_list.html:44
 msgid "Votre navigateur ne supporte pas la balise vidéo."
 msgstr "Your browser does not support the video tag."
 
-#: .\resources\templates\resources\resource_detail.html:39
-msgid "Ajouté le"
-msgstr "Added on"
+#: .\resources\templates\resources\resource_detail.html:89
+#, python-format
+msgid "Ajouté le : %(date)s"
+msgstr "Added on: %(date)s"
 
-#: .\resources\templates\resources\resource_detail.html:40
+#: .\resources\templates\resources\resource_detail.html:90
 msgid "Ajouté par"
 msgstr "Added by"
 
 #: .\resources\templates\resources\resource_list.html:7
-#: .\templates\includes\navbar.html:25
+#: .\templates\includes\navbar.html:23
 msgid "Ressources"
 msgstr "Resources"
 
 #: .\resources\templates\resources\resource_list.html:14
 msgid "Liste des Ressources"
-msgstr "List of Resources"
+msgstr "Resources List"
 
 #: .\resources\templates\resources\resource_list.html:17
 msgid "Rechercher des ressources..."
-msgstr "Search for resources..."
+msgstr "Search resources..."
 
 #: .\resources\templates\resources\resource_list.html:18
 #: .\resources\templates\resources\search_results.html:19
@@ -965,32 +1196,24 @@ msgstr "Links"
 msgid "Documents"
 msgstr "Documents"
 
-#: .\resources\templates\resources\resource_list.html:96
-msgid "Télécharger"
-msgstr "Download"
-
-#: .\resources\templates\resources\resource_list.html:99
-msgid "Partager"
-msgstr "Share"
-
-#: .\resources\templates\resources\resource_list.html:108
+#: .\resources\templates\resources\resource_list.html:116
 #: .\resources\templates\resources\search_results.html:52
 msgid "Ajouté le :"
 msgstr "Added on:"
 
-#: .\resources\templates\resources\resource_list.html:112
+#: .\resources\templates\resources\resource_list.html:120
 msgid " Aucune ressource trouvée"
-msgstr " No resource found"
+msgstr " No resources found"
 
-#: .\resources\templates\resources\resource_list.html:131
+#: .\resources\templates\resources\resource_list.html:139
 msgid "Ajouter une video"
 msgstr "Add a video"
 
-#: .\resources\templates\resources\resource_list.html:133
+#: .\resources\templates\resources\resource_list.html:141
 msgid "Video"
 msgstr "Video"
 
-#: .\resources\templates\resources\resource_list.html:137
+#: .\resources\templates\resources\resource_list.html:145
 msgid "Ajouter une ressource"
 msgstr "Add a resource"
 
@@ -1000,7 +1223,7 @@ msgstr "Resource Type Selection"
 
 #: .\resources\templates\resources\resource_type_selection.html:49
 msgid "Choisissez le Type de Ressource à Ajouter"
-msgstr "Choose the Type of Resource to Add"
+msgstr "Choose Resource Type to Add"
 
 #: .\resources\templates\resources\search_results.html:7
 msgid "Résultats de Recherche"
@@ -1036,119 +1259,85 @@ msgstr "The file must be a valid video."
 
 #: .\templates\403.html:8
 msgid "Accès interdit"
-msgstr "Forbidden Access"
+msgstr "Access forbidden"
 
-#: .\templates\404.html:6
-msgid "Page non trouvée"
-msgstr "Page Not Found"
+#: .\templates\403.html:41
+msgid "Désolé, vous n'avez pas la permission d'accéder à cette page."
+msgstr "Sorry, you don't have permission to access this page."
 
-#: .\templates\404.html:40
+#: .\templates\403.html:42 .\templates\404.html:47
 msgid "Retour à la page d'accueil"
-msgstr "Return to Home Page"
+msgstr "Return to home page"
 
-#: .\templates\about.html:7
-msgid "À propos de nous"
-msgstr "About Us"
+#: .\templates\404.html:7
+msgid "Page non trouvée"
+msgstr "Page not found"
 
-#: .\templates\about.html:8
-msgid ""
-"Bienvenue sur le forum de l'Institut National Supérieur des Sciences et "
-"Techniques d'Abéché (INSTA)."
-msgstr ""
-"Welcome to the forum of the National Higher Institute of Sciences and "
-"Techniques of Abéché (INSTA)."
+#: .\templates\404.html:46
+msgid "Désolé, la page que vous cherchez n'existe pas"
+msgstr "Sorry, the page you're looking for doesn't exist"
+
+#: .\templates\about.html:5
+msgid "A propos de nous"
+msgstr "About us"
 
 #: .\templates\about.html:9
-msgid ""
-"Ce projet a été développé par Abakar Silet Darkou et Aka Gerald comme projet "
-"de fin d'études et un don pour la numérisation de notre institut . Notre "
-"vision et Notre dévouement ont permis la création de cette plateforme "
-"innovante."
-msgstr ""
-"This project was developed by Abakar Silet Darkou and Aka Gerald as a final "
-"year project and a gift for the digitization of our institute. Our vision "
-"and dedication allowed the creation of this innovative platform."
+msgid "À propos de nous"
+msgstr "About us"
 
-#: .\templates\about.html:10
+#: .\templates\about.html:15
 msgid "Nos Objectifs"
-msgstr "Our Objectives"
+msgstr "Our Goals"
 
-#: .\templates\about.html:11
+#: .\templates\about.html:16
 msgid "Notre plateforme vise à :"
 msgstr "Our platform aims to:"
 
-#: .\templates\about.html:13
+#: .\templates\about.html:18
 msgid ""
 "Faciliter la communication et l'échange entre les étudiants et les "
 "enseignants."
 msgstr "Facilitate communication and exchange between students and teachers."
 
-#: .\templates\about.html:14
+#: .\templates\about.html:19
 msgid ""
 "Fournir un espace pour partager des ressources académiques et pédagogiques."
 msgstr "Provide a space to share academic and educational resources."
 
-#: .\templates\about.html:15
-msgid ""
-"Tenir les membres de l'institut informés des dernières actualités et "
-"événements au sein de l'institution."
-msgstr ""
-"Keep institute members informed about the latest news and events within the "
-"institution."
-
-#: .\templates\about.html:16
+#: .\templates\about.html:22
 msgid ""
 "Encourager la participation et l'engagement dans les activités de l'institut."
 msgstr "Encourage participation and engagement in institute activities."
 
-#: .\templates\about.html:18
+#: .\templates\about.html:24
 msgid "Fonctionnalités de la plateforme"
 msgstr "Platform Features"
 
-#: .\templates\about.html:19
+#: .\templates\about.html:25
 msgid "Notre forum inclut :"
 msgstr "Our forum includes:"
 
-#: .\templates\about.html:21
+#: .\templates\about.html:27
 msgid ""
 "Un forum de discussion pour poser des questions et partager des "
 "connaissances."
 msgstr "A discussion forum to ask questions and share knowledge."
 
-#: .\templates\about.html:22
-msgid ""
-"Une section de partage de ressources où les utilisateurs peuvent télécharger "
-"et accéder à des documents."
-msgstr ""
-"A resource sharing section where users can upload and access documents."
-
-#: .\templates\about.html:23
+#: .\templates\about.html:30
 msgid ""
 "Une page d'actualités pour se tenir informé des dernières nouveautés de "
 "l'institut."
-msgstr ""
-"A news page to stay informed about the latest developments of the institute."
+msgstr "A news page to stay informed about the latest institute updates."
 
-#: .\templates\about.html:24
+#: .\templates\about.html:31
 msgid ""
 "Un calendrier d'événements pour ne rien manquer des activités organisées par "
 "l'institut."
-msgstr ""
-"An events calendar so you don't miss any activities organized by the "
-"institute."
+msgstr "An events calendar to not miss any activities organized by the institute."
 
-#: .\templates\about.html:26
-msgid ""
-"Nous espérons que cette plateforme deviendra un outil indispensable pour "
-"tous les membres de notre communauté académique. Merci de votre soutien et "
-"de votre engagement."
-msgstr ""
-"We hope that this platform will become an essential tool for all members of "
-"our academic community. Thank you for your support and engagement."
-
-#: .\templates\about.html:27
+#: .\templates\about.html:35
 msgid "Retour à l'accueil"
-msgstr "Return to Home"
+msgstr "Return to home"
 
 #: .\templates\account\account_inactive.html:5
 #: .\templates\account\account_inactive.html:9
@@ -1187,8 +1376,8 @@ msgid ""
 "veuillez le saisir\n"
 "rapidement."
 msgstr ""
-"We have sent a code to %(email_link)s. The code expires quickly, so please "
-"enter it quickly."
+"We've sent a code to %(email_link)s. The code expires quickly, so please enter it\n"
+"promptly."
 
 #: .\templates\account\confirm_email_verification_code.html:28
 #: .\templates\account\reauthenticate.html:18
@@ -1197,16 +1386,16 @@ msgstr "Confirm"
 
 #: .\templates\account\confirm_login_code.html:5
 #: .\templates\account\confirm_login_code.html:27
-#: .\templates\account\login.html:50 .\templates\account\login.html:53
+#: .\templates\account\login.html:51 .\templates\account\login.html:54
 #: .\templates\account\password_reset_from_key_done.html:45
 #: .\templates\account\request_login_code.html:5
-#: .\templates\account\signup.html:79 .\templates\includes\navbar.html:53
+#: .\templates\account\signup.html:74 .\templates\includes\navbar.html:54
 msgid "Se connecter"
-msgstr "Log In"
+msgstr "Log in"
 
 #: .\templates\account\confirm_login_code.html:9
 msgid "Entrez le code de connexion"
-msgstr "Enter the Login Code"
+msgstr "Enter the login code"
 
 #: .\templates\account\confirm_login_code.html:15
 #, python-format
@@ -1214,8 +1403,7 @@ msgid ""
 "Nous avons envoyé un code à %(email_link)s. Le code expire rapidement, donc "
 "veuillez le saisir rapidement."
 msgstr ""
-"We have sent a code to %(email_link)s. The code expires quickly, so please "
-"enter it quickly."
+"We've sent a code to %(email_link)s. The code expires quickly, so please enter it promptly."
 
 #: .\templates\account\email.html:4 .\templates\account\email.html:9
 msgid "Email Addresses"
@@ -1239,11 +1427,11 @@ msgstr "Primary"
 
 #: .\templates\account\email.html:45
 msgid "Rendre principale"
-msgstr "Make Primary"
+msgstr "Make primary"
 
 #: .\templates\account\email.html:48
 msgid "Renvoyer le message de vérification"
-msgstr "Resend Verification Message"
+msgstr "Resend verification"
 
 #: .\templates\account\email.html:51
 msgid "Retirer"
@@ -1251,7 +1439,7 @@ msgstr "Remove"
 
 #: .\templates\account\email.html:60 .\templates\account\email.html:71
 msgid "Ajouter une adresse e-mail"
-msgstr "Add an Email Address"
+msgstr "Add an email address"
 
 #: .\templates\account\email.html:82
 msgid "Do you really want to remove the selected email address?"
@@ -1271,20 +1459,17 @@ msgid ""
 "\n"
 "%(password_reset_url)s"
 msgstr ""
-"You are receiving this email because you or someone else has attempted to "
-"sign up with the following email address:\n"
+"You're receiving this email because you or someone else tried to register with the following email address:\n"
 "\n"
 "%(email)s\n"
 "\n"
-"However, an account already exists with this email address. If you have "
-"forgotten this, please use the password reset procedure to recover your "
-"account:\n"
+"However, an account already exists with this email address. If you forgot about this, please use the password reset procedure to recover your account:\n"
 "\n"
 "%(password_reset_url)s"
 
 #: .\templates\account\email\account_already_exists_subject.txt:3
 msgid "Compte déjà existant"
-msgstr "Account Already Exists"
+msgstr "Account already exists"
 
 #: .\templates\account\email\base_message.txt:3
 #, python-format
@@ -1305,8 +1490,7 @@ msgid ""
 "Vous recevez cet e-mail parce que les modifications suivantes ont été "
 "apportées à votre compte:"
 msgstr ""
-"You are receiving this email because the following changes were made to your "
-"account:"
+"You're receiving this email because the following changes were made to your account:"
 
 #: .\templates\account\email\base_notification.txt:10
 #, python-format
@@ -1319,8 +1503,7 @@ msgid ""
 "- Navigateur : %(user_agent)s\n"
 "- Date : %(timestamp)s"
 msgstr ""
-"If you do not recognize this change, please take appropriate security "
-"precautions immediately. The change to your account comes from:\n"
+"If you don't recognize this change, please take appropriate security measures immediately. The change to your account came from:\n"
 "\n"
 "- IP Address: %(ip)s\n"
 "- Browser: %(user_agent)s\n"
@@ -1329,12 +1512,11 @@ msgstr ""
 #: .\templates\account\email\email_changed_message.txt:4
 #, python-format
 msgid "Votre adresse e-mail a été changée de %(from_email)s à %(to_email)s."
-msgstr ""
-"Your email address has been changed from %(from_email)s to %(to_email)s."
+msgstr "Your email address has been changed from %(from_email)s to %(to_email)s."
 
 #: .\templates\account\email\email_changed_subject.txt:3
 msgid "Adresse e-mail modifiée"
-msgstr "Email Address Changed"
+msgstr "Email address changed"
 
 #: .\templates\account\email\email_confirm_message.txt:4
 msgid "Votre adresse e-mail a été confirmée."
@@ -1350,35 +1532,32 @@ msgid ""
 "Vous recevez cet e-mail parce que l'utilisateur %(user_display)s a donné "
 "votre adresse e-mail pour s'inscrire à un compte sur %(site_domain)s."
 msgstr ""
-"You are receiving this email because user %(user_display)s provided your "
-"email address to register an account on %(site_domain)s."
+"You're receiving this email because user %(user_display)s provided your email address to register an account on %(site_domain)s."
 
 #: .\templates\account\email\email_confirmation_message.txt:7
 msgid ""
 "Votre code de vérification de l'e-mail est ci-dessous. Veuillez l'entrer "
 "dans votre fenêtre de navigateur ouverte."
 msgstr ""
-"Your email verification code is below. Please enter it in your open browser "
-"window."
+"Your email verification code is below. Please enter it in your open browser window."
 
 #: .\templates\account\email\email_confirmation_message.txt:9
 #, python-format
 msgid "Pour confirmer que c'est correct, allez à %(activate_url)s"
-msgstr "To confirm that this is correct, go to %(activate_url)s"
+msgstr "To confirm this is correct, go to %(activate_url)s"
 
 #: .\templates\account\email\email_confirmation_subject.txt:3
 msgid "Veuillez confirmer votre adresse e-mail"
-msgstr "Please Confirm Your Email Address"
+msgstr "Please confirm your email address"
 
 #: .\templates\account\email\email_deleted_message.txt:4
 #, python-format
 msgid "L'adresse e-mail %(deleted_email)s a été supprimée de votre compte."
-msgstr ""
-"The email address %(deleted_email)s has been deleted from your account."
+msgstr "The email address %(deleted_email)s has been removed from your account."
 
 #: .\templates\account\email\email_deleted_subject.txt:3
 msgid "Email a été supprimée"
-msgstr "Email Has Been Deleted"
+msgstr "Email has been removed"
 
 #: .\templates\account\email\login_code_message.txt:5
 msgid ""
@@ -1390,7 +1569,8 @@ msgstr ""
 
 #: .\templates\account\email\login_code_message.txt:9
 msgid "This mail can be safely ignored if you did not initiate this action."
-msgstr "This email can be safely ignored if you did not initiate this action."
+msgstr ""
+"This mail can be safely ignored if you did not initiate this action."
 
 #: .\templates\account\email\login_code_subject.txt:3
 msgid "Sign-In Code"
@@ -1412,19 +1592,17 @@ msgid ""
 "de réinitialisation de mot de passe. Cliquez sur le lien ci-dessous pour "
 "réinitialiser votre mot de passe."
 msgstr ""
-"You are receiving this email because you or someone else has requested a "
-"password reset for your user account.\n"
-"You can safely ignore this email if you did not request a password reset. "
-"Click the link below to reset your password."
+"You're receiving this email because you or someone else has requested a password reset for your user account.\n"
+"You can safely ignore this email if you didn't request a password reset. Click the link below to reset your password."
 
 #: .\templates\account\email\password_reset_key_message.txt:9
 #, python-format
 msgid "Si vous avez oublié, votre nom d'utilisateur est %(username)s."
-msgstr "If you have forgotten, your username is %(username)s."
+msgstr "In case you forgot, your username is %(username)s."
 
 #: .\templates\account\email\password_reset_key_subject.txt:3
 msgid "E-mail de réinitialisation de mot de passe"
-msgstr "Password Reset Email"
+msgstr "Password reset email"
 
 #: .\templates\account\email\password_reset_message.txt:4
 msgid "Votre mot de passe a été réinitialisé."
@@ -1450,15 +1628,15 @@ msgid ""
 "n'avons aucun enregistrement d'un compte de ce type dans notre base de "
 "données."
 msgstr ""
-"You are receiving this email because you, or someone else, attempted to "
-"access an account with the email address %(email)s. However, we have no "
-"record of an account of this type in our database."
+"You're receiving this email because you or someone else tried to access an "
+"account with email address %(email)s. However, we don't have any record of "
+"such an account in our database."
 
 #: .\templates\account\email\unknown_account_message.txt:6
 msgid ""
 "Vous pouvez ignorer cet e-mail en toute sécurité si vous n'avez pas initié "
 "cette action."
-msgstr "You can safely ignore this email if you did not initiate this action."
+msgstr "You can safely ignore this email if you didn't initiate this action."
 
 #: .\templates\account\email\unknown_account_message.txt:8
 msgid ""
@@ -1468,7 +1646,7 @@ msgstr "If this was you, you can sign up for an account using the link below."
 
 #: .\templates\account\email\unknown_account_subject.txt:3
 msgid "Compte inconnu"
-msgstr "Unknown Account"
+msgstr "Unknown account"
 
 #: .\templates\account\email_change.html:5
 #: .\templates\account\email_change.html:9
@@ -1530,7 +1708,7 @@ msgstr "Confirm"
 msgid ""
 "Impossible de confirmer %(email)s parce que confirmer par un autre compte."
 msgstr ""
-"Unable to confirm %(email)s because it is confirmed by another account."
+"Cannot confirm %(email)s because it's already confirmed by another account."
 
 #: .\templates\account\email_confirm.html:45
 #, python-format
@@ -1540,51 +1718,46 @@ msgid ""
 "        class=\"allauth-a\">envoyer une nouvelle adresse\n"
 "        pour la requete de confirmation</a>."
 msgstr ""
-"This email confirmation link has expired or is invalid. Please <a href="
-"\"%(email_url)s\"\n"
-"        class=\"allauth-a\">send a new address\n"
-"        for the confirmation request</a>."
+"This email confirmation link has expired or is invalid. Please <a "
+"href=\"%(email_url)s\"\n"
+"        class=\"allauth-a\">request a new confirmation email</a>."
 
-#: .\templates\account\login.html:24
+#: .\templates\account\login.html:25
 msgid "Identifiant"
 msgstr "Username"
 
-#: .\templates\account\login.html:27
+#: .\templates\account\login.html:28
 msgid "Entrez votre email ou pseudo"
 msgstr "Enter your email or username"
 
-#: .\templates\account\login.html:34
+#: .\templates\account\login.html:35
 msgid "Entrez votre mot de passe"
 msgstr "Enter your password"
 
-#: .\templates\account\login.html:43
+#: .\templates\account\login.html:44
 msgid "Mot de passe oublié ?"
 msgstr "Forgot password?"
 
-#: .\templates\account\login.html:51
-#, fuzzy
-#| msgid "Connexion"
+#: .\templates\account\login.html:52
 msgid "Connexion en cours..."
-msgstr "Login"
+msgstr "Signing in..."
 
-#: .\templates\account\login.html:56
+#: .\templates\account\login.html:57
 msgid "Pas encore de compte ?"
 msgstr "Don't have an account yet?"
 
-#: .\templates\account\login.html:56
+#: .\templates\account\login.html:57
 msgid "Inscrivez-vous"
 msgstr "Sign up"
 
-#: .\templates\account\login.html:58
-#, fuzzy
-#| msgid "S'inscrire avec Google"
+#: .\templates\account\login.html:69 .\templates\account\signup.html:91
 msgid "Se connecter avec Google"
-msgstr "Sign up with Google"
+msgstr "Sign in with Google"
 
 #: .\templates\account\logout.html:6 .\templates\account\logout.html:10
 #: .\templates\account\logout.html:23
 msgid "Se déconnecter"
-msgstr "Sign Out"
+msgstr "Sign out"
 
 #: .\templates\account\logout.html:13
 msgid "Es-tu sûr de vouloir te déconnecter?"
@@ -1594,15 +1767,14 @@ msgstr "Are you sure you want to sign out?"
 #, python-format
 msgid ""
 "Vous ne pouvez pas supprimer votre adresse e-mail principale (%(email)s)."
-msgstr "You cannot delete your primary email address (%(email)s)."
+msgstr "You cannot remove your primary email address (%(email)s)."
 
 #: .\templates\account\messages\email_confirmation_failed.txt:2
 #, python-format
 msgid ""
 "Impossible de confirmer %(email)s car elle est déjà confirmée par un autre "
 "compte."
-msgstr ""
-"Unable to confirm %(email)s as it is already confirmed by another account."
+msgstr "Cannot confirm %(email)s because it's already confirmed by another account."
 
 #: .\templates\account\messages\email_confirmation_sent.txt:2
 #, python-format
@@ -1617,7 +1789,7 @@ msgstr "You have confirmed %(email)s."
 #: .\templates\account\messages\email_deleted.txt:2
 #, python-format
 msgid "Adresse e-mail supprimée %(email)s."
-msgstr "Email address deleted %(email)s."
+msgstr "Email address %(email)s has been deleted."
 
 #: .\templates\account\messages\logged_in.txt:4
 #, python-format
@@ -1649,12 +1821,13 @@ msgstr "Your primary email address must be verified."
 #: .\templates\account\password_change.html:6
 #: .\templates\account\password_change.html:10
 #: .\templates\account\password_change.html:22 .\templates\edit_profile.html:26
+#: .\templates\profile.html:60
 msgid "Changer le mot de passe"
 msgstr "Change Password"
 
-#: .\templates\account\password_change.html:24
+#: .\templates\account\password_change.html:25
 msgid "Mot de passe oublié?"
-msgstr "Forgot Password?"
+msgstr "Forgot password?"
 
 #: .\templates\account\password_reset_done.html:8
 #: .\templates\account\password_reset_done.html:12
@@ -1667,9 +1840,8 @@ msgid ""
 "vérifier votre dossier de spam. Sinon, contactez-nous si vous ne le recevez "
 "pas dans quelques minutes."
 msgstr ""
-"We have sent you an email. If you have not received it, please check your "
-"spam folder. Otherwise, contact us if you do not receive it within a few "
-"minutes."
+"We have sent you an email. If you haven't received it, please check your spam "
+"folder. Otherwise contact us if you don't receive it within a few minutes."
 
 #: .\templates\account\password_reset_from_key.html:87
 #: .\templates\account\password_reset_from_key.html:125
@@ -1685,7 +1857,7 @@ msgid ""
 "qu'il a déjà été utilisé. Veuillez demander une nouvelle réinitialisation du "
 "mot de passe."
 msgstr ""
-"The password reset link is invalid, likely because it has already been used. "
+"The password reset link is invalid, possibly because it has already been used. "
 "Please request a new password reset."
 
 #: .\templates\account\password_reset_from_key.html:129
@@ -1699,7 +1871,7 @@ msgstr "Change Password"
 
 #: .\templates\account\password_reset_from_key_done.html:42
 msgid "Votre mot de passe est maintenant modifié."
-msgstr "Your password has now been changed."
+msgstr "Your password is now changed."
 
 #: .\templates\account\reauthenticate.html:6
 msgid "Entrez votre mot de passe:"
@@ -1718,52 +1890,46 @@ msgstr ""
 
 #: .\templates\account\request_login_code.html:24
 msgid "Demander le code"
-msgstr "Request Code"
+msgstr "Request code"
 
 #: .\templates\account\request_login_code.html:30
 msgid "Autres options de connexion"
-msgstr "Other Login Options"
+msgstr "Other login options"
 
 #: .\templates\account\signup.html:38
 msgid "Adresse Email"
 msgstr "Email Address"
 
-#: .\templates\account\signup.html:68 .\templates\profile.html:19
-msgid " Photo de profil"
-msgstr " Profile Picture"
+#: .\templates\account\signup.html:68 .\templates\profile.html:23
+msgid "Photo de profil"
+msgstr "Profile Picture"
 
-#: .\templates\account\signup.html:75
-#, fuzzy
-#| msgid "Inscription fermée"
+#: .\templates\account\signup.html:71
 msgid "Inscription en cours..."
-msgstr "Sign Up Closed"
+msgstr "Signing up..."
 
-#: .\templates\account\signup.html:79
+#: .\templates\account\signup.html:74
 msgid "Déjà un compte ?"
 msgstr "Already have an account?"
 
-#: .\templates\account\signup.html:81
-msgid "S'inscrire avec Google"
-msgstr "Sign up with Google"
-
 #: .\templates\account\signup_by_passkey.html:8
 msgid "Inscription par mot de passe"
-msgstr "Sign up with Password"
+msgstr "Sign up with passkey"
 
 #: .\templates\account\signup_by_passkey.html:17
 #, python-format
 msgid ""
 "Tu as déjà un compte? Alors veuilles-tu %(link)sse connecter%(end_link)s."
 msgstr ""
-"Do you already have an account? Then please %(link)slog in%(end_link)s."
+"Already have an account? Then please %(link)ssign in%(end_link)s instead."
 
 #: .\templates\account\signup_by_passkey.html:29
 msgid "S'inscrire"
-msgstr "Sign Up"
+msgstr "Sign up"
 
 #: .\templates\account\signup_by_passkey.html:36
 msgid "Autres options"
-msgstr "Other Options"
+msgstr "Other options"
 
 #: .\templates\account\signup_closed.html:5
 #: .\templates\account\signup_closed.html:9
@@ -1785,7 +1951,7 @@ msgstr "You are already logged in as %(user_display)s."
 
 #: .\templates\account\snippets\warn_no_email.html:3
 msgid "Attention:"
-msgstr "Attention:"
+msgstr "Warning:"
 
 #: .\templates\account\snippets\warn_no_email.html:3
 msgid ""
@@ -1793,8 +1959,8 @@ msgid ""
 "vraiment ajouter une adresse e-mail afin de recevoir des notifications, "
 "réinitialiser votre mot de passe, etc."
 msgstr ""
-"You currently have no email address configured. You should really add an "
-"email address to receive notifications, reset your password, etc."
+"You currently do not have any email address set up. You should really add an "
+"email address so you can receive notifications, reset your password, etc."
 
 #: .\templates\account\verification_sent.html:5
 #: .\templates\account\verification_sent.html:10
@@ -1809,11 +1975,11 @@ msgid ""
 "boîte de réception, vérifiez votre dossier spam.\n"
 "Contactez-nous si vous ne l'avez pas reçu d'ici quelques minutes.\n"
 msgstr ""
-"We have sent you a confirmation email. Click on the link to finalize your "
-"sign-up process.\n"
-"If you do not see the verification email in your inbox, check your spam "
+"We have sent you a confirmation email. Please click the link to complete your "
+"registration process.\n"
+"If you don't see the verification email in your inbox, please check your spam "
 "folder.\n"
-"Contact us if you do not receive it within a few minutes.\n"
+"Contact us if you don't receive it within a few minutes.\n"
 
 #: .\templates\account\verified_email_required.html:7
 #: .\templates\account\verified_email_required.html:17
@@ -1826,9 +1992,9 @@ msgid ""
 "qui vous indiquez être. Pour cela, vous devez prouver que vous êtes bien le "
 "propriétaire de l'adresse e-mail que vous nous avez indiquée. "
 msgstr ""
-"To access this part of the site, we must first verify who you claim to be. "
-"To do this, you must prove that you are the owner of the email address you "
-"provided to us."
+"To access this part of the site, we first need to verify your identity. "
+"For this purpose, you need to prove ownership of the email address you "
+"provided us."
 
 #: .\templates\account\verified_email_required.html:24
 msgid ""
@@ -1840,8 +2006,9 @@ msgid ""
 msgstr ""
 "\n"
 "We have sent you a verification email. Please click on the link included in "
-"this email. If you do not see the verification email in your inbox, check "
-"your spam folder. Contact us if you do not receive it within a few minutes."
+"this email. If you don't see the verification email in your inbox, please "
+"check your spam folder. Contact us if you don't receive it within a few "
+"minutes."
 
 #: .\templates\account\verified_email_required.html:28
 #, python-format
@@ -1849,7 +2016,7 @@ msgid ""
 "<strong>Remarque:</strong> vous pouvez toujours <a href=\"%(email_url)s"
 "\"       class=\"allauth-a\">changer votre  adresse e-mail</a>."
 msgstr ""
-"<strong>Note:</strong> you can always <a href=\"%(email_url)s\"       class="
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\"       class="
 "\"allauth-a\">change your email address</a>."
 
 #: .\templates\allauth\layouts\base.html:26
@@ -1893,8 +2060,12 @@ msgstr "Sign In"
 msgid "Sign Up"
 msgstr "Sign Up"
 
+#: .\templates\contact.html:5 .\templates\includes\footer.html:14
+msgid "Contact"
+msgstr "Contact"
+
 #: .\templates\edit_profile.html:5 .\templates\edit_profile.html:15
-#: .\templates\profile.html:35
+#: .\templates\profile.html:57
 msgid "Modifier le profil"
 msgstr "Edit Profile"
 
@@ -1920,11 +2091,11 @@ msgstr "How can I log in to my account?"
 
 #: .\templates\faq.html:19
 msgid "Pour se connecter, cliquez sur l'icone "
-msgstr "To log in, click on the icon "
+msgstr "To log in, click on the "
 
 #: .\templates\faq.html:19
 msgid " en haut de la page et suivez les instructions."
-msgstr " at the top of the page and follow the instructions."
+msgstr " icon at the top of the page and follow the instructions."
 
 #: .\templates\faq.html:22
 msgid "Comment puis-je créer un compte ?"
@@ -1932,7 +2103,7 @@ msgstr "How can I create an account?"
 
 #: .\templates\faq.html:23
 msgid "Pour créer un compte, cliquez sur l'icone "
-msgstr "To create an account, click on the icon "
+msgstr "To create an account, click on the "
 
 #: .\templates\faq.html:23
 msgid ""
@@ -1940,9 +2111,9 @@ msgid ""
 "un mot de passe (que vous devez confirmer). Les noms d'utilisateur et image "
 "de profil sont optionnels."
 msgstr ""
-" at the top of the page. You will be asked for your email address, your "
-"names, and a password (which you must confirm). Usernames and profile "
-"pictures are optional."
+" icon at the top of the page. You will be asked for your email address, "
+"name and a password (which you'll need to confirm). Username and profile "
+"picture are optional."
 
 #: .\templates\faq.html:24
 msgid ""
@@ -1964,9 +2135,8 @@ msgid ""
 "la page de connexion et entrez l'adresse email avec laquelle vous avez créé "
 "le compte. Vous recevrez un lien de réinitialisation."
 msgstr ""
-"To reset your password, click on 'Forgot Password' on the login page and "
-"enter the email address you used to create the account. You will receive a "
-"reset link."
+"To reset your password, click 'Forgot password' on the login page and enter "
+"the email address you used to create the account. You will receive a reset link."
 
 #: .\templates\faq.html:31
 msgid "Que faire si j'ai oublié mon mot de passe ?"
@@ -1978,13 +2148,12 @@ msgid ""
 "oublié' sur la page de connexion. Entrez votre adresse email, et nous vous "
 "enverrons un lien pour réinitialiser votre mot de passe."
 msgstr ""
-"If you forgot your password, click on the 'Forgot Password' link on the "
-"login page. Enter your email address, and we will send you a link to reset "
-"your password."
+"If you forgot your password, click the 'Forgot password' link on the login "
+"page. Enter your email address and we will send you a password reset link."
 
 #: .\templates\faq.html:35
 msgid "Que faire si je n'ai pas reçu l'email de confirmation ?"
-msgstr "What should I do if I did not receive the confirmation email?"
+msgstr "What should I do if I didn't receive the confirmation email?"
 
 #: .\templates\faq.html:36
 msgid ""
@@ -1992,9 +2161,8 @@ msgid ""
 "spam. Si vous ne le trouvez toujours pas, contactez notre support à "
 "instaforum2025@gmail.com pour obtenir de l'aide."
 msgstr ""
-"If you did not receive the confirmation email, check your spam folder. If "
-"you still cannot find it, contact our support at instaforum2025@gmail.com "
-"for assistance."
+"If you didn't receive the confirmation email, check your spam folder. If you "
+"still can't find it, contact our support at instaforum2025@gmail.com for help."
 
 #: .\templates\faq.html:39
 msgid "Comment puis-je créer un nouveau thread ?"
@@ -2007,9 +2175,9 @@ msgid ""
 "votre message, et cliquez sur 'Publier'. Votre thread sera visible par les "
 "autres utilisateurs."
 msgstr ""
-"To create a new thread, go to the forums section and click on the 'New "
-"Thread' button. Enter a title for your thread, add your message, and click "
-"'Publish'. Your thread will be visible to other users."
+"To create a new thread, go to the forums section and click the 'New Thread' "
+"button. Enter a title for your thread, add your message, and click 'Post'. "
+"Your thread will be visible to other users."
 
 #: .\templates\faq.html:43
 msgid "Puis-je éditer ou supprimer mon thread ?"
@@ -2020,8 +2188,8 @@ msgid ""
 "Oui, vous pouvez éditer ou supprimer votre thread en cliquant sur les "
 "options 'Modifier' ou 'Supprimer' à côté de votre message."
 msgstr ""
-"Yes, you can edit or delete your thread by clicking on the 'Edit' or "
-"'Delete' options next to your message."
+"Yes, you can edit or delete your thread by clicking the 'Edit' or 'Delete' "
+"options next to your message."
 
 #: .\templates\faq.html:47
 msgid "Comment puis-je signaler un utilisateur ?"
@@ -2034,10 +2202,9 @@ msgid ""
 "d'utilisateur. Veuillez fournir une description détaillée du problème. Notre "
 "équipe examinera votre signalement et prendra les mesures appropriées."
 msgstr ""
-"If you notice inappropriate behavior, you can report a user by clicking on "
-"the 'Report' option next to their username. Please provide a detailed "
-"description of the issue. Our team will review your report and take "
-"appropriate action."
+"If you notice inappropriate behavior, you can report a user by clicking the "
+"'Report' option next to their username. Please provide a detailed description "
+"of the issue. Our team will review your report and take appropriate action."
 
 #: .\templates\faq.html:51
 msgid "Puis-je voir les actions prises suite à mon signalement ?"
@@ -2049,8 +2216,8 @@ msgid ""
 "actions spécifiques prises suite à un signalement. Cependant, nous vous "
 "assurons que chaque signalement est examiné attentivement."
 msgstr ""
-"For privacy reasons, we cannot disclose the specific actions taken after a "
-"report. However, we assure you that every report is carefully reviewed."
+"For privacy reasons, we cannot disclose specific actions taken in response to "
+"a report. However, we assure you that every report is carefully reviewed."
 
 #: .\templates\faq.html:55
 msgid "Comment puis-je signaler un thread ?"
@@ -2064,9 +2231,9 @@ msgid ""
 "Notre équipe examinera votre signalement et prendra les mesures nécessaires."
 msgstr ""
 "If you find a thread inappropriate or offensive, you can report it by "
-"clicking on the 'Report' option at the bottom of the message. Please provide "
-"a detailed description of why you are reporting the thread. Our team will "
-"review your report and take the necessary actions."
+"clicking the 'Report' option at the bottom of the message. Please provide a "
+"detailed description of why you're reporting the thread. Our team will review "
+"your report and take necessary action."
 
 #: .\templates\includes\footer.html:7
 msgid "Liens Utiles"
@@ -2080,10 +2247,6 @@ msgstr "Home"
 msgid "À propos"
 msgstr "About"
 
-#: .\templates\includes\footer.html:11 .\templates\includes\sidebar.html:62
-msgid "FAQ"
-msgstr "FAQ"
-
 #: .\templates\includes\footer.html:12 .\templates\includes\sidebar.html:63
 msgid "Règles du forum"
 msgstr "Forum Rules"
@@ -2093,43 +2256,39 @@ msgstr "Forum Rules"
 msgid "Politique de confidentialité"
 msgstr "Privacy Policy"
 
-#: .\templates\includes\footer.html:14
-msgid "Contact"
-msgstr "Contact"
-
 #: .\templates\includes\footer.html:19 .\templates\includes\sidebar.html:38
 msgid "Modération"
 msgstr "Moderation"
 
 #: .\templates\includes\footer.html:23
 msgid "Déconnexion"
-msgstr "Log Out"
+msgstr "Logout"
 
-#: .\templates\includes\footer.html:29
+#: .\templates\includes\footer.html:31
 msgid "Nous contacter"
 msgstr "Contact Us"
 
-#: .\templates\includes\footer.html:38
+#: .\templates\includes\footer.html:40
 msgid "Réseaux Sociaux"
 msgstr "Social Networks"
 
-#: .\templates\includes\footer.html:41 .\templates\includes\sidebar.html:71
+#: .\templates\includes\footer.html:43 .\templates\includes\sidebar.html:71
 msgid "Facebook"
 msgstr "Facebook"
 
-#: .\templates\includes\footer.html:42 .\templates\includes\sidebar.html:72
+#: .\templates\includes\footer.html:44 .\templates\includes\sidebar.html:72
 msgid "Twitter"
 msgstr "Twitter"
 
-#: .\templates\includes\footer.html:45 .\templates\includes\sidebar.html:73
+#: .\templates\includes\footer.html:47 .\templates\includes\sidebar.html:73
 msgid "Instagram"
 msgstr "Instagram"
 
-#: .\templates\includes\footer.html:47
+#: .\templates\includes\footer.html:49
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: .\templates\includes\footer.html:52
+#: .\templates\includes\footer.html:54
 msgid "Tous droits réservés."
 msgstr "All rights reserved."
 
@@ -2169,33 +2328,41 @@ msgstr "Search..."
 msgid "Messages"
 msgstr "Messages"
 
-#: .\templates\includes\navbar.html:39
+#: .\templates\includes\navbar.html:15
+msgid "Actualités du Monde"
+msgstr "World News"
+
+#: .\templates\includes\navbar.html:19
+msgid "Communauté"
+msgstr "Community"
+
+#: .\templates\includes\navbar.html:40
 msgid "Votre profil"
-msgstr "Your Profile"
+msgstr "Your profile"
 
-#: .\templates\includes\navbar.html:47
+#: .\templates\includes\navbar.html:48
 msgid " Vos notifications"
-msgstr " Your Notifications"
+msgstr "Your notifications"
 
-#: .\templates\includes\navbar.html:56
+#: .\templates\includes\navbar.html:57
 msgid "S\\"
-msgstr "Sign In"
+msgstr "Sign out"
 
-#: .\templates\includes\navbar.html:60
+#: .\templates\includes\navbar.html:61
 msgid "Changer de thème"
-msgstr "Change Theme"
+msgstr "Change theme"
 
-#: .\templates\includes\navbar.html:64 .\templates\includes\navbar.html:83
+#: .\templates\includes\navbar.html:65 .\templates\includes\navbar.html:84
 msgid "Créer un thread"
-msgstr "Create a Thread"
+msgstr "Create thread"
 
-#: .\templates\includes\navbar.html:88
+#: .\templates\includes\navbar.html:89
 msgid "Créer un Evénement"
-msgstr "Create an Event"
+msgstr "Create Event"
 
 #: .\templates\includes\navbar_forum_stats.html:4
 msgid "Statistiques du forum"
-msgstr "Forum Statistics"
+msgstr "Forum statistics"
 
 #: .\templates\includes\navbar_forum_stats.html:6
 msgid "Membres"
@@ -2203,19 +2370,61 @@ msgstr "Members"
 
 #: .\templates\includes\navbar_forum_stats.html:8
 msgid "Membres en ligne"
-msgstr "Online Members"
+msgstr "Online members"
 
-#: .\templates\includes\navbar_top_contributors.html:6
+#: .\templates\includes\navbar_top_contributors.html:5
 msgid "Tops contributeurs"
-msgstr "Top Contributors"
+msgstr "Top contributors"
+
+#: .\templates\includes\navbar_top_contributors.html:9
+#: .\templates\includes\navbar_top_contributors.html:24
+#, python-format
+msgid "Photo de profil de %(name)s"
+msgstr "Profile picture of %(name)s"
+
+#: .\templates\includes\navbar_top_contributors.html:11
+#: .\templates\includes\navbar_top_contributors.html:26
+#, python-format
+msgid "Photo de profil par défaut de %(name)s"
+msgstr "Default profile picture of %(name)s"
 
 #: .\templates\includes\navbar_top_contributors.html:14
-msgid "threads"
-msgstr "threads"
+#, python-format
+msgid ""
+"\n"
+"                %(count)s thread\n"
+"            "
+msgid_plural ""
+"\n"
+"                %(count)s threads\n"
+"            "
+msgstr[0] ""
+"\n"
+"                %(count)s thread\n"
+"            "
+msgstr[1] ""
+"\n"
+"                %(count)s threads\n"
+"            "
 
-#: .\templates\includes\navbar_top_contributors.html:24
-msgid "posts"
-msgstr "posts"
+#: .\templates\includes\navbar_top_contributors.html:29
+#, python-format
+msgid ""
+"\n"
+"                %(count)s post\n"
+"            "
+msgid_plural ""
+"\n"
+"                %(count)s posts\n"
+"            "
+msgstr[0] ""
+"\n"
+"                %(count)s post\n"
+"            "
+msgstr[1] ""
+"\n"
+"                %(count)s posts\n"
+"            "
 
 #: .\templates\includes\sidebar.html:39
 msgid "Creer Evénement"
@@ -2223,7 +2432,7 @@ msgstr "Create Event"
 
 #: .\templates\includes\sidebar.html:45
 msgid "Catégories populaires"
-msgstr "Popular Categories"
+msgstr "Popular categories"
 
 #: .\templates\includes\sidebar.html:65
 msgid "Contact/Support"
@@ -2231,7 +2440,7 @@ msgstr "Contact/Support"
 
 #: .\templates\includes\sidebar.html:70
 msgid "Suivez-nous"
-msgstr "Follow Us"
+msgstr "Follow us"
 
 #: .\templates\includes\sidebar.html:74
 msgid "Email"
@@ -2244,12 +2453,12 @@ msgid ""
 "et protégeons vos informations personnelles."
 msgstr ""
 "Welcome to our forum! We are committed to protecting your privacy. This "
-"privacy policy describes how we collect, use, and protect your personal "
+"privacy policy describes how we collect, use and protect your personal "
 "information."
 
 #: .\templates\privacy_policies.html:18
 msgid "1. Collecte des informations"
-msgstr "1. Information Collection"
+msgstr "1. Information collection"
 
 #: .\templates\privacy_policies.html:19
 msgid ""
@@ -2257,12 +2466,12 @@ msgid ""
 "votre nom, adresse email, et toute autre donnée que vous partagez en "
 "utilisant notre forum."
 msgstr ""
-"We collect the information you provide directly to us, such as your name, "
-"email address, and any other data you share while using our forum."
+"We collect information you provide directly to us, such as your name, email "
+"address, and any other data you share while using our forum."
 
 #: .\templates\privacy_policies.html:21
 msgid "2. Utilisation des informations"
-msgstr "2. Use of Information"
+msgstr "2. Use of information"
 
 #: .\templates\privacy_policies.html:22
 msgid ""
@@ -2275,15 +2484,15 @@ msgstr ""
 
 #: .\templates\privacy_policies.html:24
 msgid "3. Partage des informations"
-msgstr "3. Sharing of Information"
+msgstr "3. Information sharing"
 
 #: .\templates\privacy_policies.html:25
 msgid ""
 "Nous ne partageons pas vos informations personnelles avec des tiers, sauf si "
 "cela est nécessaire pour fournir nos services ou si la loi l'exige."
 msgstr ""
-"We do not share your personal information with third parties unless it is "
-"necessary to provide our services or required by law."
+"We do not share your personal information with third parties unless necessary "
+"to provide our services or required by law."
 
 #: .\templates\privacy_policies.html:27
 msgid "4. Sécurité"
@@ -2295,11 +2504,11 @@ msgid ""
 "contre l'accès non autorisé, la modification ou la divulgation."
 msgstr ""
 "We implement security measures to protect your information against "
-"unauthorized access, modification, or disclosure."
+"unauthorized access, alteration, or disclosure."
 
 #: .\templates\privacy_policies.html:30
 msgid "5. Vos droits"
-msgstr "5. Your Rights"
+msgstr "5. Your rights"
 
 #: .\templates\privacy_policies.html:31
 msgid ""
@@ -2312,7 +2521,7 @@ msgstr ""
 
 #: .\templates\privacy_policies.html:33
 msgid "6. Modifications de cette politique"
-msgstr "6. Changes to This Policy"
+msgstr "6. Changes to this policy"
 
 #: .\templates\privacy_policies.html:34
 msgid ""
@@ -2328,16 +2537,24 @@ msgid ""
 "de confidentialité, veuillez nous contacter à abakarix4dev@gmail.com ou "
 "akagerald@gmail.com."
 msgstr ""
-"If you have any questions or concerns about our privacy policy, please "
-"contact us at abakarix4dev@gmail.com or akagerald@gmail.com."
+"If you have questions or concerns about our privacy policy, please contact us "
+"at abakarix4dev@gmail.com or akagerald@gmail.com."
 
 #: .\templates\profile.html:16
 msgid "Votre profil utilisateur"
-msgstr "Your User Profile"
+msgstr "Your user profile"
 
-#: .\templates\profile.html:21
-msgid " Profil"
-msgstr " Profile"
+#: .\templates\profile.html:38
+msgid "Informations personnelles"
+msgstr "Personal information"
+
+#: .\templates\profile.html:41
+msgid "Nom complet"
+msgstr "Full name"
+
+#: .\templates\profile.html:49
+msgid "Membre depuis"
+msgstr "Member since"
 
 #: .\templates\rules.html:6 .\templates\rules.html:15
 msgid "Règles du Forum"
@@ -2345,19 +2562,19 @@ msgstr "Forum Rules"
 
 #: .\templates\rules.html:18
 msgid "1. Respect des autres utilisateurs"
-msgstr "1. Respect for Other Users"
+msgstr "1. Respect other users"
 
 #: .\templates\rules.html:19
 msgid ""
 "Veuillez respecter les autres membres du forum. Les insultes, harcèlements "
 "et comportements offensants ne seront pas tolérés."
 msgstr ""
-"Please respect other forum members. Insults, harassment, and offensive "
+"Please respect other forum members. Insults, harassment and offensive "
 "behavior will not be tolerated."
 
 #: .\templates\rules.html:22
 msgid "2. Contenu approprié"
-msgstr "2. Appropriate Content"
+msgstr "2. Appropriate content"
 
 #: .\templates\rules.html:23
 msgid ""
@@ -2372,12 +2589,12 @@ msgid ""
 "Vous pouvez signaler les contenus inappropriés aux moderateurs qui prendront "
 "des mesures qui s'imposent."
 msgstr ""
-"You can report inappropriate content to moderators who will take the "
-"necessary actions."
+"You can report inappropriate content to moderators who will take appropriate "
+"action."
 
 #: .\templates\rules.html:27
 msgid "3. Pas de spam"
-msgstr "3. No Spam"
+msgstr "3. No spam"
 
 #: .\templates\rules.html:28
 msgid ""
@@ -2396,7 +2613,7 @@ msgstr "Third-Party Login Failure"
 msgid ""
 "An error occurred while attempting to login via your third-party account."
 msgstr ""
-"An error occurred while attempting to log in via your third-party account."
+"An error occurred while attempting to login via your third-party account."
 
 #: .\templates\socialaccount\connections.html:13
 msgid ""
@@ -2450,7 +2667,8 @@ msgstr "Connect %(provider)s"
 #: .\templates\socialaccount\login.html:13
 #, python-format
 msgid "You are about to connect a new third-party account from %(provider)s."
-msgstr "You are about to connect a new third-party account from %(provider)s."
+msgstr ""
+"You are about to connect a new third-party account from %(provider)s."
 
 #: .\templates\socialaccount\login.html:17
 #, python-format
@@ -2460,8 +2678,7 @@ msgstr "Sign In Via %(provider)s"
 #: .\templates\socialaccount\login.html:20
 #, python-format
 msgid "You are about to sign in using a third-party account from %(provider)s."
-msgstr ""
-"You are about to sign in using a third-party account from %(provider)s."
+msgstr "You are about to sign in using a third-party account from %(provider)s."
 
 #: .\templates\socialaccount\login.html:27
 #: .\templates\socialaccount\login_redirect.html:10
@@ -2506,7 +2723,7 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"You are about to use your %(provider_name)s account to log in to\n"
+"You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 
 #: .\templates\socialaccount\snippets\login.html:10
@@ -2540,12 +2757,3 @@ msgstr "Current"
 #: .\templates\usersessions\usersession_list.html:60
 msgid "Sign Out Other Sessions"
 msgstr "Sign Out Other Sessions"
-
-#~ msgid "Soutenir le projet"
-#~ msgstr "Support the Project"
-
-#~ msgid "Faire un don"
-#~ msgstr "Make a Donation"
-
-#~ msgid "Devenir sponsor"
-#~ msgstr "Become a Sponsor"

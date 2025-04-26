@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/tagged.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="category-container">
+    <header class="category-header">
+        <h1 class="category-title">{{ category.name }}</h1>
+        {% if category.description %}
+        <p class="category-description">{{ category.description }}</p>
+        {% endif %}
+    </header>
+
+    <div class="subforums-grid">
+        {% for subforum in subforums %}
+        <article class="subforum-card">
+            <div class="subforum-header">
+                {% if subforum.image %}
+                <img src="{{ subforum.image.url }}" alt="{% blocktranslate with title=subforum.title %}Image de {{ title }}{% endblocktranslate %}" class="subforum-image">
+                {% endif %}
+                <div class="subforum-info">
+                    <h2 class="subforum-title">
+                        <a href="{% url 'forum:subforum' slug=subforum.slug %}">{{ subforum.title }}</a>
+                    </h2>
+                    <p class="subforum-description">{{ subforum.description }}</p>
+                    <div class="subforum-meta">
+                        <span class="thread-count">
+                            <i class="fas fa-comments"></i> 
+                            {% blocktranslate count counter=subforum.threads.count %}
+                                {{ counter }} thread
+                            {% plural %}
+                                {{ counter }} threads
+                            {% endblocktranslate %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-threads">
+                <h3 class="threads-title">{% translate "Threads récents" %}</h3>
+                {% if subforum.threads.all %}
+                <ul class="threads-list">
+                    {% for thread in subforum.threads.all|slice:":5" %}
+                    <li class="thread-item">
+                        <a href="{% url 'forum:thread' slug=thread.slug %}" class="thread-link">
+                            <span class="thread-title">{{ thread.title }}</span>
+                        </a>
+                        <span class="thread-author">{% blocktranslate with author=thread.author.name %}par @{{ author }}{% endblocktranslate %}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% if subforum.threads.count > 5 %}
+                <a href="{% url 'forum:subforum' slug=subforum.slug %}" class="view-all">
+                    {% translate "Voir tous les threads" %} <i class="fas fa-arrow-right"></i>
+                </a>
+                {% endif %}
+                {% else %}
+                <p class="no-threads">{% translate "Aucun thread dans ce forum" %}</p>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

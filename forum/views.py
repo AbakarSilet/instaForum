@@ -1,9 +1,9 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User, Group
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseForbidden
@@ -12,26 +12,57 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from taggit.models import Tag
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from forum.utils import remove_accents
 from modelUser.models import User
-from .models import Category, Notification, Report, Subforum, Thread, Post, Like, Dislike, UserBadge
+from .models import Category, Notification, Report, Subforum, Thread, Post, UserBadge
 from .forms import ThreadFormCreate, ThreadForm,ReportForm,PostForm, SearchForm,ThreadFormUpdate,PostFormUpdate
-from django.utils.translation import gettext as _
-
 
 from django.core.exceptions import PermissionDenied
 from allauth.account.decorators import verified_email_required
 
+@login_required
+def close_thread(request, slug):
+    thread = get_object_or_404(Thread, slug=slug)
+    
+    # Vérifier si l'utilisateur est l'auteur du thread ou un modérateur
+    if request.user == thread.author or request.user.groups.filter(name='Moderator').exists():
+        thread.is_closed = True
+        thread.save()
+        return redirect('forum:thread', slug=thread.slug)
+    
+    return HttpResponseForbidden (_("Vous n'avez pas l'autorisation de fermer ce fil de discussion."))
 
+@login_required
+def reopen_thread(request, slug):
+    thread = get_object_or_404(Thread, slug=slug)
+    
+    # Vérifier si l'utilisateur est l'auteur du thread uniquement
+    if request.user == thread.author:
+        thread.is_closed = False
+        thread.save()
+        return redirect('forum:thread', slug=thread.slug)
+    
+    return HttpResponseForbidden(_("Vous n'avez pas l'autorisation de rouvrir ce fil de discussion."))
 
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    
+    # Récupérer tous les subforums de la catégorie avec leurs threads
+    subforums = category.subforums.all().prefetch_related('threads')
+    
+    return render(request, 'forum/category.html', {
+        'category': category,
+        'subforums': subforums,
+    })
+
+@login_required
 def subforum_view(request, slug):
     subforum = get_object_or_404(Subforum, slug=slug)
     threads = subforum.threads.all()
     active_user = request.user.is_active
     return render(request, 'forum/subforum.html', {'subforum': subforum, 'threads': threads, 'active_user': active_user})
-
 
 
 @login_required
@@ -47,7 +78,7 @@ def add_post_view(request, thread_id):
             # Normalisation du contenu
             content = form.cleaned_data['content']
             quoted_text = request.POST.get('quoted_text', '')
-            translated_string = str(_('Réponse à @'))  # Convertit l'objet __proxy__ en chaîne de caractères
+            translated_string = str(_('Réponse à @'))
             if not content.startswith(translated_string):
                 if quoted_text:
                     post.content = f"{quoted_text}\n\n{content}"
@@ -56,16 +87,14 @@ def add_post_view(request, thread_id):
             
             post.save()
             
-            # Normaliser les tags
-            raw_tags = form.cleaned_data.get('tags')
-            normalized_tags = [remove_accents(tag) for tag in raw_tags]
-            post.tags.set(normalized_tags)
-            
             if post.author and thread.author != request.user:
                 Notification.objects.create(
                     user=thread.author,
-                    message=f'{request.user.username} a commente votre thread {thread.title}.',
-                    link =reverse('forum:thread', kwargs={'slug':thread.slug} ))
+                     message=_('%(username)s a commenté votre thread "%(title)s"') % {
+                            'username': request.user.username,
+                            'title': thread.title
+                        },
+                    link=reverse('forum:thread', kwargs={'slug': thread.slug}))
                 
             return redirect('forum:thread', slug=thread.slug)
         else:
@@ -79,6 +108,8 @@ def delete_thread_view(request, slug):
     thread = get_object_or_404(Thread, slug=slug)
     subforum_slug = thread.subforum.slug
     thread.delete()
+    
+    messages.success(request, _("Le thread a été supprimé avec succès."))
     return redirect('forum:subforum', slug=subforum_slug)
 
 
@@ -97,24 +128,22 @@ def create_thread(request):
             thread.author = request.user
             thread.save()
 
-            # Normaliser les tags avant de les ajouter
             raw_tags = form.cleaned_data.get('tags')
             normalized_tags = [remove_accents(tag) for tag in raw_tags]
             thread.tags.set(normalized_tags)
 
-            # Vérifier si c'est le premier thread de l'utilisateur
             if Thread.objects.filter(author=request.user).count() == 1:
+                messages.success(request, _("Félicitations pour votre premier thread !"))
                 return redirect('forum:first_thread_congrats', slug=thread.slug)
             else:
+                messages.success(request, _("Thread créé avec succès !"))
                 return redirect('forum:thread', slug=thread.slug)
         else:
-            messages.error(request, 'Veuillez remplir tous les champs requis.')
-
+            messages.error(request, _("Veuillez corriger les erreurs ci-dessous."))
     else:
         form = ThreadFormCreate()
         
     return render(request, 'forum/create.html', {'form': form})
-
 
 @verified_email_required
 @login_required
@@ -127,26 +156,30 @@ def create_thread_view(request, slug):
             thread = form.save(commit=False)
             thread.subforum = subforum
             thread.author = request.user
-            if request.user.is_active:
-                thread.save()
-            else:
-                messages.error(request, 'Vous n\'etes plus active ')
             
-            # Normaliser les tags avant de les ajouter
+            if not request.user.is_active:
+                messages.error(request, _("Votre compte n'est plus actif."))
+                return render(request, 'forum/create_thread.html', {'form': form, 'subforum': subforum})
+
+            thread.save()
+
+            # Normalize tags
             raw_tags = form.cleaned_data.get('tags')
             normalized_tags = [remove_accents(tag) for tag in raw_tags]
             thread.tags.set(normalized_tags)
             
             if Thread.objects.filter(author=request.user).count() == 1:
+                messages.success(request, _("Félicitations pour votre premier thread !"))
                 return redirect('forum:first_thread_congrats', slug=thread.slug)
             else:
+                messages.success(request, _("Votre thread a été créé avec succès !"))
                 return redirect('forum:thread', slug=thread.slug)
     else:
         form = ThreadForm()
+        
     return render(request, 'forum/create_thread.html', {'form': form, 'subforum': subforum})
 
-
-
+@login_required
 def forum_home_view(request):
     form = SearchForm(request.GET or None)
     query = None
@@ -273,32 +306,34 @@ def profile_view(request, username):
         'user_badges': user_badges,
     })
 
+@login_required
 def tagged(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     threads = Thread.objects.filter(tags__in=[tag])
-    posts = Post.objects.filter(tags__in=[tag])
 
     return render(request, 'forum/tagged.html', {
         'tag': tag,
         'threads': threads,
-        'posts': posts,
     })
-
-from django.db.models import Count
 
 @login_required
 def thread_view(request, slug):
-    thread = get_object_or_404(Thread, slug=slug)
+    # thread = get_object_or_404(Thread, slug=slug)
+    thread = get_object_or_404(
+        Thread.objects.annotate(
+            post_count=Count('posts')
+        ), 
+        slug=slug
+    )
     thread.view_count += 1
     thread.save()
     posts_list = thread.posts.all().order_by('-created_at')
-    user_liked = False
+    post_count = Thread.objects.annotate(post_count=Count('posts')).get(slug=slug)
+    print(f'post count == {post_count}')
     
-    if request.user.is_authenticated:
-        user_liked = Like.objects.filter(user=request.user, thread=thread).exists()
 
-    # Pagination reste identique
-    paginator = Paginator(posts_list, 4)
+    # Pagination
+    paginator = Paginator(posts_list, 12)
     page = request.GET.get('page', 1)
 
     try:
@@ -321,16 +356,15 @@ def thread_view(request, slug):
             post.save()
             form.save_m2m()  # Sauvegarder les tags
             
-            # Ajouter un message de confirmation
+            # Message de confirmation
             messages.success(request, _('Votre message a été publié avec succès !'))
             
             # Rediriger vers la dernière page pour voir le nouveau post
-            last_page = paginator.num_pages + 1  # +1 car on vient d'ajouter un post
+            last_page = paginator.num_pages + 1 
             return redirect(f'{reverse("forum:thread", kwargs={"slug": thread.slug})}?page={last_page}#post-{post.id}')
     else:
         form = PostForm()
 
-    # Reste du code inchangé
     threads_tag_ids = thread.tags.values_list('id', flat=True)
     similar_threads = Thread.objects.filter(
         tags__in=threads_tag_ids,
@@ -344,63 +378,43 @@ def thread_view(request, slug):
     return render(request, 'forum/thread.html', {
         'thread': thread,
         'posts': posts,
-        'user_liked': user_liked,
+        'post_count': post_count,
         'form': form,
         'similar_threads': similar_threads,
     })
 
-
-
 @login_required
 @csrf_exempt
-def like_thread(request, thread_id):
-    thread = get_object_or_404(Thread, id=thread_id)
-    liked = False
-    
-    # Vérifier si le like existe déjà
-    like = Like.objects.filter(user=request.user, thread=thread).first()
-    
-    if like:
-        # Si le like existe, le supprimer
-        like.delete()
+@login_required
+def like_thread(request, slug):
+    thread = get_object_or_404(Thread, slug=slug)
+    if thread.likes.filter(id=request.user.id).exists():
+        thread.likes.remove(request.user)
+        liked = False
     else:
-        # Sinon, créer un nouveau like
-        Like.objects.create(user=request.user, thread=thread)
+        thread.likes.add(request.user)
         liked = True
-        
-        # Créer une notification pour le like
-        if thread.author != request.user:
-            Notification.objects.create(
-                user=thread.author,
-                message=f'{request.user.username} a aimé votre thread "{thread.title}".',
-                link=reverse('forum:thread', kwargs={'slug': thread.slug})
-            )
-    
+
     return JsonResponse({
         'liked': liked,
-        'total_likes': thread.like_set.count()
+        'total_likes': thread.total_likes()
     })
-
+      
 @login_required
 @csrf_exempt
-def dislike_thread(request, thread_id):
-    thread = get_object_or_404(Thread, id=thread_id)
-    disliked = False
-    
-    # Vérifier si le dislike existe déjà
-    dislike = Dislike.objects.filter(user=request.user, thread=thread).first()
-    
-    if dislike:
-        # Si le dislike existe, le supprimer
-        dislike.delete()
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
     else:
-        # Sinon, créer un nouveau dislike
-        Dislike.objects.create(user=request.user, thread=thread)
-        disliked = True
-    
+        post.likes.add(request.user)
+        liked = True
+
     return JsonResponse({
-        'disliked': disliked,
-        'total_dislikes': thread.dislike_set.count()
+        'liked': liked,
+        'total_likes': post.total_likes()
     })
 
 
@@ -409,6 +423,7 @@ def dislike_thread(request, thread_id):
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     post.delete()
+    messages.success(request, _("Le message a été supprimé avec succès."))
     return redirect('forum:moderation_dashboard')
 
 @login_required
@@ -416,9 +431,11 @@ def delete_post(request, post_id):
 def delete_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     thread.delete()
+    messages.success(request, _("Le thread a été supprimé avec succès."))
     return redirect('forum:moderation_dashboard')
 
 @login_required
+@verified_email_required
 def report_view(request, report_type, item_id):
     if report_type == 'thread':
         item = get_object_or_404(Thread, id=item_id)
@@ -445,18 +462,17 @@ def report_view(request, report_type, item_id):
                 report.post = item
             report.save()
             
-            # Création de notifications pour les modérateurs
             moderator_group = Group.objects.get(name='Moderator')
             moderators = User.objects.filter(groups=moderator_group)
             
             if report_type == 'thread':
-                message = f"Nouveau signalement d'un sujet: {item.title}"
+                message = _("Nouveau signalement d'un sujet: %(title)s") % {'title': item.title}
                 link = reverse('forum:thread', args=[item.slug])
             elif report_type == 'post':
-                message = f"Nouveau signalement d'un message dans le sujet: {item.thread.title}"
+                message = _("Nouveau signalement d'un message dans le sujet: %(title)s") % {'title': item.thread.title}
                 link = reverse('forum:thread', args=[item.thread.slug])
             elif report_type == 'reported_user':
-                message = f"Nouveau signalement d'un utilisateur: {item.username}"
+                message = _("Nouveau signalement d'un utilisateur: %(name)s") % {'name': item.name}
                 link = reverse('forum:moderation_dashboard')
             
             # Créer une notification pour chaque modérateur
@@ -474,50 +490,43 @@ def report_view(request, report_type, item_id):
     else:
         form = ReportForm()
     
-    return render(request, 'forum/report.html', {'form': form, 'item': item, 'report_type': report_type, 'reported_username':reported_username})
-
+    return render(request, 'forum/report.html', {
+        'form': form,
+        'item': item,
+        'report_type': report_type,
+        'reported_username': reported_username
+    })
 
 @login_required
 def suspend_user(request, user_id):
-    # Vérifier si l'utilisateur est connecté
     if not request.user.is_authenticated:
-        return HttpResponseForbidden("Vous devez être connecté.")
+        return HttpResponseForbidden(_("Vous devez être connecté pour effectuer cette action."))
     
-    # Récupérer l'utilisateur à suspendre
     user_to_suspend = get_object_or_404(User, id=user_id)
     
-    # Récupérer le groupe Moderator
     try:
         moderator_group = Group.objects.get(name='Moderator')
     except Group.DoesNotExist:
-        return HttpResponseForbidden("Le groupe Modérateur n'existe pas.")
+        return HttpResponseForbidden(_("Le groupe Modérateur n'existe pas."))
     
-    # Vérifications des permissions
-    if (
-        # Vérifier si l'utilisateur est un superutilisateur
-        request.user.is_superuser or 
-        # Vérifier si l'utilisateur appartient au groupe Moderator
-        moderator_group in request.user.groups.all()
-    ):
-        # Vérifier qu'un modérateur ne peut pas se suspendre lui-même
+    if (request.user.is_superuser or moderator_group in request.user.groups.all()):
         if request.user.id == user_to_suspend.id:
-            return HttpResponseForbidden("Vous ne pouvez pas vous suspendre vous-même.")
+            return HttpResponseForbidden(_("Vous ne pouvez pas vous suspendre vous-même."))
         
-        # Suspension de l'utilisateur
         user_to_suspend.is_active = False
+        report = get_object_or_404(Report, reported_user=user_id)
+        report.delete()
         user_to_suspend.save()
         
-        # Créer une notification pour l'utilisateur suspendu
         Notification.objects.create(
             user=user_to_suspend,
-            message="Votre compte a été suspendu par un modérateur. Veuillez contacter l'administration pour plus d'informations.",
+            message=_("Votre compte a été suspendu. Contactez l'administration pour plus d'informations."),
             link=reverse('forum:home')
         )
         
         return redirect('forum:moderation_dashboard')
     else:
-        # Accès non autorisé
-        return HttpResponseForbidden("Vous n'avez pas la permission de suspendre des utilisateurs.")
+        return HttpResponseForbidden(_("Vous n'avez pas les permissions nécessaires.")) 
     
 @verified_email_required
 @login_required
@@ -528,7 +537,7 @@ def moderation_dashboard(request):
     reported_posts = Post.objects.filter(report__isnull=False).annotate(report_count=Count('report'))
     reported_users = User.objects.filter(report__isnull=False).annotate(report_count=Count('report'))
     
-    inactive_users_count = reported_users.filter(is_active=False).count()
+    inactive_users_count = User.objects.filter(is_active=False).count()
     reports = Report.objects.all()  # Récupérer tous les signalements
 
     return render(request, 'forum/moderation_dashboard.html', {

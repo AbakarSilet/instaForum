@@ -14,7 +14,7 @@ InstaForum | @{{ profile_user.first_name }}
 
 {% block content %}
 <div class="pub-profile">
-    <h2>{% trans "Profil de" %} {{ profile_user.first_name }}</h2>
+    <h2>{% blocktranslate with name=profile_user.first_name %}Profil de : {{ name }}{% endblocktranslate %}</h2>
     <img src="{{ profile_user.profile_image.url }}" alt="{{ profile_user.username }}">
     <div class="icons">
         <a href="{% url 'messaging:thread_detail' username=profile_user.username  %}"><i class="fa fa-envelope"
@@ -24,7 +24,7 @@ InstaForum | @{{ profile_user.first_name }}
         <!-- ri-error-warning-line -->
     </div>
 
-    <h3>{% trans "Nom au complet" %} : {{ profile_user.first_name }} {{ profile_user.last_name }}</h3>
+    <h3>{% trans "Nom au complet" %} : {{ profile_user.name }}</h3>
 
     <h4>{% trans "Badges Obtenus" %}</h4>
     <div class="badges">

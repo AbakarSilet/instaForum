@@ -1,110 +1,172 @@
-
-function toggleShareDropdown(button) {
-    const dropdownMenu = button.nextElementSibling;
-    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-}
-
-function toggleDropdown(element) {
-    const dropdownMenu = element.nextElementSibling;
-    dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-    event.stopPropagation();
-}
-
-
-// Gestion des messages d'alerte
-document.addEventListener('DOMContentLoaded', function () {
-    // Fermeture des alertes automatiquement après 5 secondes
-    setTimeout(function () {
-        const alerts = document.querySelectorAll('.alert');
-        alerts.forEach(alert => {
-            const closeBtn = new bootstrap.Alert(alert);
-            closeBtn.close();
-        });
-    }, 5000);
-
-    // Bouton pour annuler le commentaire
-    const cancelBtn = document.getElementById('cancel-comment-btn');
-    const commentForm = document.getElementById('add-comment-form');
-    const showFormIcon = document.getElementById('show-form-icon');
-
-    if (cancelBtn && commentForm && showFormIcon) {
-        cancelBtn.addEventListener('click', function () {
-            commentForm.reset();
-            commentForm.style.display = 'none';
-            showFormIcon.style.display = 'flex';
-        });
-    }
-
-    // Afficher le formulaire quand on clique sur l'icône
-    if (showFormIcon && commentForm) {
-        showFormIcon.addEventListener('click', function () {
-            commentForm.style.display = 'block';
-            showFormIcon.style.display = 'none';
-            // Focus sur le champ de texte du commentaire
-            const textArea = commentForm.querySelector('textarea');
-            if (textArea) {
-                textArea.focus();
+// Fonction utilitaire pour récupérer le token CSRF
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
-        });
-    }
-
-    // Gestion de la soumission du formulaire avec feedback
-    if (commentForm) {
-        commentForm.addEventListener('submit', function (e) {
-            const submitBtn = document.getElementById('submit-comment-btn');
-            const spinner = submitBtn.querySelector('.spinner-border');
-            const buttonText = submitBtn.querySelector('.button-text');
-            const feedback = document.getElementById('form-feedback');
-
-            // Validation simple côté client
-            const textarea = commentForm.querySelector('textarea');
-            if (textarea && textarea.value.trim() === '') {
-                e.preventDefault();
-                feedback.textContent = 'Veuillez écrire un commentaire avant de publier.';
-                feedback.style.display = 'block';
-                feedback.style.backgroundColor = '#f8d7da';
-                return;
-            }
-
-            // Afficher le spinner et désactiver le bouton
-            spinner.classList.remove('d-none');
-            buttonText.textContent = 'Publication en cours...';
-            submitBtn.disabled = true;
-        });
-    }
-
-    // Mettre en évidence le nouveau post si l'URL contient un ancre
-    if (window.location.hash) {
-        const postId = window.location.hash.substring(1);
-        const postElement = document.getElementById(postId);
-
-        if (postElement) {
-            postElement.classList.add('highlight-new');
-            postElement.scrollIntoView({ behavior: 'smooth' });
         }
     }
-});
+    return cookieValue;
+}
 
+// Fonction générique pour gérer les likes
+function setupLikeButtons(selector, likeIconSelector, likeCountSelector, fetchUrl = null) {
+    const likeButtons = document.querySelectorAll(selector);
+
+    likeButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const postId = this.getAttribute('data-post-id') || this.getAttribute('data-thread-slug');
+            const likeIcon = this.querySelector(likeIconSelector);
+            const likeCount = this.querySelector(likeCountSelector);
+
+            // Utiliser l'URL personnalisée si fournie, sinon construire une URL par défaut
+            const url = fetchUrl ? fetchUrl(postId) : `/forum/post/${postId}/like/`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Mettre à jour l'icône
+                    if (data.liked) {
+                        likeIcon.classList.remove('far', 'fa-heart');
+                        likeIcon.classList.add('fas', 'fa-heart', 'text-red-500');
+                    } else {
+                        likeIcon.classList.remove('fas', 'fa-heart', 'text-red-500');
+                        likeIcon.classList.add('far', 'fa-heart');
+                    }
+
+                    // Mettre à jour le nombre de likes
+                    likeCount.textContent = data.total_likes;
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+        });
+    });
+}
+
+// Fonction pour gérer les menus déroulants
+function setupDropdownMenus() {
+    const threadOptionsBtn = document.getElementById('threadOptionsBtn');
+    const threadOptionsMenu = document.getElementById('threadOptionsMenu');
+    const shareBtn = document.getElementById('shareBtn');
+    const shareMenu = document.getElementById('shareMenu');
+    const commentOptionsBtns = document.querySelectorAll('.commentOptionsBtn');
+    const commentOptionsMenus = document.querySelectorAll('.commentOptionsMenu');
+
+    // Fonction pour fermer tous les menus
+    function closeAllMenus() {
+        threadOptionsMenu.classList.add('scale-0');
+        threadOptionsMenu.classList.remove('scale-100');
+        shareMenu.classList.add('scale-0');
+        shareMenu.classList.remove('scale-100');
+        commentOptionsMenus.forEach(menu => {
+            menu.classList.add('scale-0');
+            menu.classList.remove('scale-100');
+        });
+    }
+
+    // Toggle pour le menu du thread
+    threadOptionsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        threadOptionsMenu.classList.toggle('scale-0');
+        threadOptionsMenu.classList.toggle('scale-100');
+        // Ferme les autres menus
+        shareMenu.classList.add('scale-0');
+        shareMenu.classList.remove('scale-100');
+        commentOptionsMenus.forEach(menu => {
+            menu.classList.add('scale-0');
+            menu.classList.remove('scale-100');
+        });
+    });
+
+    // Toggle pour le menu de partage
+    shareBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        shareMenu.classList.toggle('scale-0');
+        shareMenu.classList.toggle('scale-100');
+        // Ferme les autres menus
+        threadOptionsMenu.classList.add('scale-0');
+        threadOptionsMenu.classList.remove('scale-100');
+        commentOptionsMenus.forEach(menu => {
+            menu.classList.add('scale-0');
+            menu.classList.remove('scale-100');
+        });
+    });
+
+    // Toggle pour les menus des commentaires
+    commentOptionsBtns.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Ferme tous les autres menus
+            commentOptionsMenus.forEach((menu, menuIndex) => {
+                if (menuIndex !== index) {
+                    menu.classList.add('scale-0');
+                    menu.classList.remove('scale-100');
+                }
+            });
+            shareMenu.classList.add('scale-0');
+            shareMenu.classList.remove('scale-100');
+            threadOptionsMenu.classList.add('scale-0');
+            threadOptionsMenu.classList.remove('scale-100');
+
+            // Toggle le menu actuel
+            commentOptionsMenus[index].classList.toggle('scale-0');
+            commentOptionsMenus[index].classList.toggle('scale-100');
+        });
+    });
+
+    // Ferme tous les menus si on clique ailleurs sur la page
+    document.addEventListener('click', closeAllMenus);
+
+    // Empêche la propagation des clics sur les menus
+    const allMenus = [threadOptionsMenu, shareMenu, ...commentOptionsMenus];
+    allMenus.forEach(menu => {
+        menu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+}
+
+// Fonction pour gérer le formulaire de commentaire
+function setupCommentForm() {
+    const commentBtn = document.getElementById('commentBtn');
+    const commentForm = document.getElementById('commentForm');
+    const cancelComment = document.getElementById('cancelComment');
+
+    commentBtn.addEventListener('click', () => {
+        commentForm.classList.toggle('hidden');
+    });
+
+    cancelComment.addEventListener('click', () => {
+        commentForm.classList.add('hidden');
+    });
+}
+
+// Initialisation au chargement du DOM
 document.addEventListener('DOMContentLoaded', function () {
-    const showFormTrigger = document.getElementById('show-form-trigger');
-    const addCommentForm = document.getElementById('add-comment-form');
-    const submitButton = document.getElementById('submit-comment-btn');
-
-    // Initialement masquer le formulaire
-    addCommentForm.style.display = 'none';
-
-    // Afficher le formulaire au clic
-    showFormTrigger.addEventListener('click', function () {
-        addCommentForm.style.display = 'block';
-        showFormTrigger.style.display = 'none';
+    // Configuration des likes pour les threads
+    setupLikeButtons('.like-button', '.like-icon', '.like-count', (threadSlug) => {
+        const threadBtn = document.querySelector(`.like-button[data-thread-slug="${threadSlug}"]`);
+        return threadBtn.getAttribute('data-url');
     });
 
-    // Gérer la soumission du formulaire
-    addCommentForm.addEventListener('submit', function (e) {
-        const defaultText = submitButton.getAttribute('data-text-default');
-        const loadingText = submitButton.getAttribute('data-text-loading');
+    // Configuration des likes pour les posts
+    setupLikeButtons('.post-like-button', '.post-like-icon', '.post-like-count');
 
-        submitButton.disabled = true;
-        submitButton.textContent = loadingText;
-    });
+    setupDropdownMenus();
+    setupCommentForm();
 });

@@ -39,9 +39,12 @@ forum_urlpatterns= [
     path('threads/<str:slug>/', ThreadViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='thread-detail'),
     path('threads/<str:slug>/posts/', ThreadViewSet.as_view({'get': 'posts'}), name='thread-posts'),
     path('threads/<str:slug>/like/', ThreadViewSet.as_view({'post': 'like'}), name='thread-like'),
-    path('threads/<str:slug>/dislike/', ThreadViewSet.as_view({'post': 'dislike'}), name='thread-dislike'),
+    path('threads/<str:slug>/close/', ThreadViewSet.as_view({'post': 'close'}), name='thread-close'),
+    path('threads/<str:slug>/open/', ThreadViewSet.as_view({'post': 'open'}), name='thread-open'),
+    path('threads/<str:slug>/toggle_close/', ThreadViewSet.as_view({'post': 'toggle_close'}), name='thread-toggle-close'),
     # Posts
     path('posts/', PostViewSet.as_view({'get': 'list', 'post': 'create'}), name='post-list'),
+    path('posts/<int:pk>/like/', PostViewSet.as_view({'post': 'like'}), name='post-like'),
     path('posts/<int:pk>/', PostViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='post-detail'),
     # Signalements
     path('report/', ReportView.as_view(), name='report'),

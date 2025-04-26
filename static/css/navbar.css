@@ -28,20 +28,26 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Syne' 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   transition: margin-left 0.3s ease;
-  /* Transition pour le mouvement du contenu */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nav_link,
+.nav_link * {
+  color: var(--text-color) !important;
+  text-decoration: inherit !important;
 }
 
 a {
   text-decoration: none;
-  /* Supprimer le soulignement des liens */
   color: var(--text-color);
-  /* Utiliser la couleur de la variable text-color */
 }
 
 .error {
@@ -72,9 +78,35 @@ a {
 
 .logo a {
   font-family: 'Lobster', cursive;
-  /* Utilise la police Lobster */
   font-size: 2em;
-  /* Taille de police plus grande pour se démarquer */
+}
+
+.logo {
+  display: inline-block;
+  border: 1px solid var(--primary-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  /* Pas d'arrière-plan */
+}
+
+.logo a {
+  position: relative;
+  text-decoration: none;
+  background: linear-gradient(to right,
+      #002664 0%,
+      /* Bleu - 4 premières lettres */
+      #002664 40%,
+      /* 40% correspond à peu près à 4/10 lettres */
+      #FFCE00 40%,
+      /* Jaune - 3 lettres suivantes */
+      #FFCE00 70%,
+      /* 70% correspond à peu près à 7/10 lettres */
+      #C60C30 70%,
+      /* Rouge - 3 dernières lettres */
+      #C60C30 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .navbar .menu {
@@ -104,37 +136,69 @@ a {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.navbar .menu .menu-item:hover .dropdown {
+/* Style amélioré des dropdowns */
+.navbar .menu .dropdown-trigger:hover .dropdown {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .navbar .menu .menu-item .dropdown {
   display: none;
   position: absolute;
   top: 50px;
-  /* Ajuster la position du dropdown */
   left: 0;
   background-color: var(--dropdown-background);
   color: var(--dropdown-text-color);
-  min-width: 160px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Ajoute une ombre pour les dropdown */
-  border-radius: 4px;
+  min-width: 180px;
+  box-shadow: var(--dropdown-shadow);
+  border-radius: var(--dropdown-border-radius);
   z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+  padding: 8px 0;
 }
 
 .navbar .menu .menu-item .dropdown a {
-  display: block;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
   color: var(--text-color);
   text-decoration: none;
   text-align: left;
-  /* Ajuste l'alignement à l'intérieur du dropdown */
+  transition: background-color var(--transition-speed) ease;
+}
+
+.navbar .menu .menu-item .dropdown a i {
+  margin-right: 8px;
+  width: 20px;
+  text-align: center;
 }
 
 .navbar .menu .menu-item .dropdown a:hover {
   background-color: var(--primary-color);
-  /* color: white; */
+  color: white !important;
+}
+
+/* Style pour les icônes et flèches des dropdowns */
+.dropdown-arrow {
+  margin-left: 5px;
+  font-size: 0.8em;
+  transition: transform var(--transition-speed) ease;
+}
+
+.dropdown-trigger:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.navbar .menu .menu-item a {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .menu .menu-item a i {
+  margin-right: 5px;
 }
 
 .navbar .profile {
@@ -560,12 +624,6 @@ a {
     display: none;
   }
 }
-
-
-
-
-
-
 
 /* Styles généraux pour les sections */
 .sidebar .section {

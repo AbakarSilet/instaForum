@@ -33,17 +33,3 @@ def normalize_tags(tags):
     Normalise une liste de tags
     """
     return [normalize_tag(tag) for tag in tags]
-
-# forum/utils.py
-import requests
-
-def translate_text(text, target_lang='en'):
-    response = requests.post('https://libretranslate.com/translate', json={
-        'q': text,
-        'source': 'fr',  # Langue source
-        'target': target_lang,  # Langue cible
-        'format': 'text'
-    })
-    if response.status_code == 200:
-        return response.json().get('translatedText', '')
-    return text  # Retourne le texte original en cas d'erreur

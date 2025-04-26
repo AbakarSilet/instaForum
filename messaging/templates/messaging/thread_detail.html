@@ -24,7 +24,7 @@
                     <div class="conversation-header">
                         <div class="profile-row">
                             <img src="{{ conversation.user.profile_image.url }}" alt="{% trans 'Profil' %}">
-                            <strong>{{ conversation.user.first_name }} {{ conversation.user.last_name }}</strong>
+                            <strong>{{ conversation.user.name }}</strong>
                         </div>
                         {% if conversation.unread_count %}
                         <span class="badge">{{ conversation.unread_count }}</span>

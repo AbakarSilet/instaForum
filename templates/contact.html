@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-
+{% block title %}
+{% trans "Contact" %}|InstaForum
+{% endblock title %}
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/utils.css' %}">
+<link rel="stylesheet" href="{% static 'css/utils.css' %}">
 {% endblock link %}
 
 {% block content %}
@@ -20,7 +22,8 @@
         </div>
         <div class="form-group">
             <label for="message">{% trans "Message" %}</label>
-            <textarea id="message" name="message" rows="4" placeholder="{% trans 'Votre message ici...' %}" required></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="{% trans 'Votre message ici...' %}"
+                required></textarea>
         </div>
         <button type="submit" class="btn">{% trans "Envoyer" %}</button>
     </form>

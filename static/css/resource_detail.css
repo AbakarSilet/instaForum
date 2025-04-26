@@ -38,3 +38,9 @@
     height: auto;
     margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+    .resource-detail {
+        margin-top: 70px;
+    }
+}

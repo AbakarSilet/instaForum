@@ -7,11 +7,8 @@ from django.shortcuts import render, get_object_or_404
 
 from django.core.paginator import Paginator
 import requests
-from newsapi import NewsApiClient
-from .models import NewsArticle, NewsSource
 import logging
 from django.utils import timezone
-from datetime import datetime, timedelta
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from .models import NewsArticle, NewsSource
@@ -20,8 +17,6 @@ from django.http import HttpResponse
 from django.utils import timezone
 from .models import NewsArticle, NewsSource
 from .forms import NewsArticleForm
-
-import pytz
 
 import requests
 

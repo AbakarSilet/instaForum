@@ -11,8 +11,4 @@ def show_popular_categories():
         num_posts=Count('subforums__threads__posts')
     ).order_by('-num_threads', '-num_posts')[:4]
 
-    for category in categories:
-        if len(category.name) > 30:
-            category.name = category.name[:27] + '...'
-
     return {'categories': categories}

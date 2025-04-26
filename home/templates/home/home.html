@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-
+{% load l10n %}
 
 {% block link %}
 {{ block.super }}
@@ -10,123 +10,162 @@
 
 {% block content %}
 
-<div class="container">
-    <!-- Section du Haut -->
-    <div class="section section-top">
-        <div class="section-top-content">
-            <h1>{% trans "Actualités" %}</h1>
-            <div class="carousel-container">
-            <i class="ri-arrow-left-s-line carousel-arrow left"></i>
-            <div class="news-carousel">
-                {% for article in articles %}
-                <div class="news-card">
-                    <a href="{{ article.url }}" target="_blank" class="news-link">
-                        {% if article.image_url %}
-                        <img src="{{ article.image_url }}" alt="{{ article.title }}" class="news-image">
-                        {% endif %}
-                        <div class="news-content">
-                            <div class="news-source">{{ article.source }}</div>
-                            <h2 class="news-title">{{ article.title }}</h2>
-                            <p class="news-description">{{ article.description }}</p>
-                            <div class="news-date">{{ article.published_at }}</div>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
+<div class="home-container">
+    <!-- Hero Section - Événement Principal -->
+    {% if featured_event %}
+    <div class="hero-event">
+        <div class="hero-content">
+            <span class="hero-badge">{% trans "ÉVÉNEMENT PHARE" %}</span>
+            <h1>{{ featured_event.title }}</h1>
+            <div class="hero-meta">
+                <span><i class="ri-calendar-line"></i> {% blocktrans with date=featured_event.date|localize %}{{ date }}{% endblocktrans %}</span>
+                <span><i class="ri-time-line"></i> {% blocktrans with time=featured_event.date|time %}{{ time }}{% endblocktrans %}</span>
+                <span><i class="ri-map-pin-line"></i> {{ featured_event.location }}</span>
             </div>
-            <i class="ri-arrow-right-s-line carousel-arrow right"></i>
-            </div>
+            <a href="{% url 'event_detail' featured_event.id %}" class="hero-button">{% trans "Découvrir" %} →</a>
         </div>
-    </div>
-
-    <!-- Section du Milieu -->
-    <div class="section section-middle">
-        <div class="section-middle-content">
-            <h2>{% trans "Forums avec des threads" %}</h2>
-            {% if subforums_with_threads %}
-            <div class="forum-list">
-                {% for subforum, threads in subforums_with_threads %}
-                <div class="forum-item">
-                    <h3>
-                        {% if subforum.image %}
-                        <img src="{{ subforum.image.url }}" alt="{{ subforum.title }} image" class="subforum-image">
-                        {% endif %}
-                        <a href="{% url 'forum:subforum' slug=subforum.slug %}">{{ subforum.title }}</a>
-                    </h3>
-                    <h4>{% trans "Derniers threads" %}</h4>
-                    <ul>
-                        {% for thread in threads %}
-                        <li>
-                            <a href="{% url 'forum:thread' slug=thread.slug %}">{{ thread.title }}</a>
-                            {% if thread.image %}
-                            <img src="{{ thread.image.url }}" alt="{{ thread.title }} image" class="thread-image">
-                            {% endif %}
-                            <p>{% trans "Par" %} : {{ thread.author.username }} | {% trans "Le" %} : {{ thread.created_at }}</p>
-                            <h5>{% trans "Posts" %}</h5>
-                            <ul>
-                                {% for post in thread.top_posts %}
-                                <li>{{ post.content }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <p>{% trans "Aucun forum avec des threads disponibles." %}</p>
-            {% endif %}
-
-            {% if subforums_without_threads %}
-            <h2>{% trans "Les sujets qui peuvent vous intéresser" %}</h2>
-            <div class="forum-list">
-                {% for subforum in subforums_without_threads %}
-                <div class="forum-item">
-                    <h3>
-                        {% if subforum.image %}
-                        <img src="{{ subforum.image.url }}" alt="{{ subforum.title }} image" class="subforum-image">
-                        {% endif %}
-                        <a href="{% url 'forum:subforum' slug=subforum.slug %}">{{ subforum.title }}</a>
-                    </h3>
-                    <p>{{ subforum.description }}</p>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
+        {% if featured_event.image %}
+        <div class="hero-image">
+            <img src="{{ featured_event.image.url }}" alt="{{ featured_event.title }}">
         </div>
+        {% endif %}
     </div>
+    {% endif %}
 
-
-    <!-- Section du Bas -->
-    <div class="section section-bottom">
-        <div class="section-bottom-content">
-            <h1>{% trans "Evénements" %}</h1>
-            <div class="carousel-container">
-                <i class="ri-arrow-left-s-line carousel-arrow left"></i>
-            <div class="event-carousel">
-                {% for event in events %}
-                <a href="{% url 'event_detail' event.id %}">
-                    <div class="event-card">
-
-                        <div class="profile_comment">
-                            {% if event.organizer.profile_image %}
-                            <img src="{{ event.organizer.profile_image.url }}"
-                                alt="{{ event.organizer.first_name }} {{ event.organizer.last_name }}">
-                            {% endif %}
-                            <div class="name">{{ event.organizer.first_name }} {{ event.organizer.last_name }}</div>
+    <!-- Grid Principale -->
+    <div class="dynamic-grid">
+        <!-- Section Threads (Large) -->
+        <div class="card threads-card">
+            <h2 class="section-title"><i class="ri-chat-3-line"></i> {% trans "Discussions Actives" %}</h2>
+            <div class="threads-grid">
+                {% for thread in hot_threads %}
+                <a href="{% url 'forum:thread' slug=thread.slug %}" class="thread-card">
+                    <div class="thread-header">
+                        <img src="{{ thread.author.profile_image.url }}" alt="{{ thread.author.name }}"
+                            class="thread-avatar">
+                        <div>
+                            <h3>{{ thread.title }}</h3>
+                            <span>{% blocktrans with author=thread.author.name date=thread.created_at %}Par {{ author }} | le {{ date }}{% endblocktrans %}</span>
                         </div>
-
-                        <h2 class="event-title">{{ event.title }}</h2>
-                        {% if event.image %}
-                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
-                        {% endif %}
-
+                    </div>
+                    {% if thread.image %}
+                    <div class="thread-image">
+                        <img src="{{ thread.image.url }}" alt="{{ thread.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="thread-stats">
+                        <span><i class="ri-message-2-line"></i> {% blocktrans count counter=thread.post_count %}{{ counter }} réponse{% plural %}{{ counter }} réponses{% endblocktrans %}</span>
                     </div>
                 </a>
                 {% endfor %}
-            </div
-            <i class="ri-arrow-right-s-line carousel-arrow right"></i>
+            </div>
+            <a href="{% url 'discussions' %}" class="see-all-button">{% trans "Voir toutes les discussions" %} →</a>
+        </div>
+
+        <!-- Section Événements (Vertical) -->
+        <div class="card events-card">
+            <h2 class="section-title"><i class="ri-calendar-event-line"></i> {% trans "Prochains Événements" %}</h2>
+            <div class="events-vertical">
+                {% for event in upcoming_events %}
+                <a href="{% url 'event_detail' event.id %}" class="event-vertical">
+                    <div class="event-date">
+                        <span class="event-day">{{ event.date|date:"d" }}</span>
+                        <span class="event-month">{{ event.date|date:"M"|upper }}</span>
+                    </div>
+                    <div class="event-content">
+                        <h3>{{ event.title }}</h3>
+                        <p>{{ event.description|truncatechars:80 }}</p>
+                        <div class="event-meta">
+                            <span><i class="ri-time-line"></i> {{ event.date|time }}</span>
+                            <span><i class="ri-map-pin-line"></i> {{ event.location }}</span>
+                        </div>
+                    </div>
+                    {% if event.image %}
+                    <div class="event-thumbnail">
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                    </div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Section Actualités (Compacte) -->
+        <div class="card news-card">
+            <h2 class="section-title"><i class="ri-newspaper-line"></i> {% trans "À ne pas manquer" %}</h2>
+            <div class="news-list">
+                {% for article in important_news %}
+                <a href="{{ article.url }}" class="news-item">
+                    <div class="news-content">
+                        <span class="news-category">{{ article.category }}</span>
+                        <h3>{{ article.title }}</h3>
+                        <p>{{ article.description|truncatechars:100 }}</p>
+                    </div>
+                    {% if article.image_url %}
+                    <div class="news-image">
+                        <img src="{{ article.image_url }}" alt="{{ article.title }}">
+                    </div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+            <div class="news-footer">
+                <a href="{% url 'news:news' %}" class="see-more-btn">{% trans "Voir Plus" %} <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </div>
+
+        <!-- Section Ressources (Carrés) -->
+        <div class="card resources-card">
+            <h2 class="section-title"><i class="ri-bookmark-line"></i> {% trans "Ressources Pratiques" %}</h2>
+            <div class="resources-grid">
+                <a href="#" class="resource-square">
+                    <div class="resource-icon">
+                        <i class="ri-book-2-fill"></i>
+                    </div>
+                    <h3>{% trans "Bibliothèque" %}</h3>
+                </a>
+                <a href="#" class="resource-square">
+                    <div class="resource-icon">
+                        <i class="ri-video-fill"></i>
+                    </div>
+                    <h3>{% trans "Tutoriels" %}</h3>
+                </a>
+                <a href="#" class="resource-square">
+                    <div class="resource-icon">
+                        <i class="ri-tools-fill"></i>
+                    </div>
+                    <h3>{% trans "Outils" %}</h3>
+                </a>
+                <a href="{% url 'faq' %}" class="resource-square">
+                    <div class="resource-icon">
+                        <i class="ri-question-fill"></i>
+                    </div>
+                    <h3>{% trans "FAQ" %}</h3>
+                </a>
+            </div>
+        </div>
+
+        <!-- Section Forum (Subforums) -->
+        <div class="card forums-card">
+            <h2 class="section-title"><i class="ri-community-line"></i> {% trans "Rejoignez la discussion" %}</h2>
+            <div class="subforums-grid">
+                {% for subforum in popular_subforums %}
+                <a href="{% url 'forum:subforum' slug=subforum.slug %}" class="subforum-card">
+                    {% if subforum.image %}
+                    <div class="subforum-image">
+                        <img src="{{ subforum.image.url }}" alt="{{ subforum.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="subforum-content">
+                        <h3>{{ subforum.title }}</h3>
+                        <p>{{ subforum.description|truncatechars:80 }}</p>
+                        <div class="subforum-stats">
+                            <span>{% blocktrans count counter=subforum.thread_count %}{{ counter }} threads{% plural %}{{ counter }} threads{% endblocktrans %}</span>
+                            <span>{% blocktrans count counter=subforum.post_count %}{{ counter }} réponse{% plural %}{{ counter }} réponses{% endblocktrans %}</span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -134,9 +173,7 @@
 
 {% endblock content %}
 
-
 {% block javascript %}
 {{ block.super }}
 <script src="{% static 'js/home.js' %}"></script>
-
 {% endblock javascript %}

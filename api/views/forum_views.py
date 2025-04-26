@@ -67,7 +67,7 @@ class ThreadViewSet(viewsets.ModelViewSet):
         print(f"Received data: {self.request.data}") 
         try:
             with transaction.atomic():
-                # Créer le thread sans spécifier l'ID
+                
                 thread = serializer.save(author=self.request.user)
                 return thread
         except IntegrityError as e:
@@ -79,68 +79,103 @@ class ThreadViewSet(viewsets.ModelViewSet):
     def posts(self, request, slug=None):
         thread = self.get_object()
         posts = thread.posts.all().order_by('created_at')
-        serializer = PostSerializer(posts, many=True)
+        serializer = PostSerializer(posts, many=True, context={'request': request})
         return Response(serializer.data)
 
     @action(detail=True, methods=['post'])
     def like(self, request, slug=None):
         thread = self.get_object()
-        Like.objects.get_or_create(user=request.user, thread=thread)
-        Dislike.objects.filter(user=request.user, thread=thread).delete()
-        return Response({'status': 'liked'})
-
-    @action(detail=True, methods=['post'])
-    def dislike(self, request, slug=None):
-        thread = self.get_object()
-        Dislike.objects.get_or_create(user=request.user, thread=thread)
-        Like.objects.filter(user=request.user, thread=thread).delete()
-        return Response({'status': 'disliked'})
+        user = request.user
+        
+        if thread.likes.filter(id=user.id).exists():
+            thread.likes.remove(user)
+            return Response({'status': 'unliked'})
+        else:
+            thread.likes.add(user)
+            return Response({'status': 'liked'})
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.view_count = F('view_count') + 1
         instance.save()
-        return super().retrieve(request, *args, **kwargs)
+        instance.refresh_from_db()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def close(self, request, slug=None):
+        thread = self.get_object()
+        if thread.author != request.user:
+            return Response(
+                {'detail': "Vous n'êtes pas l'auteur de ce thread."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        thread.is_closed = True
+        thread.save()
+        return Response(
+            {'status': 'thread fermé', 'is_closed': True},
+            status=status.HTTP_200_OK
+        )
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def open(self, request, slug=None):
+        thread = self.get_object()
+        if thread.author != request.user:
+            return Response(
+                {'detail': "Vous n'êtes pas l'auteur de ce thread."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        thread.is_closed = False
+        thread.save()
+        return Response(
+            {'status': 'thread ouvert', 'is_closed': False},
+            status=status.HTTP_200_OK
+        )
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def toggle_close(self, request, slug=None):
+        thread = self.get_object()
+        if thread.author != request.user:
+            return Response(
+                {'detail': "Vous n'êtes pas l'auteur de ce thread."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        thread.is_closed = not thread.is_closed
+        thread.save()
+        return Response(
+            {
+                'status': 'thread fermé' if thread.is_closed else 'thread ouvert',
+                'is_closed': thread.is_closed
+            },
+            status=status.HTTP_200_OK
+        )
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Post.objects.all()
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
     def perform_create(self, serializer):
         # Utiliser l'utilisateur connecté comme auteur
         serializer.save(author=self.request.user)
     
-    def create(self, request, *args, **kwargs):
-        try:
-            # Extraction des tags de la requête
-            tags_data = request.data.get('tags', [])
-            
-            # Normalisation des tags
-            normalized_tags = normalize_tags(tags_data)
-            
-            # Copie des données de requête
-            mutable_data = request.data.copy()
-            mutable_data['tags'] = normalized_tags
-            
-            # Création avec les données modifiées
-            serializer = self.get_serializer(data=mutable_data)
-            serializer.is_valid(raise_exception=True)
-            self.perform_create(serializer)
-            
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    @action(detail=True, methods=['post'])
+    def like(self, request, pk=None):
+        post = self.get_object()
+        user = request.user
         
-        except IntegrityError:
-            return Response(
-                {"error": "Une erreur est survenue lors de la création du post"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {"error": str(e)},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-            
+        if post.likes.filter(id=user.id).exists():
+            post.likes.remove(user)
+            return Response({'status': 'unliked'})
+        else:
+            post.likes.add(user)
+            return Response({'status': 'liked'})      
+
 class ReportView(generics.CreateAPIView):
     serializer_class = ReportSerializer
     permission_classes = [IsAuthenticated]

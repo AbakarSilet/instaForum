@@ -4,12 +4,14 @@ from .models import Badge, Category, Notification, Subforum, Thread, Post,Report
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
     
 
 class SubforumAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'description')
     list_filter = ('category',)
     search_fields = ('title', 'category__name')
+    prepopulated_fields = {'slug': ('title',)}
 
 @admin.register(Thread)
 class ThreadAdmin(admin.ModelAdmin):
@@ -19,7 +21,7 @@ class ThreadAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
         ('Informations de base', {
-            'fields': ('title', 'subforum', 'author', 'slug', 'content')
+            'fields': ('title', 'subforum', 'author', 'slug', 'content', 'image','tags', 'likes')
         }),
         ('Statistiques', {
             'fields': ('view_count', 'created_at', 'updated_at'),
@@ -30,12 +32,12 @@ class ThreadAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('author', 'thread', 'content', 'created_at')
+    list_display = ('content','author', 'thread', 'created_at')
     list_filter = ('author', 'thread', 'created_at')
     search_fields = ('author__username', 'thread__title', 'content')
     fieldsets = (
         ('Informations de base', {
-            'fields': ('author', 'thread', 'content')
+            'fields': ('author', 'thread', 'content','likes')
         }),
         ('Dates', {
             'fields': ('created_at', 'updated_at'),

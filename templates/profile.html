@@ -3,43 +3,69 @@
 {% load i18n %}
 
 {% block title %}
-    @{{ user.username }}|InstaForum
+@{{ user.username }} | InstaForum
 {% endblock title %}
+
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock link %}
-    
 
 {% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h1 class="profile-title">{% trans "Votre profil utilisateur" %}</h1>
+    </div>
 
-    <div class="container">
-        <h2>{% trans "Votre profil utilisateur" %}</h2>
-        <div class="profile-details">
-            {% if user.profile_image %}
-            <img src="{{ user.profile_image.url }}" alt="{% trans " Photo de profil" %}" class="profile-image">
-            {% else %}
-            <img src="{% static 'images/login.png' %}" alt="{% trans " Profil" %}" class="profile-image">
-            {% endif %}
-            <!-- <div class="icons">
-                <a href="#" title="Messages"><i class="fa fa-envelope"></i></a>
-                <a href="#" title="Photos"><i class="fa fa-camera"></i></a>
-                <a href="#" title="Écrire"><i class="fa fa-pencil"></i></a>
-            </div> -->
-            <ul class="user-info">
-                <li>{% trans "Nom d'utilisateur" %}: {{ user.username }}</li>
-                <li>{% trans "Adresse e-mail" %}: {{ user.email }}</li>
-                <li>{% trans "Prénom" %}: {{ user.first_name }}</li>
-                <li>{% trans "Nom" %}: {{ user.last_name }}</li>
-            </ul>
-            <div class="buttons">
-                <a href="{% url 'account_edit' %}" class="btn btn-primary">{% trans "Modifier le profil" %}</a>
+    <div class="profile-card">
+        <div class="profile-avatar-section">
+            <div class="avatar-container">
+                {% if user.profile_image %}
+                <img src="{{ user.profile_image.url }}" alt="{% trans 'Photo de profil' %}" class="profile-avatar">
+                {% else %}
+                <img src="{% static 'images/login.png' %}" alt="{% trans 'Profil' %}" class="profile-avatar">
+                {% endif %}
+                <div class="avatar-overlay">
+                    <a href="{% url 'account_edit' %}" class="edit-avatar-btn">
+                        <i class="fas fa-camera"></i>
+                    </a>
+                </div>
+            </div>
+            <h2 class="username">@{{ user.username }}</h2>
+        </div>
+
+        <div class="profile-info-section">
+            <div class="info-card">
+                <h3 class="info-title">{% trans "Informations personnelles" %}</h3>
+                <ul class="info-list">
+                    <li class="info-item">
+                        <span class="info-label">{% trans "Nom complet" %}:</span>
+                        <span class="info-value">{{ user.first_name }} {{ user.last_name }}</span>
+                    </li>
+                    <li class="info-item">
+                        <span class="info-label">{% trans "Adresse e-mail" %}:</span>
+                        <span class="info-value">{{ user.email }}</span>
+                    </li>
+                    <li class="info-item">
+                        <span class="info-label">{% trans "Membre depuis" %}:</span>
+                        <span class="info-value">{{ user.date_joined}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="{% url 'account_edit' %}" class="btn-edit">
+                    <i class="fas fa-user-edit"></i> {% trans "Modifier le profil" %}
+                </a>
+                <a href="{% url 'account_change_password' %}" class="btn-password">
+                    <i class="fas fa-lock"></i> {% trans "Changer le mot de passe" %}
+                </a>
             </div>
         </div>
     </div>
-
+</div>
 {% endblock content %}
+
 {% block javascript %}
 {{ block.super }}
 <script src="{% static 'js/profile.js' %}"></script>
 {% endblock javascript %}
-    

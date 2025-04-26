@@ -6,7 +6,7 @@ h2 {
 
 .event-details {
     max-width: 700px;
-    margin: 0 auto;
+    margin: auto;
     padding-top: 10px;
     padding: 10px;
     background-color: var(--background-color);

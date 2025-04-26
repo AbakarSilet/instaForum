@@ -1,611 +1,92 @@
-.main-container {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-.container {
-
-    padding-top: 10px;
-    display: flex;
-    width: 100%;
-    max-width: 1200px;
-    gap: 20px;
-}
-
-.section {
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 6px var(--primary-color);
-    background-color: var(--background-color);
-}
-
-.left-section {
-    flex: 3;
-}
-
-.left-section img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-}
-
-.right-section {
-    flex: 1;
-    background-color: var(--background-color);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px var(--primary-color);
-    padding: 15px;
-    text-align: left;
-}
-
-.right-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: var(--text-color);
-}
-
-.right-section ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.right-section ul li {
-
-    margin-bottom: 10px;
-}
-
-.right-section ul li a {
-    text-decoration: none;
+body {
     color: var(--text-color);
     background-color: var(--background-color);
-    padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px var(--primary-color);
-    ;
-    display: block;
-    transition: background-color 0.3s;
-}
-
-.right-section ul li a:hover {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination button {
-    border: none;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 8px 12px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.pagination button.disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.pagination button:hover:not(.disabled) {
-    background-color: var(--secondary-color);
-}
-
-@media (max-width: 768px) {
-    .main-container {
-        width: 100%;
-    }
-
-    .container {
-        flex-direction: column;
-    }
-
-    .left-section,
-    .right-section {
-        width: 100%;
-    }
-
-    .section {
-        border-radius: 15px;
-        padding: 0;
-        box-shadow: 0 4px 6px var(--primary-color);
-        background-color: var(--background-color);
-    }
-}
-
-.post-header {
-    display: flex;
-    align-items: center;
-}
-
-.post-header img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-}
-
-post-content {
-    margin-bottom: 6px;
-}
-
-.post-header .info {
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-}
-
-.post-header .name {
-    font-weight: bold;
-    color: var(--text-color);
-}
-
-.post-header .date {
-    font-size: 0.9em;
-    color: var(--secondary-color);
-}
-
-
-.add-comment-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 2em;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.add-comment-icon:hover {
-    background-color: var(--secondary-color);
-    transform: scale(1.1);
-}
-
-#add-comment-form {
-    display: none;
-    margin-top: 10px;
-    /* Réduire l'espace en haut */
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: var(--background-color);
-}
-
-#add-comment-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    font-size: 0.9rem;
-    color: var(--text-color);
-}
-
-#add-comment-form input,
-#add-comment-form textarea,
-#add-comment-form button {
-    width: 100%;
-    padding: 6px;
-    /* Réduire l'espace de padding */
-    margin-bottom: 5px;
-    /* Réduire l'espace entre les champs */
-    border-radius: 5px;
-    border: 1px solid var(--primary-color);
-    font-size: 0.9rem;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    /* Pour éviter le blanc sur blanc */
-}
-
-#add-comment-form textarea {
-    resize: none;
-    height: 60px;
-    /* Ajuster la hauteur */
-}
-
-#add-comment-form button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 0.9rem;
-}
-
-#add-comment-form button:hover {
-    background-color: var(--secondary-color);
-}
-
-
-
-.comment-container {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 2px solid var(--primary-color);
-    border-radius: 10px;
-    background-color: var(--background-color);
-    max-width: auto;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    position: relative;
-}
-
-.profile_comment {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0;
-}
-
-.profile_comment img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.name {
-    flex-grow: 1;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.dropdown-toggle {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-size: 1.5em;
-    cursor: pointer;
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 20%;
-    /* Positionne le dropdown directement en dessous du bouton */
-    background-color: var(--dropdown-background);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    z-index: 1;
-}
-
-.dropdown-menu .dropdown-item {
-    color: var(--dropdown-text-color);
-    padding: 5px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: var(--dropdown-hover-background);
-}
-
-.content-post {
-    margin-top: 0;
-}
-
-.tags {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
-}
-
-.tag {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    padding: 5px 5px;
-    border-radius: 20px;
-    margin-right: 5px;
-    align-items: center;
-}
-
-.like-dislike-share-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.like-dislike-share-buttons a,
-.like-dislike-share-buttons button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--background-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.like-dislike-share-buttons a:hover,
-.like-dislike-share-buttons button:hover {
-    transform: scale(1.05);
-}
-
-.share-dropdown button {
-    color: var(--primary-color);
-}
-
-.share-dropdown button:hover {
-    background-color: var(--text-color);
-    color: var(--primary-color);
-}
-
-.report-button {
-    background-color: var(--background-color);
-    color: red;
-}
-
-.report-button:hover {
-    background-color: darkred;
-    color: white;
-}
-
-.share-dropdown {
-    position: relative;
-}
-
-.share-dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: var(--background-color);
-    z-index: 1;
-    padding: 5px;
-}
-
-.share-dropdown-menu .dropdown-item {
-    padding: 5px;
-    text-decoration: none;
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: var(--background-color);
-    transition: background-color 0.3s;
-}
-
-.share-dropdown-menu .dropdown-item i {
-    font-size: 1.2em;
-}
-
-.share-dropdown-menu .dropdown-item[title="Partager sur Twitter"] {
-    color: #1DA1F2;
-}
-
-.share-dropdown-menu .dropdown-item[title="Partager par Email"] {
-    color: #D44638;
-}
-
-.share-dropdown-menu .dropdown-item:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-
-@media (max-width: 768px) {
-
-    .main-container {
-        margin-top: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: var(--background-color);
-        color: var(--text-color);
-    }
-
-    .container {
-
-        padding-top: 10px;
-        display: flex;
-        width: 100%;
-        max-width: 1200px;
-        gap: 20px;
-    }
-
-    .left-section {
-        margin-bottom: 20px;
-        padding: 5px;
-    }
-
-    .comment-container {
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 10px;
-        padding-right: 0;
-        padding-left: 0;
-    }
-
-    #add-comment-form {
-        margin-top: 5px;
-        padding: 5px;
-    }
-
-    #add-comment-form input,
-    #add-comment-form textarea,
-    #add-comment-form button {
-        padding: 5px;
-        margin-bottom: 5px;
-        font-size: 0.8rem;
-        /* Réduire la taille de la police sur les appareils mobiles */
-    }
-
-    #add-comment-form textarea {
-        height: 50px;
-        /* Ajuster la hauteur pour les appareils mobiles */
-    }
-}
-
-/* Styles pour les messages de confirmation */
-.messages-container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto 20px;
-    padding: 0 15px;
-}
-
-.alert {
-    padding: 12px 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    position: relative;
-    animation: fadeIn 0.5s;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-}
-
-.alert-info {
-    background-color: #d1ecf1;
-    border-color: #bee5eb;
-    color: #0c5460;
-}
-
-.btn-close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    opacity: 0.5;
-    background: none;
-    border: 0;
-}
-
-/* Animation pour l'apparition des messages */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Styles pour le formulaire */
-#add-comment-form {
     transition: all 0.3s ease;
 }
 
-.form-feedback {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 14px;
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    transition: all 0.2s ease;
 }
 
-.submit-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
+.primary-btn:hover {
+    opacity: 0.9;
 }
 
-/* Styles pour mise en évidence du nouveau commentaire */
-.highlight-new {
-    animation: highlightNew 2s;
+.secondary-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    transition: all 0.2s ease;
 }
 
-@keyframes highlightNew {
-    0% {
-        background-color: rgba(255, 255, 0, 0.3);
-    }
-
-    100% {
-        background-color: transparent;
-    }
+.secondary-btn:hover {
+    background-color: rgba(128, 128, 128, 0.1);
 }
 
-.add-comment-container {
-    margin-bottom: 20px;
-    margin-top: 25px;
-    margin-left: 0;
+.thread-card,
+.comment-card,
+.similar-thread-card {
+    background-color: var(--background-color);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    color: var(--text-color);
 }
 
-.add-comment-container button {
-    display: flex;
-    align-items: center;
-    font-weight: 500;
+.dropdown-menu {
+    background-color: var(--dropdown-background);
+    color: var(--dropdown-text-color);
+    border: 1px solid rgba(128, 128, 128, 0.2);
 }
 
-#add-comment-form .form-group {
-    margin-bottom: 15px;
+.dropdown-menu a {
+    color: var(--dropdown-text-color);
 }
 
-#add-comment-form textarea {
-    min-height: 100px;
-    resize: vertical;
-    width: 100%;
-    /* Pour que le textarea prenne toute la largeur */
-    padding: 10px;
-    /* Ajouter un peu de padding pour un meilleur rendu */
-    border-radius: 5px;
-    /* Coins arrondis */
-    border: 1px solid #ccc;
-    /* Bordure légère */
-}
-
-#add-comment-form .d-flex {
-    justify-content: flex-end;
-    /* Aligner le bouton à droite */
-}
-
-#submit-comment-btn {
-    background-color: #007bff;
-    /* Couleur de fond bleue */
+.dropdown-menu a:hover {
+    background-color: var(--dropdown-hover-background);
     color: white;
-    /* Texte en blanc */
+}
+
+.tag {
+    background-color: rgba(30, 144, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.pagination-btn {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.pagination-btn.active {
+    background-color: var(--primary-color);
+    color: white;
     border: none;
-    /* Pas de bordure */
-    padding: 10px 20px;
-    /* Padding pour un meilleur rendu */
-    border-radius: 5px;
-    /* Coins arrondis */
-    cursor: pointer;
-    /* Curseur en forme de main */
-    transition: background-color 0.3s ease;
-    /* Transition fluide */
 }
 
-#submit-comment-btn:hover {
-    background-color: #0056b3;
-    /* Changement de couleur au survol */
+.custom-textarea {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border: 1px solid rgba(128, 128, 128, 0.3);
 }
 
-.footer {
-    display: none;
+.custom-textarea:focus {
+    border-color: var(--primary-color);
+}
+
+/* Animation pour les dropdowns */
+.dropdown-transition {
+    transition: all 0.2s ease;
+    transform-origin: top right;
+}
+
+.scale-0 {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.scale-100 {
+    transform: scale(1);
+    opacity: 1;
 }

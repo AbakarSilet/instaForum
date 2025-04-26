@@ -1,6 +1,7 @@
 <!-- 404.html -->
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>{% trans "Page non trouvée" %}</title>
@@ -11,33 +12,40 @@
             text-align: center;
             padding: 50px;
         }
+
         .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             font-size: 50px;
             margin-bottom: 20px;
         }
+
         p {
             font-size: 20px;
         }
+
         a {
             color: #007bff;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>404</h1>
-        <p>{% trans "Désolé, la page que vous cherchez n'existe pas.%}</p>
+        <p>{% trans "Désolé, la page que vous cherchez n'existe pas".%}</p>
         <p><a href="{% url 'home' %}">{% trans "Retour à la page d'accueil" %}</a></p>
     </div>
 </body>
+
 </html>

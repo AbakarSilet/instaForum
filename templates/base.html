@@ -5,21 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Autres balises meta -->
-    <meta property="og:title" content="{{ thread.title }}" />
-    <meta property="og:description" content="{{ thread.content|truncatewords:20 }}" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ thread.title }}" />
+    <meta property="og:description" content="{{ thread.content|default:'Description par défaut' }}" />
     <meta property="og:image"
-        content="{% if thread.author.profile_image %}{{ thread.author.profile_image.url }}{% else %}{% static 'images/login.png' %}{% endif %}" />
-
+        content="{% if thread.image %}{{ thread.image.url }}{% else %}https://picsum.photos/800/400{% endif %}" />
+    <meta property="og:type" content="website" />
     <title>{% block title %}InstaForum{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'fontawesome-free-6.7.1-web/css/all.min.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     {% block link %}

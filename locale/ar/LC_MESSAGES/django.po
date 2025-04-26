@@ -1,101 +1,100 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# InstaForum Arabic Translations.
+# Copyright (C) 2025 ABAKAR SILET DARKOU
+# TThis file is distributed under the same license as the InstaForum package.
+# ABAKAR SILET DARKOU <abakarix4dev@gmail.com>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:43+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: InstaForum 1.0\n"
+"Report-Msgid-Bugs-To: abakarix4dev@gmail.com\n"
+"POT-Creation-Date: 2025-04-04 17:44+0100\n"
+"PO-Revision-Date: 2025-04-05 12:00+0100\n"
+"Last-Translator: ABAKAR SILET DARKOU <abakarix4dev@gmail.com>\n"
+"Language-Team: Arabic <abakarix4dev@gmail.com>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-#: .\ForumInsta\settings.py:253
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+
+#: .\ForumInsta\settings.py:237
 msgid "English"
 msgstr "الإنجليزية"
 
-#: .\ForumInsta\settings.py:254 .\templates\includes\header.html:29
+#: .\ForumInsta\settings.py:238 .\templates\includes\header.html:29
 msgid "Français"
 msgstr "الفرنسية"
 
-#: .\ForumInsta\settings.py:255
+#: .\ForumInsta\settings.py:239
 msgid "العربية"
 msgstr "العربية"
 
-#: .\OKay\base0.html:59 .\templates\contact.html:11
+#: .\OKay\base0.html:59 .\templates\contact.html:13
 msgid "Contactez-nous"
 msgstr "اتصل بنا"
 
-#: .\OKay\base0.html:60 .\templates\contact.html:12
+#: .\OKay\base0.html:60 .\templates\contact.html:14
 msgid ""
 "Si vous avez des questions ou avez besoin d'aide, n'hésitez pas à nous "
 "contacter."
-msgstr ""
-"إذا كانت لديك أسئلة أو تحتاج إلى مساعدة، فلا تتردد في الاتصال بنا."
+msgstr "إذا كان لديك أي أسئلة أو تحتاج إلى مساعدة، لا تتردد في الاتصال بنا."
 
-#: .\OKay\base0.html:62 .\templates\contact.html:14
+#: .\OKay\base0.html:62 .\templates\contact.html:16
 msgid "Envoyez-nous un message"
 msgstr "أرسل لنا رسالة"
 
-#: .\OKay\base0.html:66 .\templates\contact.html:18
+#: .\OKay\base0.html:66 .\templates\contact.html:20
 msgid "Votre Email"
 msgstr "بريدك الإلكتروني"
 
-#: .\OKay\base0.html:67 .\templates\contact.html:19
+#: .\OKay\base0.html:67 .\templates\contact.html:21
 msgid "Votre adresse email"
 msgstr "عنوان بريدك الإلكتروني"
 
 #: .\OKay\base0.html:70 .\forum\forms.py:55 .\messaging\forms.py:15
-#: .\templates\contact.html:22
+#: .\templates\contact.html:24
 msgid "Message"
 msgstr "رسالة"
 
-#: .\OKay\base0.html:71 .\templates\contact.html:23
+#: .\OKay\base0.html:71 .\templates\contact.html:25
 msgid "Votre message ici..."
 msgstr "رسالتك هنا..."
 
 #: .\OKay\base0.html:73 .\messaging\templates\messaging\thread_detail.html:62
-#: .\templates\contact.html:25
+#: .\templates\contact.html:28
 msgid "Envoyer"
 msgstr "إرسال"
 
 #: .\OKay\navbarB.html:11 .\OKay\navbarB.html:84
-#: .\home\templates\home\home.html:16 .\news\templates\news\yahoonews.html:8
+#: .\news\templates\news\yahoonews.html:8
 #: .\news\templates\news\yahoonews.html:15 .\templates\includes\header.html:20
-#: .\templates\includes\navbar.html:17 .\templates\includes\navbar.html:78
+#: .\templates\includes\navbar.html:79
 msgid "Actualités"
 msgstr "أخبار"
 
-#: .\OKay\navbarB.html:13 .\forum\forms.py:25 .\forum\models.py:38
-#: .\forum\templates\forum\create.html:34 .\templates\includes\navbar.html:19
-#: .\templates\includes\navbar.html:79
+#: .\OKay\navbarB.html:13 .\forum\forms.py:25 .\forum\models.py:54
+#: .\forum\templates\forum\create.html:34 .\templates\includes\navbar.html:21
+#: .\templates\includes\navbar.html:80
 msgid "Forum"
 msgstr "منتدى"
 
 #: .\OKay\navbarB.html:21 .\OKay\navbarB.html:85
-#: .\home\templates\home\discussions.html:6
-#: .\home\templates\home\discussions.html:44
-#: .\templates\includes\header.html:22 .\templates\includes\navbar.html:24
-#: .\templates\includes\navbar.html:81
+#: .\home\templates\home\discussions.html:7
+#: .\home\templates\home\discussions.html:45
+#: .\templates\includes\header.html:22 .\templates\includes\navbar.html:22
+#: .\templates\includes\navbar.html:82
 msgid "Discussions"
 msgstr "مناقشات"
 
 #: .\OKay\navbarB.html:22 .\OKay\navbarB.html:86 .\OKay\navbars.html:27
-#: .\home\templates\home\home.html:103 .\templates\includes\navbar.html:26
-#: .\templates\includes\navbar.html:85
+#: .\templates\includes\navbar.html:27 .\templates\includes\navbar.html:86
 msgid "Evénements"
 msgstr "أحداث"
 
 #: .\OKay\navbarB.html:24 .\OKay\navbarB.html:88 .\OKay\navbars.html:30
-#: .\templates\includes\navbar.html:94
+#: .\templates\includes\navbar.html:95
 msgid "Langues"
 msgstr "لغات"
 
@@ -104,29 +103,31 @@ msgstr "لغات"
 #: .\messaging\templates\messaging\user_messages.html:22
 #: .\messaging\templates\messaging\user_messages.html:55
 #: .\templates\edit_profile.html:19 .\templates\includes\header.html:50
-#: .\templates\includes\navbar.html:41 .\templates\includes\navbar.html:43
+#: .\templates\includes\navbar.html:42 .\templates\includes\navbar.html:44
+#: .\templates\profile.html:25
 msgid "Profil"
-msgstr "الملف الشخصي"
+msgstr "ملف شخصي"
 
-#: .\OKay\navbarB.html:58 .\events\templates\events\create_event.html:132
+#: .\OKay\navbarB.html:58 .\events\templates\events\create_event.html:49
 #: .\forum\templates\forum\create.html:53
 #: .\forum\templates\forum\create_thread.html:42
 msgid "Créer"
 msgstr "إنشاء"
 
 #: .\OKay\navbarB.html:62 .\templates\account\login.html:14
-#: .\templates\includes\header.html:54
+#: .\templates\includes\footer.html:25 .\templates\includes\header.html:54
 msgid "Connexion"
 msgstr "تسجيل الدخول"
 
 #: .\OKay\navbarB.html:63 .\templates\account\signup.html:7
 #: .\templates\account\signup.html:18 .\templates\account\signup.html:70
+#: .\templates\account\signup.html:72
 #: .\templates\account\signup_by_passkey.html:4
 #: .\templates\includes\header.html:55
 msgid "Inscription"
-msgstr "التسجيل"
+msgstr "تسجيل"
 
-#: .\OKay\navbarB.html:76 .\forum\models.py:39
+#: .\OKay\navbarB.html:76 .\forum\models.py:55
 #: .\templates\includes\navbar_forum_stats.html:5
 msgid "Forums"
 msgstr "منتديات"
@@ -155,11 +156,12 @@ msgstr "صورة الحدث"
 msgid "La date de l'événement ne peut pas être dans le passé."
 msgstr "لا يمكن أن يكون تاريخ الحدث في الماضي."
 
-#: .\events\templates\events\create_event.html:99
+#: .\events\templates\events\create_event.html:7
+#: .\events\templates\events\create_event.html:16
 msgid "Créer un Événement"
 msgstr "إنشاء حدث"
 
-#: .\events\templates\events\create_event.html:135
+#: .\events\templates\events\create_event.html:52
 msgid "Aucune image sélectionnée"
 msgstr "لم يتم اختيار صورة"
 
@@ -175,8 +177,8 @@ msgstr "سأكون هناك"
 msgid "Participants"
 msgstr "المشاركون"
 
-#: .\events\templates\events\event_detail.html:47
-#: .\forum\templates\forum\home.html:106
+#: .\events\templates\events\event_detail.html:46
+#: .\forum\templates\forum\home.html:108
 msgid "Et autres..."
 msgstr "وآخرون..."
 
@@ -198,11 +200,11 @@ msgstr "خلال أسبوعين"
 
 #: .\events\templates\events\event_list.html:62
 msgid " Le mois prochain "
-msgstr "الشهر القادم"
+msgstr "الشهر المقبل"
 
 #: .\events\templates\events\event_list.html:84
 msgid " Prochainement "
-msgstr "قريبًا"
+msgstr "قريباً"
 
 #: .\events\templates\events\event_list.html:107
 msgid "Ajouter un événement "
@@ -225,76 +227,133 @@ msgid "Sélectionnez un forum"
 msgstr "اختر منتدى"
 
 #: .\forum\forms.py:35
-msgid "Ajoutez des tags"
-msgstr "أضف وسومًا"
+msgid "Ajoutez des tags separés par des virgules"
+msgstr "أضف وسومًا مفصولة بفواصل"
 
-#: .\forum\forms.py:56
-msgid "Tags (séparés par des virgules)"
-msgstr "وسوم (مفصولة بفواصل)"
-
-#: .\forum\forms.py:62
+#: .\forum\forms.py:61
 msgid "Écrivez votre message ici..."
 msgstr "اكتب رسالتك هنا..."
 
-#: .\forum\forms.py:77
+#: .\forum\forms.py:71 .\forum\templates\forum\home.html:14
 msgid "Rechercher dans le forum..."
 msgstr "ابحث في المنتدى..."
 
-#: .\forum\forms.py:85
+#: .\forum\forms.py:79
 msgid "Type de signalement"
 msgstr "نوع التبليغ"
 
-#: .\forum\forms.py:86
+#: .\forum\forms.py:80
 msgid "Raison du signalement"
 msgstr "سبب التبليغ"
 
-#: .\forum\forms.py:91
+#: .\forum\forms.py:85
 msgid "Expliquez la raison du signalement"
 msgstr "اشرح سبب التبليغ"
 
-#: .\forum\models.py:22
+#: .\forum\models.py:38
 msgid "Catégorie"
 msgstr "فئة"
 
-#: .\forum\models.py:23
+#: .\forum\models.py:39
 msgid "Catégories"
 msgstr "فئات"
 
-#: .\forum\models.py:34
+#: .\forum\models.py:50
 msgid "image du forum"
 msgstr "صورة المنتدى"
 
-#: .\forum\models.py:68
+#: .\forum\models.py:86
 msgid "Thread"
 msgstr "موضوع"
 
-#: .\forum\models.py:69 .\templates\includes\navbar_forum_stats.html:7
+#: .\forum\models.py:87 .\templates\includes\navbar_forum_stats.html:7
 msgid "Threads"
 msgstr "مواضيع"
 
-#: .\forum\models.py:111
+#: .\forum\models.py:137
 msgid "Post"
 msgstr "منشور"
 
-#: .\forum\models.py:112 .\home\templates\home\home.html:64
+#: .\forum\models.py:138
 msgid "Posts"
 msgstr "منشورات"
 
-#: .\forum\models.py:142
+#: .\forum\models.py:172
 msgid "Spam"
 msgstr "بريد مزعج"
 
-#: .\forum\models.py:143
+#: .\forum\models.py:173
 msgid "Offensant"
-msgstr "مهين"
+msgstr "مسيء"
 
-#: .\forum\models.py:144
+#: .\forum\models.py:174
 msgid "Publicité"
 msgstr "إعلان"
 
-#: .\forum\models.py:145
+#: .\forum\models.py:175
 msgid "Autre"
 msgstr "أخرى"
+
+#: .\forum\signals.py:16
+msgid "Auteur Actif"
+msgstr "مؤلف نشط"
+
+#: .\forum\signals.py:21
+#, python-format
+msgid ""
+"Félicitations %(username)s, vous gagnez le badge d'auteur actif. Merci pour "
+"votre contribution à la communauté"
+msgstr ""
+"تهانينا %(username)s، لقد حصلت على وسام المؤلف النشط. شكرًا لمساهمتك في المجتمع"
+
+#: .\forum\signals.py:30
+msgid "Populaire"
+msgstr "شائع"
+
+#: .\forum\signals.py:39
+msgid "Commentateur Actif"
+msgstr "معلق نشط"
+
+#: .\forum\templates\forum\category.html:23
+#, python-format
+msgid "Image de %(title)s"
+msgstr "صورة %(title)s"
+
+#: .\forum\templates\forum\category.html:33
+#, python-format
+msgid ""
+"\n"
+"                                %(counter)s thread\n"
+"                            "
+msgid_plural ""
+"\n"
+"                                %(counter)s threads\n"
+"                            "
+msgstr[0] ""
+"\n"
+"                                موضوع واحد\n"
+"                            "
+msgstr[1] ""
+"\n"
+"                                %(counter)s مواضيع\n"
+"                            "
+
+#: .\forum\templates\forum\category.html:44
+msgid "Threads récents"
+msgstr "أحدث المواضيع"
+
+#: .\forum\templates\forum\category.html:52
+#, python-format
+msgid "par @%(author)s"
+msgstr "بواسطة @%(author)s"
+
+#: .\forum\templates\forum\category.html:58
+msgid "Voir tous les threads"
+msgstr "عرض جميع المواضيع"
+
+#: .\forum\templates\forum\category.html:62
+msgid "Aucun thread dans ce forum"
+msgstr "لا توجد مواضيع في هذا المنتدى"
 
 #: .\forum\templates\forum\create.html:6 .\forum\templates\forum\create.html:14
 msgid "Créer un Fil de Discussion"
@@ -308,11 +367,11 @@ msgid ""
 "les lire."
 msgstr ""
 "حسابك معلق لمدة 7 أيام من قبل المشرف. لا يمكنك إنشاء مواضيع نقاش أو الرد على "
-"المنشورات، ولكن يمكنك دائمًا قراءتها."
+"المنشورات ولكن يمكنك قراءتها."
 
 #: .\forum\templates\forum\create.html:39
-#: .\resources\templates\resources\add_document.html:22
-#: .\resources\templates\resources\add_image.html:22
+#: .\resources\templates\resources\add_document.html:25
+#: .\resources\templates\resources\add_image.html:50
 #: .\resources\templates\resources\add_link.html:18
 #: .\resources\templates\resources\add_video.html:26
 msgid "Titre"
@@ -320,11 +379,11 @@ msgstr "عنوان"
 
 #: .\forum\templates\forum\create.html:44
 msgid "Contenu"
-msgstr "محتوى"
+msgstr "المحتوى"
 
 #: .\forum\templates\forum\create.html:49
 msgid "Tags"
-msgstr "وسوم"
+msgstr "الوسوم"
 
 #: .\forum\templates\forum\create_thread.html:11
 msgid "Créer un Fil de Discussion dans"
@@ -334,21 +393,21 @@ msgstr "إنشاء موضوع نقاش في"
 msgid "Félicitations"
 msgstr "تهانينا"
 
-#: .\forum\templates\forum\first_thread_congrats.html:55
+#: .\forum\templates\forum\first_thread_congrats.html:14
 msgid "Félicitations !"
-msgstr "تهانينا!"
+msgstr "مبروك !"
 
-#: .\forum\templates\forum\first_thread_congrats.html:56
+#: .\forum\templates\forum\first_thread_congrats.html:15
 msgid ""
 "Merci d'avoir créé votre premier thread. Bienvenue dans notre communauté!"
-msgstr "شكرًا لإنشائك أول موضوع نقاش لك. مرحبًا بك في مجتمعنا!"
+msgstr "شكراً لك على إنشاء موضوعك الأول. أهلاً بك في مجتمعنا!"
 
-#: .\forum\templates\forum\first_thread_congrats.html:57
+#: .\forum\templates\forum\first_thread_congrats.html:16
 msgid ""
 "Nous espérons que vous continuerez à contribuer et à partager vos idées."
 msgstr "نأمل أن تستمر في المساهمة ومشاركة أفكارك."
 
-#: .\forum\templates\forum\first_thread_congrats.html:58
+#: .\forum\templates\forum\first_thread_congrats.html:17
 msgid "Voir le Thread"
 msgstr "عرض الموضوع"
 
@@ -364,35 +423,35 @@ msgstr "بحث عن"
 msgid "Auteur :"
 msgstr "المؤلف:"
 
-#: .\forum\templates\forum\home.html:38 .\forum\templates\forum\home.html:50
+#: .\forum\templates\forum\home.html:39 .\forum\templates\forum\home.html:51
 msgid "Aucun tag"
 msgstr "لا توجد وسوم"
 
-#: .\forum\templates\forum\home.html:58
+#: .\forum\templates\forum\home.html:59
 msgid "Profil utilisateur"
-msgstr "الملف الشخصي للمستخدم"
+msgstr "ملف المستخدم"
 
-#: .\forum\templates\forum\home.html:67
+#: .\forum\templates\forum\home.html:68
 #: .\forum\templates\layouts\pagination.html:4
 #: .\forum\templates\layouts\pagination.html:6
 msgid "Précédent"
 msgstr "السابق"
 
-#: .\forum\templates\forum\home.html:75
+#: .\forum\templates\forum\home.html:76
 #: .\forum\templates\layouts\pagination.html:12
 #: .\forum\templates\layouts\pagination.html:14
 msgid "Suivant"
 msgstr "التالي"
 
-#: .\forum\templates\forum\home.html:81
+#: .\forum\templates\forum\home.html:82
 #, python-format
 msgid " Aucun résultat trouvé pour \"%(query)s\"."
-msgstr "لم يتم العثور على نتائج لـ \"%(query)s\"."
+msgstr "لا توجد نتائج لـ \"%(query)s\"."
 
 #: .\forum\templates\forum\moderation_dashboard.html:6
 #: .\forum\templates\forum\moderation_dashboard.html:17
 msgid "Tableau de Bord de Modération"
-msgstr "لوحة تحكم الإشراف"
+msgstr "لوحة تحكم المشرفين"
 
 #: .\forum\templates\forum\moderation_dashboard.html:56
 msgid "Threads Signalés"
@@ -400,7 +459,7 @@ msgstr "المواضيع المبلغ عنها"
 
 #: .\forum\templates\forum\moderation_dashboard.html:62
 msgid "signalements "
-msgstr "تبليغات"
+msgstr "تبليغات "
 
 #: .\forum\templates\forum\moderation_dashboard.html:65
 #: .\forum\templates\forum\moderation_dashboard.html:96
@@ -408,20 +467,20 @@ msgid "Auteur"
 msgstr "المؤلف"
 
 #: .\forum\templates\forum\moderation_dashboard.html:68
-#: .\forum\templates\forum\moderation_dashboard.html:99
-#: .\forum\templates\forum\moderation_dashboard.html:157
+#: .\forum\templates\forum\moderation_dashboard.html:96
+#: .\forum\templates\forum\moderation_dashboard.html:133
 msgid "Signalé par"
 msgstr "تم التبليغ بواسطة"
 
 #: .\forum\templates\forum\moderation_dashboard.html:69
 #: .\forum\templates\forum\moderation_dashboard.html:100
-#: .\forum\templates\forum\moderation_dashboard.html:158
+#: .\forum\templates\forum\moderation_dashboard.html:134
 msgid "Raison"
 msgstr "السبب"
 
 #: .\forum\templates\forum\moderation_dashboard.html:69
 #: .\forum\templates\forum\moderation_dashboard.html:100
-#: .\forum\templates\forum\moderation_dashboard.html:158
+#: .\forum\templates\forum\moderation_dashboard.html:134
 msgid "Date"
 msgstr "التاريخ"
 
@@ -432,7 +491,7 @@ msgstr "حذف"
 
 #: .\forum\templates\forum\moderation_dashboard.html:76
 #: .\forum\templates\forum\moderation_dashboard.html:107
-#: .\forum\templates\forum\moderation_dashboard.html:165
+#: .\forum\templates\forum\moderation_dashboard.html:140
 msgid "Voir"
 msgstr "عرض"
 
@@ -441,30 +500,33 @@ msgid "Posts Signalés"
 msgstr "المنشورات المبلغ عنها"
 
 #: .\forum\templates\forum\moderation_dashboard.html:93
-#: .\forum\templates\forum\moderation_dashboard.html:153
+#: .\forum\templates\forum\moderation_dashboard.html:129
 msgid " signalements "
-msgstr "تبليغات"
+msgstr " تبليغات "
 
 #: .\forum\templates\forum\moderation_dashboard.html:113
-#: .\forum\templates\forum\moderation_dashboard.html:171
 msgid "Aucun signalé"
-msgstr "لا يوجد تبليغات"
+msgstr "لا يوجد بلاغات"
 
 #: .\forum\templates\forum\moderation_dashboard.html:119
 msgid "Gestion des Utilisateurs"
 msgstr "إدارة المستخدمين"
 
-#: .\forum\templates\forum\moderation_dashboard.html:152
-msgid "Utilisateur"
-msgstr "المستخدم"
+#: .\forum\templates\forum\moderation_dashboard.html:120
+msgid "Utilisateurs inactifs"
+msgstr "المستخدمون غير النشطين"
 
-#: .\forum\templates\forum\moderation_dashboard.html:162
+#: .\forum\templates\forum\moderation_dashboard.html:128
+msgid "Utilisateur"
+msgstr "مستخدم"
+
+#: .\forum\templates\forum\moderation_dashboard.html:137
 msgid "Suspendre"
 msgstr "تعليق"
 
-#: .\forum\templates\forum\moderation_dashboard.html:175
+#: .\forum\templates\forum\moderation_dashboard.html:149
 msgid "Ajouter une information"
-msgstr "إضافة معلومات"
+msgstr "إضافة معلومة"
 
 #: .\forum\templates\forum\notifications.html:6
 msgid "Notifications"
@@ -476,116 +538,151 @@ msgstr "إشعاراتك"
 
 #: .\forum\templates\forum\notifications.html:67
 msgid "Marquer comme lu"
-msgstr "وضع علامة مقروء"
+msgstr "تعليم كمقروء"
 
 #: .\forum\templates\forum\notifications.html:70
 msgid "Vous n'avez pas de notification"
 msgstr "ليس لديك أي إشعارات"
 
-#: .\forum\templates\forum\profile.html:111
-msgid "Profil de"
-msgstr "الملف الشخصي لـ"
+#: .\forum\templates\forum\profile.html:17
+#, python-format
+msgid "Profil de : %(name)s"
+msgstr "ملف: %(name)s"
 
-#: .\forum\templates\forum\profile.html:115
+#: .\forum\templates\forum\profile.html:21
 msgid "Envoyer un message"
 msgstr "إرسال رسالة"
 
-#: .\forum\templates\forum\profile.html:117
+#: .\forum\templates\forum\profile.html:23
 msgid "Signaler utilisateur"
-msgstr "الإبلاغ عن المستخدم"
+msgstr "الإبلاغ عن مستخدم"
 
-#: .\forum\templates\forum\profile.html:121
+#: .\forum\templates\forum\profile.html:27
 msgid "Nom au complet"
 msgstr "الاسم الكامل"
 
-#: .\forum\templates\forum\profile.html:123
+#: .\forum\templates\forum\profile.html:29
 msgid "Badges Obtenus"
-msgstr "الأوسمة المكتسبة"
+msgstr "شارات مكتسبة"
 
-#: .\forum\templates\forum\profile.html:131
+#: .\forum\templates\forum\profile.html:37
 msgid "Aucun badge obtenu."
-msgstr "لا توجد أوسمة مكتسبة."
+msgstr "لا توجد شارات مكتسبة."
 
-#: .\forum\templates\forum\profile.html:135
+#: .\forum\templates\forum\profile.html:41
 msgid "Publications"
-msgstr "المنشورات"
+msgstr "منشورات"
 
-#: .\forum\templates\forum\profile.html:143
+#: .\forum\templates\forum\profile.html:49
 msgid "Aucune publication."
 msgstr "لا توجد منشورات."
 
 #: .\forum\templates\forum\report.html:6
 msgid "Signaler aux moderateurs"
-msgstr "الإبلاغ إلى المشرفين"
+msgstr "الإبلاغ للمشرفين"
 
 #: .\forum\templates\forum\report.html:16
 #: .\forum\templates\forum\report.html:18
-#: .\forum\templates\forum\thread.html:78
-#: .\forum\templates\forum\thread.html:123
-#: .\resources\templates\resources\resource_list.html:102
+#: .\forum\templates\forum\thread.html:49
+#: .\forum\templates\forum\thread.html:224
 msgid "Signaler"
-msgstr "الإبلاغ"
+msgstr "إبلاغ"
 
 #: .\forum\templates\forum\report.html:23
 msgid "Envoyer le signalement"
 msgstr "إرسال التبليغ"
 
-#: .\forum\templates\forum\similar_threads.html:4
-msgid "Threads Similaires"
-msgstr "مواضيع مشابهة"
-
-#: .\forum\templates\forum\similar_threads.html:14
-msgid "Pas de threads similaires"
-msgstr "لا توجد مواضيع مشابهة"
-
-#: .\forum\templates\forum\subforum.html:110
+#: .\forum\templates\forum\subforum.html:24
 msgid "Créer un fil de discussion"
 msgstr "إنشاء موضوع نقاش"
 
-#: .\forum\templates\forum\tagged.html:7
+#: .\forum\templates\forum\tagged.html:6
+#, python-format
+msgid "Tags: %(tag_name)s"
+msgstr "وسوم: %(tag_name)s"
+
+#: .\forum\templates\forum\tagged.html:16
 #, python-format
 msgid "Tag: %(tag.name)s "
-msgstr "وسم: %(tag.name)s"
+msgstr "وسم: %(tag.name)s "
 
-#: .\forum\templates\forum\tagged.html:8
+#: .\forum\templates\forum\tagged.html:17
 msgid "Threads taggés:"
-msgstr "المواضيع الموسومة:"
+msgstr "مواضيع موسومة:"
 
-#: .\forum\templates\forum\tagged.html:19
+#: .\forum\templates\forum\tagged.html:27
 msgid "Aucun thread"
 msgstr "لا توجد مواضيع"
 
-#: .\forum\templates\forum\tagged.html:21
-msgid "Posts taggés:"
-msgstr "المنشورات الموسومة:"
+#: .\forum\templates\forum\thread.html:26
+#: .\forum\templates\forum\thread.html:207
+#: .\forum\templates\forum\thread.html:308
+#: .\messaging\templates\messaging\thread_detail.html:45
+msgid "Avatar"
+msgstr "صورة رمزية"
 
-#: .\forum\templates\forum\tagged.html:32
-msgid "Aucun post"
-msgstr "لا توجد منشورات"
+#: .\forum\templates\forum\thread.html:36
+#, python-format
+msgid "Publié le %(date)s"
+msgstr "نشر في %(date)s"
 
-#: .\forum\templates\forum\thread.html:67
-msgid "Partager sur Twitter"
-msgstr "مشاركة على تويتر"
+#: .\forum\templates\forum\thread.html:53
+#: .\forum\templates\forum\thread.html:227
+msgid "Modifier"
+msgstr "تعديل"
 
-#: .\forum\templates\forum\thread.html:71
-msgid "Partager par Email"
-msgstr "مشاركة عبر البريد الإلكتروني"
+#: .\forum\templates\forum\thread.html:61
+msgid "Rouvrir le thread"
+msgstr "إعادة فتح الموضوع"
+
+#: .\forum\templates\forum\thread.html:68
+msgid "Fermer le thread"
+msgstr "إغلاق الموضوع"
 
 #: .\forum\templates\forum\thread.html:87
-msgid "Votre compte est suspendu pour 7 jours par le modérateur"
-msgstr "حسابك معلق لمدة 7 أيام من قبل المشرف"
+#: .\forum\templates\forum\thread.html:90
+msgid "Image du thread"
+msgstr "صورة الموضوع"
 
-#: .\forum\templates\forum\thread.html:100
+#: .\forum\templates\forum\thread.html:165
+#: .\forum\templates\forum\thread.html:191
+msgid "Ajouter un commentaire"
+msgstr "إضافة تعليق"
+
+#: .\forum\templates\forum\thread.html:173
+msgid "Ce thread est fermé"
+msgstr "هذا الموضوع مغلق"
+
+#: .\forum\templates\forum\thread.html:176
+msgid ""
+"Vous ne pouvez plus ajouter de nouveaux commentaires à cette discussion."
+msgstr "لم يعد بإمكانك إضافة تعليقات جديدة على هذه المناقشة."
+
+#: .\forum\templates\forum\thread.html:193
+msgid "Écrivez votre commentaire ici..."
+msgstr "اكتب تعليقك هنا..."
+
+#: .\forum\templates\forum\thread.html:195
+#: .\forum\templates\forum\update_post.html:17
+#: .\forum\templates\forum\update_thread.html:17
+#: .\templates\account\confirm_email_verification_code.html:32
+#: .\templates\account\confirm_email_verification_code.html:36
+#: .\templates\account\confirm_login_code.html:32
+#: .\templates\edit_profile.html:24
+msgid "Annuler"
+msgstr "إلغاء"
+
+#: .\forum\templates\forum\thread.html:196
 msgid "Publier"
 msgstr "نشر"
 
-#: .\forum\templates\forum\thread.html:126
-msgid "mettre a jour"
-msgstr "تحديث"
+#: .\forum\templates\forum\thread.html:248
+msgid "Aucun commentaire pour ce thread"
+msgstr "لا توجد تعليقات على هذا الموضوع"
 
-#: .\forum\templates\forum\thread.html:142
-msgid "Aucun commentaire pour ce thread."
-msgstr "لا توجد تعليقات على هذا الموضوع."
+#: .\forum\templates\forum\thread.html:303
+msgid "Threads similaires"
+msgstr "مواضيع مشابهة"
 
 #: .\forum\templates\forum\update_post.html:6
 #: .\forum\templates\forum\update_post.html:11
@@ -597,15 +694,6 @@ msgstr "تحديث المنشور"
 msgid "Mettre à Jour"
 msgstr "تحديث"
 
-#: .\forum\templates\forum\update_post.html:17
-#: .\forum\templates\forum\update_thread.html:17
-#: .\templates\account\confirm_email_verification_code.html:32
-#: .\templates\account\confirm_email_verification_code.html:36
-#: .\templates\account\confirm_login_code.html:32
-#: .\templates\edit_profile.html:24
-msgid "Annuler"
-msgstr "إلغاء"
-
 #: .\forum\templates\forum\update_thread.html:6
 #: .\forum\templates\forum\update_thread.html:11
 msgid "Mettre à Jour le Thread"
@@ -613,55 +701,207 @@ msgstr "تحديث الموضوع"
 
 #: .\forum\templates\layouts\pagination.html:9
 msgid "Page"
-msgstr "الصفحة"
+msgstr "صفحة"
 
 #: .\forum\templates\layouts\pagination.html:9
 msgid "sur"
 msgstr "من"
 
-#: .\forum\views.py:48
+#: .\forum\views.py:37
+msgid "Vous n'avez pas l'autorisation de fermer ce fil de discussion."
+msgstr "ليس لديك صلاحية إغلاق هذا الموضوع."
+
+#: .\forum\views.py:49
+msgid "Vous n'avez pas l'autorisation de rouvrir ce fil de discussion."
+msgstr "ليس لديك صلاحية إعادة فتح هذا الموضوع."
+
+#: .\forum\views.py:82
 msgid "Réponse à @"
 msgstr "رد على @"
 
-#: .\home\templates\home\discussions.html:53
-msgid "Le :"
-msgstr "في:"
+#: .\forum\views.py:94
+#, python-format
+msgid "%(username)s a commenté votre thread \"%(title)s\""
+msgstr "%(username)s علق على موضوعك \"%(title)s\""
 
-#: .\home\templates\home\discussions.html:58
-msgid "réponse"
-msgstr "رد"
+#: .\forum\views.py:113 .\forum\views.py:434
+msgid "Le thread a été supprimé avec succès."
+msgstr "تم حذف الموضوع بنجاح."
 
-#: .\home\templates\home\discussions.html:58
-msgid "associée"
-msgstr "مرتبط"
+#: .\forum\views.py:137 .\forum\views.py:173
+msgid "Félicitations pour votre premier thread !"
+msgstr "مبروك على موضوعك الأول!"
 
-#: .\home\templates\home\discussions.html:64
+#: .\forum\views.py:140
+msgid "Thread créé avec succès !"
+msgstr "تم إنشاء الموضوع بنجاح!"
+
+#: .\forum\views.py:143
+msgid "Veuillez corriger les erreurs ci-dessous."
+msgstr "يرجى تصحيح الأخطاء أدناه."
+
+#: .\forum\views.py:162
+msgid "Votre compte n'est plus actif."
+msgstr "حسابك لم يعد نشطاً."
+
+#: .\forum\views.py:176
+msgid "Votre thread a été créé avec succès !"
+msgstr "تم إنشاء موضوعك بنجاح!"
+
+#: .\forum\views.py:359
+msgid "Votre message a été publié avec succès !"
+msgstr "تم نشر رسالتك بنجاح!"
+
+#: .\forum\views.py:426
+msgid "Le message a été supprimé avec succès."
+msgstr "تم حذف الرسالة بنجاح."
+
+#: .\forum\views.py:468
+#, python-format
+msgid "Nouveau signalement d'un sujet: %(title)s"
+msgstr "تبليغ جديد عن موضوع: %(title)s"
+
+#: .\forum\views.py:471
+#, python-format
+msgid "Nouveau signalement d'un message dans le sujet: %(title)s"
+msgstr "تبليغ جديد عن رسالة في الموضوع: %(title)s"
+
+#: .\forum\views.py:474
+#, python-format
+msgid "Nouveau signalement d'un utilisateur: %(name)s"
+msgstr "تبليغ جديد عن مستخدم: %(name)s"
+
+#: .\forum\views.py:502
+msgid "Vous devez être connecté pour effectuer cette action."
+msgstr "يجب تسجيل الدخول لإجراء هذا الإجراء."
+
+#: .\forum\views.py:509
+msgid "Le groupe Modérateur n'existe pas."
+msgstr "مجموعة المشرفين غير موجودة."
+
+#: .\forum\views.py:513
+msgid "Vous ne pouvez pas vous suspendre vous-même."
+msgstr "لا يمكنك تعليق حسابك بنفسك."
+
+#: .\forum\views.py:522
+msgid ""
+"Votre compte a été suspendu. Contactez l'administration pour plus "
+"d'informations."
+msgstr "حسابك معلق. اتصل بالإدارة للمزيد من المعلومات."
+
+#: .\forum\views.py:528
+msgid "Vous n'avez pas les permissions nécessaires."
+msgstr "ليس لديك الصلاحيات المطلوبة."
+
+#: .\home\templates\home\discussions.html:54
+#, python-format
+msgid "Le : %(date)s"
+msgstr "في: %(date)s"
+
+#: .\home\templates\home\discussions.html:61
+#, python-format
+msgid ""
+"\n"
+"                        %(counter)s réponse associée :\n"
+"                        "
+msgid_plural ""
+"\n"
+"                        %(counter)s réponses associées :\n"
+"                        "
+msgstr[0] ""
+"\n"
+"                        رد واحد:\n"
+"                        "
+msgstr[1] ""
+"\n"
+"                        %(counter)s ردود:\n"
+"                        "
+
+#: .\home\templates\home\discussions.html:72
 msgid "Soyez le premier à poster sur ce thread !"
 msgstr "كن أول من ينشر على هذا الموضوع!"
 
-#: .\home\templates\home\home.html:44
-msgid "Forums avec des threads"
-msgstr "منتديات تحتوي على مواضيع"
+#: .\home\templates\home\home.html:18
+msgid "ÉVÉNEMENT PHARE"
+msgstr "الفعالية الرئيسية"
 
-#: .\home\templates\home\home.html:55
-msgid "Derniers threads"
-msgstr "آخر المواضيع"
+#: .\home\templates\home\home.html:21
+#, python-format
+msgid "%(date)s"
+msgstr "%(date)s"
 
-#: .\home\templates\home\home.html:63
-msgid "Par"
-msgstr "بواسطة"
+#: .\home\templates\home\home.html:22
+#, python-format
+msgid "%(time)s"
+msgstr "%(time)s"
 
-#: .\home\templates\home\home.html:63
-msgid "Le"
-msgstr "في"
+#: .\home\templates\home\home.html:25
+msgid "Découvrir"
+msgstr "اكتشف"
 
-#: .\home\templates\home\home.html:77
-msgid "Aucun forum avec des threads disponibles."
-msgstr "لا توجد منتديات تحتوي على مواضيع متاحة."
+#: .\home\templates\home\home.html:39
+msgid "Discussions Actives"
+msgstr "مناقشات نشطة"
 
-#: .\home\templates\home\home.html:81
-msgid "Les sujets qui peuvent vous intéresser"
-msgstr "المواضيع التي قد تهمك"
+#: .\home\templates\home\home.html:48
+#, python-format
+msgid "Par %(author)s | le %(date)s"
+msgstr "بواسطة %(author)s | في %(date)s"
+
+#: .\home\templates\home\home.html:57 .\home\templates\home\home.html:164
+#, python-format
+msgid "%(counter)s réponse"
+msgid_plural "%(counter)s réponses"
+msgstr[0] "رد واحد"
+msgstr[1] "%(counter)s ردود"
+
+#: .\home\templates\home\home.html:62
+msgid "Voir toutes les discussions"
+msgstr "عرض جميع المناقشات"
+
+#: .\home\templates\home\home.html:67
+msgid "Prochains Événements"
+msgstr "الفعاليات القادمة"
+
+#: .\home\templates\home\home.html:95
+msgid "À ne pas manquer"
+msgstr "لا تفوت"
+
+#: .\home\templates\home\home.html:113
+msgid "Voir Plus"
+msgstr "المزيد"
+
+#: .\home\templates\home\home.html:119
+msgid "Ressources Pratiques"
+msgstr "موارد مفيدة"
+
+#: .\home\templates\home\home.html:125
+msgid "Bibliothèque"
+msgstr "المكتبة"
+
+#: .\home\templates\home\home.html:131
+msgid "Tutoriels"
+msgstr "دروس تعليمية"
+
+#: .\home\templates\home\home.html:137
+msgid "Outils"
+msgstr "أدوات"
+
+#: .\home\templates\home\home.html:143 .\templates\includes\footer.html:11
+#: .\templates\includes\sidebar.html:62
+msgid "FAQ"
+msgstr "الأسئلة الشائعة"
+
+#: .\home\templates\home\home.html:150
+msgid "Rejoignez la discussion"
+msgstr "انضم للنقاش"
+
+#: .\home\templates\home\home.html:163
+#, python-format
+msgid "%(counter)s threads"
+msgid_plural "%(counter)s threads"
+msgstr[0] "موضوع واحد"
+msgstr[1] "%(counter)s مواضيع"
 
 #: .\messaging\forms.py:8
 msgid "Écrire votre message ici"
@@ -669,21 +909,17 @@ msgstr "اكتب رسالتك هنا"
 
 #: .\messaging\templates\messaging\thread_detail.html:10
 #: .\messaging\templates\messaging\user_messages.html:5
-#: .\templates\includes\navbar.html:90 .\templates\includes\navbar.html:123
+#: .\templates\includes\navbar.html:91 .\templates\includes\sidebar.html:29
 msgid "Messagerie privée"
-msgstr "المراسلة الخاصة"
+msgstr "الرسائل الخاصة"
 
 #: .\messaging\templates\messaging\thread_detail.html:18
 #: .\messaging\templates\messaging\user_messages.html:14
 msgid "Vos Conversations"
 msgstr "محادثاتك"
 
-#: .\messaging\templates\messaging\thread_detail.html:45
-msgid "Avatar"
-msgstr "الصورة الرمزية"
-
 #: .\messaging\templates\messaging\thread_detail.html:55
-msgid "Démarer une nouvelle conversation"
+msgid "Démarrer une nouvelle conversation"
 msgstr "بدء محادثة جديدة"
 
 #: .\messaging\templates\messaging\thread_detail.html:61
@@ -696,11 +932,11 @@ msgstr "أنت"
 
 #: .\messaging\templates\messaging\user_messages.html:37
 msgid "Aucune conversation avec les autres utilisateurs"
-msgstr "لا توجد محادثات مع المستخدمين الآخرين"
+msgstr "لا توجد محادثات مع مستخدمين آخرين"
 
 #: .\messaging\templates\messaging\user_messages.html:42
 msgid "Envoyer message à "
-msgstr "إرسال رسالة إلى"
+msgstr "إرسال رسالة إلى "
 
 #: .\messaging\templates\messaging\user_messages.html:44
 msgid "Rechercher un utilisateur"
@@ -721,24 +957,21 @@ msgstr "تذكرني"
 
 #: .\modelUser\forms.py:23 .\modelUser\forms.py:24 .\modelUser\forms.py:116
 #: .\modelUser\forms.py:137 .\templates\account\signup.html:42
-#: .\templates\profile.html:29
 msgid "Nom d'utilisateur"
 msgstr "اسم المستخدم"
 
 #: .\modelUser\forms.py:28 .\modelUser\forms.py:29 .\modelUser\forms.py:57
-#: .\modelUser\forms.py:117 .\templates\profile.html:30
+#: .\modelUser\forms.py:117 .\templates\profile.html:45
 msgid "Adresse e-mail"
 msgstr "البريد الإلكتروني"
 
 #: .\modelUser\forms.py:33 .\modelUser\forms.py:34 .\modelUser\forms.py:118
 #: .\modelUser\forms.py:138 .\templates\account\signup.html:46
-#: .\templates\profile.html:31
 msgid "Prénom"
 msgstr "الاسم الأول"
 
 #: .\modelUser\forms.py:38 .\modelUser\forms.py:39 .\modelUser\forms.py:119
 #: .\modelUser\forms.py:139 .\templates\account\signup.html:50
-#: .\templates\profile.html:32
 msgid "Nom"
 msgstr "الاسم الأخير"
 
@@ -780,13 +1013,17 @@ msgstr "صورة الملف الشخصي"
 msgid "nom d'utilisateur"
 msgstr "اسم المستخدم"
 
+#: .\modelUser\models.py:43
+msgid "date d'inscription"
+msgstr "تاريخ التسجيل"
+
 #: .\news\templates\news\yahoonews.html:18
 msgid "Dernière mise à jour :"
 msgstr "آخر تحديث:"
 
 #: .\news\templates\news\yahoonews.html:60
 msgid "Aucun article disponible pour le moment."
-msgstr "لا توجد مقالات متاحة حاليًا."
+msgstr "لا توجد مقالات متاحة حالياً"
 
 #: .\resources\models.py:29
 msgid ""
@@ -806,27 +1043,27 @@ msgid ""
 "lien vers la ressource"
 msgstr "يجب ألا يتجاوز حجم الفيديو 20 ميجابايت. يمكنك مشاركة رابط المورد"
 
-#: .\resources\templates\resources\add_document.html:6
-#: .\resources\templates\resources\add_document.html:10
-#: .\resources\templates\resources\resource_list.html:125
+#: .\resources\templates\resources\add_document.html:9
+#: .\resources\templates\resources\add_document.html:13
+#: .\resources\templates\resources\resource_list.html:135
 #: .\resources\templates\resources\resource_type_selection.html:60
 msgid "Ajouter un Document"
 msgstr "إضافة مستند"
 
-#: .\resources\templates\resources\add_document.html:24
-#: .\resources\templates\resources\add_image.html:24
+#: .\resources\templates\resources\add_document.html:27
+#: .\resources\templates\resources\add_image.html:52
 #: .\resources\templates\resources\add_link.html:20
 msgid "Description"
 msgstr "الوصف"
 
-#: .\resources\templates\resources\add_document.html:26
-#: .\resources\templates\resources\resource_list.html:127
+#: .\resources\templates\resources\add_document.html:29
+#: .\resources\templates\resources\resource_list.html:137
 #: .\resources\templates\resources\resource_type_selection.html:62
 msgid "Document"
 msgstr "مستند"
 
-#: .\resources\templates\resources\add_document.html:33
-#: .\resources\templates\resources\add_image.html:31
+#: .\resources\templates\resources\add_document.html:36
+#: .\resources\templates\resources\add_image.html:59
 #: .\resources\templates\resources\add_link.html:38
 #: .\resources\templates\resources\add_video.html:38
 msgid "Ajouter"
@@ -836,14 +1073,14 @@ msgstr "إضافة"
 msgid "Ajouter une image"
 msgstr "إضافة صورة"
 
-#: .\resources\templates\resources\add_image.html:10
-#: .\resources\templates\resources\resource_list.html:117
+#: .\resources\templates\resources\add_image.html:38
+#: .\resources\templates\resources\resource_list.html:127
 #: .\resources\templates\resources\resource_type_selection.html:51
 msgid "Ajouter une Image"
 msgstr "إضافة صورة"
 
-#: .\resources\templates\resources\add_image.html:26
-#: .\resources\templates\resources\resource_list.html:119
+#: .\resources\templates\resources\add_image.html:54
+#: .\resources\templates\resources\resource_list.html:129
 #: .\resources\templates\resources\resource_type_selection.html:53
 msgid "Image"
 msgstr "صورة"
@@ -853,13 +1090,13 @@ msgid "Ajouter un lien"
 msgstr "إضافة رابط"
 
 #: .\resources\templates\resources\add_link.html:15
-#: .\resources\templates\resources\resource_list.html:121
+#: .\resources\templates\resources\resource_list.html:131
 #: .\resources\templates\resources\resource_type_selection.html:55
 msgid "Ajouter un Lien"
 msgstr "إضافة رابط"
 
 #: .\resources\templates\resources\add_link.html:22
-#: .\resources\templates\resources\resource_list.html:123
+#: .\resources\templates\resources\resource_list.html:133
 #: .\resources\templates\resources\resource_type_selection.html:57
 msgid "Lien"
 msgstr "رابط"
@@ -883,23 +1120,42 @@ msgstr "فيديو"
 
 #: .\resources\templates\resources\add_video.html:35
 msgid "Votre navigateur ne supporte pas l'élément vidéo."
-msgstr "متصفحك لا يدعم عنصر الفيديو."
+msgstr "متصفحك لا يدعم عنصر الفيديو"
 
-#: .\resources\templates\resources\resource_detail.html:30
-#: .\resources\templates\resources\resource_list.html:42
+#: .\resources\templates\resources\resource_detail.html:7
+#, python-format
+msgid " Ressource : %(title)s "
+msgstr "المورد: %(title)s"
+
+#: .\resources\templates\resources\resource_detail.html:24
+#: .\resources\templates\resources\resource_detail.html:71
+#: .\resources\templates\resources\resource_detail.html:83
+#: .\resources\templates\resources\resource_list.html:36
+#: .\resources\templates\resources\resource_list.html:49
+#: .\resources\templates\resources\resource_list.html:106
+msgid "Télécharger"
+msgstr "تحميل"
+
+#: .\resources\templates\resources\resource_detail.html:66
+msgid "Icône de document"
+msgstr "أيقونة المستند"
+
+#: .\resources\templates\resources\resource_detail.html:79
+#: .\resources\templates\resources\resource_list.html:44
 msgid "Votre navigateur ne supporte pas la balise vidéo."
-msgstr "متصفحك لا يدعم علامة الفيديو."
+msgstr "متصفحك لا يدعم علامة الفيديو"
 
-#: .\resources\templates\resources\resource_detail.html:35
-msgid "Ajouté le"
-msgstr "تمت الإضافة في"
+#: .\resources\templates\resources\resource_detail.html:89
+#, python-format
+msgid "Ajouté le : %(date)s"
+msgstr "تمت الإضافة في: %(date)s"
 
-#: .\resources\templates\resources\resource_detail.html:36
+#: .\resources\templates\resources\resource_detail.html:90
 msgid "Ajouté par"
 msgstr "تمت الإضافة بواسطة"
 
 #: .\resources\templates\resources\resource_list.html:7
-#: .\templates\includes\navbar.html:25
+#: .\templates\includes\navbar.html:23
 msgid "Ressources"
 msgstr "موارد"
 
@@ -936,32 +1192,24 @@ msgstr "روابط"
 msgid "Documents"
 msgstr "مستندات"
 
-#: .\resources\templates\resources\resource_list.html:96
-msgid "Télécharger"
-msgstr "تحميل"
-
-#: .\resources\templates\resources\resource_list.html:99
-msgid "Partager"
-msgstr "مشاركة"
-
-#: .\resources\templates\resources\resource_list.html:108
+#: .\resources\templates\resources\resource_list.html:116
 #: .\resources\templates\resources\search_results.html:52
 msgid "Ajouté le :"
 msgstr "تمت الإضافة في:"
 
-#: .\resources\templates\resources\resource_list.html:112
+#: .\resources\templates\resources\resource_list.html:120
 msgid " Aucune ressource trouvée"
 msgstr "لم يتم العثور على أي موارد"
 
-#: .\resources\templates\resources\resource_list.html:129
+#: .\resources\templates\resources\resource_list.html:139
 msgid "Ajouter une video"
 msgstr "إضافة فيديو"
 
-#: .\resources\templates\resources\resource_list.html:131
+#: .\resources\templates\resources\resource_list.html:141
 msgid "Video"
 msgstr "فيديو"
 
-#: .\resources\templates\resources\resource_list.html:135
+#: .\resources\templates\resources\resource_list.html:145
 msgid "Ajouter une ressource"
 msgstr "إضافة مورد"
 
@@ -979,7 +1227,7 @@ msgstr "نتائج البحث"
 
 #: .\resources\templates\resources\search_results.html:18
 msgid "Recherche encore"
-msgstr "ابحث مرة أخرى"
+msgstr "بحث مرة أخرى"
 
 #: .\resources\templates\resources\search_results.html:24
 msgid "Résultats pour :"
@@ -987,21 +1235,21 @@ msgstr "نتائج البحث عن:"
 
 #: .\resources\templates\resources\search_results.html:57
 msgid "Aucune ressource trouvée."
-msgstr "لم يتم العثور على أي موارد."
+msgstr "لم يتم العثور على أي موارد"
 
 #: .\resources\templates\resources\search_results.html:60
 msgid "Veuillez entrer un terme de recherche."
-msgstr "الرجاء إدخال مصطلح البحث."
+msgstr "الرجاء إدخال كلمة بحث."
 
-#: .\resources\views.py:38
+#: .\resources\views.py:35
 msgid "Le fichier doit être une image valide."
 msgstr "يجب أن يكون الملف صورة صالحة."
 
-#: .\resources\views.py:77
+#: .\resources\views.py:74
 msgid "Le fichier doit être un document valide."
 msgstr "يجب أن يكون الملف مستندًا صالحًا."
 
-#: .\resources\views.py:103
+#: .\resources\views.py:100
 msgid "Le fichier doit être une vidéo valide."
 msgstr "يجب أن يكون الملف فيديو صالحًا."
 
@@ -1009,113 +1257,88 @@ msgstr "يجب أن يكون الملف فيديو صالحًا."
 msgid "Accès interdit"
 msgstr "وصول ممنوع"
 
-#: .\templates\404.html:6
-msgid "Page non trouvée"
-msgstr "الصفحة غير موجودة"
+#: .\templates\403.html:41
+msgid "Désolé, vous n'avez pas la permission d'accéder à cette page."
+msgstr "عذرًا، ليس لديك إذن للوصول إلى هذه الصفحة."
 
-#: .\templates\404.html:40
+#: .\templates\403.html:42 .\templates\404.html:47
 msgid "Retour à la page d'accueil"
 msgstr "العودة إلى الصفحة الرئيسية"
 
-#: .\templates\about.html:7
-msgid "À propos de nous"
+#: .\templates\404.html:7
+msgid "Page non trouvée"
+msgstr "الصفحة غير موجودة"
+
+#: .\templates\404.html:46
+msgid "Désolé, la page que vous cherchez n'existe pas"
+msgstr "عذرًا، الصفحة التي تبحث عنها غير موجودة"
+
+#: .\templates\about.html:5
+msgid "A propos de nous"
 msgstr "معلومات عنا"
 
-#: .\templates\about.html:8
-msgid ""
-"Bienvenue sur le forum de l'Institut National Supérieur des Sciences et "
-"Techniques d'Abéché (INSTA)."
-msgstr "مرحبًا بكم في منتدى المعهد الوطني العالي للعلوم والتقنيات في أبشي (INSTA)."
-
 #: .\templates\about.html:9
-msgid ""
-"Ce projet a été développé par Abakar Silet Darkou et Aka Gerald comme projet "
-"de fin d'études et un don pour la numérisation de notre institut . Notre "
-"vision et Notre dévouement ont permis la création de cette plateforme "
-"innovante."
-msgstr ""
-"تم تطوير هذا المشروع من قبل أباكار سيلت داركو وأكا جيرالد كمشروع تخرج وكهدية "
-"لرقمنة معهدنا. رؤيتنا وتفانينا مكّنا من إنشاء هذه المنصة المبتكرة."
+msgid "À propos de nous"
+msgstr "عنّا"
 
-#: .\templates\about.html:10
+#: .\templates\about.html:15
 msgid "Nos Objectifs"
 msgstr "أهدافنا"
 
-#: .\templates\about.html:11
+#: .\templates\about.html:16
 msgid "Notre plateforme vise à :"
 msgstr "تهدف منصتنا إلى:"
 
-#: .\templates\about.html:13
+#: .\templates\about.html:18
 msgid ""
 "Faciliter la communication et l'échange entre les étudiants et les "
 "enseignants."
 msgstr "تسهيل التواصل والتبادل بين الطلاب والمعلمين."
 
-#: .\templates\about.html:14
+#: .\templates\about.html:19
 msgid ""
 "Fournir un espace pour partager des ressources académiques et pédagogiques."
 msgstr "توفير مساحة لمشاركة الموارد الأكاديمية والتعليمية."
 
-#: .\templates\about.html:15
-msgid ""
-"Tenir les membres de l'institut informés des dernières actualités et "
-"événements au sein de l'institution."
-msgstr "إبقاء أعضاء المعهد على اطلاع بآخر الأخبار والأحداث داخل المؤسسة."
-
-#: .\templates\about.html:16
+#: .\templates\about.html:22
 msgid ""
 "Encourager la participation et l'engagement dans les activités de l'institut."
 msgstr "تشجيع المشاركة والانخراط في أنشطة المعهد."
 
-#: .\templates\about.html:18
+#: .\templates\about.html:24
 msgid "Fonctionnalités de la plateforme"
 msgstr "ميزات المنصة"
 
-#: .\templates\about.html:19
+#: .\templates\about.html:25
 msgid "Notre forum inclut :"
 msgstr "يشمل منتدانا:"
 
-#: .\templates\about.html:21
+#: .\templates\about.html:27
 msgid ""
 "Un forum de discussion pour poser des questions et partager des "
 "connaissances."
 msgstr "منتدى مناقشة لطرح الأسئلة ومشاركة المعرفة."
 
-#: .\templates\about.html:22
-msgid ""
-"Une section de partage de ressources où les utilisateurs peuvent télécharger "
-"et accéder à des documents."
-msgstr "قسم مشاركة الموارد حيث يمكن للمستخدمين تحميل الوثائق والوصول إليها."
-
-#: .\templates\about.html:23
+#: .\templates\about.html:30
 msgid ""
 "Une page d'actualités pour se tenir informé des dernières nouveautés de "
 "l'institut."
-msgstr "صفحة أخبار للبقاء على اطلاع بآخر المستجدات في المعهد."
+msgstr "صفحة أختبار للاطلاع على آخر مستجدات المعهد."
 
-#: .\templates\about.html:24
+#: .\templates\about.html:31
 msgid ""
 "Un calendrier d'événements pour ne rien manquer des activités organisées par "
 "l'institut."
-msgstr "تقويم أحداث لعدم تفويت أي من الأنشطة التي ينظمها المعهد."
+msgstr "تقويم فعاليات لكي لا تفوت أي أنشطة ينظمها المعهد."
 
-#: .\templates\about.html:26
-msgid ""
-"Nous espérons que cette plateforme deviendra un outil indispensable pour "
-"tous les membres de notre communauté académique. Merci de votre soutien et "
-"de votre engagement."
-msgstr ""
-"نأمل أن تصبح هذه المنصة أداة لا غنى عنها لجميع أعضاء مجتمعنا الأكاديمي. شكرًا "
-"لدعمكم وتفانيكم."
-
-#: .\templates\about.html:27
+#: .\templates\about.html:35
 msgid "Retour à l'accueil"
 msgstr "العودة إلى الصفحة الرئيسية"
 
 #: .\templates\account\account_inactive.html:5
 #: .\templates\account\account_inactive.html:9
 msgid "Account Inactive"
-msgstr "الحساب غير نشط"
+msgstr "حساب غير نشط"
 
 #: .\templates\account\account_inactive.html:12
 msgid "This account is inactive."
@@ -1128,7 +1351,7 @@ msgstr "تأكيد الوصول"
 
 #: .\templates\account\base_reauthenticate.html:12
 msgid "Please reauthenticate to safeguard your account."
-msgstr "يرجى إعادة المصادقة لحماية حسابك."
+msgstr "الرجاء إعادة المصادقة لحماية حسابك."
 
 #: .\templates\account\base_reauthenticate.html:19
 msgid "Alternative options"
@@ -1136,7 +1359,7 @@ msgstr "خيارات بديلة"
 
 #: .\templates\account\confirm_email_verification_code.html:5
 msgid "Vérification de l'e-mail"
-msgstr "التحقق من البريد الإلكتروني"
+msgstr "تأكيد البريد الإلكتروني"
 
 #: .\templates\account\confirm_email_verification_code.html:9
 msgid "Entrez le code de vérification de l'e-mail"
@@ -1149,7 +1372,7 @@ msgid ""
 "veuillez le saisir\n"
 "rapidement."
 msgstr ""
-"لقد أرسلنا رمزًا إلى %(email_link)s. الرمز ينتهي بسرعة، لذا يرجى إدخاله\n"
+"لقد أرسلنا رمزًا إلى %(email_link)s. ينتهي صلاحية الرمز بسرعة، لذا يرجى إدخاله\n"
 "بسرعة."
 
 #: .\templates\account\confirm_email_verification_code.html:28
@@ -1159,10 +1382,10 @@ msgstr "تأكيد"
 
 #: .\templates\account\confirm_login_code.html:5
 #: .\templates\account\confirm_login_code.html:27
-#: .\templates\account\login.html:47
+#: .\templates\account\login.html:51 .\templates\account\login.html:54
 #: .\templates\account\password_reset_from_key_done.html:45
 #: .\templates\account\request_login_code.html:5
-#: .\templates\account\signup.html:71 .\templates\includes\navbar.html:53
+#: .\templates\account\signup.html:74 .\templates\includes\navbar.html:54
 msgid "Se connecter"
 msgstr "تسجيل الدخول"
 
@@ -1176,7 +1399,8 @@ msgid ""
 "Nous avons envoyé un code à %(email_link)s. Le code expire rapidement, donc "
 "veuillez le saisir rapidement."
 msgstr ""
-"لقد أرسلنا رمزًا إلى %(email_link)s. الرمز ينتهي بسرعة، لذا يرجى إدخاله بسرعة."
+"لقد أرسلنا رمزًا إلى %(email_link)s. ينتهي صلاحية الرمز بسرعة، لذا يرجى إدخاله "
+"بسرعة."
 
 #: .\templates\account\email.html:4 .\templates\account\email.html:9
 msgid "Email Addresses"
@@ -1192,7 +1416,7 @@ msgstr "تم التحقق"
 
 #: .\templates\account\email.html:30
 msgid "Unverified"
-msgstr "غير مؤكد"
+msgstr "غير محقق"
 
 #: .\templates\account\email.html:35
 msgid "Primary"
@@ -1237,8 +1461,8 @@ msgstr ""
 "\n"
 "%(email)s\n"
 "\n"
-"ومع ذلك، يوجد بالفعل حساب بهذا العنوان. إذا نسيت ذلك، يرجى استخدام إجراء "
-"إعادة تعيين كلمة المرور لاستعادة حسابك:\n"
+"ومع ذلك، يوجد حساب بالفعل بهذا العنوان. إذا كنت قد نسيت ذلك، يرجى استخدام "
+"إجراء إعادة تعيين كلمة المرور لاسترداد حسابك:\n"
 "\n"
 "%(password_reset_url)s"
 
@@ -1249,7 +1473,7 @@ msgstr "حساب موجود مسبقًا"
 #: .\templates\account\email\base_message.txt:3
 #, python-format
 msgid "Bonjour depuis %(site_name)s!"
-msgstr "مرحبًا من %(site_name)s!"
+msgstr "مرحبًا بكم من %(site_name)s!"
 
 #: .\templates\account\email\base_message.txt:7
 #, python-format
@@ -1264,7 +1488,7 @@ msgstr ""
 msgid ""
 "Vous recevez cet e-mail parce que les modifications suivantes ont été "
 "apportées à votre compte:"
-msgstr "أنت تتلقى هذا البريد الإلكتروني لأن التغييرات التالية تم إجراؤها على حسابك:"
+msgstr "أنت تتلقى هذا البريد الإلكتروني لأن التغييرات التالية قد تم إجراؤها على حسابك:"
 
 #: .\templates\account\email\base_notification.txt:10
 #, python-format
@@ -1277,8 +1501,8 @@ msgid ""
 "- Navigateur : %(user_agent)s\n"
 "- Date : %(timestamp)s"
 msgstr ""
-"إذا لم تتعرف على هذا التغيير، يرجى اتخاذ الإجراءات الأمنية المناسبة على الفور. "
-"التغيير في حسابك جاء من:\n"
+"إذا لم تتعرف على هذا التغيير، يرجى اتخاذ الاحتياطات الأمنية المناسبة على "
+"الفور. التغيير على حسابك يأتي من:\n"
 "\n"
 "- عنوان IP: %(ip)s\n"
 "- المتصفح: %(user_agent)s\n"
@@ -1291,7 +1515,7 @@ msgstr "تم تغيير عنوان بريدك الإلكتروني من %(from_e
 
 #: .\templates\account\email\email_changed_subject.txt:3
 msgid "Adresse e-mail modifiée"
-msgstr "تم تعديل عنوان البريد الإلكتروني"
+msgstr "تم تغيير عنوان البريد الإلكتروني"
 
 #: .\templates\account\email\email_confirm_message.txt:4
 msgid "Votre adresse e-mail a été confirmée."
@@ -1307,25 +1531,24 @@ msgid ""
 "Vous recevez cet e-mail parce que l'utilisateur %(user_display)s a donné "
 "votre adresse e-mail pour s'inscrire à un compte sur %(site_domain)s."
 msgstr ""
-"أنت تتلقى هذا البريد الإلكتروني لأن المستخدم %(user_display)s قدم عنوان بريدك "
-"الإلكتروني للتسجيل في حساب على %(site_domain)s."
+"أنت تتلقى هذا البريد الإلكتروني لأن المستخدم %(user_display)s قد قدم عنوان "
+"بريدك الإلكتروني للتسجيل في حساب على %(site_domain)s."
 
 #: .\templates\account\email\email_confirmation_message.txt:7
 msgid ""
 "Votre code de vérification de l'e-mail est ci-dessous. Veuillez l'entrer "
 "dans votre fenêtre de navigateur ouverte."
 msgstr ""
-"رمز التحقق الخاص ببريدك الإلكتروني موجود أدناه. يرجى إدخاله في نافذة المتصفح "
-"المفتوحة."
+"رمز التحقق من بريدك الإلكتروني أدناه. يرجى إدخاله في نافذة المتصفح المفتوحة."
 
 #: .\templates\account\email\email_confirmation_message.txt:9
 #, python-format
 msgid "Pour confirmer que c'est correct, allez à %(activate_url)s"
-msgstr "لتأكيد صحته، انتقل إلى %(activate_url)s"
+msgstr "لتأكيد أن هذا صحيح، انتقل إلى %(activate_url)s"
 
 #: .\templates\account\email\email_confirmation_subject.txt:3
 msgid "Veuillez confirmer votre adresse e-mail"
-msgstr "يرجى تأكيد عنوان بريدك الإلكتروني"
+msgstr "الرجاء تأكيد عنوان بريدك الإلكتروني"
 
 #: .\templates\account\email\email_deleted_message.txt:4
 #, python-format
@@ -1344,7 +1567,7 @@ msgstr "رمز تسجيل الدخول الخاص بك مدرج أدناه. ير
 
 #: .\templates\account\email\login_code_message.txt:9
 msgid "This mail can be safely ignored if you did not initiate this action."
-msgstr "يمكن تجاهل هذا البريد بأمان إذا لم تكن أنت من بدأ هذا الإجراء."
+msgstr "يمكن تجاهل هذا البريد بأمان إذا لم تبدأ هذا الإجراء."
 
 #: .\templates\account\email\login_code_subject.txt:3
 msgid "Sign-In Code"
@@ -1366,15 +1589,13 @@ msgid ""
 "de réinitialisation de mot de passe. Cliquez sur le lien ci-dessous pour "
 "réinitialiser votre mot de passe."
 msgstr ""
-"أنت تتلقى هذا البريد الإلكتروني لأنك أو شخص آخر طلب إعادة تعيين كلمة المرور "
-"لحسابك.\n"
-"يمكنك تجاهل هذا البريد بأمان إذا لم تطلب إعادة تعيين كلمة المرور. انقر على "
-"الرابط أدناه لإعادة تعيين كلمة المرور الخاصة بك."
+"أنت تتلقى هذا البريد الإلكتروني لأنك أو شخص آخر طلب إعادة تعيين كلمة المرور لحسابك.\n"
+"يمكنك تجاهل هذا البريد الإلكتروني بأمان إذا لم تطلب إعادة تعيين كلمة المرور. انقر على الرابط أدناه لإعادة تعيين كلمة المرور الخاصة بك."
 
 #: .\templates\account\email\password_reset_key_message.txt:9
 #, python-format
 msgid "Si vous avez oublié, votre nom d'utilisateur est %(username)s."
-msgstr "إذا نسيت، اسم المستخدم الخاص بك هو %(username)s."
+msgstr "إذا كنت قد نسيت، اسم المستخدم الخاص بك هو %(username)s."
 
 #: .\templates\account\email\password_reset_key_subject.txt:3
 msgid "E-mail de réinitialisation de mot de passe"
@@ -1394,7 +1615,7 @@ msgstr "تم تعيين كلمة المرور الخاصة بك."
 
 #: .\templates\account\email\password_set_subject.txt:3
 msgid "Password Set"
-msgstr "تم تعيين كلمة المرور"
+msgstr "تعيين كلمة المرور"
 
 #: .\templates\account\email\unknown_account_message.txt:4
 #, python-format
@@ -1404,21 +1625,19 @@ msgid ""
 "n'avons aucun enregistrement d'un compte de ce type dans notre base de "
 "données."
 msgstr ""
-"أنت تتلقى هذا البريد الإلكتروني لأنك أو شخص آخر حاول الوصول إلى حساب باستخدام "
-"عنوان البريد الإلكتروني %(email)s. ومع ذلك، ليس لدينا أي سجل لحساب من هذا "
-"النوع في قاعدة البيانات الخاصة بنا."
+"أنت تتلقى هذا البريد الإلكتروني لأنك أو شخص آخر حاول الوصول إلى حساب باستخدام عنوان البريد الإلكتروني %(email)s. ومع ذلك، ليس لدينا أي سجل لمثل هذا الحساب في قاعدة البيانات الخاصة بنا."
 
 #: .\templates\account\email\unknown_account_message.txt:6
 msgid ""
 "Vous pouvez ignorer cet e-mail en toute sécurité si vous n'avez pas initié "
 "cette action."
-msgstr "يمكنك تجاهل هذا البريد بأمان إذا لم تكن أنت من بدأ هذا الإجراء."
+msgstr "يمكنك تجاهل هذا البريد الإلكتروني بأمان إذا لم تبدأ هذا الإجراء."
 
 #: .\templates\account\email\unknown_account_message.txt:8
 msgid ""
 "Si c'était vous, vous pouvez vous inscrire à un compte en utilisant le lien "
 "ci-dessous."
-msgstr "إذا كنت أنت، يمكنك التسجيل في حساب باستخدام الرابط أدناه."
+msgstr "إذا كنت أنت، يمكنك التسجيل للحصول على حساب باستخدام الرابط أدناه."
 
 #: .\templates\account\email\unknown_account_subject.txt:3
 msgid "Compte inconnu"
@@ -1512,15 +1731,23 @@ msgstr "أدخل كلمة المرور الخاصة بك"
 
 #: .\templates\account\login.html:44
 msgid "Mot de passe oublié ?"
-msgstr "هل نسيت كلمة المرور؟"
+msgstr "نسيت كلمة المرور؟"
 
-#: .\templates\account\login.html:49
+#: .\templates\account\login.html:52
+msgid "Connexion en cours..."
+msgstr "تسجيل الدخول جارٍ..."
+
+#: .\templates\account\login.html:57
 msgid "Pas encore de compte ?"
 msgstr "ليس لديك حساب بعد؟"
 
-#: .\templates\account\login.html:49
+#: .\templates\account\login.html:57
 msgid "Inscrivez-vous"
 msgstr "سجل الآن"
+
+#: .\templates\account\login.html:69 .\templates\account\signup.html:91
+msgid "Se connecter avec Google"
+msgstr "تسجيل الدخول باستخدام جوجل"
 
 #: .\templates\account\logout.html:6 .\templates\account\logout.html:10
 #: .\templates\account\logout.html:23
@@ -1535,14 +1762,14 @@ msgstr "هل أنت متأكد أنك تريد تسجيل الخروج؟"
 #, python-format
 msgid ""
 "Vous ne pouvez pas supprimer votre adresse e-mail principale (%(email)s)."
-msgstr "لا يمكنك حذف عنوان البريد الإلكتروني الرئيسي الخاص بك (%(email)s)."
+msgstr "لا يمكنك حذف عنوان بريدك الإلكتروني الرئيسي (%(email)s)."
 
 #: .\templates\account\messages\email_confirmation_failed.txt:2
 #, python-format
 msgid ""
 "Impossible de confirmer %(email)s car elle est déjà confirmée par un autre "
 "compte."
-msgstr "تعذر تأكيد %(email)s لأنها مؤكدة بالفعل بواسطة حساب آخر."
+msgstr "تعذر تأكيد %(email)s لأنه تم تأكيده بالفعل بواسطة حساب آخر."
 
 #: .\templates\account\messages\email_confirmation_sent.txt:2
 #, python-format
@@ -1557,16 +1784,16 @@ msgstr "لقد قمت بتأكيد %(email)s."
 #: .\templates\account\messages\email_deleted.txt:2
 #, python-format
 msgid "Adresse e-mail supprimée %(email)s."
-msgstr "تم حذف عنوان البريد الإلكتروني %(email)s."
+msgstr "تم حذف البريد الإلكتروني %(email)s."
 
 #: .\templates\account\messages\logged_in.txt:4
 #, python-format
 msgid "Successfully signed in as %(name)s."
-msgstr "تم تسجيل الدخول بنجاح باسم %(name)s."
+msgstr "تم تسجيل الدخول بنجاح كـ %(name)s."
 
 #: .\templates\account\messages\logged_out.txt:2
 msgid "You have signed out."
-msgstr "لقد قمت بتسجيل الخروج."
+msgstr "لقد تم تسجيل الخروج."
 
 #: .\templates\account\messages\login_code_sent.txt:2
 #, python-format
@@ -1580,21 +1807,22 @@ msgstr "تم تغيير كلمة المرور بنجاح."
 
 #: .\templates\account\messages\primary_email_set.txt:2
 msgid "Adresse e-mail principale définie."
-msgstr "تم تعيين عنوان البريد الإلكتروني الرئيسي."
+msgstr "تم تعيين البريد الإلكتروني الرئيسي."
 
 #: .\templates\account\messages\unverified_primary_email.txt:2
 msgid "Votre adresse e-mail principale doit être vérifiée."
-msgstr "يجب التحقق من عنوان بريدك الإلكتروني الرئيسي."
+msgstr "يجب التحقق من بريدك الإلكتروني الرئيسي."
 
 #: .\templates\account\password_change.html:6
 #: .\templates\account\password_change.html:10
 #: .\templates\account\password_change.html:22 .\templates\edit_profile.html:26
+#: .\templates\profile.html:60
 msgid "Changer le mot de passe"
 msgstr "تغيير كلمة المرور"
 
-#: .\templates\account\password_change.html:24
+#: .\templates\account\password_change.html:25
 msgid "Mot de passe oublié?"
-msgstr "هل نسيت كلمة المرور؟"
+msgstr "نسيت كلمة المرور؟"
 
 #: .\templates\account\password_reset_done.html:8
 #: .\templates\account\password_reset_done.html:12
@@ -1607,8 +1835,7 @@ msgid ""
 "vérifier votre dossier de spam. Sinon, contactez-nous si vous ne le recevez "
 "pas dans quelques minutes."
 msgstr ""
-"لقد أرسلنا لك بريدًا إلكترونيًا. إذا لم تستلمه، يرجى التحقق من مجلد الرسائل "
-"غير المرغوب فيها. وإلا، اتصل بنا إذا لم تستلمه خلال بضع دقائق."
+"لقد أرسلنا لك بريدًا إلكترونيًا. إذا لم تستلمه، يرجى التحقق من مجلد الرسائل غير المرغوب فيها. وإلا، يرجى الاتصال بنا إذا لم تستلمه خلال بضع دقائق."
 
 #: .\templates\account\password_reset_from_key.html:87
 #: .\templates\account\password_reset_from_key.html:125
@@ -1624,8 +1851,7 @@ msgid ""
 "qu'il a déjà été utilisé. Veuillez demander une nouvelle réinitialisation du "
 "mot de passe."
 msgstr ""
-"رابط إعادة تعيين كلمة المرور غير صالح، ربما لأنه تم استخدامه بالفعل. يرجى طلب "
-"إعادة تعيين كلمة مرور جديدة."
+"رابط إعادة تعيين كلمة المرور غير صالح، ربما لأنه تم استخدامه بالفعل. يرجى طلب إعادة تعيين كلمة مرور جديدة."
 
 #: .\templates\account\password_reset_from_key.html:129
 msgid "Votre mot de passe a été changé avec succès."
@@ -1646,13 +1872,14 @@ msgstr "أدخل كلمة المرور الخاصة بك:"
 
 #: .\templates\account\request_login_code.html:9
 msgid "M'envoyer un code de connexion"
-msgstr "أرسل لي رمز تسجيل الدخول"
+msgstr "إرسال رمز تسجيل الدخول إليّ"
 
 #: .\templates\account\request_login_code.html:12
 msgid ""
 "Vous recevrez un e-mail contenant un code spécial pour une connexion sans "
 "mot de passe."
-msgstr "ستتلقى بريدًا إلكترونيًا يحتوي على رمز خاص لتسجيل الدخول بدون كلمة مرور."
+msgstr ""
+"سوف تتلقى بريدًا إلكترونيًا يحتوي على رمز خاص لتسجيل الدخول بدون كلمة مرور."
 
 #: .\templates\account\request_login_code.html:24
 msgid "Demander le code"
@@ -1666,17 +1893,17 @@ msgstr "خيارات تسجيل الدخول الأخرى"
 msgid "Adresse Email"
 msgstr "عنوان البريد الإلكتروني"
 
-#: .\templates\account\signup.html:68 .\templates\profile.html:19
-msgid " Photo de profil"
+#: .\templates\account\signup.html:68 .\templates\profile.html:23
+msgid "Photo de profil"
 msgstr "صورة الملف الشخصي"
 
 #: .\templates\account\signup.html:71
+msgid "Inscription en cours..."
+msgstr "جاري التسجيل..."
+
+#: .\templates\account\signup.html:74
 msgid "Déjà un compte ?"
 msgstr "هل لديك حساب بالفعل؟"
-
-#: .\templates\account\signup.html:73
-msgid "S'inscrire avec Google"
-msgstr "التسجيل باستخدام Google"
 
 #: .\templates\account\signup_by_passkey.html:8
 msgid "Inscription par mot de passe"
@@ -1686,7 +1913,8 @@ msgstr "التسجيل باستخدام كلمة المرور"
 #, python-format
 msgid ""
 "Tu as déjà un compte? Alors veuilles-tu %(link)sse connecter%(end_link)s."
-msgstr "هل لديك حساب بالفعل؟ إذن يرجى %(link)sتسجيل الدخول%(end_link)s."
+msgstr ""
+"هل لديك حساب بالفعل؟ إذن يرجى %(link)sتسجيل الدخول%(end_link)s."
 
 #: .\templates\account\signup_by_passkey.html:29
 msgid "S'inscrire"
@@ -1703,7 +1931,7 @@ msgstr "التسجيل مغلق"
 
 #: .\templates\account\signup_closed.html:12
 msgid "Nous sommes désolés, mais l'inscription est actuellement fermée."
-msgstr "نأسف، ولكن التسجيل مغلق حاليًا."
+msgstr "نحن نعتذر، ولكن التسجيل مغلق حاليًا."
 
 #: .\templates\account\snippets\already_logged_in.html:7
 msgid "Note"
@@ -1712,7 +1940,7 @@ msgstr "ملاحظة"
 #: .\templates\account\snippets\already_logged_in.html:7
 #, python-format
 msgid "You are already logged in as %(user_display)s."
-msgstr "أنت مسجل الدخول بالفعل باسم %(user_display)s."
+msgstr "أنت مسجل الدخول بالفعل كـ %(user_display)s."
 
 #: .\templates\account\snippets\warn_no_email.html:3
 msgid "Attention:"
@@ -1724,15 +1952,14 @@ msgid ""
 "vraiment ajouter une adresse e-mail afin de recevoir des notifications, "
 "réinitialiser votre mot de passe, etc."
 msgstr ""
-"ليس لديك حاليًا أي عنوان بريد إلكتروني مُعرف. يجب عليك إضافة عنوان بريد "
-"إلكتروني لتلقي الإشعارات وإعادة تعيين كلمة المرور، إلخ."
+"ليس لديك حاليًا أي عنوان بريد إلكتروني مُهيأ. ينبغي عليك إضافة عنوان بريد إلكتروني لتلقي الإشعارات، إعادة تعيين كلمة المرور، إلخ."
 
 #: .\templates\account\verification_sent.html:5
-#: .\templates\account\verification_sent.html:9
+#: .\templates\account\verification_sent.html:10
 msgid "Vérifiez votre adresse e-mail"
 msgstr "تحقق من عنوان بريدك الإلكتروني"
 
-#: .\templates\account\verification_sent.html:12
+#: .\templates\account\verification_sent.html:14
 msgid ""
 "Nous vous avons envoyé un email de confirmation. Cliquez sur le lien pour "
 "finaliser votre processus\n"
@@ -1740,9 +1967,9 @@ msgid ""
 "boîte de réception, vérifiez votre dossier spam.\n"
 "Contactez-nous si vous ne l'avez pas reçu d'ici quelques minutes.\n"
 msgstr ""
-"لقد أرسلنا لك بريدًا إلكترونيًا للتأكيد. انقر على الرابط لإكمال عملية التسجيل.\n"
-"إذا لم ترَ بريد التأكيد في صندوق الوارد، تحقق من مجلد الرسائل غير المرغوب فيها.\n"
-"اتصل بنا إذا لم تستلمه خلال بضع دقائق.\n"
+"لقد أرسلنا لك بريدًا إلكترونيًا للتأكيد. انقر على الرابط لإكمال عملية\n"
+"التسجيل. إذا لم ترى رسالة التحقق في صندوق الوارد، تحقق من مجلد الرسائل المزعجة.\n"
+"اتصل بنا إذا لم تستلمها خلال بضع دقائق.\n"
 
 #: .\templates\account\verified_email_required.html:7
 #: .\templates\account\verified_email_required.html:17
@@ -1755,8 +1982,7 @@ msgid ""
 "qui vous indiquez être. Pour cela, vous devez prouver que vous êtes bien le "
 "propriétaire de l'adresse e-mail que vous nous avez indiquée. "
 msgstr ""
-"للوصول إلى هذا الجزء من الموقع، يجب علينا أولاً التحقق من هويتك. للقيام بذلك، "
-"يجب عليك إثبات أنك المالك الحقيقي لعنوان البريد الإلكتروني الذي قدمته لنا."
+"للوصول إلى هذا القسم من الموقع، يجب علينا أولاً التحقق من هويتك. يتطلب ذلك إثبات أنك المالك الحقيقي لعنوان البريد الإلكتروني الذي قدمته لنا."
 
 #: .\templates\account\verified_email_required.html:24
 msgid ""
@@ -1767,9 +1993,7 @@ msgid ""
 "si vous ne l'avez pas reçu d'ici quelques minutes."
 msgstr ""
 "\n"
-"لقد أرسلنا لك بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط المضمن في هذا "
-"البريد. إذا لم ترَ بريد التحقق في صندوق الوارد، تحقق من مجلد الرسائل غير "
-"المرغوب فيها. اتصل بنا إذا لم تستلمه خلال بضع دقائق."
+"لقد أرسلنا لك بريدًا إلكترونيًا للتحقق. يرجى النقر على الرابط المضمن في هذه الرسالة. إذا لم تجد رسالة التحقق في صندوق الوارد، تحقق من مجلد الرسائل المزعجة. اتصل بنا إذا لم تستلمها خلال بضع دقائق."
 
 #: .\templates\account\verified_email_required.html:28
 #, python-format
@@ -1777,8 +2001,8 @@ msgid ""
 "<strong>Remarque:</strong> vous pouvez toujours <a href=\"%(email_url)s"
 "\"       class=\"allauth-a\">changer votre  adresse e-mail</a>."
 msgstr ""
-"<strong>ملاحظة:</strong> يمكنك دائمًا <a href=\"%(email_url)s\"       class="
-"\"allauth-a\">تغيير عنوان بريدك الإلكتروني</a>."
+"<strong>ملاحظة:</strong> يمكنك دائمًا <a href=\"%(email_url)s"
+"\"       class=\"allauth-a\">تغيير عنوان بريدك الإلكتروني</a>."
 
 #: .\templates\allauth\layouts\base.html:26
 msgid "Menu:"
@@ -1819,10 +2043,14 @@ msgstr "تسجيل الدخول"
 #: .\templates\socialaccount\signup.html:9
 #: .\templates\socialaccount\signup.html:25
 msgid "Sign Up"
-msgstr "التسجيل"
+msgstr "تسجيل حساب جديد"
+
+#: .\templates\contact.html:5 .\templates\includes\footer.html:14
+msgid "Contact"
+msgstr "اتصل بنا"
 
 #: .\templates\edit_profile.html:5 .\templates\edit_profile.html:15
-#: .\templates\profile.html:35
+#: .\templates\profile.html:57
 msgid "Modifier le profil"
 msgstr "تعديل الملف الشخصي"
 
@@ -1832,7 +2060,7 @@ msgstr "حفظ"
 
 #: .\templates\edit_profile.html:30
 msgid "Gestion des vos e-mails"
-msgstr "إدارة بريدك الإلكتروني"
+msgstr "إدارة عناوين بريدك الإلكتروني"
 
 #: .\templates\faq.html:6
 msgid "FAQ et Règles du Forum"
@@ -1840,7 +2068,7 @@ msgstr "الأسئلة الشائعة وقواعد المنتدى"
 
 #: .\templates\faq.html:15
 msgid "Questions Fréquemment Posées"
-msgstr "الأسئلة الشائعة"
+msgstr "الأسئلة المتكررة"
 
 #: .\templates\faq.html:18
 msgid "Comment puis-je me connecter à mon compte ?"
@@ -1868,8 +2096,7 @@ msgid ""
 "un mot de passe (que vous devez confirmer). Les noms d'utilisateur et image "
 "de profil sont optionnels."
 msgstr ""
-" في أعلى الصفحة. سيُطلب منك عنوان بريدك الإلكتروني وأسماؤك وكلمة مرور (يجب "
-"تأكيدها). اسم المستخدم وصورة الملف الشخصي اختيارية."
+" في أعلى الصفحة. سيُطلب منك إدخال عنوان بريدك الإلكتروني، أسمائك، وكلمة مرور (يجب تأكيدها). اسم المستخدم وصورة الملف الشخصي اختيارية."
 
 #: .\templates\faq.html:24
 msgid ""
@@ -1877,12 +2104,11 @@ msgid ""
 "certaines parties du site (messagerie, création de threads, recherche, etc.) "
 "exige que vous soyez confirmé."
 msgstr ""
-"بعد التسجيل، سيتم إرسال بريد إلكتروني إليك للتأكيد. الوصول إلى بعض أجزاء "
-"الموقع (المراسلة، إنشاء المواضيع، البحث، إلخ) يتطلب أن تكون مؤكدًا."
+"بعد التسجيل، سيتم إرسال بريد إلكتروني للتأكيد. الوصول إلى بعض أجزاء الموقع (الرسائل، إنشاء المواضيع، البحث، إلخ) يتطلب تأكيد الحساب."
 
 #: .\templates\faq.html:27
 msgid "Comment puis-je réinitialiser mon mot de passe ?"
-msgstr "كيف يمكنني إعادة تعيين كلمة المرور الخاصة بي؟"
+msgstr "كيف يمكنني إعادة تعيين كلمة المرور؟"
 
 #: .\templates\faq.html:28
 msgid ""
@@ -1890,13 +2116,11 @@ msgid ""
 "la page de connexion et entrez l'adresse email avec laquelle vous avez créé "
 "le compte. Vous recevrez un lien de réinitialisation."
 msgstr ""
-"لإعادة تعيين كلمة المرور الخاصة بك، انقر على 'نسيت كلمة المرور' في صفحة تسجيل "
-"الدخول وأدخل عنوان البريد الإلكتروني الذي استخدمته لإنشاء الحساب. ستتلقى رابطًا "
-"لإعادة التعيين."
+"لإعادة تعيين كلمة المرور، انقر على 'نسيت كلمة المرور' في صفحة تسجيل الدخول وأدخل عنوان البريد الإلكتروني الذي استخدمته لإنشاء الحساب. ستصلك رسالة تحتوي على رابط إعادة التعيين."
 
 #: .\templates\faq.html:31
 msgid "Que faire si j'ai oublié mon mot de passe ?"
-msgstr "ماذا أفعل إذا نسيت كلمة المرور الخاصة بي؟"
+msgstr "ماذا أفعل إذا نسيت كلمة المرور؟"
 
 #: .\templates\faq.html:32
 msgid ""
@@ -1904,8 +2128,7 @@ msgid ""
 "oublié' sur la page de connexion. Entrez votre adresse email, et nous vous "
 "enverrons un lien pour réinitialiser votre mot de passe."
 msgstr ""
-"إذا نسيت كلمة المرور الخاصة بك، انقر على رابط 'نسيت كلمة المرور' في صفحة تسجيل "
-"الدخول. أدخل عنوان بريدك الإلكتروني، وسنرسل لك رابطًا لإعادة تعيين كلمة المرور."
+"إذا نسيت كلمة المرور، انقر على رابط 'نسيت كلمة المرور' في صفحة تسجيل الدخول. أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور."
 
 #: .\templates\faq.html:35
 msgid "Que faire si je n'ai pas reçu l'email de confirmation ?"
@@ -1917,8 +2140,7 @@ msgid ""
 "spam. Si vous ne le trouvez toujours pas, contactez notre support à "
 "instaforum2025@gmail.com pour obtenir de l'aide."
 msgstr ""
-"إذا لم تتلقى بريد التأكيد، تحقق من مجلد الرسائل غير المرغوب فيها. إذا لم تجده، "
-"اتصل بدعمنا على instaforum2025@gmail.com للحصول على المساعدة."
+"إذا لم تستلم بريد التأكيد، يرجى التحقق من مجلد الرسائل غير المرغوب فيها. إذا لم تجده، يُرجى التواصل مع دعمنا على instaforum2025@gmail.com للحصول على المساعدة."
 
 #: .\templates\faq.html:39
 msgid "Comment puis-je créer un nouveau thread ?"
@@ -1931,9 +2153,7 @@ msgid ""
 "votre message, et cliquez sur 'Publier'. Votre thread sera visible par les "
 "autres utilisateurs."
 msgstr ""
-"لإنشاء موضوع جديد، انتقل إلى قسم المنتديات وانقر على زر 'موضوع جديد'. أدخل "
-"عنوانًا لموضوعك، أضف رسالتك، وانقر على 'نشر'. سيكون موضوعك مرئيًا للمستخدمين "
-"الآخرين."
+"لإنشاء موضوع جديد، انتقل إلى قسم المنتديات وانقر على زر 'موضوع جديد'. أدخل عنوانًا لموضوعك، أضف رسالتك، ثم انقر على 'نشر'. سيكون موضوعك مرئيًا للمستخدمين الآخرين."
 
 #: .\templates\faq.html:43
 msgid "Puis-je éditer ou supprimer mon thread ?"
@@ -1957,13 +2177,11 @@ msgid ""
 "d'utilisateur. Veuillez fournir une description détaillée du problème. Notre "
 "équipe examinera votre signalement et prendra les mesures appropriées."
 msgstr ""
-"إذا لاحظت سلوكًا غير لائق، يمكنك الإبلاغ عن مستخدم بالنقر على خيار 'الإبلاغ' "
-"بجانب اسم المستخدم. يرجى تقديم وصف مفصل للمشكلة. سيقوم فريقنا بمراجعة بلاغك "
-"واتخاذ الإجراءات المناسبة."
+"إذا لاحظت سلوكًا غير لائق، يمكنك الإبلاغ عن مستخدم بالنقر على خيار 'الإبلاغ' بجانب اسم المستخدم. يرجى تقديم وصف مفصل للمشكلة. سيقوم فريقنا بمراجعة تقريرك واتخاذ الإجراءات المناسبة."
 
 #: .\templates\faq.html:51
 msgid "Puis-je voir les actions prises suite à mon signalement ?"
-msgstr "هل يمكنني رؤية الإجراءات المتخذة بعد بلاغي؟"
+msgstr "هل يمكنني رؤية الإجراءات المتخذة بعد إبلاغي؟"
 
 #: .\templates\faq.html:52
 msgid ""
@@ -1971,8 +2189,7 @@ msgid ""
 "actions spécifiques prises suite à un signalement. Cependant, nous vous "
 "assurons que chaque signalement est examiné attentivement."
 msgstr ""
-"لأسباب تتعلق بالخصوصية، لا يمكننا الكشف عن الإجراءات المحددة المتخذة بعد بلاغ. "
-"ومع ذلك، نؤكد لك أن كل بلاغ يتم مراجعته بعناية."
+"لأسباب تتعلق بالخصوصية، لا يمكننا الكشف عن الإجراءات المحددة المتخذة بعد أي بلاغ. مع ذلك، نؤكد لكم أن كل بلاغ يتم دراسته بعناية."
 
 #: .\templates\faq.html:55
 msgid "Comment puis-je signaler un thread ?"
@@ -1985,84 +2202,62 @@ msgid ""
 "description détaillée de la raison pour laquelle vous signalez le thread. "
 "Notre équipe examinera votre signalement et prendra les mesures nécessaires."
 msgstr ""
-"إذا وجدت موضوعًا غير لائق أو مسيئًا، يمكنك الإبلاغ عنه بالنقر على خيار 'الإبلاغ' "
-"في أسفل الرسالة. يرجى تقديم وصف مفصل لسبب الإبلاغ عن الموضوع. سيقوم فريقنا "
-"بمراجعة بلاغك واتخاذ الإجراءات اللازمة."
+"إذا وجدت منشورًا غير لائق أو مسيئًا، يمكنك الإبلاغ عنه بالنقر على خيار 'الإبلاغ' أسفل الرسالة. يُرجى تقديم وصف مفصل لسبب الإبلاغ عن المنشور. سيقوم فريقنا بمراجعة بلاغك واتخاذ الإجراءات اللازمة."
 
 #: .\templates\includes\footer.html:7
 msgid "Liens Utiles"
 msgstr "روابط مفيدة"
 
-#: .\templates\includes\footer.html:9 .\templates\includes\navbar.html:121
+#: .\templates\includes\footer.html:9 .\templates\includes\sidebar.html:26
 msgid "Accueil"
-msgstr "الصفحة الرئيسية"
+msgstr "الرئيسية"
 
 #: .\templates\includes\footer.html:10
 msgid "À propos"
-msgstr "حول"
+msgstr "من نحن"
 
-#: .\templates\includes\footer.html:11 .\templates\includes\navbar.html:155
-msgid "FAQ"
-msgstr "الأسئلة الشائعة"
-
-#: .\templates\includes\footer.html:12 .\templates\includes\navbar.html:156
+#: .\templates\includes\footer.html:12 .\templates\includes\sidebar.html:63
 msgid "Règles du forum"
 msgstr "قواعد المنتدى"
 
-#: .\templates\includes\footer.html:13 .\templates\includes\navbar.html:157
+#: .\templates\includes\footer.html:13 .\templates\includes\sidebar.html:64
 #: .\templates\privacy_policies.html:6 .\templates\privacy_policies.html:15
 msgid "Politique de confidentialité"
 msgstr "سياسة الخصوصية"
 
-#: .\templates\includes\footer.html:14
-msgid "Contact"
-msgstr "اتصال"
-
-#: .\templates\includes\footer.html:19 .\templates\includes\navbar.html:130
+#: .\templates\includes\footer.html:19 .\templates\includes\sidebar.html:38
 msgid "Modération"
 msgstr "الإشراف"
 
-#: .\templates\includes\footer.html:22
+#: .\templates\includes\footer.html:23
 msgid "Déconnexion"
 msgstr "تسجيل الخروج"
 
-#: .\templates\includes\footer.html:26
-msgid "Soutenir le projet"
-msgstr "دعم المشروع"
-
-#: .\templates\includes\footer.html:28
-msgid "Faire un don"
-msgstr "التبرع"
-
-#: .\templates\includes\footer.html:29
-msgid "Devenir sponsor"
-msgstr "كن راعيًا"
-
-#: .\templates\includes\footer.html:34
+#: .\templates\includes\footer.html:31
 msgid "Nous contacter"
 msgstr "اتصل بنا"
 
-#: .\templates\includes\footer.html:43
+#: .\templates\includes\footer.html:40
 msgid "Réseaux Sociaux"
 msgstr "الشبكات الاجتماعية"
 
-#: .\templates\includes\footer.html:46 .\templates\includes\navbar.html:164
+#: .\templates\includes\footer.html:43 .\templates\includes\sidebar.html:71
 msgid "Facebook"
 msgstr "فيسبوك"
 
-#: .\templates\includes\footer.html:47 .\templates\includes\navbar.html:165
+#: .\templates\includes\footer.html:44 .\templates\includes\sidebar.html:72
 msgid "Twitter"
 msgstr "تويتر"
 
-#: .\templates\includes\footer.html:50 .\templates\includes\navbar.html:166
+#: .\templates\includes\footer.html:47 .\templates\includes\sidebar.html:73
 msgid "Instagram"
 msgstr "إنستغرام"
 
-#: .\templates\includes\footer.html:52
+#: .\templates\includes\footer.html:49
 msgid "LinkedIn"
 msgstr "لينكد إن"
 
-#: .\templates\includes\footer.html:57
+#: .\templates\includes\footer.html:54
 msgid "Tous droits réservés."
 msgstr "جميع الحقوق محفوظة."
 
@@ -2072,11 +2267,11 @@ msgstr "منتدى إنستا"
 
 #: .\templates\includes\header.html:17
 msgid "Logo"
-msgstr "الشعار"
+msgstr "شعار"
 
 #: .\templates\includes\header.html:21
 msgid "Événements"
-msgstr "الأحداث"
+msgstr "الفعاليات"
 
 #: .\templates\includes\header.html:23
 msgid "Communautés"
@@ -2096,55 +2291,43 @@ msgstr "العربية"
 
 #: .\templates\includes\header.html:45
 msgid "Rechercher..."
-msgstr "بحث..."
+msgstr "ابحث..."
 
 #: .\templates\includes\header.html:52
 msgid "Messages"
 msgstr "الرسائل"
 
-#: .\templates\includes\navbar.html:39
+#: .\templates\includes\navbar.html:15
+msgid "Actualités du Monde"
+msgstr "أخبار العالم"
+
+#: .\templates\includes\navbar.html:19
+msgid "Communauté"
+msgstr "المجتمع"
+
+#: .\templates\includes\navbar.html:40
 msgid "Votre profil"
 msgstr "ملفك الشخصي"
 
-#: .\templates\includes\navbar.html:47
+#: .\templates\includes\navbar.html:48
 msgid " Vos notifications"
 msgstr "إشعاراتك"
 
-#: .\templates\includes\navbar.html:56
+#: .\templates\includes\navbar.html:57
 msgid "S\\"
-msgstr "تسجيل الدخول"
+msgstr "ت\\"
 
-#: .\templates\includes\navbar.html:60
+#: .\templates\includes\navbar.html:61
 msgid "Changer de thème"
-msgstr "تغيير الموضوع"
+msgstr "تغيير السمة"
 
-#: .\templates\includes\navbar.html:64 .\templates\includes\navbar.html:83
+#: .\templates\includes\navbar.html:65 .\templates\includes\navbar.html:84
 msgid "Créer un thread"
 msgstr "إنشاء موضوع"
 
-#: .\templates\includes\navbar.html:88
+#: .\templates\includes\navbar.html:89
 msgid "Créer un Evénement"
-msgstr "إنشاء حدث"
-
-#: .\templates\includes\navbar.html:132
-msgid "Creer Evénement"
-msgstr "إنشاء حدث"
-
-#: .\templates\includes\navbar.html:138
-msgid "Catégories populaires"
-msgstr "الفئات الشائعة"
-
-#: .\templates\includes\navbar.html:158
-msgid "Contact/Support"
-msgstr "اتصال/دعم"
-
-#: .\templates\includes\navbar.html:163
-msgid "Suivez-nous"
-msgstr "تابعنا"
-
-#: .\templates\includes\navbar.html:167
-msgid "Email"
-msgstr "البريد الإلكتروني"
+msgstr "إنشاء فعالية"
 
 #: .\templates\includes\navbar_forum_stats.html:4
 msgid "Statistiques du forum"
@@ -2156,19 +2339,81 @@ msgstr "الأعضاء"
 
 #: .\templates\includes\navbar_forum_stats.html:8
 msgid "Membres en ligne"
-msgstr "الأعضاء النشطين"
+msgstr "الأعضاء النشطون"
 
-#: .\templates\includes\navbar_top_contributors.html:6
+#: .\templates\includes\navbar_top_contributors.html:5
 msgid "Tops contributeurs"
-msgstr "أفضل المساهمين"
+msgstr "أبرز المساهمين"
+
+#: .\templates\includes\navbar_top_contributors.html:9
+#: .\templates\includes\navbar_top_contributors.html:24
+#, python-format
+msgid "Photo de profil de %(name)s"
+msgstr "صورة الملف الشخصي لـ %(name)s"
+
+#: .\templates\includes\navbar_top_contributors.html:11
+#: .\templates\includes\navbar_top_contributors.html:26
+#, python-format
+msgid "Photo de profil par défaut de %(name)s"
+msgstr "صورة الملف الشخصي الافتراضية لـ %(name)s"
 
 #: .\templates\includes\navbar_top_contributors.html:14
-msgid "threads"
-msgstr "مواضيع"
+#, python-format
+msgid ""
+"\n"
+"                %(count)s thread\n"
+"            "
+msgid_plural ""
+"\n"
+"                %(count)s threads\n"
+"            "
+msgstr[0] ""
+"\n"
+"                %(count)s موضوع\n"
+"            "
+msgstr[1] ""
+"\n"
+"                %(count)s موضوعًا\n"
+"            "
 
-#: .\templates\includes\navbar_top_contributors.html:24
-msgid "posts"
-msgstr "منشورات"
+#: .\templates\includes\navbar_top_contributors.html:29
+#, python-format
+msgid ""
+"\n"
+"                %(count)s post\n"
+"            "
+msgid_plural ""
+"\n"
+"                %(count)s posts\n"
+"            "
+msgstr[0] ""
+"\n"
+"                %(count)s مشاركة\n"
+"            "
+msgstr[1] ""
+"\n"
+"                %(count)s مشاركات\n"
+"            "
+
+#: .\templates\includes\sidebar.html:39
+msgid "Creer Evénement"
+msgstr "إنشاء فعالية"
+
+#: .\templates\includes\sidebar.html:45
+msgid "Catégories populaires"
+msgstr "الفئات الشائعة"
+
+#: .\templates\includes\sidebar.html:65
+msgid "Contact/Support"
+msgstr "اتصل بالدعم"
+
+#: .\templates\includes\sidebar.html:70
+msgid "Suivez-nous"
+msgstr "تابعنا"
+
+#: .\templates\includes\sidebar.html:74
+msgid "Email"
+msgstr "البريد الإلكتروني"
 
 #: .\templates\privacy_policies.html:16
 msgid ""
@@ -2176,8 +2421,7 @@ msgid ""
 "Cette politique de confidentialité décrit comment nous collectons, utilisons "
 "et protégeons vos informations personnelles."
 msgstr ""
-"مرحبًا بكم في منتدانا! نحن ملتزمون بحماية خصوصيتك. تصف سياسة الخصوصية هذه "
-"كيفية جمعنا واستخدامنا وحماية معلوماتك الشخصية."
+"مرحبًا بكم في منتدانا! نحن ملتزمون بحماية خصوصيتكم. تصف سياسة الخصوصية هذه كيف نجمع ونستخدم ونحمي معلوماتكم الشخصية."
 
 #: .\templates\privacy_policies.html:18
 msgid "1. Collecte des informations"
@@ -2189,8 +2433,7 @@ msgid ""
 "votre nom, adresse email, et toute autre donnée que vous partagez en "
 "utilisant notre forum."
 msgstr ""
-"نقوم بجمع المعلومات التي تقدمها لنا مباشرة، مثل اسمك وعنوان بريدك الإلكتروني "
-"وأي بيانات أخرى تشاركها باستخدام منتدانا."
+"نقوم بجمع المعلومات التي تقدمها لنا مباشرة، مثل اسمك وعنوان بريدك الإلكتروني وأي بيانات أخرى تشاركها عند استخدام منتدانا."
 
 #: .\templates\privacy_policies.html:21
 msgid "2. Utilisation des informations"
@@ -2202,8 +2445,7 @@ msgid ""
 "demandes, améliorer nos services, et vous fournir une expérience "
 "personnalisée."
 msgstr ""
-"نستخدم معلوماتك لإدارة حسابك، والرد على طلباتك، وتحسين خدماتنا، وتقديم تجربة "
-"شخصية لك."
+"نستخدم معلوماتك لإدارة حسابك، والرد على طلباتك، وتحسين خدماتنا، وتقديم تجربة مخصصة لك."
 
 #: .\templates\privacy_policies.html:24
 msgid "3. Partage des informations"
@@ -2214,8 +2456,7 @@ msgid ""
 "Nous ne partageons pas vos informations personnelles avec des tiers, sauf si "
 "cela est nécessaire pour fournir nos services ou si la loi l'exige."
 msgstr ""
-"نحن لا نشارك معلوماتك الشخصية مع أطراف ثالثة، إلا إذا كان ذلك ضروريًا لتقديم "
-"خدماتنا أو إذا كان القانون يقتضي ذلك."
+"لا نشارك معلوماتك الشخصية مع أطراف ثالثة، إلا إذا كان ذلك ضروريًا لتقديم خدماتنا أو إذا تطلبت ذلك القوانين."
 
 #: .\templates\privacy_policies.html:27
 msgid "4. Sécurité"
@@ -2226,12 +2467,11 @@ msgid ""
 "Nous mettons en œuvre des mesures de sécurité pour protéger vos informations "
 "contre l'accès non autorisé, la modification ou la divulgation."
 msgstr ""
-"نحن ننفذ إجراءات أمنية لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو "
-"الكشف."
+"ننفذ إجراءات أمنية لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو الكشف."
 
 #: .\templates\privacy_policies.html:30
 msgid "5. Vos droits"
-msgstr "5. حقوقك"
+msgstr "5. حقوقكم"
 
 #: .\templates\privacy_policies.html:31
 msgid ""
@@ -2239,8 +2479,7 @@ msgid ""
 "corriger ou de les supprimer. Contactez-nous pour toute demande relative à "
 "vos données personnelles."
 msgstr ""
-"لديك الحق في الوصول إلى معلوماتك الشخصية، وتصحيحها أو حذفها. اتصل بنا لأي "
-"طلب يتعلق ببياناتك الشخصية."
+"لديك الحق في الوصول إلى معلوماتك الشخصية وتصحيحها أو حذفها. اتصل بنا لأي طلب يتعلق ببياناتك الشخصية."
 
 #: .\templates\privacy_policies.html:33
 msgid "6. Modifications de cette politique"
@@ -2251,7 +2490,7 @@ msgid ""
 "Nous nous réservons le droit de modifier cette politique de confidentialité "
 "à tout moment. Nous vous informerons de tout changement important."
 msgstr ""
-"نحتفظ بالحق في تعديل سياسة الخصوصية هذه في أي وقت. سنخطرك بأي تغييرات مهمة."
+"نحتفظ بالحق في تعديل سياسة الخصوصية هذه في أي وقت. وسنخطركم بأي تغييرات جوهرية."
 
 #: .\templates\privacy_policies.html:36
 msgid ""
@@ -2259,16 +2498,23 @@ msgid ""
 "de confidentialité, veuillez nous contacter à abakarix4dev@gmail.com ou "
 "akagerald@gmail.com."
 msgstr ""
-"إذا كانت لديك أي أسئلة أو مخاوف بشأن سياسة الخصوصية الخاصة بنا، يرجى الاتصال "
-"بنا على abakarix4dev@gmail.com أو akagerald@gmail.com."
+"إذا كانت لديكم أي أسئلة أو استفسارات حول سياسة الخصوصية الخاصة بنا، يرجى الاتصال بنا على abakarix4dev@gmail.com أو akagerald@gmail.com."
 
 #: .\templates\profile.html:16
 msgid "Votre profil utilisateur"
-msgstr "ملفك الشخصي"
+msgstr "ملفك الشخصي للمستخدم"
 
-#: .\templates\profile.html:21
-msgid " Profil"
-msgstr "الملف الشخصي"
+#: .\templates\profile.html:38
+msgid "Informations personnelles"
+msgstr "المعلومات الشخصية"
+
+#: .\templates\profile.html:41
+msgid "Nom complet"
+msgstr "الاسم الكامل"
+
+#: .\templates\profile.html:49
+msgid "Membre depuis"
+msgstr "عضو منذ"
 
 #: .\templates\rules.html:6 .\templates\rules.html:15
 msgid "Règles du Forum"
@@ -2276,15 +2522,14 @@ msgstr "قواعد المنتدى"
 
 #: .\templates\rules.html:18
 msgid "1. Respect des autres utilisateurs"
-msgstr "1. احترام المستخدمين الآخرين"
+msgstr "1. احترام الأعضاء الآخرين"
 
 #: .\templates\rules.html:19
 msgid ""
 "Veuillez respecter les autres membres du forum. Les insultes, harcèlements "
 "et comportements offensants ne seront pas tolérés."
 msgstr ""
-"يرجى احترام الأعضاء الآخرين في المنتدى. لن يتم التسامح مع الإهانات أو "
-"المضايقات أو السلوكيات المسيئة."
+"يرجى احترام الأعضاء الآخرين في المنتدى. لن يتم التسامح مع الشتائم أو المضايقات أو السلوكيات المسيئة."
 
 #: .\templates\rules.html:22
 msgid "2. Contenu approprié"
@@ -2294,7 +2539,8 @@ msgstr "2. المحتوى المناسب"
 msgid ""
 "Publiez uniquement du contenu approprié et pertinent. Les messages "
 "inappropriés seront supprimés."
-msgstr "انشر فقط محتوى مناسبًا وذو صلة. سيتم حذف الرسائل غير المناسبة."
+msgstr ""
+"انشر فقط محتوى مناسبًا وذو صلة. سيتم حذف الرسائل غير المناسبة."
 
 #: .\templates\rules.html:24
 msgid ""
@@ -2305,15 +2551,14 @@ msgstr ""
 
 #: .\templates\rules.html:27
 msgid "3. Pas de spam"
-msgstr "3. لا للرسائل المزعجة"
+msgstr "3. ممنوع البريد المزعج"
 
 #: .\templates\rules.html:28
 msgid ""
 "Évitez de publier du spam ou de la publicité non sollicitée. Cela inclut les "
 "messages répétitifs et les liens promotionnels."
 msgstr ""
-"تجنب نشر الرسائل المزعجة أو الإعلانات غير المرغوب فيها. يشمل ذلك الرسائل "
-"المتكررة والروابط الترويجية."
+"تجنب نشر الرسائل المزعجة أو الإعلانات غير المرغوب فيها. وهذا يشمل الرسائل المتكررة والروابط الترويجية."
 
 #: .\templates\socialaccount\authentication_error.html:5
 #: .\templates\socialaccount\authentication_error.html:9
@@ -2337,7 +2582,7 @@ msgstr "إزالة"
 
 #: .\templates\socialaccount\connections.html:46
 msgid "You currently have no third-party accounts connected to this account."
-msgstr "ليس لديك حاليًا أي حسابات طرف ثالث متصلة بهذا الحساب."
+msgstr "ليس لديك أي حسابات طرف ثالث متصلة بهذا الحساب حاليًا."
 
 #: .\templates\socialaccount\connections.html:50
 msgid "Add a Third-Party Account"
@@ -2358,21 +2603,21 @@ msgstr "تم توصيل حساب طرف ثالث"
 msgid ""
 "A third-party account from %(provider)s has been disconnected from your "
 "account."
-msgstr "تم قطع اتصال حساب طرف ثالث من %(provider)s بحسابك."
+msgstr "تم فصل حساب طرف ثالث من %(provider)s عن حسابك."
 
 #: .\templates\socialaccount\email\account_disconnected_subject.txt:3
 msgid "Third-Party Account Disconnected"
-msgstr "تم قطع اتصال حساب طرف ثالث"
+msgstr "تم فصل حساب طرف ثالث"
 
 #: .\templates\socialaccount\login.html:10
 #, python-format
 msgid "Connect %(provider)s"
-msgstr "الاتصال بـ %(provider)s"
+msgstr "ربط %(provider)s"
 
 #: .\templates\socialaccount\login.html:13
 #, python-format
 msgid "You are about to connect a new third-party account from %(provider)s."
-msgstr "أنت على وشك توصيل حساب طرف ثالث جديد من %(provider)s."
+msgstr "أنت على وشك ربط حساب جديد من طرف ثالث من %(provider)s."
 
 #: .\templates\socialaccount\login.html:17
 #, python-format
@@ -2401,20 +2646,19 @@ msgid ""
 "accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
 "\">sign in</a>."
 msgstr ""
-"لقد قررت إلغاء تسجيل الدخول إلى موقعنا باستخدام أحد حساباتك الحالية. إذا كان "
-"هذا خطأ، يرجى المتابعة إلى <a href=\"%(login_url)s\">تسجيل الدخول</a>."
+"لقد قررت إلغاء تسجيل الدخول إلى موقعنا باستخدام أحد حساباتك الموجودة. إذا كان هذا خطأ، يرجى المتابعة إلى <a href=\"%(login_url)s\">تسجيل الدخول</a>."
 
 #: .\templates\socialaccount\messages\account_connected.txt:2
 msgid "The third-party account has been connected."
-msgstr "تم توصيل حساب الطرف الثالث."
+msgstr "تم ربط حساب الطرف الثالث."
 
 #: .\templates\socialaccount\messages\account_connected_other.txt:2
 msgid "The third-party account is already connected to a different account."
-msgstr "حساب الطرف الثالث متصل بالفعل بحساب آخر."
+msgstr "حساب الطرف الثالث مرتبط بالفعل بحساب آخر."
 
 #: .\templates\socialaccount\messages\account_disconnected.txt:2
 msgid "The third-party account has been disconnected."
-msgstr "تم قطع اتصال حساب الطرف الثالث."
+msgstr "تم فصل حساب الطرف الثالث."
 
 #: .\templates\socialaccount\signup.html:5
 msgid "Signup"
@@ -2426,8 +2670,8 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"أنت على وشك استخدام حسابك على %(provider_name)s لتسجيل الدخول إلى\n"
-"%(site_name)s. كخطوة أخيرة، يرجى ملء النموذج التالي:"
+"أنت على وشك استخدام حساب %(provider_name)s الخاص بك لتسجيل الدخول إلى\n"
+"%(site_name)s. كخطوة أخيرة، يرجى استكمال النموذج التالي:"
 
 #: .\templates\socialaccount\snippets\login.html:10
 msgid "Or use a third-party"

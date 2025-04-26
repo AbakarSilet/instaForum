@@ -3,6 +3,7 @@
 #app forum
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -17,6 +18,21 @@ class Category(models.Model):
     name = models.CharField(max_length=250, unique=True)
     image =models.ImageField(blank=True, null=True)
     description = models.CharField(max_length=999, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+
+            # Vérifie l'unicité du slug
+            while Category.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = slug
+        super(Category, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _("Catégorie")
@@ -59,9 +75,11 @@ class Thread(models.Model):
     content = models.TextField()
     slug = models.SlugField(max_length=300, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(USER, related_name='thread_likes', blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     view_count = models.IntegerField(default=0)
     tags = TaggableManager(blank=True)
+    is_closed = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -97,14 +115,21 @@ class Thread(models.Model):
                 # Logging de l'erreur
                 print(f"Erreur lors de la normalisation des tags : {e}")
 
+    def get_absolute_url(self):
+        return reverse('forum:thread', kwargs={'slug': self.slug})
+
+    def total_likes(self):
+        return self.likes.count()
+    
 class Post(models.Model):
     id = models.BigAutoField(primary_key=True)
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='posts')
     author = models.ForeignKey(USER, on_delete=models.CASCADE)
     content = models.TextField()
+    likes = models.ManyToManyField(USER, related_name='post_likes', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tags = TaggableManager(blank=True)
+    
 
     class Meta: 
         ordering = ['created_at'] 
@@ -118,25 +143,11 @@ class Post(models.Model):
         # Sauvegarde initiale
         super().save(*args, **kwargs)
         
-        # Normaliser les tags 
-        if self.pk:  # S'assurer que l'objet a été sauvegardé
-            try:
-                # Récupérer les tags existants
-                existing_tags = list(self.tags.names())
-                
-                # Normaliser les tags
-                normalized_tags = normalize_tags(existing_tags)
-                
-                # Réinitialiser les tags
-                self.tags.clear()
-                self.tags.add(*normalized_tags)
-                
-                # Sauvegarder à nouveau pour persister les changements
-                super().save(*args, **kwargs)
-            except Exception as e:
-                # Logging ou gestion de l'erreur
-                print(f"Erreur lors de la normalisation des tags du post : {e}")
-                
+        
+    def total_likes(self):
+        return self.likes.count() 
+    
+           
 class Report(models.Model):
     REPORT_CHOICES = [
         ('SPAM', _('Spam')),

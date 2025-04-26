@@ -1,12 +1,12 @@
 # Ignorer les dossiers
-media/
 venv_wsl/
 OKay/
 newsletter/
 fixtures/
 .tmp.driveupload/
+.vscode/
 
-# Ignorer les fichiers spécifiques
+Procfile
 db.sqlite3
 debug.log
 vas.py

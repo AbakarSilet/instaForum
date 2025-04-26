@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load l10n %}
 
 {% block title %}
     {% trans "événement" %}| InstaForum
@@ -22,7 +23,7 @@
         </div>
         <p><i class="ri-user-line icon"></i>{{ event.organizer.first_name }} {{ event.organizer.last_name }}</p>
         <p><i class="ri-map-pin-line icon"></i>{{ event.location }}</p>
-        <p><i class="ri-time-line icon"></i>{{ event.date }}</p>
+        <p><i class="ri-time-line icon"></i>{{ event.date|localize }}</p>
         <div class="event-description">{{ event.description }}</div>
         {% if event.image %}
             <div class="event-image-container">
