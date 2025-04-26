@@ -12,3 +12,7 @@ debug.log
 vas.py
 faire.txt
 .env 
+*.pyc
+__pycache__/
+*.sqlite3
+.idea/
