@@ -110,7 +110,7 @@ def delete_thread_view(request, slug):
     thread.delete()
     
     messages.success(request, _("Le thread a été supprimé avec succès."))
-    return redirect('forum:subforum', slug=subforum_slug)
+    return redirect('forum:moderation_dashboard')
 
 
 @login_required
@@ -383,11 +383,19 @@ def thread_view(request, slug):
         'similar_threads': similar_threads,
     })
 
-@login_required
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+from .models import Thread
+
 @csrf_exempt
 @login_required
 def like_thread(request, slug):
     thread = get_object_or_404(Thread, slug=slug)
+
     if thread.likes.filter(id=request.user.id).exists():
         thread.likes.remove(request.user)
         liked = False
@@ -395,10 +403,24 @@ def like_thread(request, slug):
         thread.likes.add(request.user)
         liked = True
 
+    # Après avoir liké ou unliké ➔ envoyer mise à jour WebSocket
+    likes_count = thread.total_likes()
+
+    channel_layer = get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        f'thread_{slug}',
+        {
+            'type': 'thread_liked',
+            'slug': slug,
+            'likes_count': likes_count,
+        }
+    )
+
     return JsonResponse({
         'liked': liked,
-        'total_likes': thread.total_likes()
+        'total_likes': likes_count,
     })
+
       
 @login_required
 @csrf_exempt

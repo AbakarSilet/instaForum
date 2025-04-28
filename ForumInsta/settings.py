@@ -513,7 +513,7 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     "navigation_expanded": True,
     "hide_apps": [],
-    "hide_models": ["auth.Group"],
+    "hide_models": [],
     "related_modal_active": True,
     
     # Boutons d'actions supplémentaires

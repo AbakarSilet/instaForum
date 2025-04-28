@@ -69,11 +69,15 @@
                 {% endif %}
                 {% endfor %}
                 <div class="icons">
-                    <a href="{% url 'forum:delete_thread' thread.id %}" class="icon-btn" title="{% trans 'Supprimer' %}">
+                    <a href="{% url 'forum:delete_thread' slug=thread.slug %}" class="icon-btn" title="{% trans 'Supprimer' %}">
                         <i class="fa fa-trash"></i> <!-- Icône de corbeille pour supprimer -->
                     </a>
                     <a href="{% url 'forum:thread' slug=thread.slug %}" class="icon-btn" title="{% trans 'Voir' %}">
                         <i class="fa fa-eye"></i> <!-- Icône d'œil pour voir -->
+                    </a>
+                    
+                    <a href="{% url 'forum:close_thread' slug=thread.slug %}" class="icon-btn" title="{% trans 'Fermer' %}">
+                        <i class="fa fa-times"></i> <!-- Icône de croix pour fermer -->
                     </a>
                 </div>
             </li>
